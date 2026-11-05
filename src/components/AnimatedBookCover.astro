@@ -1,0 +1,33 @@
+---
+import BookOpeningScene from './BookOpeningScene.astro';
+interface Props {cover:string;title:string;}
+const {cover,title}=Astro.props;
+---
+<div class="animated-book-cover" data-opening-preview>
+  <button class="journal-cover-button" type="button" data-open-animated-book aria-label={`Open ${title} animated book preview`} aria-haspopup="dialog">
+    <img class="journal-cover-image" src={cover} alt={`${title} cover`} width="180" height="270" loading="lazy" />
+    <span class="cover-peek"><BookOpeningScene cover={cover} title={title}/></span>
+  </button>
+  <dialog class="opening-dialog" data-animated-book-dialog aria-label={`${title} book animation`}>
+    <button class="opening-close" type="button" data-close-animated-book aria-label="Close book animation">×</button>
+    <p>{title}</p><div class="large-book"><BookOpeningScene cover={cover} title={title}/></div>
+    <span class="animation-note">A little glimpse inside · decorative pages</span>
+  </dialog>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-opening-preview]').forEach(root=>{
+    const dialog=root.querySelector<HTMLDialogElement>('[data-animated-book-dialog]')!;
+    root.querySelector('[data-open-animated-book]')!.addEventListener('click',()=>{dialog.showModal();document.body.classList.add('dialog-open');});
+    root.querySelector('[data-close-animated-book]')!.addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const b=dialog.getBoundingClientRect();if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom)dialog.close();});
+    dialog.addEventListener('close',()=>{if(!document.querySelector('dialog[open]'))document.body.classList.remove('dialog-open');});
+  });
+</script>
+<style>
+  .animated-book-cover{position:relative;flex-shrink:0;width:68px;height:102px;z-index:2;}.journal-cover-button{position:relative;display:block;width:100%;height:100%;padding:0;background:none;border:0;cursor:zoom-in;}.journal-cover-image{display:block;width:100%;height:100%;object-fit:cover;transform:rotate(-4deg);box-shadow:-2px 4px 6px #40342333;transition:transform .35s ease;border-radius:1px;}.journal-cover-button:hover .journal-cover-image,.journal-cover-button:focus-visible .journal-cover-image{transform:rotate(0) scale(1.08);}
+  .cover-peek{display:none;position:absolute;left:48px;top:-20px;padding:22px 20px 15px;background:#fff6e8f5;border:1px solid #d8c6a5;border-radius:10px;box-shadow:0 12px 35px #46382326;pointer-events:none;transform-origin:left center;}
+  @media(hover:hover) and (pointer:fine){.journal-cover-button:hover .cover-peek{display:block;animation:peek-in .35s ease both;}}@keyframes peek-in{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+  .opening-dialog{width:min(520px,91vw);max-height:90dvh;padding:36px 24px 24px;border:1px solid #d6c7a8;border-radius:18px;background:radial-gradient(ellipse at center,#fff9ec,#eee2c7);color:#36533e;text-align:center;box-shadow:0 25px 90px #28332555;overflow:hidden;}.opening-dialog::backdrop{background:#243125b8;backdrop-filter:blur(6px);}.opening-close{position:absolute;right:13px;top:12px;background:none;border:1px solid #c6c9b3;color:#4a6248;border-radius:50%;width:31px;height:31px;font-size:23px;display:grid;place-items:center;}.opening-dialog>p{font:26px/1.2 Georgia,serif;margin:12px 0 20px;}.large-book{display:grid;place-items:center;height:280px;}.large-book :global(.opening-book){--leaf-width:155px;--leaf-height:232px;}.animation-note{display:block;font-size:10px;color:#899078;margin-top:12px;}
+  @media(max-width:760px){.animated-book-cover{width:60px;height:90px;}.large-book{height:220px;}.large-book :global(.opening-book){--leaf-width:125px;--leaf-height:188px;}.opening-dialog>p{font-size:23px;}}
+  @media(prefers-reduced-motion:reduce){.journal-cover-image{transition:none;}.cover-peek{animation:none!important;}}
+</style>

@@ -1,0 +1,187 @@
+---
+import books from '../data/bookshelf.json';
+import spines from '../data/spines.json';
+import SpineTexture from './SpineTexture.astro';
+const rows = [['acotar', 'addie'], ['empyrean', 'hunger'], ['potter', 'divergent']];
+const names: Record<string, string> = { acotar: 'ACOTAR', empyrean: 'The Empyrean', hunger: 'The Hunger Games', addie: 'Addie LaRue', potter: 'Harry Potter', divergent: 'Divergent' };
+const spineData = spines as Record<string, {ratio: number}>;
+const lights = Array.from({length: 23}, (_, i) => ({x: 8 + i * 26.5, y: 8 + Math.sin(i * Math.PI / 5) ** 2 * 9}));
+function bookProps(book: typeof books[number]) {
+  return { 'data-book-id': book.id, 'data-title': book.title, 'data-author': book.author, 'data-note': book.note, 'data-series-name': book.seriesName, 'data-reading-status': book.readingStatus, 'data-cover': book.cover, 'data-isbn': book.isbn, 'aria-label': `Preview ${book.title}, ${book.author}`, 'aria-pressed': 'false', draggable: 'true', style: `--spine-ratio:${spineData[book.id]?.ratio || .16};--height-offset:${book.series === 'potter' ? 0 : book.order % 2 * 3}px` };
+}
+---
+<div class="shelf-preview" data-shelf-preview>
+  <div class="preview-scene">
+    <div class="real-bookshelf" data-bookcase data-layout="styled" aria-label="Example reading lists">
+      <svg class="shelf-lights" viewBox="0 0 600 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6Q100 30 200 6Q300 30 400 6Q500 30 600 6" fill="none" stroke="#b5a47f" />{lights.map(({x,y}) => <circle cx={x} cy={y} r="2.2" fill="#fff3c6" />)}</svg>
+      {rows.map((row, rowIndex) => <div class="shelf-row" data-shelf-row={rowIndex}>
+        {row.map((key) => <div class:list={['saga-cluster', { 'horizontal-cluster': key === 'addie' }]} data-series={key} aria-label={names[key]}>
+          {books.filter((book) => book.series === key && !(key === 'divergent' && book.order > 1)).map((book) => <><button type="button" class:list={['shelf-book', { 'first-volume': book.order === 1 && key !== 'addie', 'cover-required': !spineData[book.id], 'horizontal-book': key === 'addie' }]} {...bookProps(book)}>
+            <span class="spine-texture"><SpineTexture id={book.id} /></span><img draggable="false" class="shelf-cover" src={book.cover} alt="" width={book.width} height={book.height} loading={book.order === 1 || !spineData[book.id] ? "eager" : "lazy"} decoding="async" />
+          </button>{book.id === 'empyrean-1' && <svg class="dragon-prop" viewBox="209 8 680 1178" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><image href="/images/black-dragon-ornament.png" width="1236" height="1272" /></svg>}</>)}
+          {key === 'divergent' && <div class="stacked-volumes">{books.filter(b => b.series === key && b.order > 1).map(book => <button type="button" class="shelf-book stackable-book" {...bookProps(book)}><span class="spine-texture"><SpineTexture id={book.id} /></span><img draggable="false" class="shelf-cover" src={book.cover} alt="" width={book.width} height={book.height} loading="lazy" decoding="async" /></button>)}</div>}
+          {key === 'potter' && <img class="necklace-prop" src="/images/hallows-necklace.png" alt="" aria-hidden="true" />}
+          {key === 'addie' && <span class="little-candle" aria-hidden="true"><i></i></span>}
+        </div>)}
+      </div>)}
+      <img class="trailing-ivy" src="/images/trailing-ivy-cutout.png" alt="" aria-hidden="true" />
+      <span class="cabinet-foot left" aria-hidden="true"></span><span class="cabinet-foot right" aria-hidden="true"></span>
+    </div>
+    <div class="book-pane">
+  <div class="preview-controls"><div class="layout-options reading-tabs" role="group" aria-label="Choose a reading list">
+    <button type="button" data-reading-filter="read" aria-pressed="true"><span aria-hidden="true">✓</span> Read <small>18</small></button><button type="button" data-reading-filter="tbr" aria-pressed="false"><span aria-hidden="true">♡</span> To be read <small>9</small></button>
+  </div></div>
+    <aside class="cover-reveal" aria-label="3D book preview" aria-live="polite" aria-atomic="true">
+      <div class="cover-placeholder" data-cover-placeholder><span aria-hidden="true">✧</span><p>A story is waiting.</p><small>Hover over a book,<br />or tap to take a look.</small></div>
+      <div class="revealed-book" data-cover-content hidden>
+        <div class="book-stage" data-model-stage draggable="true" role="group" aria-label="Drag this book onto a shelf to move it.">
+          <div class="book-model" data-book-model style="--rotation:-28deg">
+            <div class="model-back" aria-hidden="true"></div><div class="model-spine" data-model-spine aria-hidden="true"></div><div class="model-pages" aria-hidden="true"></div><div class="model-top" aria-hidden="true"></div><div class="model-bottom" aria-hidden="true"></div>
+            <img draggable="false" class="model-front" data-revealed-cover alt="" width="180" height="270" />
+          </div>
+        </div>
+        <strong data-selected-title></strong><span class="cover-author" data-selected-author></span><span class="cover-note" data-selected-detail></span><div class="book-actions"><span class="reading-state" data-selected-status></span><button type="button" class="book-action" data-book-action="move" aria-pressed="true">✥ Move</button></div>
+      </div>
+    </aside>
+    </div>
+  </div>
+  <p class="preview-hint" data-action-hint aria-live="polite"><span aria-hidden="true">✧</span> Drag a book to give it a new place on your shelf.</p>
+  <details class="edition-notes">
+    <summary>Book editions &amp; image credits</summary>
+    <p>Read and To be read are example collections for this concept preview, not a saved personal reading history.</p>
+    <p>Photographic spines preserve the artwork and lettering of real English-language editions. Where a matching spine photograph is not available, the book is displayed cover-forward. The 3D viewer models the cover, spine and page block; it does not reproduce the back-cover artwork.</p>
+    <p>Real English-language editions, checked on 5 November 2026. Reading order follows publication order within each collection. Harry Potter contains the seven original novels; Addie LaRue is a standalone. The Empyrean includes <em>Threshing Day</em>, a companion collection, and Divergent includes <em>Four</em>.</p>
+    <p>Series references: <a href="https://sarahjmaas.com/reading-guide/" target="_blank" rel="noreferrer">Sarah J. Maas</a>, <a href="https://rebeccayarros.com/empyrean" target="_blank" rel="noreferrer">Rebecca Yarros</a>, <a href="https://threshingday.com/" target="_blank" rel="noreferrer">Threshing Day</a>, <a href="https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html" target="_blank" rel="noreferrer">Scholastic</a>, <a href="https://stories.jkrowling.com/faqs/" target="_blank" rel="noreferrer">J. K. Rowling</a>, <a href="https://veronicarothbooks.com/books/four/" target="_blank" rel="noreferrer">Veronica Roth</a>.</p>
+    <p>Covers identify the books and remain the property of their respective rightsholders. Cover images are sourced from author/publisher sites and <a href="https://openlibrary.org/dev/docs/api/covers" target="_blank" rel="noreferrer">Open Library</a>. Editions can have different cover designs. This is an independent product preview.</p>
+  <p>Spine photography: <a href="https://www.barnesandnoble.com/w/a-court-of-thorns-and-roses-paperback-box-set-sarah-j-maas/1140822689" target="_blank" rel="noreferrer">ACOTAR box set</a>, <a href="https://thereadingspa.com/products/harry-potter-complete-book-series-special-edition-boxed-set" target="_blank" rel="noreferrer">Harry Potter set</a>, <a href="https://www.lowplexbooks.com/products/the-hunger-games-series-by-suzanne-collins-5-books-collection-set" target="_blank" rel="noreferrer">Hunger Games set</a>, <a href="https://foxclouds.com/blog/tag/divergent" target="_blank" rel="noreferrer">Divergent set</a>, and PangoBooks edition photographs. Book-by-book provenance is retained in the project catalog; printings can differ.</p></details>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-shelf-preview]').forEach((preview) => {
+    const books = Array.from(preview.querySelectorAll<HTMLButtonElement>('[data-book-id]'));
+    const bookcase = preview.querySelector<HTMLElement>('[data-bookcase]')!;
+    const controls = Array.from(preview.querySelectorAll<HTMLButtonElement>('[data-reading-filter]'));
+    const clusters = Array.from(bookcase.querySelectorAll<HTMLElement>('[data-series]'));
+    const rows = Array.from(bookcase.querySelectorAll<HTMLElement>('[data-shelf-row]'));
+    const originalContents = new Map(clusters.map(cluster => [cluster, Array.from(cluster.childNodes)]));
+    const originalLabels = new Map(clusters.map(cluster => [cluster, cluster.getAttribute('aria-label')]));
+    const placeholder = preview.querySelector<HTMLElement>('[data-cover-placeholder]')!;
+    const content = preview.querySelector<HTMLElement>('[data-cover-content]')!;
+    const cover = preview.querySelector<HTMLImageElement>('[data-revealed-cover]')!;
+    const model = preview.querySelector<HTMLElement>('[data-book-model]')!;
+    const stage = preview.querySelector<HTMLElement>('[data-model-stage]')!;
+    const modelSpine = preview.querySelector<HTMLElement>('[data-model-spine]')!;
+    const actionButtons = Array.from(preview.querySelectorAll<HTMLButtonElement>('[data-book-action]'));
+    const actionHint = preview.querySelector<HTMLElement>('[data-action-hint]')!;
+    let interactionMode = 'move';
+    let draggingBook: HTMLButtonElement | null = null;
+    let yaw = -28;
+    let pitch = -5;
+    const title = preview.querySelector<HTMLElement>('[data-selected-title]')!;
+    const author = preview.querySelector<HTMLElement>('[data-selected-author]')!;
+    const detail = preview.querySelector<HTMLElement>('[data-selected-detail]')!;
+    const statusLabel = preview.querySelector<HTMLElement>('[data-selected-status]')!;
+    let selected: HTMLButtonElement | null = null;
+    let displayed: HTMLButtonElement | null = null;
+    let featured = books[0];
+    function rotate(value: number, vertical = pitch) { yaw = value % 360; pitch = Math.max(-30, Math.min(30, vertical)); model.style.setProperty('--rotation', `${yaw}deg`); model.style.setProperty('--pitch', `${pitch}deg`); }
+    function reveal(book: HTMLButtonElement | null) {
+      placeholder.hidden = !!book; content.hidden = !book;
+      if (!book || book === displayed) return;
+      displayed = book; cover.src = book.dataset.cover!; cover.alt = `${book.dataset.title} — edition cover`;
+      title.textContent = book.dataset.title!; author.textContent = book.dataset.author!; detail.textContent = `${book.dataset.seriesName} · ${book.dataset.note}`; statusLabel.textContent = book.dataset.readingStatus === 'read' ? '✓ Read' : '♡ To be read';
+      modelSpine.replaceChildren();
+      const texture = book.querySelector('.spine-texture svg');
+      if (texture) modelSpine.append(texture.cloneNode(true));
+      else { modelSpine.textContent = book.dataset.title!; }
+      rotate(-28, -5);
+    }
+    books.forEach((book) => {
+      book.addEventListener('pointerenter', (event) => { if (event.pointerType !== 'touch') reveal(book); });
+      book.addEventListener('pointerleave', () => reveal(selected || displayed || featured));
+      book.addEventListener('focus', () => reveal(book)); book.addEventListener('blur', () => reveal(selected || displayed || featured));
+      book.addEventListener('click', () => { selected = book; books.forEach((other) => other.setAttribute('aria-pressed', String(other === book))); reveal(book); });
+    });
+    function showList(status: string) {
+      selected = null; displayed = null;
+      originalContents.forEach((nodes, cluster) => { cluster.replaceChildren(...nodes); const label = originalLabels.get(cluster); if (label) cluster.setAttribute('aria-label',label); });
+      books.forEach(book => { book.hidden = book.dataset.readingStatus !== status; book.setAttribute('aria-pressed', 'false'); });
+      clusters.forEach(cluster => { cluster.hidden = !Array.from(cluster.querySelectorAll<HTMLButtonElement>('[data-book-id]')).some(book => !book.hidden); });
+      const arrangement = status === 'read' ? [['acotar', 'empyrean', 'hunger'], ['potter', 'divergent']] : [['acotar', 'empyrean'], ['hunger', 'addie', 'divergent']];
+      arrangement.forEach((keys, i) => { rows[i].hidden = false; keys.forEach(key => { const cluster = clusters.find(c => c.dataset.series === key); if (cluster) rows[i].append(cluster); }); });
+      rows[2].hidden = true;
+      const dragon = preview.querySelector<HTMLElement>('.dragon-prop'); if (dragon) dragon.hidden = status !== 'read';
+      controls.forEach(control => control.setAttribute('aria-pressed', String(control.dataset.readingFilter === status)));
+      featured = books.find(book => !book.hidden)!;
+      bookcase.setAttribute('aria-label', `Example ${status === 'read' ? 'read' : 'to be read'} collection: ${books.filter(book => !book.hidden).length} books on two shelves`);
+      reveal(featured);
+    }
+    controls.forEach(control => control.addEventListener('click', () => showList(control.dataset.readingFilter!)));
+    showList('read');
+    function setInteraction(mode: string) { interactionMode = mode; preview.dataset.interactionMode = mode; stage.draggable = mode === 'move'; actionButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.bookAction === mode))); actionHint.textContent = mode === 'move' ? 'Drag the book onto a shelf, or between other books.' : 'Drag this book onto a shelf to move it.'; }
+    actionButtons.forEach(button => button.addEventListener('click',()=>setInteraction(button.dataset.bookAction!)));
+    function beginMove(book: HTMLButtonElement, event: DragEvent) { draggingBook = book; selected = book; reveal(book); books.forEach(other=>other.setAttribute('aria-pressed',String(other===book))); event.dataTransfer?.setData('text/plain',book.dataset.bookId!); if (event.dataTransfer) event.dataTransfer.effectAllowed = 'move'; preview.classList.add('is-rearranging'); actionHint.textContent = 'Drop the book on the shelf where you want it.'; }
+    books.forEach(book => { book.addEventListener('dragstart',event=>beginMove(book,event)); book.addEventListener('dragend',finishMove); });
+    stage.addEventListener('dragstart',event=>{if(interactionMode!=='move') {event.preventDefault();return;}const book=selected || displayed || featured;beginMove(book,event);if(event.dataTransfer)event.dataTransfer.setDragImage(cover,cover.clientWidth/2,cover.clientHeight/2);});
+    stage.addEventListener('dragend',finishMove);
+    function finishMove() { draggingBook = null; preview.classList.remove('is-rearranging'); rows.forEach(row=>row.classList.remove('drop-target')); }
+    rows.forEach(row => {
+      row.addEventListener('dragover',event=>{if(!draggingBook)return;event.preventDefault();if(event.dataTransfer)event.dataTransfer.dropEffect='move';row.classList.add('drop-target');});
+      row.addEventListener('dragleave',event=>{if(!row.contains(event.relatedTarget as Node))row.classList.remove('drop-target');});
+      row.addEventListener('drop',event=>{if(!draggingBook)return;event.preventDefault();const book=draggingBook;const parent=book.parentNode!;const next=book.nextSibling;const target=(event.target as Element).closest<HTMLButtonElement>('[data-book-id]');
+        if(target && target!==book && row.contains(target)) {const b=target.getBoundingClientRect();if(event.clientX<b.x+b.width/2)target.before(book);else target.after(book);}else row.append(book);
+        const bounds=row.getBoundingClientRect();const items=Array.from(row.querySelectorAll<HTMLButtonElement>('[data-book-id]')).filter(b=>!b.hidden);const fits=items.every(b=>{const box=b.getBoundingClientRect();return box.right<=bounds.right+2&&box.left>=bounds.left-2;});
+        if(!fits){parent.insertBefore(book,next);actionHint.textContent='This shelf is full. Try another spot.';}else{clusters.forEach(cluster=>cluster.removeAttribute('aria-label'));actionHint.textContent=`${book.dataset.title} has a new place on your shelf.`;}
+        finishMove();
+      });
+    });
+  });
+</script>
+<style>
+  .shelf-preview { --book-height: 100px; --horizontal-width: 82px; --model-width: 70px; --model-height: 105px; }
+  .preview-controls { display: flex; align-items: center; justify-content: flex-end; gap: 12px; max-width: 100%; margin: 0 0 9px; }
+  .preview-controls p { margin: 0; font: italic 15px Georgia, serif; color: #84917b; }
+  .layout-options { display: flex; gap: 3px; padding: 3px; border-radius: 20px; background: #e9eade; }
+  .layout-options button { padding: 6px 8px; border: 0; border-radius: 20px; font-size: 9px; color: #52634c; background: transparent; }
+  .book-actions { display: flex; align-items: center; justify-content: center; gap: 5px; flex-wrap: wrap; margin-top: 7px; }.book-actions .reading-state { margin: 0; padding: 5px 8px; }.book-action { padding: 5px 7px; border: 1px solid #bfc9ac80; border-radius: 14px; background: #fff9e83b; color: #65795c; font-size: 9px; }.book-action[aria-pressed="true"] { background: #6c7d5c; border-color: #6c7d5c; color: #fff9e8; }.is-rearranging .shelf-row { outline: 1px dashed #e9cf8a; outline-offset: -2px; }.is-rearranging .shelf-row.drop-target { background: #f9db9c33; outline: 2px solid #ffe7ad; }.shelf-book[draggable="true"] { cursor: grab; }.shelf-book[draggable="true"]:active { cursor: grabbing; }
+  .reading-tabs button span { margin-right: 4px; }.reading-tabs small { opacity: .6; margin-left: 4px; font-size: 8px; font-weight: 400; }
+  .layout-options button[aria-pressed='true'] { color: #fffdf4; background: #4d6653; }
+  .preview-scene { display: grid; grid-template-columns: max-content 176px; justify-content: center; align-items: start; gap: 18px; max-width: 740px; margin: auto; }
+  .book-pane { min-width: 0; height: calc(var(--book-height) * 2 + 98px); display: flex; flex-direction: column; }.real-bookshelf { margin-top: 0; position: relative; width: fit-content; max-width: 100%; padding: 22px 15px 0; border: 12px solid #e4dcc6; border-top-width: 19px; border-bottom-width: 17px; border-radius: 5px 5px 2px 2px; background: linear-gradient(90deg,#81775f,#b9ac8a 23%,#a59879 70%,#877c63); box-shadow: inset 9px 0 17px #30271664,inset -9px 0 17px #30271640,inset 0 9px 14px #35261365,0 16px 20px -13px #4a3d2966; }
+  .real-bookshelf::before { content: ''; position: absolute; inset: -12px; border: 1px solid #f7efdb; pointer-events: none; border-radius: 3px; box-shadow: inset 3px 0 3px #fcf8ea70,3px 0 0 #b7ad95; }
+  .shelf-lights { position: absolute; top: -7px; left: -5px; width: calc(100% + 10px); height: 28px; overflow: visible; z-index: 5; pointer-events: none; }.shelf-lights circle { filter: drop-shadow(0 0 4px #ffd26e) drop-shadow(0 0 8px #ffe1a0); }
+  .shelf-row { position: relative; display: flex; align-items: flex-end; gap: 18px; padding: 7px 0 13px; min-height: calc(var(--book-height) + 20px); }
+  .shelf-row::after { content: ''; position: absolute; bottom: 0; left: -15px; right: -15px; height: 12px; background: linear-gradient(#f0e8d5 0 24%,#d9ceb5 25% 65%,#b8ac91); box-shadow: 0 7px 9px #30251070; z-index: 4; }
+  .saga-cluster { position: relative; display: flex; align-items: flex-end; gap: 2px; }.saga-label { display: none; position: absolute; left: 0; bottom: calc(var(--book-height) + 6px); font-size: 8px; white-space: nowrap; color: #f2ead6; letter-spacing: .3px; text-shadow: 0 1px 2px #3b3329; }
+  .shelf-book { position: relative; display: block; flex-shrink: 0; width: calc(var(--book-height) * var(--spine-ratio)); height: calc(var(--book-height) - var(--height-offset)); padding: 0; border: 0; border-radius: 2px; background: #25332e; box-shadow: 2px 0 3px #281c1570,0 -1px 0 #e4d8c9; transform-origin: bottom center; transition: transform .2s ease,filter .2s ease; cursor: pointer; }
+  .shelf-book::before { content: ''; position: absolute; top: -3px; height: 3px; left: 1px; right: 0; background: repeating-linear-gradient(#ddd2bb 0 1px,#f7eedb 1px 2px); transform: skewX(-25deg); transform-origin: bottom; border-radius: 1px; }
+  .shelf-book::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,#0004,transparent 15% 75%,#fff1 89%,#0003); border-radius: inherit; pointer-events: none; }
+  .spine-texture { position: absolute; inset: 0; display: block; overflow: hidden; border-radius: inherit; }.shelf-cover { display: none; width: 100%; height: 100%; object-fit: fill; border-radius: inherit; }
+  .shelf-book:hover,.shelf-book:focus-visible { z-index: 5; transform: translateY(-5px); filter: brightness(1.08); outline: 1px solid #efddb1; outline-offset: 2px; }.shelf-book[aria-pressed='true'] { box-shadow: 0 0 0 1px #f5dfab,3px 3px 6px #30211070; }
+  .real-bookshelf[data-layout='styled'] .first-volume,.cover-required { width: calc(var(--book-height) * .66); margin-right: 5px; box-shadow: 3px 2px 4px #241a0e70; }
+  .real-bookshelf[data-layout='styled'] .first-volume .shelf-cover,.cover-required .shelf-cover { display: block; }.real-bookshelf[data-layout='styled'] .first-volume .spine-texture,.cover-required .spine-texture { visibility: hidden; }
+  .stacked-volumes { display: flex; align-items: flex-end; gap: 2px; }
+  .real-bookshelf[data-layout='styled'] .stacked-volumes { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .horizontal-book,.real-bookshelf[data-layout='styled'] .stackable-book { width: var(--horizontal-width); height: calc(var(--book-height) * var(--spine-ratio)); }
+  .horizontal-book .spine-texture,.real-bookshelf[data-layout='styled'] .stackable-book .spine-texture { inset: auto; width: calc(var(--book-height) * var(--spine-ratio)); height: var(--horizontal-width); left: 0; top: 100%; transform: rotate(-90deg); transform-origin: 0 0; }
+  .horizontal-cluster { padding-top: 75px; }
+  .little-candle { position: absolute; bottom: calc(var(--book-height) * .16 + 3px); left: 33px; width: 27px; height: 36px; border-radius: 3px 3px 7px 7px; background: linear-gradient(90deg,#bba881,#e8d7b3 40%,#c5b18a); box-shadow: 2px 3px 4px #332a2450; }.little-candle i { position: absolute; width: 5px; height: 9px; left: 11px; top: -11px; border-radius: 80% 10% 70% 40%; transform: rotate(-20deg); background: #fff4c6; box-shadow: 0 0 9px 3px #ffd47980; }
+  .shelf-plant { position: relative; display: block; flex-shrink: 0; width: 64px; height: auto; align-self: flex-end; pointer-events: none; filter: drop-shadow(2px 3px 2px #28281940); }.pothos { width: 79px; margin-left: -4px; margin-right: -4px; margin-bottom: -3px; z-index: 5; }.fern { width: 53px; margin-left: -5px; }
+  .dragon-prop { display: block; width: 30px; height: 48px; align-self: flex-end; flex-shrink: 0; margin: 0 3px -1px; filter: drop-shadow(1px 3px 2px #26221960); }.necklace-prop { display: block; position: absolute; left: calc(var(--book-height) * .34); top: -3px; z-index: 7; width: 35px; height: 47px; object-fit: contain; object-position: center top; pointer-events: none; margin: 0; transform: rotate(-7deg); filter: drop-shadow(1px 2px 1px #26221945); }
+  .trailing-ivy { --ivy-width: 90px; --pot-bottom: calc(var(--ivy-width) * .68); position: absolute; right: -24px; top: calc(22px + var(--book-height) + 7px - var(--pot-bottom)); width: var(--ivy-width); transform: scaleX(-1); height: auto; z-index: 6; pointer-events: none; filter: drop-shadow(1px 2px 1px #25311930); }
+  .cabinet-foot { position: absolute; bottom: -24px; width: 17px; height: 8px; background: #c4b89b; }.cabinet-foot.left { left: 4px; }.cabinet-foot.right { right: 4px; }
+  .cover-reveal { flex: 1; align-self: stretch; display: grid; place-items: center; min-width: 0; min-height: 0; padding: 12px 11px; border: 1px solid #d9cbb18c; border-radius: 16px; background: radial-gradient(ellipse at 50% 5%,#fffdf1,#f4ead8 75%); box-shadow: 0 8px 22px #5f482411,inset 0 1px #fff9ec; text-align: center; color: #3f5847; }[hidden] { display: none !important; }.cover-placeholder > span { font-size: 35px; color: #a99468; }.cover-placeholder p { font: 21px Georgia,serif; margin: 16px 0 10px; }.cover-placeholder small { color: #8a927e; font-size: 11px; line-height: 1.8; }.revealed-book { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; }.cover-eyebrow { display: block; font-size: 8px; letter-spacing: 2px; color: #8b967e; margin-bottom: 13px; }
+  .book-stage { display: grid; place-items: center; perspective: 700px; height: calc(var(--model-height) + 10px); flex-shrink: 0; touch-action: none; cursor: grab; user-select: none; }.book-stage:active { cursor: grabbing; }.book-stage:focus-visible { outline: 1px solid #a9b69a; outline-offset: 3px; border-radius: 8px; }
+  .book-model { position: relative; width: var(--model-width); height: var(--model-height); transform-style: preserve-3d; transform: rotateX(var(--pitch, -5deg)) rotateY(var(--rotation)); transition: transform .08s linear; }
+  .model-front { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; border-radius: 1px; transform: translateZ(10px); box-shadow: 1px 2px 4px #32281c55; backface-visibility: hidden; pointer-events: none; }
+  .model-back { position: absolute; inset: 0; background: #28332b; transform: translateZ(-10px); }.model-spine { position: absolute; top: 0; left: 0; width: 20px; height: 100%; background: #324236; color: #e7d7b7; font-size: 7px; writing-mode: vertical-rl; text-align: center; transform-origin: left; transform: translateZ(10px) rotateY(90deg); overflow: hidden; }.model-spine :global(svg) { width: 100%; height: 100%; }
+  .model-pages { position: absolute; top: 2px; right: 0; width: 20px; height: calc(100% - 4px); background: repeating-linear-gradient(90deg,#c5baa3 0 1px,#f3ead8 1px 2px,#e0d6c0 2px 3px); transform-origin: right; transform: translateZ(10px) rotateY(-90deg); }.model-top,.model-bottom { position: absolute; left: 1px; width: calc(100% - 2px); height: 20px; background: repeating-linear-gradient(#d1c6ad 0 1px,#f4ebd8 1px 2px); }.model-top { top: 0; transform-origin: top; transform: translateZ(10px) rotateX(-90deg); }.model-bottom { bottom: 0; transform-origin: bottom; transform: translateZ(10px) rotateX(90deg); }
+  .revealed-book strong { display: block; margin-top: 6px; font: 14px/1.18 Georgia,serif; }.cover-author { display: block; font-size: 10px; line-height: 1.4; margin-top: 5px; }.cover-note { display: block; color: #8a8a73; font-size: 9px; line-height: 1.5; margin-top: 3px; }.reading-state { display: inline-flex; justify-content: center; width: fit-content; margin: 14px auto 0; padding: 5px 11px; border: 1px solid #bfc9ac80; border-radius: 16px; background: #e5eadb8c; font-size: 10px; color: #5d7256; }.put-back { border: 0; border-bottom: 1px solid #bbc4af; color: #6c7c63; background: none; padding: 5px 0; margin-top: 16px; font-size: 9px; }
+  .preview-hint { text-align: center; margin: 63px 0 18px; font-size: 11px; color: #fffdf3; text-shadow: 0 1px 3px #4f3a20; }.preview-hint span { color: #a4936b; margin-right: 5px; }.edition-notes { color: #fffdf1; text-shadow: 0 1px 3px #4f3a20; font-size: 10px; line-height: 1.6; }.edition-notes summary { cursor: pointer; width: fit-content; }.edition-notes p { margin: 7px 0; }.edition-notes a { color: #fffdf1; text-decoration: underline; }
+  @media(max-width: 800px) and (min-width: 651px) { .shelf-preview { --book-height: 100px; --horizontal-width: 83px; --model-width: 70px; --model-height: 105px; }.preview-scene { grid-template-columns: max-content 176px; gap: 17px; }.shelf-row { gap: 13px; }.pothos { width: 65px; }.fern { width: 43px; } }
+  @media(max-width: 650px) {
+    .shelf-preview { --book-height: clamp(71px,21vw,108px); --horizontal-width: calc(var(--book-height) * .8); --model-width: 75px; --model-height: 113px; }
+    .preview-controls { flex-wrap: wrap; gap: 8px; }.preview-controls p { font-size: 14px; }.layout-options button { font-size: 9px; padding: 7px 10px; }.preview-scene { grid-template-columns: minmax(0,1fr); gap: 14px; }.book-pane { display: contents; height: auto; }.preview-controls { order: -1; justify-content: center; margin: 0; }.real-bookshelf { margin: 0 auto; border-width: 8px; border-top-width: 15px; padding: 20px 8px 0; }.real-bookshelf::before { inset: -8px; }.shelf-row { gap: 10px; min-height: calc(var(--book-height) + 14px); padding: 5px 0 9px; }.shelf-row::after { left: -8px; right: -8px; height: 9px; }.saga-label { font-size: 6px; bottom: calc(var(--book-height) + 5px); }.saga-cluster { gap: 1px; }.stacked-volumes { gap: 1px; }.real-bookshelf[data-layout='styled'] .first-volume,.cover-required { margin-right: 2px; }.horizontal-cluster { padding-top: 48px; }.little-candle { left: 20px; width: 21px; height: 25px; }.little-candle i { left: 8px; }.shelf-plant.pothos { width: 48px; margin-left: -5px; }.shelf-plant.fern { width: 33px; margin-left: -6px; }.dragon-prop { width: 21px; height: 35px; margin: 0 1px -1px; }.necklace-prop { width: 26px; height: 34px; margin: 0; }.trailing-ivy { --ivy-width: 62px; right: -18px; top: calc(20px + var(--book-height) + 5px - var(--pot-bottom)); }.cabinet-foot { bottom: -15px; height: 6px; }
+    .cover-reveal { min-height: 90px; width: 100%; border: 1px solid #d9cbb18c; border-radius: 13px; padding: 16px 13px; }.cover-placeholder > span { font-size: 24px; }.cover-placeholder p { font-size: 18px; margin: 7px 0; }.cover-placeholder small br { display: none; }.revealed-book { height: auto; display: grid; grid-template-columns: 98px minmax(0,1fr); column-gap: 12px; text-align: left; }.cover-eyebrow { display: none; }.book-stage { grid-column: 1; grid-row: 1 / 5; height: 122px; }.revealed-book strong { font-size: 19px; margin-top: 2px; }.cover-author,.cover-note,.book-actions { grid-column: 2; }.book-actions { justify-content: flex-start; margin-top: 9px; }.reading-state { margin: 9px 0 0; }.put-back { width: fit-content; margin-top: 9px; }.preview-hint { margin-top: 25px; font-size: 9px; }
+  }
+  @media(prefers-reduced-motion: reduce) { .shelf-book,.book-model { transition: none; } }
+</style>

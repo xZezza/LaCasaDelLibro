@@ -1,0 +1,28 @@
+---
+const flakes = Array.from({ length: 118 }, (_,i) => ({ x: i < 24 ? 458 + (i * 37 % 136) : 1288 + (i * 71 % 522), r: 1.1 + (i * 13 % 24) / 10, duration: 6.3 + (i * 17 % 55) / 10, delay: -(i * .731 % 11.7), opacity: .45 + (i % 5) * .11 }));
+---
+<div class="window-snow" aria-hidden="true">
+  {['desktop', 'mobile'].map((mode) => <svg class={`snow-${mode}`} viewBox="0 0 1874 839" preserveAspectRatio={mode === 'mobile' ? 'xMidYMid slice' : 'xMinYMid slice'}>
+    <defs><mask id={`snow-glass-${mode}`} maskUnits="userSpaceOnUse" x="0" y="0" width="1874" height="839">
+      <path d="M462 197Q474 139 522 139Q565 136 592 164V425H462Z" fill="white" />
+      <path d="M1295 181Q1490 64 1816 72V518H1295Z" fill="white" />
+      <path d="M523 136V431M458 207H601M457 300H600M457 395H600" stroke="black" stroke-width="9" />
+      <path d="M1374 107V531M1460 83V531M1573 75V531M1695 73V531M1782 76V531" stroke="black" stroke-width="11" />
+      <path d="M1287 197L1820 174M1287 310L1820 299M1287 407L1820 400" stroke="black" stroke-width="11" />
+      <path d="M1286 493Q1288 435 1378 440Q1480 424 1515 489L1537 540H1267Z" fill="black" />
+      <path d="M1759 412Q1790 399 1818 427V535H1759Z" fill="black" />
+    </mask></defs>
+    <g mask={`url(#snow-glass-${mode})`}>
+      {flakes.map((f,i) => <circle class="falling-flake" cx={f.x} cy="0" r={f.r} fill="#ffffff" opacity={f.opacity} style={`--fall-duration:${f.duration}s;--fall-delay:${f.delay}s;--drift:${i % 2 ? 17 : -13}px`} />)}
+    </g>
+  </svg>)}
+</div>
+<style>
+  .window-snow { position: absolute; z-index: -2; inset: auto 0 0; height: calc(100cqw * 839 / 1874); pointer-events: none; overflow: hidden; }
+  :global(html[data-scene='day']) .window-snow { display: none; }
+  svg { display: block; width: 100%; height: 100%; }.snow-mobile { display: none; }
+  .falling-flake { animation: snowfall var(--fall-duration) var(--fall-delay) linear infinite; will-change: transform; }
+  @keyframes snowfall { from { transform: translate(0,-35px); } to { transform: translate(var(--drift),565px); } }
+  @media(max-width:760px) { .window-snow { top: auto; bottom: 0; height: 680px; }.snow-desktop { display: none; }.snow-mobile { display: block; } }
+  @media(prefers-reduced-motion:reduce) { .falling-flake { animation: none; transform: translateY(230px); } }
+</style>
