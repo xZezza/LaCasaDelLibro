@@ -4,6 +4,6 @@
 <style>
   .day-swing { display: none; position: absolute; z-index: -2; inset: auto 0 0; height: calc(100cqw * 839 / 1874); pointer-events: none; }:global(html[data-scene='day']) .day-swing { display: block; }svg { display: block; width: 100%; height: 100%; }.swing-desktop { overflow: visible; }.swing-mobile { display: none; }.swing-seat { transform-origin: 1435px 0; animation: gentle-swing 7.8s ease-in-out infinite; }
   @keyframes gentle-swing { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
-  @media(max-width:760px) { .day-swing { top: auto; bottom: 0; height: 680px; }.swing-desktop { display: none; }.swing-mobile { display: block; } }
+  @media(max-width:960px) { .day-swing { top: auto; bottom: 0; height: 680px; }.swing-desktop { display: none; }.swing-mobile { display: block; } }
   @media(prefers-reduced-motion:reduce) { .swing-seat { animation: none; } }
 </style>

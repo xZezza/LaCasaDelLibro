@@ -10,3 +10,4 @@
 - Prima della consegna di modifiche al sito, eseguire `pnpm build` e verificare il percorso interessato in anteprima quando disponibile.
 
 - Mantenere le modifiche locali: niente push su GitHub o deploy finché l’utente non li richiede esplicitamente.
+- Breakpoint unici: desktop sopra 960px; tablet 651–960px (`@media (max-width: 960px)`, solo-tablet con `and (min-width: 651px)`); telefono fino a 650px (`@media (max-width: 650px)`). Non introdurre altri valori.

@@ -23,6 +23,6 @@ const flakes = Array.from({ length: 118 }, (_,i) => ({ x: i < 24 ? 458 + (i * 37
   svg { display: block; width: 100%; height: 100%; }.snow-mobile { display: none; }
   .falling-flake { animation: snowfall var(--fall-duration) var(--fall-delay) linear infinite; will-change: transform; }
   @keyframes snowfall { from { transform: translate(0,-35px); } to { transform: translate(var(--drift),565px); } }
-  @media(max-width:760px) { .window-snow { top: auto; bottom: 0; height: 680px; }.snow-desktop { display: none; }.snow-mobile { display: block; } }
+  @media(max-width:960px) { .window-snow { top: auto; bottom: 0; height: 680px; }.snow-desktop { display: none; }.snow-mobile { display: block; } }
   @media(prefers-reduced-motion:reduce) { .falling-flake { animation: none; transform: translateY(230px); } }
 </style>
