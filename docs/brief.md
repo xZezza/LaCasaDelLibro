@@ -27,9 +27,9 @@ Finestra compatta senza “Your little library” o “Your reading corner”. M
 
 Ventisette libri tra Read (18) e To be read (9), su due ripiani per raccolta. Dorsi fotografici di 25 edizioni reali, copertina esposta quando manca il dorso autentico. Primi volumi di copertina e alcuni volumi orizzontali; copertine e fonti nel catalogo locale. Le liste sono esempi, non una cronologia personale salvata.
 
-Hover, focus e clic mostrano copertina, titolo, autrice, saga/volume e stato nel riquadro a destra. Filtri e riquadro insieme hanno la stessa altezza della libreria. Vista del volume in 3D con angolo fisso: il comando Rotate è stato tolto; resta Move, con trascinamento per riordinare i libri. Il modello non riproduce la quarta di copertina.
+Hover, focus e clic mostrano copertina, titolo, autrice, saga/volume e stato nel riquadro a destra. Filtri e riquadro insieme hanno la stessa altezza della libreria. Vista del volume in 3D con angolo fisso: il comando Rotate è stato tolto; nessun pulsante Move o stato Read nella scheda: si trascina direttamente. Doppio clic su un libro per alternare dorso e copertina, anche dalla preview; Shift+Invio offre la stessa azione da tastiera. Il modello non riproduce la quarta di copertina.
 
-Lucine, edera ricadente verso l’esterno con vaso appoggiato, drago nero poggiato accanto a Fourth Wing, collana dei Doni della Morte drappeggiata sul primo Harry Potter. Indicazioni e crediti bianchi e leggibili.
+Lucine, edera ricadente verso l’esterno con vaso appoggiato, drago nero poggiato accanto a Fourth Wing, collana dei Doni della Morte drappeggiata sul primo Harry Potter. Indicazioni e crediti in toni bruni leggibili, raccolti e centrati sotto la sola libreria.
 
 ## Carosello
 
@@ -59,3 +59,31 @@ Le anteprime chiuse hanno la stessa altezza e i due comandi sono allineati; su t
 ## Da completare prima del lancio
 
 URL social reali, dominio e canonical definitivi. La bozza mantiene `noindex, nofollow`: rimuoverlo solo per il lancio approvato. Non sono state aggiunte raccolta email o date di disponibilità.
+
+## Revisione della gerarchia della landing
+
+Prima semplificazione su `dev`: un unico titolo introduce diario e community, eliminando il doppio blocco introduttivo. Il carosello ha un titolo e un solo paragrafo; nell’hero resta una breve indicazione che l’app è in sviluppo. Nome coerente per l’apertura della libreria. Le schede mantengono quaderno, profilo, funzioni e slogan distinti; etichette e testi sono più leggibili. I due comandi sono “Read my thoughts” e “Read the conversation”, con frecce statiche. L’avvertenza sui contenuti dimostrativi compare una sola volta sotto le schede. Nessuna modifica alle illustrazioni, alle scene giorno/notte, al catalogo o alla pubblicazione.
+
+Prossimi interventi, da affrontare uno alla volta come richiesto da Gaia: consolidare coerenza dello stile e percorso desktop; aumentare il peso delle immagini; ripensare la versione mobile. La passata corrente si limita alla gerarchia desktop, non conclude la revisione mobile.
+
+## Dettagli in lavorazione: libreria e stati della community
+
+La preview libreria riprende ora l’ambiente della stanza principale: struttura in legno caldo intagliato e venato, ripiani fotografici profondi e fondale da angolo lettura con piano di legno. I libri restano elementi HTML interattivi con le loro copertine e i dorsi autentici; il mobile illustrato non contiene libri generati. La scheda del volume resta a destra, allineata con i filtri all’altezza della libreria. I precedenti asset con montagne sono conservati.
+
+Shared thoughts mostra due brevi pensieri di esempio di Mia, con spazi più compatti. Il comando della conversazione è assente in questo stato e viene ripristinato solo su Book discussion. Le due aperture usano un piccolo medaglione con chevron, al posto delle frecce lunghe. La discussione espansa include altre brevi risposte dimostrative per accompagnare la lunghezza della scheda diario.
+
+La preview riduce il piano di legno visibile e gli spazi esterni. L’istruzione di trascinamento e i crediti sono centrati sotto gli scaffali, non rispetto all’intero dialog. La scheda del volume è più corta e trasparente, lascia intravedere la stanza e presenta un libro più grande.
+
+Interazioni libreria: i ripiani hanno altezza fissa; riordino e cambio faccia verificano tutti i libri in entrambe le dimensioni e ripristinano la disposizione se manca spazio. Le due raccolte mantengono separatamente la disposizione finché la pagina resta aperta. Drago e vaso sono trascinabili; il vaso rimane appoggiato al ripiano scelto. Legno e stanza più luminosi, titolo del volume selezionato bianco con ombra per leggibilità.
+
+Chiusura della preview: icona X vettoriale simmetrica e centrata in un cerchio traslucido di 40px (fondo al 42% di opacità, più trasparente anche in hover), con distanze identiche dai bordi superiore e destro, hover e focus visibili.
+
+Profondità: ombra morbida proiettata dal mobile sul piano, ombre di contatto lungo i ripiani e dietro i volumi. Corretto il cambio di faccia dei libri originariamente orizzontali: il dorso verticale azzera la precedente rotazione e riempie l’intero volume.
+
+Inserimento nelle pile: il rilascio considera anche la posizione verticale del puntatore. Allegiant può essere inserito dopo Insurgent dentro la pila e assume la posizione orizzontale corretta; a destra o sinistra di una pila si inserisce accanto. I gruppi rimasti vuoti non occupano spazio.
+
+Spostamenti tra ripiani: prima di rifiutare un inserimento, la libreria riduce automaticamente i vuoti tra i gruppi e, se necessario, mostra di dorso le copertine esposte del ripiano di arrivo. Il volume trascinato mantiene la propria faccia quando possibile. Un ripiano si considera pieno solo dopo questo assestamento; tutte le modifiche vengono annullate insieme se non entra. Verifica di riferimento: Hunger Games dal ripiano superiore a quello inferiore partendo dalla disposizione iniziale.
+
+La copertina nella scheda laterale trascina sempre il libro attualmente mostrato, anche se la selezione precedente era diversa. Il doppio clic prova a fare spazio senza annullare silenziosamente la faccia richiesta per quel volume.
+
+Compatibilità trascinamento: i discendenti grafici dei libri non intercettano il puntatore; drag nativo di immagini/SVG e selezione vengono bloccati nella preview, lasciando il gesto al gestore dei libri. Il rilascio viene intercettato sulla finestra (pointerup e fallback mouseup), con pulizia garantita dell’anteprima; non dipende più dalla cattura del puntatore sul libro. Verificato trascinamento sul ripiano inferiore nella finestra Brave dell’utente.

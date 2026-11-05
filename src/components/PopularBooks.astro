@@ -2,7 +2,7 @@
 import books from '../data/popular-books.json';
 ---
 <section class="popular-books" aria-labelledby="popular-title" data-popular-books data-playing="true">
-  <div class="popular-heading"><div><p class="eyebrow">MORE THAN BOOKS. A PART OF YOU.</p><h2 id="popular-title">The stories you loved. The feelings you keep.</h2><p class="popular-description">The books that made you dream bigger, face your fears, laugh, cry and feel everything—all together on your own shelf.</p><p class="popular-description">Missing a world that stole your heart? In The Salon, you’ll be able to open a favourite, revisit your thoughts and return to the moments that made it unforgettable.</p></div></div>
+  <div class="popular-heading"><div><h2 id="popular-title">The stories you carry with you.</h2><p class="popular-description">The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them.</p></div></div>
   <div class="carousel-shell"><button class="carousel-arrow previous" type="button" data-carousel-direction="-1" aria-label="Previous books"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="books-viewport" tabindex="0" aria-label="Fantasy and dystopian books. Hover or focus to pause. Select a book for an introduction.">
     <div class="books-track" data-books-track>
@@ -53,11 +53,11 @@ import books from '../data/popular-books.json';
   });
 </script>
 <style>
-  .popular-books { padding: 62px 0 32px; color: #304b3e; overflow: hidden; }
+  .popular-books { padding: 48px 0 24px; color: #304b3e; overflow: hidden; }
   .popular-heading { max-width: 1350px; margin: 0 auto 30px; padding: 0 5.5%; display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
   .eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 1.7px; color: #7d8c6e; margin: 0 0 15px; }
   h2 { font: 400 clamp(29px,3vw,43px)/1.15 Georgia,serif; letter-spacing: -1.2px; max-width: 760px; margin: 0; }
-  .popular-description { max-width: 825px; font-size: 13px; line-height: 1.7; color: #7c8774; margin: 15px 0 0; }
+  .popular-description { max-width: 825px; font-size: 14px; line-height: 1.7; color: #64705f; margin: 15px 0 0; }
   .books-viewport { overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-behavior: auto; scrollbar-width: none; padding: 8px 0 10px; mask-image: linear-gradient(90deg,transparent,#000 4% 96%,transparent); }.books-viewport::-webkit-scrollbar { display: none; }
   .books-track { display: flex; width: max-content;  }
 
@@ -67,7 +67,7 @@ import books from '../data/popular-books.json';
   .popular-cover img { display: block; width: 100%; height: 100%; object-fit: fill; border-radius: inherit; }.popular-book:hover .popular-cover { transform: perspective(650px) rotateY(0) translateY(-4px); }
   .book-genre { font-size: 8px; letter-spacing: .8px; text-transform: uppercase; color: #9b8a67; margin: 0 0 7px; }.popular-title { display: block; font: 400 17px/1.25 Georgia,serif; margin: 0 0 7px; }.book-author { display: block; font-size: 10px; color: #7d8875; margin: 0; }
 
-  @media(max-width:960px) { .popular-books { padding-top: 40px; }.popular-heading { padding: 0 26px; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }h2 { font-size: 31px; }.popular-description { font-size: 11px; }.book-set { gap: 25px; padding-right: 25px; }.popular-book { width: 128px; flex-basis: 128px; }.popular-cover { width: 122px; height: 183px; }.popular-title { font-size: 16px; } }
+  @media(max-width:960px) { .popular-books { padding-top: 40px; }.popular-heading { padding: 0 26px; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }h2 { font-size: 31px; }.popular-description { font-size: 13px; }.book-set { gap: 25px; padding-right: 25px; }.popular-book { width: 128px; flex-basis: 128px; }.popular-cover { width: 122px; height: 183px; }.popular-title { font-size: 16px; } }
   @media(prefers-reduced-motion:reduce) { .popular-cover { transition: none; } }
 
   .book-preview-trigger { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; }.book-preview-trigger:focus-visible { outline: 2px solid #829472; outline-offset: 5px; border-radius: 4px; }.popular-cover { display: block; }.book-genre { display: block; }

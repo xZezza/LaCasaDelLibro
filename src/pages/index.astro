@@ -34,8 +34,8 @@ const description = 'A home for the stories that warm your heart. Discover our v
         <span>The Salon</span>
       </a>
       <nav aria-label="Main navigation">
-        <a class="nav-link" href="#the-idea">The idea</a>
-        <button class="nav-link" type="button" data-open-shelf>Take a closer look <span aria-hidden="true">↗</span></button>
+        <a class="nav-link" href="#the-idea">The experience</a>
+        <button class="nav-link" type="button" data-open-shelf>Explore the library <span aria-hidden="true">↗</span></button>
         <div class="scene-switch" role="group" aria-label="Choose your reading atmosphere">
           <button type="button" data-scene-choice="day" aria-pressed="false" aria-label="Day mode" title="Day mode"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
           <button type="button" data-scene-choice="night" aria-pressed="true" aria-label="Night mode" title="Night mode"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.6 14.7A9 9 0 0 1 9.3 3.4a9 9 0 1 0 11.3 11.3Z"/></svg></button>
@@ -49,9 +49,8 @@ const description = 'A home for the stories that warm your heart. Discover our v
           <div class="status"><svg viewBox="0 0 20 24" aria-hidden="true" fill="none"><path d="m10 2 7 9-7 11-7-11Z" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><path d="M10 12v10M5 6l10 0" stroke="currentColor" stroke-width="1.2"/></svg>YOUR NEXT CHAPTER STARTS HERE</div>
           <h1 id="hero-title">A home for<br />the stories<br />that <em>warm</em><br />your heart.</h1>
           <p class="intro">A personal 3D bookshelf, a private reading journal, and a community for fantasy readers.</p>
-          <p class="invitation">For everything a book leaves behind.</p>
-          <a class="button" href="#the-idea">Discover the project <span aria-hidden="true">↗</span></a>
-          <div class="small-note"><span class="tiny-flower" aria-hidden="true">✧</span> A concept in the making. A place to make your own.</div>
+          <a class="button" href="#the-idea">See how it works <span aria-hidden="true">↗</span></a>
+          <p class="small-note">A reading app in the making.</p>
         </div>
 
         <figure class="hero-world">
@@ -73,11 +72,6 @@ const description = 'A home for the stories that warm your heart. Discover our v
       <PopularBooks />
 
       <section class="idea" id="the-idea" aria-labelledby="idea-title">
-        <div class="section-intro">
-          <p class="eyebrow">THE BOOK ENDS. THE FEELING STAYS.</p>
-          <h2 id="idea-title">Keep a little of<br /><em>every world.</em></h2>
-          <p>You close the last page, but part of you is still there. We’re imagining a space to gather those feelings, revisit your favourite worlds, and find readers who understand.</p>
-        </div>
         <ReadingPreview />
       </section>
     </main>
@@ -85,7 +79,7 @@ const description = 'A home for the stories that warm your heart. Discover our v
     <footer class="footer"><span>The Salon</span><p>A reading app in development, made with a love of stories.</p><a href="#">Back to the first page ↑</a></footer>
 
     <dialog id="shelf-dialog" aria-label="Interactive bookshelf preview">
-      <button class="close-dialog" type="button" data-close-shelf aria-label="Close bookshelf preview">×</button>
+      <button class="close-dialog" type="button" data-close-shelf aria-label="Close bookshelf preview"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg></button>
       <BookshelfPreview />
     </dialog>
 
@@ -157,7 +151,7 @@ const description = 'A home for the stories that warm your heart. Discover our v
   @keyframes library-breathe { 0%,100% { transform: translateX(-50%) scale(.97); opacity: .90; } 50% { transform: translateX(-50%) scale(1.10); opacity: 1; } }
   .closer:focus-visible { outline: 2px solid #fff6d9; outline-offset: 5px; }
   figcaption { position: absolute; bottom: 29px; left: calc(100cqw * 908 / 1874); transform: translateX(-50%); width: 350px; text-align: center; font-size: 9px; letter-spacing: .25px; color: #fffdf7; text-shadow: 0 1px 3px #3b3b2a; }
-  .idea { max-width: 1350px; margin: 29px auto 0; padding: 79px 4% 87px; border-top: 1px solid #dfe3d5; }
+  .idea { max-width: 1350px; margin: 20px auto 0; padding: 64px 4% 64px; border-top: 1px solid #dfe3d5; }
   .section-intro { display: grid; grid-template-columns: 1fr .85fr; column-gap: 12%; align-items: center; }
   .eyebrow { color: #677a5e; font-size: 9px; font-weight: 600; letter-spacing: 1.7px; line-height: 1.6; }
   .section-intro .eyebrow { grid-column: 1 / -1; margin: 0 0 23px; }
@@ -169,9 +163,12 @@ const description = 'A home for the stories that warm your heart. Discover our v
   .footer > span { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; color: #425b4d; }
   .footer p, .footer a { margin: 0; font-size: 10px; line-height: 1.7; }
   .footer a { margin-left: auto; }
-  dialog { width: min(800px, 96vw); max-height: 94dvh; padding: 84px 38px 34px; border: 1px solid #d3c7ad; border-radius: 22px; background: linear-gradient(180deg,rgba(197,222,239,.5),rgba(221,234,238,.13) 36%,rgba(239,233,204,0) 57%),url('/images/library-green-mountains.png') center 63%/cover; color: #304b3e; box-shadow: 0 20px 100px #1c2e3b33; }
+  dialog { width: min(800px, 96vw); max-height: 94dvh; padding: 50px 38px 18px; border: 1px solid #d3c7ad; border-radius: 22px; background: linear-gradient(180deg,#fff9e84d,#fff2d63b),url('/images/cozy-library-room.png') center/cover; color: #304b3e; box-shadow: 0 20px 100px #1c2e3b33; }
   dialog::backdrop { background: rgba(28, 42, 32, .7); backdrop-filter: blur(5px); }
-  .close-dialog { position: absolute; top: 17px; right: 18px; display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; border: 1px solid #d6ddce; background: transparent; color: #304b3e; font-size: 27px; }
+  .close-dialog { position: absolute; z-index: 10; top: 12px; right: 12px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid #b79b6e80; background: #fff8e86b; color: #3e5949; box-shadow: 0 2px 7px #6b48241a,inset 0 1px 0 #fffdf3b3; backdrop-filter: blur(6px); line-height: 0; transition: background .18s ease,box-shadow .18s ease; }
+  .close-dialog svg { display: block; width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; pointer-events: none; }
+  .close-dialog:hover { background: #fff9eea3; box-shadow: 0 3px 9px #6b48242b,inset 0 1px 0 #fffdf3; }
+  .close-dialog:focus-visible { outline: 2px solid #3e5949; outline-offset: 3px; }
   dialog > img { display: block; width: 100%; height: auto; border-radius: 9px; }
 
   @media (max-width: 960px) {
@@ -209,7 +206,7 @@ const description = 'A home for the stories that warm your heart. Discover our v
     h3 { margin-top: 13px; font-size: 25px; }
     .footer { margin: 0 24px; padding: 24px 0; align-items: flex-start; flex-direction: column; gap: 12px; }
     .footer a { margin-left: 0; }
-    dialog { padding: 64px 17px 25px; }
+    dialog { padding: 54px 17px 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     :global(html) { scroll-behavior: auto; }
