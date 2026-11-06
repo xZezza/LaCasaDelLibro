@@ -2,6 +2,7 @@
 import books from '../data/bookshelf.json';
 import spines from '../data/spines.json';
 import SpineTexture from './SpineTexture.astro';
+import LibraryVisitors from './LibraryVisitors.astro';
 const rows = [['acotar', 'addie'], ['empyrean', 'hunger'], ['potter', 'divergent']];
 const names: Record<string, string> = { acotar: 'ACOTAR', empyrean: 'The Empyrean', hunger: 'The Hunger Games', addie: 'Addie LaRue', potter: 'Harry Potter', divergent: 'Divergent' };
 const spineData = spines as Record<string, {ratio: number}>;
@@ -14,6 +15,7 @@ function bookProps(book: typeof books[number]) {
   <div class="preview-scene">
     <div class="real-bookshelf" data-bookcase data-layout="styled" aria-label="Example reading lists">
       <img class="cabinet-art" src="/images/cozy-oak-bookcase.png" width="1536" height="1024" alt="" aria-hidden="true" draggable="false"/>
+      <LibraryVisitors />
       <svg class="shelf-lights" viewBox="0 0 600 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6Q100 30 200 6Q300 30 400 6Q500 30 600 6" fill="none" stroke="#b5a47f" />{lights.map(({x,y}) => <circle cx={x} cy={y} r="2.2" fill="#fff3c6" />)}</svg>
       {rows.map((row, rowIndex) => <div class="shelf-row" data-shelf-row={rowIndex}>
         {row.map((key) => <div class:list={['saga-cluster', { 'horizontal-cluster': key === 'addie' }]} data-series={key} aria-label={names[key]}>
@@ -46,13 +48,10 @@ function bookProps(book: typeof books[number]) {
     </div>
   <p class="preview-hint" data-action-hint aria-live="polite"><span aria-hidden="true">✧</span> Drag to arrange. Double-click a book to show its cover or spine.</p>
   <details class="edition-notes">
-    <summary>Book editions &amp; image credits</summary>
-    <p>Read and To be read are example collections for this concept preview, not a saved personal reading history.</p>
-    <p>Photographic spines preserve the artwork and lettering of real English-language editions. Where a matching spine photograph is not available, the book is displayed cover-forward. The 3D viewer models the cover, spine and page block; it does not reproduce the back-cover artwork.</p>
-    <p>Real English-language editions, checked on 5 November 2026. Reading order follows publication order within each collection. Harry Potter contains the seven original novels; Addie LaRue is a standalone. The Empyrean includes <em>Threshing Day</em>, a companion collection, and Divergent includes <em>Four</em>.</p>
-    <p>Series references: <a href="https://sarahjmaas.com/reading-guide/" target="_blank" rel="noreferrer">Sarah J. Maas</a>, <a href="https://rebeccayarros.com/empyrean" target="_blank" rel="noreferrer">Rebecca Yarros</a>, <a href="https://threshingday.com/" target="_blank" rel="noreferrer">Threshing Day</a>, <a href="https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html" target="_blank" rel="noreferrer">Scholastic</a>, <a href="https://stories.jkrowling.com/faqs/" target="_blank" rel="noreferrer">J. K. Rowling</a>, <a href="https://veronicarothbooks.com/books/four/" target="_blank" rel="noreferrer">Veronica Roth</a>.</p>
-    <p>Covers identify the books and remain the property of their respective rightsholders. Cover images are sourced from author/publisher sites and <a href="https://openlibrary.org/dev/docs/api/covers" target="_blank" rel="noreferrer">Open Library</a>. Editions can have different cover designs. This is an independent product preview.</p>
-  <p>Spine photography: <a href="https://www.barnesandnoble.com/w/a-court-of-thorns-and-roses-paperback-box-set-sarah-j-maas/1140822689" target="_blank" rel="noreferrer">ACOTAR box set</a>, <a href="https://thereadingspa.com/products/harry-potter-complete-book-series-special-edition-boxed-set" target="_blank" rel="noreferrer">Harry Potter set</a>, <a href="https://www.lowplexbooks.com/products/the-hunger-games-series-by-suzanne-collins-5-books-collection-set" target="_blank" rel="noreferrer">Hunger Games set</a>, <a href="https://foxclouds.com/blog/tag/divergent" target="_blank" rel="noreferrer">Divergent set</a>, and PangoBooks edition photographs. Book-by-book provenance is retained in the project catalog; printings can differ.</p></details>
+    <summary>About these illustrative designs</summary>
+    <p>Real books, original demo artwork. Covers and spines were designed for this independent preview and do not represent official editions or an endorsement by the authors or publishers.</p>
+    <p>Read and To be read are example collections, not a saved personal reading history. The book preview uses decorative pages, not the original book text.</p>
+  </details>
   </div>
 </div>
 <script>
@@ -148,7 +147,7 @@ function bookProps(book: typeof books[number]) {
     function reveal(book: HTMLButtonElement) {
       placeholder.hidden = true; content.hidden = false;
       if (book === displayed) return;
-      displayed = book; cover.src = book.dataset.cover!; cover.alt = `${book.dataset.title} — edition cover`;
+      displayed = book; cover.src = book.dataset.cover!; cover.alt = `${book.dataset.title} — illustrative design`;
       title.textContent = book.dataset.title!; author.textContent = book.dataset.author!;
       detail.textContent = `${book.dataset.seriesName} · ${book.dataset.note}`;
       modelSpine.replaceChildren();
@@ -322,6 +321,7 @@ function bookProps(book: typeof books[number]) {
   .shelf-book::before { content: ''; position: absolute; top: -3px; height: 3px; left: 1px; right: 0; background: repeating-linear-gradient(#ddd2bb 0 1px,#f7eedb 1px 2px); transform: skewX(-25deg); transform-origin: bottom; border-radius: 1px; }
   .shelf-book::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,#0004,transparent 15% 75%,#fff1 89%,#0003); border-radius: inherit; pointer-events: none; }
   .spine-texture { position: absolute; inset: 0; display: block; overflow: hidden; border-radius: inherit; }.shelf-cover { display: none; width: 100%; height: 100%; object-fit: fill; border-radius: inherit; }
+  .shelf-book[data-visitor-book] { filter: brightness(1.12); box-shadow: 0 0 0 1px #f3ce8a,0 0 14px #ffda9299; }
   .shelf-book:hover,.shelf-book:focus-visible { z-index: 5; transform: translateY(-3px); filter: brightness(1.08); outline: 1px solid #efddb1; outline-offset: 2px; }.shelf-book[aria-pressed='true'] { box-shadow: 0 0 0 1px #f5dfab,3px 3px 6px #30211070; }
   .real-bookshelf[data-layout='styled'] .first-volume,.cover-required { width: calc(var(--book-height) * .66); margin-right: var(--cover-gap, 5px); box-shadow: 4px 2px 4px #241a0e61,1px 3px 2px #281c1540; }
   .real-bookshelf[data-layout='styled'] .first-volume .shelf-cover,.cover-required .shelf-cover { display: block; }.real-bookshelf[data-layout='styled'] .first-volume .spine-texture,.cover-required .spine-texture { visibility: hidden; }

@@ -3,6 +3,7 @@ import books from '../data/popular-books.json';
 ---
 <section class="popular-books" aria-labelledby="popular-title" data-popular-books data-playing="true">
   <div class="popular-heading"><div><h2 id="popular-title">The stories you carry with you.</h2><p class="popular-description">The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them.</p></div></div>
+  <p class="artwork-note">Real books · illustrative designs by The Salon</p>
   <div class="carousel-shell"><button class="carousel-arrow previous" type="button" data-carousel-direction="-1" aria-label="Previous books"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="books-viewport" tabindex="0" aria-label="Fantasy and dystopian books. Hover or focus to pause. Select a book for an introduction.">
     <div class="books-track" data-books-track>
@@ -14,7 +15,7 @@ import books from '../data/popular-books.json';
     </div>
   </div>
   <button class="carousel-arrow next" type="button" data-carousel-direction="1" aria-label="Next books"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5 7 7-7 7M17 12H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-  <dialog class="book-intro" data-book-intro aria-labelledby="intro-book-title"><button type="button" class="intro-close" data-close-intro aria-label="Close book introduction">×</button><div class="intro-content"><img class="intro-cover" data-intro-cover alt="" width="180" height="270" /><div><span class="intro-genre" data-intro-genre></span><h3 class="intro-title" id="intro-book-title" data-intro-title></h3><p class="intro-author" data-intro-author></p><p class="intro-collection" data-intro-collection></p><p class="intro-description" data-intro-description></p><a class="intro-source" data-intro-source target="_blank" rel="noreferrer">About this book</a></div></div></dialog>
+  <dialog class="book-intro" data-book-intro aria-labelledby="intro-book-title"><button type="button" class="intro-close" data-close-intro aria-label="Close book introduction">×</button><div class="intro-content"><img class="intro-cover" data-intro-cover alt="" width="180" height="270" /><div><span class="intro-genre" data-intro-genre></span><h3 class="intro-title" id="intro-book-title" data-intro-title></h3><p class="intro-author" data-intro-author></p><p class="intro-collection" data-intro-collection></p><p class="intro-description" data-intro-description></p><a class="intro-source" data-intro-source target="_blank" rel="noreferrer">About this book</a></div></div><p class="artwork-note">Real books · illustrative designs by The Salon</p></dialog>
 </section>
 <script>
   import books from '../data/popular-books.json';
@@ -43,7 +44,7 @@ import books from '../data/popular-books.json';
     section.querySelectorAll<HTMLButtonElement>('[data-popular-id]').forEach(button => button.addEventListener('click',(event) => {
       pointerOpened = event.detail > 0; opener = button;
       const book = books.find(b => b.id === button.dataset.popularId);if (!book) return;
-      const image = dialog.querySelector<HTMLImageElement>('[data-intro-cover]')!;image.src = book.cover;image.alt = `${book.title} cover`;
+      const image = dialog.querySelector<HTMLImageElement>('[data-intro-cover]')!;image.src = book.cover;image.alt = `${book.title} — illustrative design`;
       dialog.querySelector('[data-intro-title]')!.textContent = book.title;dialog.querySelector('[data-intro-author]')!.textContent = book.author;dialog.querySelector('[data-intro-genre]')!.textContent = book.genre;dialog.querySelector('[data-intro-collection]')!.textContent = book.collection;dialog.querySelector('[data-intro-description]')!.textContent = book.description;dialog.querySelector<HTMLAnchorElement>('[data-intro-source]')!.href = book.summarySource;
       dialog.showModal();document.body.classList.add('dialog-open');
     }));
@@ -53,6 +54,8 @@ import books from '../data/popular-books.json';
   });
 </script>
 <style>
+  .artwork-note { text-align: center; color: #69705d; font-size: 10px; line-height: 1.5; margin: 0 20px 22px; }
+  .book-intro .artwork-note { margin: 22px 0 0; }
   .popular-books { padding: 48px 0 24px; color: #304b3e; overflow: hidden; }
   .popular-heading { max-width: 1350px; margin: 0 auto 30px; padding: 0 5.5%; display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
   .eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 1.7px; color: #7d8c6e; margin: 0 0 15px; }

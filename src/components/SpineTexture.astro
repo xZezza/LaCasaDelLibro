@@ -1,10 +1,9 @@
 ---
 import spines from '../data/spines.json';
 const { id } = Astro.props as { id: string };
-const spine = (spines as Record<string, {image: string; width: number; height: number; matrices: number[][]}>)[id];
+const spine = (spines as Record<string, {image: string}>)[id];
 ---
-{spine && <svg class="photographic-spine" viewBox="0 0 60 400" preserveAspectRatio="none" aria-hidden="true">
-  <defs><clipPath id={`spine-${id}-a`}><path d="M0 0H60V400Z" /></clipPath><clipPath id={`spine-${id}-b`}><path d="M0 0L60 400H0Z" /></clipPath></defs>
-  {spine.matrices.map((matrix, i) => <g clip-path={`url(#spine-${id}-${i ? 'b' : 'a'})`}><image href={spine.image} width={spine.width} height={spine.height} transform={`matrix(${matrix.join(' ')})`} /></g>)}
+{spine && <svg class="illustrative-spine" viewBox="0 0 80 500" preserveAspectRatio="none" aria-hidden="true">
+  <image href={spine.image} width="80" height="500" preserveAspectRatio="none" />
 </svg>}
-<style>.photographic-spine { display: block; width: 100%; height: 100%; }</style>
+<style>.illustrative-spine { display: block; width: 100%; height: 100%; }</style>

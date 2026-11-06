@@ -9,12 +9,12 @@
     "order": 1,
     "note": "Book 1",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-1.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781635575569-M.jpg?default=false",
-    "width": 180,
-    "height": 270,
+    "cover": "/images/demo-books/acotar-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "acotar-2",
@@ -26,12 +26,12 @@
     "order": 2,
     "note": "Book 2",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-2.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781635575583-M.jpg?default=false",
-    "width": 180,
-    "height": 270,
+    "cover": "/images/demo-books/acotar-2.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "acotar-3",
@@ -43,12 +43,12 @@
     "order": 3,
     "note": "Book 3",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-3.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781635575606-M.jpg?default=false",
-    "width": 180,
-    "height": 270,
+    "cover": "/images/demo-books/acotar-3.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "acotar-4",
@@ -58,14 +58,14 @@
     "title": "A Court of Frost and Starlight",
     "isbn": "9781635575620",
     "order": 4,
-    "note": "Novella \u00b7 read after book 3",
+    "note": "Novella · read after book 3",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-4.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781635575620-M.jpg?default=false",
-    "width": 180,
-    "height": 270,
+    "cover": "/images/demo-books/acotar-4.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "acotar-5",
@@ -77,12 +77,12 @@
     "order": 5,
     "note": "Book 5",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-5.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781635577990-M.jpg?default=false",
-    "width": 180,
-    "height": 270,
+    "cover": "/images/demo-books/acotar-5.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "acotar-6",
@@ -94,12 +94,12 @@
     "order": 6,
     "note": "Book 6",
     "source": "https://sarahjmaas.com/reading-guide/",
-    "cover": "/images/covers/acotar-6.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781639739134-M.jpg?default=false",
-    "width": 180,
-    "height": 279,
+    "cover": "/images/demo-books/acotar-6.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "empyrean-1",
@@ -111,12 +111,12 @@
     "order": 1,
     "note": "Book 1",
     "source": "https://rebeccayarros.com/empyrean",
-    "cover": "/images/covers/empyrean-1.jpg",
-    "coverSource": "https://images.squarespace-cdn.com/content/v1/6659ea54bcfef0581cd18423/1719207902483-N2ULQ0IZ3SB0ZYNF0SZ7/FourthWing.jpg",
-    "width": 1000,
-    "height": 1500,
+    "cover": "/images/demo-books/empyrean-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "empyrean-2",
@@ -128,12 +128,12 @@
     "order": 2,
     "note": "Book 2",
     "source": "https://rebeccayarros.com/empyrean",
-    "cover": "/images/covers/empyrean-2.jpg",
-    "coverSource": "https://images.squarespace-cdn.com/content/v1/6659ea54bcfef0581cd18423/1719207917939-KK07NSH2S2CPH7CVB17F/IronFlame.jpg",
-    "width": 1000,
-    "height": 1500,
+    "cover": "/images/demo-books/empyrean-2.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "empyrean-3",
@@ -145,12 +145,12 @@
     "order": 3,
     "note": "Book 3",
     "source": "https://rebeccayarros.com/empyrean",
-    "cover": "/images/covers/empyrean-3.jpg",
-    "coverSource": "https://images.squarespace-cdn.com/content/v1/6659ea54bcfef0581cd18423/8c5d0dbc-0028-40c3-9f64-1f5c3ec02cf7/209439446.jpg",
-    "width": 1366,
-    "height": 2048,
+    "cover": "/images/demo-books/empyrean-3.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "empyrean-4",
@@ -160,15 +160,14 @@
     "title": "Threshing Day",
     "isbn": "9781682818091",
     "order": 4,
-    "note": "Companion collection \u00b7 after Onyx Storm",
+    "note": "Companion collection · after Onyx Storm",
     "source": "https://rebeccayarros.com/empyrean",
-    "cover": "/images/covers/threshing-front.svg",
-    "coverSource": "https://i5.walmartimages.com/seo/Empyrean-Threshing-Day-Standard-Edition-Hardcover-9781682818091_4a26cae7-b50c-4740-8f93-d7e1afcfe5e6.40c4ccab06585da9c64edb8101adcf21.jpeg",
+    "cover": "/images/demo-books/empyrean-4.svg",
     "width": 600,
     "height": 900,
     "checkedAt": "2026-11-05",
     "readingStatus": "tbr",
-    "coverProcessing": "Native SVG projection of original photographed front artwork; no generated lettering."
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "hunger-1",
@@ -180,12 +179,12 @@
     "order": 1,
     "note": "Book 1",
     "source": "https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html",
-    "cover": "/images/covers/hunger-1.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780439023481-M.jpg?default=false",
-    "width": 180,
-    "height": 275,
+    "cover": "/images/demo-books/hunger-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "hunger-2",
@@ -197,12 +196,12 @@
     "order": 2,
     "note": "Book 2",
     "source": "https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html",
-    "cover": "/images/covers/hunger-2.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780439023498-M.jpg?default=false",
-    "width": 180,
-    "height": 268,
+    "cover": "/images/demo-books/hunger-2.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "hunger-3",
@@ -214,12 +213,12 @@
     "order": 3,
     "note": "Book 3",
     "source": "https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html",
-    "cover": "/images/covers/hunger-3.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780439023511-M.jpg?default=false",
-    "width": 180,
-    "height": 273,
+    "cover": "/images/demo-books/hunger-3.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "hunger-4",
@@ -229,14 +228,14 @@
     "title": "The Ballad of Songbirds and Snakes",
     "isbn": "9781338635171",
     "order": 4,
-    "note": "Prequel \u00b7 publication order 4",
+    "note": "Prequel · publication order 4",
     "source": "https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html",
-    "cover": "/images/covers/hunger-4.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781338635171-M.jpg?default=false",
-    "width": 180,
-    "height": 279,
+    "cover": "/images/demo-books/hunger-4.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "hunger-5",
@@ -246,14 +245,14 @@
     "title": "Sunrise on the Reaping",
     "isbn": "9781546171461",
     "order": 5,
-    "note": "Prequel \u00b7 publication order 5",
+    "note": "Prequel · publication order 5",
     "source": "https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html",
-    "cover": "/images/covers/hunger-5.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9781546171461-M.jpg?default=false",
-    "width": 180,
-    "height": 268,
+    "cover": "/images/demo-books/hunger-5.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "addie-1",
@@ -265,29 +264,29 @@
     "order": 1,
     "note": "Standalone novel",
     "source": "https://us.macmillan.com/books/9780765387561/theinvisiblelifeofaddielarue/",
-    "cover": "/images/covers/addie-1.jpg",
-    "coverSource": "https://images.macmillan.com/folio-assets/macmillan_us_frontbookcovers_1000H/9780765387561.jpg",
-    "width": 662,
-    "height": 1000,
+    "cover": "/images/demo-books/addie-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-1",
     "series": "potter",
     "seriesName": "Harry Potter",
     "author": "J. K. Rowling",
-    "title": "Harry Potter and the Sorcerer\u2019s Stone",
+    "title": "Harry Potter and the Sorcerer’s Stone",
     "isbn": "9780545582889",
     "order": 1,
     "note": "Original novel 1",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-1-clean.jpg",
-    "coverSource": "https://images-na.ssl-images-amazon.com/images/P/0545582881.01.L.jpg",
-    "width": 326,
-    "height": 500,
+    "cover": "/images/demo-books/potter-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-2",
@@ -299,12 +298,12 @@
     "order": 2,
     "note": "Original novel 2",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-2.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545582926-M.jpg?default=false",
-    "width": 180,
-    "height": 290,
+    "cover": "/images/demo-books/potter-2.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-3",
@@ -316,12 +315,12 @@
     "order": 3,
     "note": "Original novel 3",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-3.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545582933-M.jpg?default=false",
-    "width": 180,
-    "height": 287,
+    "cover": "/images/demo-books/potter-3.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-4",
@@ -333,12 +332,12 @@
     "order": 4,
     "note": "Original novel 4",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-4.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545582957-M.jpg?default=false",
-    "width": 180,
-    "height": 274,
+    "cover": "/images/demo-books/potter-4.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-5",
@@ -350,12 +349,12 @@
     "order": 5,
     "note": "Original novel 5",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-5.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545582971-M.jpg?default=false",
-    "width": 180,
-    "height": 277,
+    "cover": "/images/demo-books/potter-5.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-6",
@@ -367,12 +366,12 @@
     "order": 6,
     "note": "Original novel 6",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-6.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545582995-M.jpg?default=false",
-    "width": 180,
-    "height": 277,
+    "cover": "/images/demo-books/potter-6.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "potter-7",
@@ -384,12 +383,12 @@
     "order": 7,
     "note": "Original novel 7",
     "source": "https://stories.jkrowling.com/faqs/",
-    "cover": "/images/covers/potter-7.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780545583008-M.jpg?default=false",
-    "width": 180,
-    "height": 273,
+    "cover": "/images/demo-books/potter-7.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "divergent-1",
@@ -401,12 +400,12 @@
     "order": 1,
     "note": "Book 1",
     "source": "https://veronicarothbooks.com/books/four/",
-    "cover": "/images/covers/divergent-1.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780062024022-M.jpg?default=false",
-    "width": 180,
-    "height": 272,
+    "cover": "/images/demo-books/divergent-1.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "divergent-2",
@@ -418,12 +417,12 @@
     "order": 2,
     "note": "Book 2",
     "source": "https://veronicarothbooks.com/books/four/",
-    "cover": "/images/covers/divergent-2.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780062024046-M.jpg?default=false",
-    "width": 180,
-    "height": 272,
+    "cover": "/images/demo-books/divergent-2.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "divergent-3",
@@ -435,12 +434,12 @@
     "order": 3,
     "note": "Book 3",
     "source": "https://veronicarothbooks.com/books/four/",
-    "cover": "/images/covers/divergent-3.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780062024060-M.jpg?default=false",
-    "width": 180,
-    "height": 271,
+    "cover": "/images/demo-books/divergent-3.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "read"
+    "readingStatus": "read",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   },
   {
     "id": "divergent-4",
@@ -450,13 +449,13 @@
     "title": "Four: A Divergent Collection",
     "isbn": "9780062345219",
     "order": 4,
-    "note": "Companion collection \u00b7 publication order 4",
+    "note": "Companion collection · publication order 4",
     "source": "https://veronicarothbooks.com/books/four/",
-    "cover": "/images/covers/divergent-4.jpg",
-    "coverSource": "https://covers.openlibrary.org/b/isbn/9780062345219-M.jpg?default=false",
-    "width": 180,
-    "height": 278,
+    "cover": "/images/demo-books/divergent-4.svg",
+    "width": 600,
+    "height": 900,
     "checkedAt": "2026-11-05",
-    "readingStatus": "tbr"
+    "readingStatus": "tbr",
+    "coverArtwork": "Original illustrative design for The Salon; not an official edition cover"
   }
 ]

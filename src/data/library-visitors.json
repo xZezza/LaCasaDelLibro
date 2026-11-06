@@ -1,0 +1,99 @@
+[
+  {
+    "id": "rhysand",
+    "name": "Rhysand",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-1",
+      "acotar-2"
+    ],
+    "image": "/images/characters/rhysand.png"
+  },
+  {
+    "id": "azriel",
+    "name": "Azriel",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-2",
+      "acotar-1"
+    ],
+    "image": "/images/characters/azriel.png"
+  },
+  {
+    "id": "feyre",
+    "name": "Feyre",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-1"
+    ],
+    "image": "/images/characters/feyre-light-blue-ivory-boots.png"
+  },
+  {
+    "id": "nesta",
+    "name": "Nesta",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-3",
+      "acotar-1"
+    ],
+    "image": "/images/characters/nesta.png"
+  },
+  {
+    "id": "aelin",
+    "name": "Aelin / Celaena",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/aelin.png"
+  },
+  {
+    "id": "rowan",
+    "name": "Rowan",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/rowan.png"
+  },
+  {
+    "id": "poppy",
+    "name": "Poppy",
+    "series": "From Blood and Ash",
+    "bookIds": [],
+    "image": "/images/characters/poppy.png"
+  },
+  {
+    "id": "casteel",
+    "name": "Casteel",
+    "series": "From Blood and Ash",
+    "bookIds": [],
+    "image": "/images/characters/casteel.png"
+  },
+  {
+    "id": "katniss",
+    "name": "Katniss",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-2"
+    ],
+    "image": "/images/characters/katniss.png"
+  },
+  {
+    "id": "peeta",
+    "name": "Peeta",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-3"
+    ],
+    "image": "/images/characters/peeta.png"
+  },
+  {
+    "id": "cassian",
+    "name": "Cassian",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-2",
+      "acotar-1"
+    ],
+    "image": "/images/characters/cassian.png"
+  }
+]

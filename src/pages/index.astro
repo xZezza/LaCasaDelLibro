@@ -4,6 +4,7 @@ import WindowSnow from '../components/WindowSnow.astro';
 import PopularBooks from '../components/PopularBooks.astro';
 import DaySwing from '../components/DaySwing.astro';
 import ReadingPreview from '../components/ReadingPreview.astro';
+import FireplaceSound from '../components/FireplaceSound.astro';
 // Social links will be added when the real URLs are supplied.
 const pageTitle = 'The Salon | Fantasy Bookshelf & Reading Journal';
 const description = 'A home for the stories that warm your heart. Discover our vision for a personal 3D bookshelf, private reading journal and fantasy reading community.';
@@ -65,6 +66,7 @@ const description = 'A home for the stories that warm your heart. Discover our v
           <img class="world-image scene-day" src="/images/Libreria_3D_foresta_lucine.png" width="1872" height="840" alt="An enchanted forest reading nook with a tall wooden bookshelf, flowers, fairy lights and a gently swaying hanging chair." />
           <DaySwing />
           <WindowSnow />
+          <FireplaceSound placement="hero" />
           <button class="closer" type="button" data-open-shelf><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="#fffdf2" stroke-width="5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m15.5 15.5 5 5" /></g><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m15.5 15.5 5 5" /></g></svg><span>EXPLORE THE LIBRARY</span></button>
         </figure>
       </section>
@@ -81,11 +83,14 @@ const description = 'A home for the stories that warm your heart. Discover our v
     <dialog id="shelf-dialog" aria-label="Interactive bookshelf preview">
       <button class="close-dialog" type="button" data-close-shelf aria-label="Close bookshelf preview"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg></button>
       <BookshelfPreview />
+      <FireplaceSound placement="preview" />
     </dialog>
+
+    <audio data-fireplace-audio src="/audio/fireplace.mp3" loop preload="none" aria-hidden="true"></audio>
 
     <script>
       const sceneChoices = document.querySelectorAll<HTMLButtonElement>('[data-scene-choice]');
-      function chooseScene(scene: string) { document.documentElement.dataset.scene = scene; sceneChoices.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.sceneChoice === scene))); try { localStorage.setItem('the-salon-scene',scene); } catch {} }
+      function chooseScene(scene: string) { document.documentElement.dataset.scene = scene; sceneChoices.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.sceneChoice === scene))); try { localStorage.setItem('the-salon-scene',scene); } catch {} window.dispatchEvent(new CustomEvent('salon:scene-change', {detail: scene})); }
       sceneChoices.forEach(button => button.addEventListener('click',()=>chooseScene(button.dataset.sceneChoice!)));
       chooseScene(document.documentElement.dataset.scene || 'night');
       const dialog = document.querySelector<HTMLDialogElement>('#shelf-dialog');
@@ -163,7 +168,7 @@ const description = 'A home for the stories that warm your heart. Discover our v
   .footer > span { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; color: #425b4d; }
   .footer p, .footer a { margin: 0; font-size: 10px; line-height: 1.7; }
   .footer a { margin-left: auto; }
-  dialog { width: min(800px, 96vw); max-height: 94dvh; padding: 50px 38px 18px; border: 1px solid #d3c7ad; border-radius: 22px; background: linear-gradient(180deg,#fff9e84d,#fff2d63b),url('/images/cozy-library-room.png') center/cover; color: #304b3e; box-shadow: 0 20px 100px #1c2e3b33; }
+  dialog { width: min(800px, 96vw); max-height: 94dvh; padding: 50px 38px 18px; border: 1px solid #d3c7ad; border-radius: 22px; background: linear-gradient(180deg,#fff9e84d,#fff2d63b),url('/images/cozy-library-room.png') center/cover; color: #304b3e; box-shadow: 0 0 0 1px #ffeab78c,0 0 24px 6px #ffe6aa66,0 0 70px 20px #edc77840,0 20px 85px #1c2e3b40; }
   dialog::backdrop { background: rgba(28, 42, 32, .7); backdrop-filter: blur(5px); }
   .close-dialog { position: absolute; z-index: 10; top: 12px; right: 12px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid #b79b6e80; background: #fff8e86b; color: #3e5949; box-shadow: 0 2px 7px #6b48241a,inset 0 1px 0 #fffdf3b3; backdrop-filter: blur(6px); line-height: 0; transition: background .18s ease,box-shadow .18s ease; }
   .close-dialog svg { display: block; width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; pointer-events: none; }

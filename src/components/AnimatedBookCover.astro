@@ -5,13 +5,13 @@ const {cover,title}=Astro.props;
 ---
 <div class="animated-book-cover" data-opening-preview>
   <button class="journal-cover-button" type="button" data-open-animated-book aria-label={`Open ${title} animated book preview`} aria-haspopup="dialog">
-    <img class="journal-cover-image" src={cover} alt={`${title} cover`} width="180" height="270" loading="lazy" />
+    <img class="journal-cover-image" src={cover} alt={`${title} — illustrative design`} width="180" height="270" loading="lazy" />
     <span class="cover-peek"><BookOpeningScene cover={cover} title={title}/></span>
   </button>
   <dialog class="opening-dialog" data-animated-book-dialog aria-label={`${title} book animation`}>
     <button class="opening-close" type="button" data-close-animated-book aria-label="Close book animation">×</button>
     <p>{title}</p><div class="large-book"><BookOpeningScene cover={cover} title={title}/></div>
-    <span class="animation-note">A little glimpse inside · decorative pages</span>
+    <span class="animation-note">Illustrative design · decorative pages</span>
   </dialog>
 </div>
 <script>

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "rhysand",
+    "name": "Rhysand",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-1",
+      "acotar-2"
+    ],
+    "image": "/images/characters/rhysand.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-frame character sprite for a warm fantasy bookshelf website.\nPrimary request: Create a new original interpretation of Rhysand from A Court of Thorns and Roses. Adult male fae, amber-tan skin, short wavy black hair, violet eyes, pointed ears, black tailored shirt and dark trousers, flowing abstract dark tattoos visible at neck and forearms, large dark batlike wings mostly folded behind him. Confident gentle half smile.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic adult proportions, clean detailed face, warm amber edge light, tactile clothing; elegant and inviting, not chibi or childish, not a photograph.\nComposition: ONE wide horizontal sprite sheet with EXACTLY TWO equal-width cells, no separating line. LEFT CELL: full-body character holding a closed small plain green book at waist level, turned three-quarter toward the viewer's right. RIGHT CELL: the SAME character, same size, same position, same head/body/clothes/wings, holding that book OPEN with both hands and looking down to read. Full feet visible on exactly the same baseline, equal empty padding in each cell. Both isolated against genuine transparent alpha, no scenery, no floor, no shadows outside the figure, no text, no watermark. Keep wings folded within each cell. No overlaps between cells. Compose each figure centered within its half, about 86% of image height. Plain book, no real cover artwork or lettering. Design new facial features, costume details and poses; do not reproduce any supplied fan artist's composition or exact rendering.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "azriel",
+    "name": "Azriel",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-2",
+      "acotar-1"
+    ],
+    "image": "/images/characters/azriel.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic young-adult/adult proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Azriel from A Court of Thorns and Roses: athletic male fae with warm olive skin, short tousled black hair, hazel eyes, pointed ears, serious quiet expression, black fitted leather armor with cobalt blue gemstones at chest and wrists, large dark membranous batlike wings folded behind his shoulders, wisps of dark blue shadow curling close to boots, old subtle scars on hands.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "feyre",
+    "name": "Feyre",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-1"
+    ],
+    "image": "/images/characters/feyre-light-blue-ivory-boots.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic young-adult/adult proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Feyre Archeron from A Court of Thorns and Roses: adult female fae, long wavy chestnut brown hair, blue-grey eyes, pointed ears, dark navy flowing ankle-length dress with refined silver embroidery, elegant modest neckline, silver leaf-shaped hair ornament, delicate abstract dark tattoos over hands and forearms. Bow and quiver slung securely on her back, hands holding the book, quietly confident expression.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "editPrompt": "Edit ONLY the dress color of Feyre in this transparent two-pose character sprite. In BOTH left and right poses, change the dark navy dress fabric to a soft luminous pale sky-blue / powder-blue, with silver embroidery and subtly deeper blue folds. The dress should look light, airy and elegant, clearly much lighter than the current navy. Preserve EXACTLY the face, skin, brown hair, eyes, proportions, body pose, hands, tattoos, book, bow, quiver, belt, boots, hair ornament, embroidery placement and all other details. Preserve the two equal square frames side by side, image size and genuine alpha transparency. No background, no text, no new objects. Keep the same painterly rendering. Only recolor the fabric of the dress, not the accessories.",
+    "bootsEditPrompt": "Edit ONLY the boots in this transparent two-pose illustration of Feyre. In BOTH poses, recolor the dark brown ankle boots to warm ivory / pale pearl leather, with subtle silver laces and trim, soft cool grey shaded soles. Keep their existing practical boot shape, feet and placement exactly. They should harmonize with her pale sky-blue dress and silver embroidery.\nPreserve every other element exactly: face, brown hair, skin, eyes, tattoos, light blue dress and its embroidery, brown belt and straps, book, bow, quiver, jewelry, hands, pose, body proportions, the equal two square sprite frames side by side, canvas dimensions and transparent alpha. Do not recolor the belt or quiver. No background, text or additional objects. Only change the boot colors and add restrained silver trim."
+  },
+  {
+    "id": "nesta",
+    "name": "Nesta",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-3",
+      "acotar-1"
+    ],
+    "image": "/images/characters/nesta.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic young-adult/adult proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Nesta Archeron from A Court of Thorns and Roses: adult female fae with chestnut brown hair in a braided updo and two loose strands, icy grey-blue eyes, pointed ears, erect proud posture, stern beautiful face, elegant black long-sleeved high-collared fitted dress with subtle charcoal detailing, long dark skirt and practical boots. No crown or face mask; recognizable through braid and proud stern expression. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "aelin",
+    "name": "Aelin / Celaena",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/aelin.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic young-adult/adult proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Aelin Galathynius / Celaena Sardothien from Throne of Glass: adult female fae warrior, very long golden blond hair in a loose braid with some flowing strands, turquoise-blue eyes with golden inner ring, pointed ears, dark teal hood pushed back, fitted black and deep teal leather armor with restrained gold metal bracers, dark trousers and knee boots, sheathed small daggers on belt. Confident spirited smile. Small warm golden magical glow close to fingers, no large fire. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "rowan",
+    "name": "Rowan",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/rowan.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic young-adult/adult proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Rowan Whitethorn from Throne of Glass: tall muscular adult male fae, long silver-white straight hair partly tied back with loose strands, green eyes, pointed ears, intricate abstract dark script tattoo along left temple cheek neck and left arm. Sleeveless forest-black leather tunic, dark trousers, bracers and boots, silver hilt of a sheathed sword at belt. Reserved stern face. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "poppy",
+    "name": "Poppy",
+    "series": "From Blood and Ash",
+    "bookIds": [],
+    "image": "/images/characters/poppy.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Poppy / Penellaphe from From Blood and Ash: adult woman with very long copper-red wavy hair, vivid green eyes, fair freckled skin and visible subtle healed scars on one side of face, softly determined expression. Flowing deep burgundy medieval dress with elegant gold leaf detailing at shoulders, modest neckline, thin golden leafy circlet. Brown boots peeking from dress hem. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "casteel",
+    "name": "Casteel",
+    "series": "From Blood and Ash",
+    "bookIds": [],
+    "image": "/images/characters/casteel.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Casteel Da'Neer from From Blood and Ash: adult male with wavy dark brown-black hair, golden amber eyes, warm tan skin, athletic build, strong jaw and subtle dimpled teasing smile. Dark charcoal leather shirt with open neck and simple dark riding trousers, leather belt and dark boots, sheathed sword at hip. No wings, no pointed ears, no tattoos added. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "katniss",
+    "name": "Katniss",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-2"
+    ],
+    "image": "/images/characters/katniss.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Katniss Everdeen from The Hunger Games: 18-year-old young woman, olive skin, long dark brown hair in a single braid over one shoulder, grey eyes, serious determined expression. Practical charcoal fitted jacket, dark utility trousers, brown-black boots. Simple bow and a quiver with arrows secured on her back, hands holding book. Original illustrated face, not the likeness of a film actor. No franchise logos or official costume emblems.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "peeta",
+    "name": "Peeta",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-3"
+    ],
+    "image": "/images/characters/peeta.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Peeta Mellark from The Hunger Games: 18-year-old young man with short tousled golden blond hair, clear blue eyes, fair lightly freckled skin, stocky strong baker's build, kind face and gentle smile. Cream linen shirt with sleeves rolled to elbow, brown suspenders, simple olive brown trousers and leather boots. Hands holding book. Original illustrated face, not the likeness of a film actor. No weapons or franchise logos.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "cassian",
+    "name": "Cassian",
+    "series": "A Court of Thorns and Roses",
+    "bookIds": [
+      "acotar-2",
+      "acotar-1"
+    ],
+    "image": "/images/characters/cassian.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Cassian from A Court of Thorns and Roses: broad-shouldered muscular adult male fae, warm tan skin, shoulder-length dark brown hair partly tied into a small loose bun, hazel eyes, subtle stubble, confident friendly mischievous grin. Black leather warrior armor with muted metal shoulder guards and RED gemstones on wrists and shoulders, large dark membranous batlike wings folded behind shoulders, pointed ears. Hands holding book.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  }
+]
