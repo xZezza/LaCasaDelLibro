@@ -445,7 +445,7 @@ a:hover {
   inset: 0;
   transform: translateZ(-11px);
   border-radius: 2px 4px 4px 2px;
-  box-shadow: 22px 28px 36px -16px oklch(0.25 0.035 305 / 0.55);
+  box-shadow: 14px 18px 30px -16px oklch(0.25 0.035 305 / 0.34);
 }
 .salon-s35 {
   position: absolute;
@@ -569,7 +569,9 @@ a:hover {
 }
 .salon-s50 {
   overflow: hidden;
-  padding: 10px 0 20px;
+  /* Let the shadows fade completely before the horizontal clipping boundary. */
+  padding: 18px 0 64px;
+  margin: -8px 0 -44px;
   touch-action: pan-y;
   user-select: none;
 }
