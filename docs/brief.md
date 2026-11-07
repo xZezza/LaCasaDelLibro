@@ -43,3 +43,6 @@ Ogni sezione visiva è nella propria cartella con `index.jsx` e `styles.css`; gl
 
 ## Apertura su schermi grandi
 La hero usa una scena centrale larga al massimo 1200 px, condivisa con gli altri contenuti, con testo, illustrazione e comparse nello stesso riferimento. Il testo e la scena sono allineati alla stessa larghezza della navbar. L’immagine non si allontana più verso il bordo destro del monitor e l’altezza non aumenta solo perché lo schermo è molto largo o alto. I margini esterni crescono simmetricamente; il bordo destro della scena sfuma nello sfondo. Si tratta di una larghezza massima, non di un nuovo breakpoint: restano valide le soglie 650 e 960 px.
+
+## Ingrandimento delle comparse
+Passando con il mouse su un personaggio o un animale, la figura si ingrandisce dolcemente del 20% e torna alla dimensione normale quando il mouse si allontana. Il punto di appoggio resta fisso; il nome accompagna la figura. Il comportamento vale nelle sezioni della landing, per gli animali in visita e per i compagni fissi della libreria, incluso il draghetto decorativo. Non modifica lo spazio occupato dai libri e non interferisce con le animazioni di comparsa. Attivo solo con puntatore preciso e hover, rispettando il movimento ridotto.

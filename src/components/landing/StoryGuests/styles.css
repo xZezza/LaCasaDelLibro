@@ -20,6 +20,30 @@
     transform-origin: center bottom;
   }
 
+  /* A separate wrapper keeps hover zoom independent from arrival/breathing
+     animations, with the feet fixed to the same point on the floor/shelf. */
+  .visitor-zoom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: center bottom;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .salon-story-guest .visitor-zoom {
+      pointer-events: auto;
+    }
+
+    .story-guest-host:hover {
+      z-index: 10;
+    }
+
+    .visitor-zoom:hover {
+      transform: scale(1.2);
+    }
+  }
+
   .visitor-pose {
     position: absolute;
     inset: 0;

@@ -344,6 +344,7 @@ export default function ModalLibrary(values) {
                                           onClick={b.select}
                                           title={b.t}
                                           className={"salon-s235"}
+                                          data-companion={b.isPet || b.deco === "dragon" ? "true" : undefined}
                                           style={{
                                             width: b.fw + "px",
                                             height: b.fh + "px",

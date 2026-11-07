@@ -685,6 +685,25 @@
     }
   }
 
+  .salon-s235[data-companion="true"] {
+    position: relative;
+  }
+
+  .salon-s235[data-companion="true"] > .salon-s234 {
+    transform-origin: center bottom;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .salon-s235[data-companion="true"]:hover {
+      z-index: 10;
+    }
+
+    .salon-s235[data-companion="true"]:hover > .salon-s234 {
+      transform: scale(1.2);
+    }
+  }
+
   .library-companion-picker {
     display: flex;
     align-items: center;

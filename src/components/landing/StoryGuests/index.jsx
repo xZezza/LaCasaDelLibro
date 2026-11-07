@@ -175,12 +175,14 @@ export default function StoryGuests({
             "--visitor-size": `calc(var(--guest-size, 160px) * ${(visit.scale || 1) * (placement === "potter" ? 1 : creatureScale[visit.id] || 1)})`,
           }}
         >
-          <div className="visitor-figure">
-            <span className="visitor-pose visitor-closed" />
-            <span className="visitor-pose visitor-reading" />
-            <span className="visitor-foot-shadow" />
+          <div className="visitor-zoom">
+            <div className="visitor-figure">
+              <span className="visitor-pose visitor-closed" />
+              <span className="visitor-pose visitor-reading" />
+              <span className="visitor-foot-shadow" />
+            </div>
+            <span className="visitor-name">{visit.name}</span>
           </div>
-          <span className="visitor-name">{visit.name}</span>
         </div>
       )}
     </div>
