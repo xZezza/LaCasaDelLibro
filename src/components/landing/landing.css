@@ -278,7 +278,7 @@ a:hover {
   margin: 26px 0 0;
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;
-  font-size: clamp(46px, 7vw, 96px);
+  font-size: clamp(38px, 5.25vw, 72px);
   line-height: 0.96;
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -580,7 +580,7 @@ a:hover {
 .salon-s52 {
   position: relative;
   z-index: 1;
-  padding: clamp(70px, 9vw, 110px) 0 clamp(20px, 2.5vw, 32px);
+  padding: clamp(40px, 4vw, 60px) 0 clamp(20px, 2.5vw, 32px);
 }
 .salon-s53 {
   margin: 0;

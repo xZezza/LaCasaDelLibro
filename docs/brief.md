@@ -9,6 +9,14 @@ Presentare una futura app per conservare libri, ricordi di lettura e pensieri pe
 ## Nuova identità e struttura
 Carta avorio, inchiostro prugna, lilla e giallo caldo. Cormorant Garamond, Jost e Kalam. Logo e due illustrazioni forniti con l’handoff. Nuova hero, citazioni animate, carosello di libri, libreria personalizzabile, scheda diario, anteprima libro/saga, community e invito a seguire il progetto. Mantenere composizione e interazioni del riferimento, adattando accessibilità e telefono.
 
+Il titolo principale è stato ridotto su richiesta di Gaia: `clamp(38px, 5.25vw, 72px)`, mantenendo font ed evidenziatura del nuovo design.
+
+L’illustrazione della hero è sollevata di 40–72 px su desktop/tablet per ridurre lo spazio sopra la libreria; la composizione separata del telefono mantiene la propria posizione. Il bordo inferiore della scena sfuma gradualmente nello sfondo, anche dopo lo spostamento verso l’alto.
+
+Tutte le voci della navbar hanno la stessa evidenziatura gialla al passaggio del mouse e al focus da tastiera.
+
+Ridotta la distanza tra hero e prima citazione: padding iniziale della sezione da 70–110 px a 40–60 px.
+
 ## Interazioni dimostrative
 Libreria con ricerca nel catalogo dimostrativo, tre ripiani, spostamento e orientamento dei libri, colori, pareti, lucine, decorazioni e ordinamento. Carosello continuo con frecce, trascinamento e scheda libro. Diario con colori, valutazioni e scelta privata/condivisa collegata alla preview della community. Dati dimostrativi in memoria; nessun account, pubblicazione reale dei pensieri o backend. Le pagine complete e i profili social non sono ancora disponibili. I bottoni social lo dichiarano in una finestra dedicata.
 
