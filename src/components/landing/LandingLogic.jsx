@@ -633,15 +633,15 @@ export default class LandingLogic extends React.Component {
       this._qio2.observe(this.quote2Ref.current);
     } else this.setState({ quote2In: true });
     if (window.IntersectionObserver && this.quoteRef.current) {
+      // Start before the first quote enters the viewport, then keep it readable.
       this._qio = new IntersectionObserver(
-        (es) => {
-          const e = es[es.length - 1];
-          if (e.intersectionRatio >= 0.6) {
-            if (!this.state.quoteIn) this.setState({ quoteIn: true });
-          } else if (e.intersectionRatio === 0 && this.state.quoteIn)
-            this.setState({ quoteIn: false });
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            this.setState({ quoteIn: true });
+            this._qio.disconnect();
+          }
         },
-        { threshold: [0, 0.6], rootMargin: "0px 0px -28% 0px" },
+        { threshold: 0.01, rootMargin: "0px 0px 180px 0px" },
       );
       this._qio.observe(this.quoteRef.current);
     } else this.setState({ quoteIn: true });

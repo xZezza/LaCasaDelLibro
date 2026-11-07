@@ -19,6 +19,8 @@ Ridotta la distanza tra hero e prima citazione: padding iniziale della sezione d
 
 Carosello: ombre dei libri più leggere e spazio di sfumatura sufficiente nel contenitore, senza il bordo orizzontale causato dal taglio delle ombre. Spaziatura complessiva della sezione mantenuta.
 
+La prima citazione avvia l’animazione 180 px prima di entrare nella finestra e resta visibile dopo la comparsa; non richiede più di scendere fino al centro della sezione.
+
 ## Interazioni dimostrative
 Libreria con ricerca nel catalogo dimostrativo, tre ripiani, spostamento e orientamento dei libri, colori, pareti, lucine, decorazioni e ordinamento. Carosello continuo con frecce, trascinamento e scheda libro. Diario con colori, valutazioni e scelta privata/condivisa collegata alla preview della community. Dati dimostrativi in memoria; nessun account, pubblicazione reale dei pensieri o backend. Le pagine complete e i profili social non sono ancora disponibili. I bottoni social lo dichiarano in una finestra dedicata.
 
