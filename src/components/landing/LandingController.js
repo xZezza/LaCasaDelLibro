@@ -1,5 +1,5 @@
 import React from "react";
-import { shade, READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
+import { READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
 import { COVERS } from "../../data/landing/books.js";
 import { serializeLibrary, isValidLibrarySnapshot } from "../../lib/library-storage.js";
 
@@ -393,14 +393,8 @@ export default class LandingController extends React.Component {
         fh: d.h,
         bgImg: `url("${d.src}")`,
         isPet: !!d.pet,
-        lift: sel ? "translateY(-8px)" : "none",
-        glow:
-          (d.glow
-            ? "drop-shadow(0 0 10px oklch(0.92 0.12 85 / 0.85))"
-            : "drop-shadow(0 6px 5px oklch(0.3 0.04 50 / 0.3))") +
-          (sel
-            ? " drop-shadow(0 0 2px oklch(0.55 0.09 300)) drop-shadow(0 0 2px oklch(0.55 0.09 300))"
-            : ""),
+        selected: sel,
+        hasGlow: !!d.glow,
         dragStart: (e) => {
           this._newType = null;
           this._drag = b.id;
@@ -427,8 +421,6 @@ export default class LandingController extends React.Component {
       sel = this.state.sel === b.id;
     const fw = mode === "spine" ? T : mode === "cover" ? D : H;
     const fh = mode === "lying" ? T : H;
-    const rot = mode === "cover" ? a - 90 : a;
-    const boxTf = `rotateX(-7deg) rotateY(${rot}deg)${mode === "lying" ? " rotateZ(90deg)" : ""}`;
     const drag = (e) => {
       this._newType = null;
       this._drag = b.id;
@@ -443,22 +435,8 @@ export default class LandingController extends React.Component {
       isDeco: false,
       fw,
       fh,
-      ml: -T / 2,
-      mt: -H / 2,
-      boxTf,
-      sideL: (T - D) / 2,
-      topT: (H - D) / 2,
-      spineTf: `translateZ(${D / 2}px)`,
-      pagesTf: `rotateY(180deg) translateZ(${D / 2}px)`,
-      coverTf: `rotateY(90deg) translateZ(${T / 2}px)`,
-      backTf: `rotateY(-90deg) translateZ(${T / 2}px)`,
-      topTf: `rotateX(90deg) translateZ(${H / 2}px)`,
-      spineBg: shade(b.h, b.l, b.c),
-      coverBg: `linear-gradient(90deg, rgba(0,0,0,.25), transparent 12%), oklch(${b.l} ${b.c} ${b.h})`,
-      backBg: `oklch(${b.l - 0.06} ${b.c} ${b.h})`,
-      edge: `oklch(${b.l} ${b.c} ${b.h})`,
-      lift: sel ? "translateY(-10px)" : "none",
-      ring: sel ? "0 14px 0 -11px oklch(0.82 0.11 78)" : "none",
+      selected: sel,
+      angle: a,
       dragStart: drag,
       over: (e) => e.preventDefault(),
       drop: (e) => {
@@ -474,9 +452,6 @@ export default class LandingController extends React.Component {
     };
   }
   renderVals() {
-    const ink = "oklch(0.25 0.035 305)",
-      paper = "oklch(0.955 0.018 82)",
-      muted = "oklch(0.42 0.03 305)";
     const tilt = (this.props.shelfStyle ?? "3D") === "3D";
 
     const list = this.state.tab === "read" ? READ : TOREAD;
@@ -500,7 +475,7 @@ export default class LandingController extends React.Component {
     const bookColors = BC.map(([name, v], i) => ({
       name,
       v,
-      ring: i === this.state.bookC ? ink : "transparent",
+      selected: i === this.state.bookC,
       pick: () => this.setState({ bookC: i }),
     }));
     const RC = [
@@ -551,11 +526,12 @@ export default class LandingController extends React.Component {
         name,
         path,
         sw,
-        weight: k === "total" ? 500 : 400,
+        color: col,
+        total: k === "total",
+        filled,
         icons: [1, 2, 3, 4, 5].map((n) => ({
           label: name + " " + n,
-          fill: filled ? (n <= v ? col : "transparent") : "none",
-          stroke: n <= v ? col : "oklch(0.25 0.035 305 / 0.3)",
+          selected: n <= v,
           set: () =>
             this.setState((s) => ({
               rate: { ...s.rate, [k]: s.rate[k] === n ? n - 1 : n },
@@ -563,7 +539,7 @@ export default class LandingController extends React.Component {
         })),
         colors: RC.map((c, i) => ({
           v: c,
-          ring: i === this.state.rateC[k] ? ink : "transparent",
+          selected: i === this.state.rateC[k],
           pick: () => this.setState((s) => ({ rateC: { ...s.rateC, [k]: i } })),
         })),
       };
@@ -596,9 +572,7 @@ export default class LandingController extends React.Component {
           k,
           {
             state: on ? "Shared" : "Private",
-            bg: on ? ink : "transparent",
-            fg: on ? "oklch(0.94 0.02 82)" : "oklch(0.35 0.03 305)",
-            border: on ? ink : "oklch(0.25 0.035 305 / 0.3)",
+            selected: on,
             toggle: () =>
               this.setState((s) => ({
                 jShare: { ...s.jShare, [k]: !s.jShare[k] },
@@ -652,220 +626,17 @@ export default class LandingController extends React.Component {
           pvChars: ["Maren", "Corin", "Lord Aske"],
           pvThread: "Was the bridge scene a betrayal or a rescue?",
         };
-    let thread = null;
-    const th = this.state.thread;
-    if (th && th.side) {
-      const [sx, sy] = th.s,
-        [ex, ey] = th.e,
-        dx = ex - sx;
-      const c1 = th.side ? [sx + dx * 0.55, sy + 30] : [sx + 90, sy + 40],
-        c2 = th.side ? [ex - dx * 0.5, ey] : [ex, ey - 90];
-      const d = `M${sx} ${sy} C${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${ex} ${ey}`;
-      const mx = (sx + 3 * c1[0] + 3 * c2[0] + ex) / 8,
-        my = (sy + 3 * c1[1] + 3 * c2[1] + ey) / 8;
-      const G = "oklch(0.6 0.12 65)",
-        C = React.createElement;
-      thread = C(
-        "svg",
-        {
-          key: "thread",
-          "aria-hidden": true,
-          style: {
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: "100%",
-            height: "100%",
-            overflow: "visible",
-            pointerEvents: "none",
-            zIndex: 6,
-          },
-        },
-        C("path", {
-          d,
-          fill: "none",
-          stroke: G,
-          strokeOpacity: 0.18,
-          strokeWidth: 7,
-          strokeLinecap: "round",
-        }),
-        C("path", {
-          d,
-          fill: "none",
-          stroke: G,
-          strokeWidth: 1.8,
-          strokeLinecap: "round",
-          strokeDasharray: "1 8",
-          style: { animation: "threadflow 1.4s linear infinite" },
-        }),
-        C("circle", { cx: sx, cy: sy, r: 4, fill: G }),
-        C("circle", {
-          cx: ex,
-          cy: ey,
-          r: 6,
-          fill: "none",
-          stroke: G,
-          strokeWidth: 1.6,
-        }),
-        C("circle", { cx: ex, cy: ey, r: 2.5, fill: G }),
-        C(
-          "circle",
-          {
-            key: d,
-            r: 3.5,
-            fill: "oklch(0.75 0.13 75)",
-            style: { filter: "drop-shadow(0 0 5px oklch(0.8 0.12 80))" },
-          },
-          C("animateMotion", {
-            dur: "2.4s",
-            repeatCount: "indefinite",
-            path: d,
-          }),
-        ),
-        C(
-          "text",
-          {
-            x: mx + 10,
-            y: my - 10,
-            fill: "oklch(0.55 0.09 300)",
-            style: { font: "300 15px 'Kalam', cursive" },
-            transform: `rotate(-8 ${mx} ${my})`,
-          },
-          "opens this",
-        ),
-      );
-    }
-    // The opening quote is readable in the initial HTML, without a scroll trigger.
-    const qIn = true;
-    const qWords =
-      "“One must always be careful of books… and what is inside them, for words have the power to change us.”"
-        .split(" ")
-        .map((t, k) => ({
-          t,
-          op: qIn ? 1 : 0,
-          blur: qIn ? "blur(0)" : "blur(8px)",
-          tf: qIn ? "none" : "translateY(14px)",
-          d: (qIn ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
-        }));
-    const q2In = !!this.state.quote2In;
-    const q2Words = "“Don’t let the hard days win.”".split(" ").map((t, k) => ({
-      t,
-      op: q2In ? 1 : 0,
-      blur: q2In ? "blur(0)" : "blur(12px)",
-      tf: q2In ? "none" : "translateY(26px) rotate(-3deg)",
-      d: (q2In ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
-    }));
-
-    const q4In = !!this.state.quote4In;
-    const q4Words =
-      "“To the stars who listen — and the dreams that are answered.”"
-        .split(" ")
-        .map((t, k) => ({
-          t,
-          op: q4In ? 1 : 0,
-          blur: q4In ? "blur(0)" : "blur(12px)",
-          tf: q4In ? "none" : "translateY(24px)",
-          d: (q4In ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
-        }));
-    const C = React.createElement;
-    const q4Sky = C(
-      "div",
-      {
-        key: "sky",
-        "aria-hidden": true,
-        style: { position: "absolute", inset: 0, pointerEvents: "none" },
-      },
-      ...Array.from({ length: 46 }, (_, k) => {
-        const s = 1 + ((k * 7) % 3),
-          big = k % 9 === 0;
-        return C("span", {
-          key: k,
-          style: {
-            position: "absolute",
-            left: ((k * 37 + 11) % 100) + "%",
-            top: ((k * 53 + 7) % 100) + "%",
-            width: big ? 3 : s,
-            height: big ? 3 : s,
-            borderRadius: "50%",
-            background:
-              k % 5 === 0 ? "oklch(0.9 0.08 85)" : "oklch(0.97 0.02 270)",
-            boxShadow: big
-              ? "0 0 8px 2px oklch(0.9 0.08 85 / 0.8)"
-              : "0 0 4px oklch(0.97 0.02 270 / 0.7)",
-            opacity: q4In ? 1 : 0,
-            transition: `opacity 1.2s ease ${(k % 12) * 0.06}s`,
-            animation: `twinkle ${1.8 + (k % 6) * 0.5}s ease-in-out ${-(k * 0.41)}s infinite`,
-          },
-        });
-      }),
-      ...[0, 1].map((k) =>
-        C("span", {
-          key: "s" + k,
-          style: {
-            position: "absolute",
-            right: k ? "8%" : "28%",
-            top: k ? "6%" : "-4%",
-            width: 110,
-            height: 1.5,
-            borderRadius: 2,
-            background:
-              "linear-gradient(90deg, oklch(0.97 0.03 85), transparent)",
-            boxShadow: "0 0 6px oklch(0.95 0.05 85)",
-            opacity: 0,
-            animation: q4In
-              ? `shoot ${k ? 9 : 7}s cubic-bezier(.3,.6,.4,1) ${k ? 4.5 : 1.2}s infinite`
-              : "none",
-          },
-        }),
-      ),
-    );
-    const q5In = !!this.state.quote5In;
-    const q5Words =
-      "“You could rattle the stars. You could do anything, if only you dared.”"
-        .split(" ")
-        .map((t, k) => ({
-          t,
-          op: q5In ? 1 : 0,
-          blur: q5In ? "blur(0)" : "blur(12px)",
-          tf: q5In ? "none" : "translateY(24px)",
-          d: (q5In ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
-        }));
-    const q6In = !!this.state.quote6In;
-    const q6Words = "“I solemnly swear that I am up to no good.”"
-      .split(" ")
-      .map((t, k) => ({
-        t,
-        op: q6In ? 1 : 0,
-        blur: q6In ? "blur(0)" : "blur(12px)",
-        tf: q6In ? "none" : "translateY(24px)",
-        d: (q6In ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
-      }));
     const quoteVals = {
       openingQuoteRevealed: !!this.state.openingQuoteRevealed,
-      quote6Ref: this.quote6Ref,
-      q6Words,
-      q6Cap: q6In ? 1 : 0,
-      quote5Ref: this.quote5Ref,
-      q5Words,
-      q5Cap: q5In ? 1 : 0,
-      q4Sky,
-      quote4Ref: this.quote4Ref,
-      q4Words,
-      
-      q4Cap: q4In ? 1 : 0,
-
-      quote2Ref: this.quote2Ref,
-      q2Words,
-      q2Line: q2In ? "scaleX(1)" : "scaleX(0)",
-      q2Cap: q2In ? 1 : 0,
       quoteRef: this.quoteRef,
-      qWords,
-      qLine: qIn ? "scaleX(1)" : "scaleX(0)",
-      qCap: qIn ? 1 : 0,
+      quote2Ref: this.quote2Ref, q2Visible: !!this.state.quote2In,
+      quote4Ref: this.quote4Ref, q4Visible: !!this.state.quote4In,
+      quote5Ref: this.quote5Ref, q5Visible: !!this.state.quote5In,
+      quote6Ref: this.quote6Ref, q6Visible: !!this.state.quote6In,
     };
     const journalVals = {
       ...quoteVals,
-      thread,
+      threadGeometry: this.state.thread,
       jGridRef: this.jGridRef,
       linksRef: this.linksRef,
       pvBoxRef: this.pvBoxRef,
@@ -889,65 +660,6 @@ export default class LandingController extends React.Component {
           if (b.mode === "lying" && last && last.lying) last.books.unshift(v);
           else segs.push({ lying: b.mode === "lying", books: [v] });
         });
-      const lc = LIGHTS[this.state.lights];
-      const lights = lc
-        ? React.createElement(
-            "div",
-            {
-              key: "l" + s,
-              "aria-hidden": true,
-              style: {
-                position: "absolute",
-                left: 18,
-                right: 18,
-                top: 2,
-                height: 30,
-                pointerEvents: "none",
-                zIndex: 3,
-              },
-            },
-            React.createElement(
-              "svg",
-              {
-                viewBox: "0 0 100 30",
-                preserveAspectRatio: "none",
-                style: {
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  overflow: "visible",
-                },
-              },
-              React.createElement("path", {
-                d: "M0 3 Q50 27 100 3",
-                stroke: "oklch(0.38 0.04 140)",
-                strokeWidth: 1.2,
-                fill: "none",
-                vectorEffect: "non-scaling-stroke",
-              }),
-            ),
-            ...Array.from({ length: 20 }, (_, i) => {
-              const t = (i + 0.5) / 20,
-                c = lc[i % lc.length];
-              return React.createElement("span", {
-                key: i,
-                style: {
-                  position: "absolute",
-                  left: t * 100 + "%",
-                  top: 3 + 48 * t * (1 - t) - 1,
-                  width: 7,
-                  height: 9,
-                  marginLeft: -3.5,
-                  borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
-                  background: c,
-                  boxShadow: `0 0 8px 2px ${c}`,
-                  animation: `twinkle ${2 + (i % 5) * 0.6}s ease-in-out ${-(i * 0.37)}s infinite`,
-                },
-              });
-            }),
-          )
-        : null;
       const CAP = 9,
         exp = !!this.state.expanded[s],
         over = segs.length > CAP;
@@ -966,7 +678,7 @@ export default class LandingController extends React.Component {
         canFold: over,
         toggleLabel: exp ? "fold away" : "show all",
         toggle,
-        lights,
+        lightsMode: this.state.lights,
         over: (e) => e.preventDefault(),
         drop: (e) => {
           e.preventDefault();
@@ -989,9 +701,7 @@ export default class LandingController extends React.Component {
       return {
         name,
         run: setMode(k),
-        bg: on ? "oklch(0.55 0.09 300)" : "transparent",
-        fg: on ? "oklch(0.97 0.01 82)" : ink,
-        border: on ? "oklch(0.55 0.09 300)" : "oklch(0.25 0.035 305 / 0.25)",
+        selected: !!on,
       };
     });
     return {
@@ -1048,8 +758,7 @@ export default class LandingController extends React.Component {
           (this.state.statuses[this.state.sheet ?? 0] || "toread") === k;
         return {
           name,
-          bg: on ? "oklch(0.25 0.035 305)" : "transparent",
-          fg: on ? "oklch(0.97 0.012 82)" : "oklch(0.38 0.03 305)",
+          selected: on,
           pick: () =>
             this.setState((s) => ({
               statuses: { ...s.statuses, [s.sheet]: k },
@@ -1102,7 +811,7 @@ export default class LandingController extends React.Component {
           this.scrubCovers(0);
         }
       },
-      coverCursor: this.state.coverDrag ? "grabbing" : "grab",
+      coverDragging: !!this.state.coverDrag,
       pauseCovers: () => this.setPaused(true),
       resumeCovers: () => this.setPaused(false),
       prevCovers: () => this.scrollCovers(-1),
@@ -1110,17 +819,12 @@ export default class LandingController extends React.Component {
       showNotes: this.props.notes ?? true,
       showRead: () => this.setState({ tab: "read" }),
       showToRead: () => this.setState({ tab: "toread" }),
-      readTabBg:
-        this.state.tab === "read" ? "oklch(0.86 0.1 78)" : "transparent",
-      readTabFg: this.state.tab === "read" ? "oklch(0.28 0.04 60)" : muted,
-      toReadTabBg:
-        this.state.tab === "toread" ? "oklch(0.86 0.1 78)" : "transparent",
-      toReadTabFg: this.state.tab === "toread" ? "oklch(0.28 0.04 60)" : muted,
+      readingTab: this.state.tab,
       woods: [...WOODS, ...WOODS].map((w, j, arr) => {
         const i = j % WOODS.length;
         return {
           ...w,
-          ring: i === this.state.wood ? ink : "transparent",
+          selected: i === this.state.wood,
           pick: () => this.setState({ wood: i }),
         };
       }),
@@ -1140,8 +844,6 @@ export default class LandingController extends React.Component {
           this.woodRef.current && this.woodRef.current.getAnimations()[0];
         a && a.play();
       },
-      woodPrevC: "oklch(0.42 0.03 305 / 0.6)",
-      woodNextC: "oklch(0.42 0.03 305 / 0.6)",
       shelfCaption:
         this.state.tab === "read"
           ? "Books you’ve finished, kept where you can see them."
@@ -1247,12 +949,12 @@ export default class LandingController extends React.Component {
       wallInk: WALLS[this.state.wall].ink,
       walls: WALLS.map((w, i) => ({
         ...w,
-        ring: i === this.state.wall ? ink : "oklch(0.25 0.035 305 / 0.15)",
+        selected: i === this.state.wall,
         pick: () => this.setState({ wall: i }),
       })),
       cases: CASES.map((c, i) => ({
         ...c,
-        ring: i === this.state.caseC ? ink : "oklch(0.25 0.035 305 / 0.15)",
+        selected: i === this.state.caseC,
         pick: () => this.setState({ caseC: i }),
       })),
       caseFrame: CASES[this.state.caseC].frame,
@@ -1264,8 +966,7 @@ export default class LandingController extends React.Component {
       ].map(([k, name]) => ({
         name,
         pick: () => this.setState({ lights: k }),
-        bg: this.state.lights === k ? ink : "transparent",
-        fg: this.state.lights === k ? paper : muted,
+        selected: this.state.lights === k,
       })),
       companions: Object.entries(DECOS).filter(([, d]) => d.pet).map(([key, d]) => ({
         key, name: d.name, image: d.src, series: d.series,

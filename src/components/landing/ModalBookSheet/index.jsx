@@ -1,3 +1,6 @@
+import "../shared/dialog.css";
+import BookCover from "../BookCover";
+import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
 
@@ -37,60 +40,15 @@ export default function ModalBookSheet(values) {
                   <div className={"salon-s274"}>
                     <div
                       className={"salon-s269"}
-                      style={{ background: sb.bg }}
+                      style={{background: sb.bg}}
                     ></div>
                     <div className={"salon-s270"}></div>
                     <div
                       className={"salon-s271"}
-                      style={{
-                        background:
-                          "linear-gradient(90deg, rgba(0,0,0,.35), rgba(255,255,255,.08) 50%, rgba(0,0,0,.35)), " +
-                          sb.bg,
-                      }}
+                      style={{"--cover-bg": sb.bg}}
                     ></div>
                     <div className={"salon-s273"}>
-                      <div
-                        className={"salon-s44"}
-                        style={{
-                          background:
-                            "radial-gradient(ellipse 90% 60% at 30% 20%, rgba(255,255,255,.16), transparent 60%), linear-gradient(90deg, rgba(0,0,0,.28), transparent 7%, rgba(255,255,255,.08) 9%, transparent 14%), " +
-                            sb.bg,
-                          color: sb.ink,
-                        }}
-                      >
-                        <div
-                          className={"salon-s37"}
-                          style={{ border: "1px solid " + sb.accent }}
-                        ></div>
-                        <div
-                          className={"salon-s38"}
-                          style={{ border: "1px solid " + sb.accent }}
-                        ></div>
-                        <div
-                          className={"salon-s39"}
-                          style={{ color: sb.accent }}
-                        >
-                          {sb.g}
-                        </div>
-                        <div
-                          style={{
-                            width: sb.mw + "px",
-                            height: sb.mh + "px",
-                            borderRadius: sb.mr,
-                            border: sb.mb,
-                            boxShadow: sb.ms,
-                            transform: sb.mt,
-                          }}
-                        ></div>
-                        <div className={"salon-s43"}>
-                          <div className={"salon-s272"}>{sb.t}</div>
-                          <div
-                            className={"salon-s41"}
-                            style={{ background: sb.accent }}
-                          ></div>
-                          <div className={"salon-s42"}>{sb.a}</div>
-                        </div>
-                      </div>
+                      <BookCover book={sb} titleClass="salon-s272" />
                     </div>
                   </div>
                 </div>
@@ -114,7 +72,7 @@ export default function ModalBookSheet(values) {
                           onClick={o.pick}
                           type="button"
                           className={"salon-s282"}
-                          style={{ background: o.bg, color: o.fg }}
+                          aria-pressed={o.selected}
                         >
                           {o.name}
                         </button>

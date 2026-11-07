@@ -241,3 +241,37 @@
     }
   }
 }
+
+@layer components {
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .salon-s63 {
+    background: transparent;
+    color: oklch(.42 .03 305);
+  }
+
+  .salon-s63[aria-pressed="true"] {
+    background: oklch(.86 .1 78);
+    color: oklch(.28 .04 60);
+  }
+
+  .salon-s65 {
+    color: oklch(.42 .03 305 / .6);
+  }
+
+  .salon-s66 {
+    box-shadow: 0 0 0 2px oklch(.985 .008 82),0 0 0 3.5px transparent;
+  }
+
+  .salon-s66[aria-pressed="true"] {
+    box-shadow: 0 0 0 2px oklch(.985 .008 82),0 0 0 3.5px oklch(.25 .035 305);
+  }
+}

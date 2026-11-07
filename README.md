@@ -59,7 +59,9 @@ Le decisioni già definite e quelle ancora aperte sono in `docs/brief.md`.
 - `src/hooks/`: comportamento riutilizzabile, come il ridimensionamento della finestra della libreria.
 - `src/lib/`: utility per serializzare la libreria.
 - `src/config/breakpoints.js`: soglie dei dispositivi usate dal comportamento JavaScript.
-- `src/styles/global.css`: fondazioni e stili condivisi tra sezioni.
+- `src/styles/global.css`: reset, token e accessibilità generale; nessuna regola specifica delle sezioni.
+- `src/components/landing/shared/`: stili comuni definiti una sola volta.
+- `QuoteText`, `StarField`, `FairyLights`, `ReadingThread` e `BookCover`: effetti e copertine dimostrative con CSS dedicato.
 - `public/images/`: sottocartelle `branding`, `hero`, `community`, `decorations`, `characters`.
 - `tests/`: controlli sullo stato della libreria; `scripts/check-project.mjs`: verifica della struttura e degli asset.
 

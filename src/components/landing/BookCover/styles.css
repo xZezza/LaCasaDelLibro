@@ -1,0 +1,103 @@
+@layer components {
+  .salon-s37 {
+    position: absolute;
+    inset: 7px;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .salon-s38 {
+    position: absolute;
+    inset: 11px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .salon-s39 {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .salon-s41 {
+    width: 28px;
+    height: 1px;
+  }
+
+  .salon-s42 {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .salon-s43 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .salon-s44 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 16% 12% 13%;
+  }
+
+  .book-cover-face {
+    background: radial-gradient(ellipse 90% 60% at 30% 20%,rgba(255,255,255,.16),transparent 60%),linear-gradient(90deg,rgba(0,0,0,.28),transparent 7%,rgba(255,255,255,.08) 9%,transparent 14%),var(--cover-bg);
+    color: var(--cover-ink);
+  }
+
+  .book-cover-face .salon-s37,.book-cover-face .salon-s38 {
+    border: 1px solid var(--cover-accent);
+  }
+
+  .book-cover-face .salon-s39 {
+    color: var(--cover-accent);
+  }
+
+  .book-cover-face .salon-s41 {
+    background: var(--cover-accent);
+  }
+
+  .book-cover-motif {
+    border: 1.5px solid var(--cover-accent);
+  }
+
+  .book-cover-motif[data-motif="ring"] {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px transparent,inset 0 0 0 8px transparent,0 0 0 7px var(--cover-bg),0 0 0 8px var(--cover-accent);
+  }
+
+  .book-cover-motif[data-motif="arch"] {
+    width: 46px;
+    height: 62px;
+    border-radius: 999px 999px 0 0;
+  }
+
+  .book-cover-motif[data-motif="diamond"] {
+    width: 34px;
+    height: 34px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 6px var(--cover-bg),inset 0 0 0 20px var(--cover-accent);
+    transform: rotate(45deg);
+  }
+
+  .book-cover-motif[data-motif="moon"] {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: inset -12px 6px 0 0 var(--cover-accent);
+    transform: rotate(-20deg);
+  }
+}

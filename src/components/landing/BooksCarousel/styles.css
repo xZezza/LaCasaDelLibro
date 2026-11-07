@@ -173,17 +173,6 @@
 }
 
 @layer refinements {
-  .salon-opening-quote[data-reveal="true"] blockquote span {
-    animation: opening-quote-reveal 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    animation-delay: var(--quote-delay, 0s);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .salon-opening-quote blockquote span {
-      animation: none !important;
-    }
-  }
-
   .salon-carousel-arrow {
     position: absolute;
     top: calc(50% - 23px);
@@ -242,5 +231,29 @@
     .salon-carousel-arrow.next {
       right: 8px;
     }
+  }
+
+  @keyframes book-marquee {
+    from {
+      transform: translate3d(-25%, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+@layer components {
+  .salon-s50 {
+    cursor: grab;
+  }
+
+  .salon-s50[data-dragging="true"] {
+    cursor: grabbing;
+  }
+
+  .salon-s36 {
+    background: linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08) 50%,rgba(0,0,0,.35)),var(--cover-bg);
   }
 }

@@ -1,9 +1,11 @@
+import QuoteText from "../QuoteText";
+import BookCover from "../BookCover";
 import React from "react";
 import "./styles.css";
 
 export default function BooksCarousel(values) {
   const {
-    coverCursor,
+    coverDragging,
     covers,
     dragEndCovers,
     dragMoveCovers,
@@ -12,9 +14,6 @@ export default function BooksCarousel(values) {
     prevCovers,
     nextCovers,
     openingQuoteRevealed,
-    qCap,
-    qLine,
-    qWords,
     quoteRef,
     resumeCovers,
     trackRef,
@@ -26,42 +25,13 @@ export default function BooksCarousel(values) {
         <div className={"salon-s33"}>
           <figure
             ref={quoteRef}
-            className="salon-s30 salon-opening-quote"
+            className="salon-s30 salon-opening-quote quote-reveal" data-visible={true}
             data-reveal={openingQuoteRevealed}
           >
-            <span className={"salon-s24"} style={{ transform: qLine }}></span>
-            <span className={"salon-s25"} style={{ transform: qLine }}></span>
-            <blockquote
-              aria-label={
-                "One must always be careful of books… and what is inside them, for words have the power to change us."
-              }
-              className={"salon-s27"}
-            >
-              {qWords.map((w, index1) => (
-                <React.Fragment key={index1}>
-                  <span
-                    aria-hidden={"true"}
-                    className={"salon-s26"}
-                    style={{
-                      "--quote-delay": w.d,
-                      opacity: w.op,
-                      filter: w.blur,
-                      transform: w.tf,
-                      transition:
-                        "opacity 1.1s ease " +
-                        w.d +
-                        ", filter 1.1s ease " +
-                        w.d +
-                        ", transform 1.2s cubic-bezier(.2,.8,.2,1) " +
-                        w.d,
-                    }}
-                  >
-                    {w.t}
-                  </span>
-                </React.Fragment>
-              ))}
-            </blockquote>
-            <figcaption className={"salon-s29"} style={{ opacity: qCap }}>
+            <span className={"salon-s24"} ></span>
+            <span className={"salon-s25"} ></span>
+            <QuoteText text={"One must always be careful of books… and what is inside them, for words have the power to change us."} className="salon-s27" />
+            <figcaption className={"salon-s29"} >
               {"Cassandra Clare · "}
               <span className={"salon-s28"}>{"Clockwork Angel"}</span>
             </figcaption>
@@ -114,7 +84,7 @@ export default function BooksCarousel(values) {
             onPointerUp={dragEndCovers}
             onPointerCancel={dragEndCovers}
             className={"salon-s50"}
-            style={{ cursor: coverCursor }}
+            data-dragging={coverDragging}
           >
             <div ref={trackRef} className={"salon-s49"}>
               {covers.map((c, index2) => (
@@ -136,60 +106,15 @@ export default function BooksCarousel(values) {
                       <div className={"salon-s46 salon-hover53"}>
                         <div
                           className={"salon-s34"}
-                          style={{ background: c.bg }}
+                          style={{background: c.bg}}
                         ></div>
                         <div className={"salon-s35"}></div>
                         <div
                           className={"salon-s36"}
-                          style={{
-                            background:
-                              "linear-gradient(90deg, rgba(0,0,0,.35), rgba(255,255,255,.08) 50%, rgba(0,0,0,.35)), " +
-                              c.bg,
-                          }}
+                          style={{"--cover-bg": c.bg}}
                         ></div>
                         <div className={"salon-s45"}>
-                          <div
-                            className={"salon-s44"}
-                            style={{
-                              background:
-                                "radial-gradient(ellipse 90% 60% at 30% 20%, rgba(255,255,255,.16), transparent 60%), linear-gradient(90deg, rgba(0,0,0,.28), transparent 7%, rgba(255,255,255,.08) 9%, transparent 14%), " +
-                                c.bg,
-                              color: c.ink,
-                            }}
-                          >
-                            <div
-                              className={"salon-s37"}
-                              style={{ border: "1px solid " + c.accent }}
-                            ></div>
-                            <div
-                              className={"salon-s38"}
-                              style={{ border: "1px solid " + c.accent }}
-                            ></div>
-                            <div
-                              className={"salon-s39"}
-                              style={{ color: c.accent }}
-                            >
-                              {c.g}
-                            </div>
-                            <div
-                              style={{
-                                width: c.mw + "px",
-                                height: c.mh + "px",
-                                borderRadius: c.mr,
-                                border: c.mb,
-                                boxShadow: c.ms,
-                                transform: c.mt,
-                              }}
-                            ></div>
-                            <div className={"salon-s43"}>
-                              <div className={"salon-s40"}>{c.t}</div>
-                              <div
-                                className={"salon-s41"}
-                                style={{ background: c.accent }}
-                              ></div>
-                              <div className={"salon-s42"}>{c.a}</div>
-                            </div>
-                          </div>
+                          <BookCover book={c} titleClass="salon-s40" />
                         </div>
                       </div>
                     </div>

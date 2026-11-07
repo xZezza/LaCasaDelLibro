@@ -1,0 +1,39 @@
+@layer refinements {
+  .salon-dialog button[aria-label="Close"] {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .salon-dialog {
+    overscroll-behavior: contain;
+  }
+
+  @media (max-width: 650px) {
+    .salon-dialog {
+      border-radius: 16px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .salon-dialog > div {
+      flex-basis: 100%;
+      min-width: 0;
+    }
+  }
+}
+
+@layer components {
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

@@ -95,41 +95,7 @@ const COVERS = [
     ],
   ][i % 10];
   const [bg, ink, accent, m] = P;
-  const M = {
-    ring: {
-      mw: 54,
-      mh: 54,
-      mr: "50%",
-      mb: `1.5px solid ${accent}`,
-      ms: `0 0 0 6px transparent, inset 0 0 0 8px transparent, 0 0 0 7px ${bg}, 0 0 0 8px ${accent}`,
-      mt: "none",
-    },
-    arch: {
-      mw: 46,
-      mh: 62,
-      mr: "999px 999px 0 0",
-      mb: `1.5px solid ${accent}`,
-      ms: "none",
-      mt: "none",
-    },
-    diamond: {
-      mw: 34,
-      mh: 34,
-      mr: "2px",
-      mb: `1.5px solid ${accent}`,
-      ms: `inset 0 0 0 6px ${bg}, inset 0 0 0 20px ${accent}`,
-      mt: "rotate(45deg)",
-    },
-    moon: {
-      mw: 50,
-      mh: 50,
-      mr: "50%",
-      mb: "0",
-      ms: `inset -12px 6px 0 0 ${accent}`,
-      mt: "rotate(-20deg)",
-    },
-  }[m];
-  return { t, a, g, bg, ink, accent, blurb: BLURBS[t] || "", ...M };
+  return {t, a, g, bg, ink, accent, motif: m, blurb: BLURBS[t] || ""};
 });
 
 export { COVERS };

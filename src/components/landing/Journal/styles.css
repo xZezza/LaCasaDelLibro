@@ -389,11 +389,6 @@
     position: relative;
   }
 
-  .salon-s133 {
-    display: inline-block;
-    margin-right: 0.26em;
-  }
-
   .salon-s134 {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
@@ -664,5 +659,56 @@
     .salon-s87 {
       display: none;
     }
+  }
+}
+
+@layer components {
+  .salon-s100 {
+    box-shadow: 0 0 0 1.5px oklch(.99 .006 85),0 0 0 2.5px transparent;
+  }
+
+  .salon-s100[aria-pressed="true"] {
+    box-shadow: 0 0 0 1.5px oklch(.99 .006 85),0 0 0 2.5px oklch(.25 .035 305);
+  }
+
+  .salon-s123 {
+    box-shadow: 0 0 0 1.5px oklch(.95 .018 82),0 0 0 2.5px transparent;
+  }
+
+  .salon-s123[aria-pressed="true"] {
+    box-shadow: 0 0 0 1.5px oklch(.95 .018 82),0 0 0 2.5px oklch(.25 .035 305);
+  }
+
+  .salon-s112 {
+    border: 1px solid oklch(.25 .035 305 / .3);
+    background: transparent;
+    color: oklch(.35 .03 305);
+  }
+
+  .salon-s112[aria-pressed="true"] {
+    border-color: oklch(.25 .035 305);
+    background: oklch(.25 .035 305);
+    color: oklch(.94 .02 82);
+  }
+
+  .salon-s119 {
+    font-weight: 400;
+  }
+
+  .salon-s119[data-total="true"] {
+    font-weight: 500;
+  }
+
+  .salon-s121 path {
+    fill: none;
+    stroke: oklch(.25 .035 305 / .3);
+  }
+
+  .salon-s121[aria-pressed="true"] path {
+    stroke: var(--rating-color);
+  }
+
+  [data-filled="true"] .salon-s121[aria-pressed="true"] path {
+    fill: var(--rating-color);
   }
 }

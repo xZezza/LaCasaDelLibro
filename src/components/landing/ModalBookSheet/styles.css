@@ -289,4 +289,18 @@
     justify-content: center;
     padding: clamp(10px, 3vw, 40px);
   }
+
+  .salon-s271 {
+    background: linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08) 50%,rgba(0,0,0,.35)),var(--cover-bg);
+  }
+
+  .salon-s282 {
+    background: transparent;
+    color: oklch(.38 .03 305);
+  }
+
+  .salon-s282[aria-pressed="true"] {
+    background: oklch(.25 .035 305);
+    color: oklch(.97 .012 82);
+  }
 }

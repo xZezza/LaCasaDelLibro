@@ -1,3 +1,4 @@
+import "../shared/dialog.css";
 import React from "react";
 import "./styles.css";
 

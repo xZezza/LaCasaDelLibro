@@ -274,15 +274,6 @@ const CASES = [
   frame: `inset 0 0 0 12px ${a}, inset 0 0 0 14px ${b}, inset 0 0 50px oklch(0.4 0.05 60 / 0.3)`,
   shelf: `linear-gradient(180deg, ${c}, ${b})`,
 }));
-const LIGHTS = {
-  warm: ["oklch(0.93 0.12 85)"],
-  pastel: [
-    "oklch(0.86 0.1 0)",
-    "oklch(0.88 0.1 160)",
-    "oklch(0.85 0.1 300)",
-    "oklch(0.93 0.11 95)",
-    "oklch(0.86 0.09 230)",
-  ],
-};
+const LIGHTS = { warm: true, pastel: true };
 
 export { shade, READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds };

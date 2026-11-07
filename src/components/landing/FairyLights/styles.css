@@ -1,0 +1,87 @@
+@layer components {
+  .fairy-lights {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    top: 2px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 3;
+    --bulb-color: oklch(.93 .12 85);
+  }
+
+  .fairy-lights svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .fairy-lights path {
+    stroke: oklch(.38 .04 140);
+    stroke-width: 1.2;
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .fairy-lights span {
+    --t: calc((var(--bulb-index) + .5)/20);
+    position: absolute;
+    left: calc((var(--bulb-index) + .5)*5%);
+    top: calc(2px + 48px*var(--t)*(1 - var(--t)));
+    width: 7px;
+    height: 9px;
+    margin-left: -3.5px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: var(--bulb-color);
+    box-shadow: 0 0 8px 2px var(--bulb-color);
+    animation: twinkle var(--twinkle-duration) ease-in-out calc(var(--bulb-index)*-.37s) infinite;
+  }
+
+  .fairy-lights span:nth-of-type(5n + 1) {
+    --twinkle-duration: 2s;
+  }
+
+  .fairy-lights span:nth-of-type(5n + 2) {
+    --twinkle-duration: 2.6s;
+  }
+
+  .fairy-lights span:nth-of-type(5n + 3) {
+    --twinkle-duration: 3.2s;
+  }
+
+  .fairy-lights span:nth-of-type(5n + 4) {
+    --twinkle-duration: 3.8s;
+  }
+
+  .fairy-lights span:nth-of-type(5n + 5) {
+    --twinkle-duration: 4.4s;
+  }
+
+  .fairy-lights[data-mode="pastel"] span:nth-of-type(5n + 1) {
+    --bulb-color: oklch(.86 .1 0);
+  }
+
+  .fairy-lights[data-mode="pastel"] span:nth-of-type(5n + 2) {
+    --bulb-color: oklch(.88 .1 160);
+  }
+
+  .fairy-lights[data-mode="pastel"] span:nth-of-type(5n + 3) {
+    --bulb-color: oklch(.85 .1 300);
+  }
+
+  .fairy-lights[data-mode="pastel"] span:nth-of-type(5n + 4) {
+    --bulb-color: oklch(.93 .11 95);
+  }
+
+  .fairy-lights[data-mode="pastel"] span:nth-of-type(5n + 5) {
+    --bulb-color: oklch(.86 .09 230);
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .fairy-lights span {
+      animation: none;
+    }
+  }
+}

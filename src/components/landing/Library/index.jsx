@@ -1,25 +1,21 @@
+import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
 
 export default function Library(values) {
   const {
     openLib,
-    readTabBg,
-    readTabFg,
+    readingTab,
     shelfBooks,
     shelfCaption,
     showNotes,
     showRead,
     showToRead,
-    toReadTabBg,
-    toReadTabFg,
     woodGrad,
     woodNext,
-    woodNextC,
     woodPause,
     woodPlay,
     woodPrev,
-    woodPrevC,
     woodRef,
     woods,
   } = values;
@@ -56,7 +52,7 @@ export default function Library(values) {
                 onClick={showRead}
                 type="button"
                 className={"salon-s63"}
-                style={{ background: readTabBg, color: readTabFg }}
+                aria-pressed={readingTab === "read"}
               >
                 {"Read"}
               </button>
@@ -64,7 +60,7 @@ export default function Library(values) {
                 onClick={showToRead}
                 type="button"
                 className={"salon-s63"}
-                style={{ background: toReadTabBg, color: toReadTabFg }}
+                aria-pressed={readingTab === "toread"}
               >
                 {"To read"}
               </button>
@@ -76,7 +72,6 @@ export default function Library(values) {
                 aria-label={"More colours"}
                 type="button"
                 className={"salon-s65 salon-hover74"}
-                style={{ color: woodPrevC }}
               >
                 {"‹"}
               </button>
@@ -94,12 +89,7 @@ export default function Library(values) {
                         aria-label={w.name}
                         type="button"
                         className={"salon-s66"}
-                        style={{
-                          background: w.top,
-                          boxShadow:
-                            "0 0 0 2px oklch(0.985 0.008 82), 0 0 0 3.5px " +
-                            w.ring,
-                        }}
+                        aria-pressed={w.selected} style={{background:w.top}}
                       ></button>
                     </React.Fragment>
                   ))}
@@ -110,7 +100,6 @@ export default function Library(values) {
                 aria-label={"More colours"}
                 type="button"
                 className={"salon-s65 salon-hover78"}
-                style={{ color: woodNextC }}
               >
                 {"›"}
               </button>

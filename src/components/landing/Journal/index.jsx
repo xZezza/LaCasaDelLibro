@@ -1,3 +1,6 @@
+import ReadingThread from "../ReadingThread";
+import QuoteText from "../QuoteText";
+import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
@@ -19,13 +22,12 @@ export default function Journal(values) {
     pvMeta,
     pvThread,
     pvTitle,
-    q6Cap,
-    q6Words,
+    q6Visible,
     quote6Ref,
     ratings,
     sh,
     showNotes,
-    thread,
+    threadGeometry,
   } = values;
   return (
     <>
@@ -55,7 +57,7 @@ export default function Journal(values) {
         </div>
         <div ref={jGridRef} className={"salon-s160"}>
           {"\n    "}
-          {thread}
+          <ReadingThread geometry={threadGeometry} />
           {"\n    "}
           <div className={"salon-s132"}>
             <div className={"salon-s87"}>
@@ -230,12 +232,7 @@ export default function Journal(values) {
                             title={c.name}
                             type="button"
                             className={"salon-s100"}
-                            style={{
-                              background: c.v,
-                              boxShadow:
-                                "0 0 0 1.5px oklch(0.99 0.006 85), 0 0 0 2.5px " +
-                                c.ring,
-                            }}
+                            aria-pressed={c.selected} style={{background:c.v}}
                           ></button>
                         </React.Fragment>
                       ))}
@@ -299,11 +296,7 @@ export default function Journal(values) {
                       onClick={sh.best.toggle}
                       type="button"
                       className={"salon-s112"}
-                      style={{
-                        border: "1px solid " + sh.best.border,
-                        background: sh.best.bg,
-                        color: sh.best.fg,
-                      }}
+                      aria-pressed={sh.best.selected}
                     >
                       {sh.best.state}
                     </button>
@@ -321,11 +314,7 @@ export default function Journal(values) {
                       onClick={sh.review.toggle}
                       type="button"
                       className={"salon-s112"}
-                      style={{
-                        border: "1px solid " + sh.review.border,
-                        background: sh.review.bg,
-                        color: sh.review.fg,
-                      }}
+                      aria-pressed={sh.review.selected}
                     >
                       {sh.review.state}
                     </button>
@@ -342,10 +331,10 @@ export default function Journal(values) {
                   <div className={"salon-s126"}>
                     {ratings.map((r, index10) => (
                       <React.Fragment key={index10}>
-                        <div className={"salon-s125"}>
+                        <div className={"salon-s125"} data-filled={r.filled} style={{"--rating-color":r.color}}>
                           <div
                             className={"salon-s119"}
-                            style={{ fontWeight: r.weight }}
+                            data-total={r.total}
                           >
                             {r.name}
                           </div>
@@ -357,7 +346,7 @@ export default function Journal(values) {
                                   aria-label={i.label}
                                   type="button"
                                   className={"salon-s121 salon-hover133"}
-                                >
+                                 aria-pressed={i.selected}>
                                   <svg
                                     viewBox={"0 0 24 24"}
                                     width={"24"}
@@ -366,8 +355,8 @@ export default function Journal(values) {
                                   >
                                     <path
                                       d={r.path}
-                                      fill={i.fill}
-                                      stroke={i.stroke}
+
+
                                       strokeWidth={r.sw}
                                       strokeLinecap={"round"}
                                       strokeLinejoin={"round"}
@@ -385,12 +374,7 @@ export default function Journal(values) {
                                   aria-label={"Colour"}
                                   type="button"
                                   className={"salon-s123"}
-                                  style={{
-                                    background: c.v,
-                                    boxShadow:
-                                      "0 0 0 1.5px oklch(0.95 0.018 82), 0 0 0 2.5px " +
-                                      c.ring,
-                                  }}
+                                  aria-pressed={c.selected} style={{background:c.v}}
                                 ></button>
                               </React.Fragment>
                             ))}
@@ -425,37 +409,11 @@ export default function Journal(values) {
           <div className={"salon-s159"}>
             <figure
               ref={quote6Ref}
-              className="salon-s136 quote-with-guest quote-guest-potter"
+              className="salon-s136 quote-with-guest quote-guest-potter quote-reveal" data-visible={q6Visible}
             >
               <StoryGuests group="potter" placement="potter" />
-              <blockquote
-                aria-label={"I solemnly swear that I am up to no good."}
-                className={"salon-s134"}
-              >
-                {q6Words.map((w, index12) => (
-                  <React.Fragment key={index12}>
-                    <span
-                      aria-hidden={"true"}
-                      className={"salon-s133"}
-                      style={{
-                        opacity: w.op,
-                        filter: w.blur,
-                        transform: w.tf,
-                        transition:
-                          "opacity 1.1s ease " +
-                          w.d +
-                          ", filter 1.1s ease " +
-                          w.d +
-                          ", transform 1.2s cubic-bezier(.2,.8,.2,1) " +
-                          w.d,
-                      }}
-                    >
-                      {w.t}
-                    </span>
-                  </React.Fragment>
-                ))}
-              </blockquote>
-              <figcaption className={"salon-s135"} style={{ opacity: q6Cap }}>
+              <QuoteText text={"I solemnly swear that I am up to no good."} className="salon-s134" />
+              <figcaption className={"salon-s135"} >
                 {"J.K. Rowling · "}
                 <span className={"salon-s28"}>
                   {"Harry Potter and the Prisoner of Azkaban"}

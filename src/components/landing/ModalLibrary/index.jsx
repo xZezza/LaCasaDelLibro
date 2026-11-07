@@ -1,8 +1,10 @@
+import FairyLights from "../FairyLights";
+import "../shared/dialog.css";
+import "../shared/typography.css";
 import React, { useState } from "react";
 import "./styles.css";
 import useLibraryFit from "../../../hooks/useLibraryFit.js";
 import LibraryPets from "../LibraryPets";
-
 export default function ModalLibrary(values) {
   const {
     angle,
@@ -209,7 +211,7 @@ export default function ModalLibrary(values) {
                         className={"salon-s246"}
                       >
                         {"\n            "}
-                        {sh.lights}
+                        <FairyLights mode={sh.lightsMode} />
                         {"\n            "}
                         <div
                           className={"salon-s241"}
@@ -242,31 +244,13 @@ export default function ModalLibrary(values) {
                                           onClick={b.select}
                                           title={b.t}
                                           className={"salon-s233"}
-                                          style={{
-                                            width: b.fw + "px",
-                                            height: b.fh + "px",
-                                            transform: b.lift,
-                                            boxShadow: b.ring,
-                                          }}
+                                          data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
                                         >
                                           <div
                                             className={"salon-s232"}
-                                            style={{
-                                              width: b.T + "px",
-                                              height: b.H + "px",
-                                              marginLeft: b.ml + "px",
-                                              marginTop: b.mt + "px",
-                                              transform: b.boxTf,
-                                            }}
                                           >
                                             <div
                                               className={"salon-s225"}
-                                              style={{
-                                                width: b.T + "px",
-                                                height: b.H + "px",
-                                                transform: b.spineTf,
-                                                background: b.spineBg,
-                                              }}
                                             >
                                               <span className={"salon-s224"}>
                                                 {b.t}
@@ -274,13 +258,6 @@ export default function ModalLibrary(values) {
                                             </div>
                                             <div
                                               className={"salon-s228"}
-                                              style={{
-                                                left: b.sideL + "px",
-                                                width: b.D + "px",
-                                                height: b.H + "px",
-                                                transform: b.coverTf,
-                                                background: b.coverBg,
-                                              }}
                                             >
                                               <span
                                                 className={"salon-s226"}
@@ -291,32 +268,12 @@ export default function ModalLibrary(values) {
                                             </div>
                                             <div
                                               className={"salon-s229"}
-                                              style={{
-                                                left: b.sideL + "px",
-                                                width: b.D + "px",
-                                                height: b.H + "px",
-                                                transform: b.backTf,
-                                                background: b.backBg,
-                                              }}
                                             ></div>
                                             <div
                                               className={"salon-s230"}
-                                              style={{
-                                                width: b.T + "px",
-                                                height: b.H + "px",
-                                                transform: b.pagesTf,
-                                              }}
                                             ></div>
                                             <div
                                               className={"salon-s231"}
-                                              style={{
-                                                top: b.topT + "px",
-                                                width: b.T + "px",
-                                                height: b.D + "px",
-                                                transform: b.topTf,
-                                                boxShadow:
-                                                  "inset 0 0 0 2px " + b.edge,
-                                              }}
                                             ></div>
                                           </div>
                                         </div>
@@ -345,12 +302,7 @@ export default function ModalLibrary(values) {
                                           title={b.t}
                                           className={"salon-s235"}
                                           data-companion={b.isPet || b.deco === "dragon" ? "true" : undefined}
-                                          style={{
-                                            width: b.fw + "px",
-                                            height: b.fh + "px",
-                                            transform: b.lift,
-                                            filter: b.glow,
-                                          }}
+                                          data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px'}}
                                         >
                                           <div
                                             role={"img"}
@@ -441,11 +393,7 @@ export default function ModalLibrary(values) {
                                   onClick={m.run}
                                   type="button"
                                   className={"salon-s251"}
-                                  style={{
-                                    border: "1px solid " + m.border,
-                                    background: m.bg,
-                                    color: m.fg,
-                                  }}
+                                  aria-pressed={m.selected}
                                 >
                                   {m.name}
                                 </button>
@@ -502,11 +450,7 @@ export default function ModalLibrary(values) {
                           title={c.name}
                           aria-label={c.name}
                           type="button"
-                          className={"salon-s257"}
-                          style={{
-                            background: c.sw,
-                            border: "2px solid " + c.ring,
-                          }}
+                          className={"salon-s257"} aria-pressed={c.selected} style={{background:c.sw}}
                         ></button>
                       </React.Fragment>
                     ))}
@@ -522,11 +466,7 @@ export default function ModalLibrary(values) {
                           title={w.name}
                           aria-label={w.name}
                           type="button"
-                          className={"salon-s257"}
-                          style={{
-                            background: w.swatch,
-                            border: "2px solid " + w.ring,
-                          }}
+                          className={"salon-s257"} aria-pressed={w.selected} style={{background:w.swatch}}
                         ></button>
                       </React.Fragment>
                     ))}
@@ -541,7 +481,7 @@ export default function ModalLibrary(values) {
                           onClick={o.pick}
                           type="button"
                           className={"salon-s259"}
-                          style={{ background: o.bg, color: o.fg }}
+                          aria-pressed={o.selected}
                         >
                           {o.name}
                         </button>

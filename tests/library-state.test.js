@@ -81,7 +81,8 @@ test('every shelf mode has finite geometry and decoration assets resolve to imag
     const book = page.bookVals({ ...first, mode });
     assert.ok(Number.isFinite(book.fw) && book.fw > 0);
     assert.ok(Number.isFinite(book.fh) && book.fh > 0);
-    assert.ok(!book.spineBg.includes('undefined'));
+    assert.ok(Number.isFinite(book.angle));
+    assert.ok([book.h, book.l, book.c, book.T, book.H, book.D].every(Number.isFinite));
   }
   for (const decoration of page.renderVals().tray) assert.match(decoration.bgImg, /^url\("\/images\/decorations\//);
   assert.equal(page.renderVals().companions.length, 8);

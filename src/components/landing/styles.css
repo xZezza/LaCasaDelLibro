@@ -36,26 +36,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .salon-landing figure blockquote span {
-      opacity: 1 !important;
-      filter: none !important;
-      transform: none !important;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .salon-landing figure figcaption {
-      opacity: 1 !important;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .salon-landing [data-salon-carousel] {
-      overflow-x: auto;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
     .salon-landing [data-salon-carousel] {
       overflow-x: auto;
       touch-action: auto;

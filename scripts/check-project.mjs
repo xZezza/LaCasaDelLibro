@@ -3,6 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
+const globalCss = fs.readFileSync(path.join(root, 'src/styles/global.css'), 'utf8');
+if (/\.salon-|@keyframes/.test(globalCss)) errors.push('Component styles belong beside their component, not in global.css.');
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
     const target = path.join(directory, entry.name);
@@ -36,7 +38,7 @@ for (const file of source) {
   }
   if (file.endsWith('.css')) {
     for (const query of content.matchAll(/@media\s*([^{}]+)\{/g)) {
-      for (const size of query[1].matchAll(/(\d+)px/g)) if (![650, 651, 960].includes(Number(size[1]))) errors.push(`${path.relative(root, file)}: unexpected breakpoint ${size[1]}px`);
+      for (const size of query[1].matchAll(/(\d+)px/g)) if (![650, 651, 960, 1440].includes(Number(size[1]))) errors.push(`${path.relative(root, file)}: unexpected breakpoint ${size[1]}px`);
     }
   }
 }
@@ -49,4 +51,4 @@ for (const guest of guests) if (!fs.existsSync(path.join(root, 'public', guest.i
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'public/site.webmanifest'), 'utf8'));
 for (const icon of manifest.icons) if (!fs.existsSync(path.join(root, 'public', icon.src))) errors.push(`Missing manifest icon: ${icon.src}`);
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-else console.log(`Structure OK: ${reachable.size} reachable source files; image references, ${guests.length} visitors, favicon icons and 650/960 breakpoints verified.`);
+else console.log(`Structure OK: ${reachable.size} reachable source files; image references, ${guests.length} visitors, favicon icons and responsive boundaries (650/960, desktop cap 1440) verified.`);

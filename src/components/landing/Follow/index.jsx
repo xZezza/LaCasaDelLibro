@@ -1,11 +1,12 @@
+import QuoteText from "../QuoteText";
+import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
 
 export default function Follow(values) {
   const {
-    q5Cap,
-    q5Words,
+    q5Visible,
     quote5Ref,
     showNotes,
     socials,
@@ -146,39 +147,11 @@ export default function Follow(values) {
           </div>
           <figure
             ref={quote5Ref}
-            className="salon-s194 quote-with-guest quote-guest-throne"
+            className="salon-s194 quote-with-guest quote-guest-throne quote-reveal" data-visible={q5Visible}
           >
             <StoryGuests group="throne" placement="throne" />
-            <blockquote
-              aria-label={
-                "You could rattle the stars. You could do anything, if only you dared."
-              }
-              className={"salon-s192"}
-            >
-              {q5Words.map((w, index17) => (
-                <React.Fragment key={index17}>
-                  <span
-                    aria-hidden={"true"}
-                    className={"salon-s191"}
-                    style={{
-                      opacity: w.op,
-                      filter: w.blur,
-                      transform: w.tf,
-                      transition:
-                        "opacity 1.1s ease " +
-                        w.d +
-                        ", filter 1.1s ease " +
-                        w.d +
-                        ", transform 1.2s cubic-bezier(.2,.8,.2,1) " +
-                        w.d,
-                    }}
-                  >
-                    {w.t}
-                  </span>
-                </React.Fragment>
-              ))}
-            </blockquote>
-            <figcaption className={"salon-s193"} style={{ opacity: q5Cap }}>
+            <QuoteText text={"You could rattle the stars. You could do anything, if only you dared."} className="salon-s192" />
+            <figcaption className={"salon-s193"} >
               {"Sarah J. Maas · "}
               <span className={"salon-s28"}>{"Throne of Glass"}</span>
             </figcaption>
