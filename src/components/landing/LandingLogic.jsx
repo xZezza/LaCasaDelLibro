@@ -429,6 +429,10 @@ const COVERS = [
   }[m];
   return { t, a, g, bg, ink, accent, blurb: BLURBS[t] || "", ...M };
 });
+function serializeLibrary({ lib, wall, caseC, lights, angle }) {
+  return JSON.stringify({ version: 1, lib, wall, caseC, lights, angle });
+}
+
 export default class LandingLogic extends React.Component {
   trackRef = React.createRef();
   woodRef = React.createRef();
@@ -499,7 +503,7 @@ export default class LandingLogic extends React.Component {
       el = this.trackRef.current;
     if (!a || !el) return;
     const dur = 70000,
-      half = el.scrollWidth / 2;
+      half = el.scrollWidth / 4;
     a.pause();
     a.currentTime =
       ((((a.currentTime || 0) + (px / half) * dur) % dur) + dur) % dur;
@@ -520,9 +524,13 @@ export default class LandingLogic extends React.Component {
   scrollCovers(d) {
     const a = this.anim(),
       el = this.trackRef.current;
-    if (!a || !el) return;
+    if (!el) return;
+    if (!a) {
+      el.parentElement.scrollBy({ left: d * 260, behavior: "auto" });
+      return;
+    }
     const dur = 70000,
-      half = el.scrollWidth / 2,
+      half = el.scrollWidth / 4,
       delta = ((d * 260) / half) * dur;
     const from = a.currentTime || 0,
       t0 = performance.now();
@@ -542,6 +550,13 @@ export default class LandingLogic extends React.Component {
     this._nudge = requestAnimationFrame(step);
   }
   state = {
+    savedLayoutSignature: serializeLibrary({
+      lib: LIB,
+      wall: 0,
+      caseC: 0,
+      lights: "warm",
+      angle: -10,
+    }),
     tab: this.props.initialShelf === "To read" ? "toread" : "read",
     wood: 1,
     shared: { quotes0: true },
@@ -567,6 +582,81 @@ export default class LandingLogic extends React.Component {
     angle: -10,
   };
   componentDidMount() {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem("the-salon-library-layout-v1") || "null",
+      );
+      if (
+        saved?.version === 1 &&
+        Array.isArray(saved.lib) &&
+        saved.lib.length <= 400
+      ) {
+        const ids = new Set();
+        const valid = saved.lib.every((b) => {
+          if (
+            !b ||
+            typeof b.id !== "string" ||
+            ids.has(b.id) ||
+            typeof b.t !== "string" ||
+            b.t.length > 240 ||
+            ![0, 1, 2].includes(b.shelf)
+          )
+            return false;
+          ids.add(b.id);
+          if (b.deco) return Object.hasOwn(DECOS, b.deco);
+          return (
+            ["spine", "cover", "lying"].includes(b.mode) &&
+            ["h", "l", "c", "T", "H", "D"].every((k) =>
+              Number.isFinite(b[k]),
+            ) &&
+            b.h >= 0 &&
+            b.h <= 360 &&
+            b.l > 0 &&
+            b.l <= 1 &&
+            b.c >= 0 &&
+            b.c <= 0.5 &&
+            b.T >= 1 &&
+            b.T <= 100 &&
+            b.H >= 1 &&
+            b.H <= 200 &&
+            b.D >= 1 &&
+            b.D <= 200
+          );
+        });
+        if (
+          valid &&
+          Number.isInteger(saved.wall) &&
+          WALLS[saved.wall] &&
+          Number.isInteger(saved.caseC) &&
+          CASES[saved.caseC] &&
+          Object.hasOwn(LIGHTS, saved.lights) &&
+          Number.isFinite(saved.angle) &&
+          Math.abs(saved.angle) <= 40
+        ) {
+          const nextId = (prefix) =>
+            Math.max(
+              0,
+              ...saved.lib
+                .filter((b) => b.id.startsWith(prefix))
+                .map((b) => Number(b.id.slice(1)))
+                .filter(Number.isFinite),
+            ) + 1;
+          NB = Math.max(NB, nextId("n"));
+          DN = Math.max(DN, nextId("d"));
+          this.setState({
+            savedLayoutSignature: serializeLibrary(saved),
+            lib: saved.lib,
+            wall: saved.wall,
+            caseC: saved.caseC,
+            lights: saved.lights,
+            angle: saved.angle,
+          });
+        }
+      }
+    } catch {
+      /* A disabled store or older snapshot leaves the demo usable. */
+    }
+
     if (window.IntersectionObserver && this.quote6Ref.current) {
       this._qio6 = new IntersectionObserver(
         (es) => {
@@ -633,18 +723,17 @@ export default class LandingLogic extends React.Component {
       this._qio2.observe(this.quote2Ref.current);
     } else this.setState({ quote2In: true });
     if (window.IntersectionObserver && this.quoteRef.current) {
-      // Start before the first quote enters the viewport, then keep it readable.
       this._qio = new IntersectionObserver(
         (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            this.setState({ quoteIn: true });
+          if (entries.some((e) => e.isIntersecting)) {
+            this.setState({ openingQuoteRevealed: true });
             this._qio.disconnect();
           }
         },
-        { threshold: 0.01, rootMargin: "0px 0px 180px 0px" },
+        { threshold: 0.01 },
       );
       this._qio.observe(this.quoteRef.current);
-    } else this.setState({ quoteIn: true });
+    }
     this._onResize = () => this.measureThread();
     window.addEventListener("resize", this._onResize);
     if (window.ResizeObserver && this.jGridRef.current) {
@@ -668,6 +757,7 @@ export default class LandingLogic extends React.Component {
     window.addEventListener("keydown", this._key);
   }
   componentWillUnmount() {
+    clearTimeout(this._saveConfirmationTimer);
     clearTimeout(this._toastT);
     clearTimeout(this._scrubT);
     cancelAnimationFrame(this._mt);
@@ -684,6 +774,28 @@ export default class LandingLogic extends React.Component {
     cancelAnimationFrame(this._nudge);
     window.removeEventListener("keydown", this._key);
   }
+  saveLibrary = () => {
+    try {
+      const snapshot = serializeLibrary(this.state);
+      localStorage.setItem("the-salon-library-layout-v1", snapshot);
+      this.setState({
+        savedLayoutSignature: snapshot,
+        saveMessage: "Changes saved in this browser.",
+        saveError: false,
+      });
+      clearTimeout(this._saveConfirmationTimer);
+      this._saveConfirmationTimer = setTimeout(
+        () => this.setState({ saveMessage: "" }),
+        3000,
+      );
+    } catch {
+      this.setState({
+        saveMessage:
+          "Couldn’t save here. Please allow browser storage and try again.",
+        saveError: true,
+      });
+    }
+  };
   setLib(fn) {
     this.setState((s) => ({ lib: fn(s.lib.map((b) => ({ ...b }))) }));
   }
@@ -1176,7 +1288,8 @@ export default class LandingLogic extends React.Component {
         ),
       );
     }
-    const qIn = !!this.state.quoteIn;
+    // The opening quote is readable in the initial HTML, without a scroll trigger.
+    const qIn = true;
     const qWords =
       "“One must always be careful of books… and what is inside them, for words have the power to change us.”"
         .split(" ")
@@ -1292,6 +1405,7 @@ export default class LandingLogic extends React.Component {
         d: (q6In ? 0.1 + k * 0.045 : 0).toFixed(2) + "s",
       }));
     const quoteVals = {
+      openingQuoteRevealed: !!this.state.openingQuoteRevealed,
       quote6Ref: this.quote6Ref,
       q6Words,
       q6Cap: q6In ? 1 : 0,
@@ -1520,14 +1634,17 @@ export default class LandingLogic extends React.Component {
       embers,
       heroBooks,
       shelfBooks,
-      covers: [...COVERS, ...COVERS].map((c, j) => ({
-        ...c,
-        open: () => {
-          if (this._dragMoved > 6) return;
-          this.setPaused && this.setPaused(true);
-          this.setState({ sheet: j % COVERS.length });
-        },
-      })),
+      covers: Array.from({ length: 4 }, () => COVERS)
+        .flat()
+        .map((c, j) => ({
+          duplicate: j < COVERS.length || j >= COVERS.length * 2,
+          ...c,
+          open: () => {
+            if (this._dragMoved > 6) return;
+            this.setPaused && this.setPaused(true);
+            this.setState({ sheet: j % COVERS.length });
+          },
+        })),
       sheetOpen: this.state.sheet != null,
       sb: COVERS[this.state.sheet ?? 0],
       goForum: () => {
@@ -1727,6 +1844,15 @@ export default class LandingLogic extends React.Component {
       soonOpen: !!this.state.soon,
       soonName: this.state.soon || "",
       closeSoon: () => this.setState({ soon: null }),
+      libraryDirty:
+        serializeLibrary(this.state) !== this.state.savedLayoutSignature,
+      saveLibrary: this.saveLibrary,
+      saveMessage:
+        this.state.saveError ||
+        serializeLibrary(this.state) === this.state.savedLayoutSignature
+          ? this.state.saveMessage || ""
+          : "",
+      saveError: !!this.state.saveError,
       libOpen: this.state.libOpen,
       openLib: () => this.setState({ libOpen: true }),
       closeLib: () => this.setState({ libOpen: false, sel: null }),

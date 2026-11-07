@@ -9,6 +9,9 @@ export default function BooksCarousel(values) {
     dragMoveCovers,
     dragStartCovers,
     pauseCovers,
+    prevCovers,
+    nextCovers,
+    openingQuoteRevealed,
     qCap,
     qLine,
     qWords,
@@ -23,7 +26,11 @@ export default function BooksCarousel(values) {
     <>
       <section className={"salon-s52"}>
         <div className={"salon-s33"}>
-          <figure ref={quoteRef} className={"salon-s30"}>
+          <figure
+            ref={quoteRef}
+            className="salon-s30 salon-opening-quote"
+            data-reveal={openingQuoteRevealed}
+          >
             <span className={"salon-s24"} style={{ transform: qLine }}></span>
             <span className={"salon-s25"} style={{ transform: qLine }}></span>
             <blockquote
@@ -38,6 +45,7 @@ export default function BooksCarousel(values) {
                     aria-hidden={"true"}
                     className={"salon-s26"}
                     style={{
+                      "--quote-delay": w.d,
                       opacity: w.op,
                       filter: w.blur,
                       transform: w.tf,
@@ -67,7 +75,33 @@ export default function BooksCarousel(values) {
             }
           </p>
         </div>
-        <div className={"salon-s51"}>
+        <div className="salon-s51 salon-carousel-wrap">
+          <button
+            type="button"
+            aria-label="Previous books"
+            className="salon-carousel-arrow previous"
+            onClick={prevCovers}
+            onMouseEnter={pauseCovers}
+            onMouseLeave={resumeCovers}
+            onFocus={pauseCovers}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m14 6-6 6 6 6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            aria-label="Next books"
+            className="salon-carousel-arrow next"
+            onClick={nextCovers}
+            onMouseEnter={pauseCovers}
+            onMouseLeave={resumeCovers}
+            onFocus={pauseCovers}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m10 6 6 6-6 6" />
+            </svg>
+          </button>
           <div
             data-salon-carousel=""
             onFocus={pauseCovers}
@@ -87,12 +121,12 @@ export default function BooksCarousel(values) {
             <div ref={trackRef} className={"salon-s49"}>
               {covers.map((c, index2) => (
                 <React.Fragment key={index2}>
-                  <div className={"salon-s48"}>
+                  <div className={"salon-s48"} aria-hidden={c.duplicate}>
                     <div
                       onClick={c.open}
                       role={"button"}
                       aria-label={"Open " + c.t}
-                      tabIndex={0}
+                      tabIndex={c.duplicate ? -1 : 0}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();

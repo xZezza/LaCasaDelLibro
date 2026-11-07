@@ -6,7 +6,7 @@ Landing page per presentare il progetto di un’app dedicata alla lettura e invi
 
 Landing Astro statica con pnpm e componenti React per le interazioni. La grafica segue l’handoff Claude Design del 7 novembre 2026: carta avorio, prugna, lilla e giallo caldo; nuovi logo, illustrazioni, font e struttura.
 
-Libreria dimostrativa con ricerca, tre ripiani, spostamenti, orientamento dei volumi, colori, pareti, lucine e decorazioni. Carosello continuo con apertura della scheda libro. Diario con valutazioni e scelta privata/condivisa collegata alla preview della community. Tutti i dati restano in memoria e si ripristinano ricaricando la pagina: nessun account, backend o pubblicazione reale dei testi.
+Libreria dimostrativa con ricerca, tre ripiani, spostamenti, orientamento dei volumi, colori, pareti, lucine e decorazioni. Carosello continuo con apertura della scheda libro. Diario con valutazioni e scelta privata/condivisa collegata alla preview della community. “Save changes” conserva la libreria in questo browser; il pulsante appare solo per le modifiche non salvate. Gli altri dati restano in memoria e si ripristinano ricaricando la pagina: nessun account, backend o pubblicazione reale dei testi.
 
 Tutti i 21 personaggi e animaletti approvati sono conservati e compaiono all’apertura della libreria. Le illustrazioni sono caricate una alla volta; il giro senza ripetizioni viene ricordato nel browser. Movimento ridotto rispettato, finestre utilizzabili da tastiera e layout adattato al telefono.
 

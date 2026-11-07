@@ -1,5 +1,6 @@
 import React from "react";
 import StoryGuests from "./StoryGuests";
+import useLibraryFit from "./useLibraryFit";
 
 export default function ModalLibrary(values) {
   const {
@@ -19,6 +20,10 @@ export default function ModalLibrary(values) {
     hasSel,
     hasToast,
     libOpen,
+    libraryDirty,
+    saveLibrary,
+    saveMessage,
+    saveError,
     lightOpts,
     m,
     modes,
@@ -50,18 +55,23 @@ export default function ModalLibrary(values) {
     walls,
     x,
   } = values;
+  const dialogRef = useLibraryFit(libOpen);
   return (
     <>
       {Boolean(libOpen) && (
         <>
-          <div onClick={closeLib} className={"salon-s267"}>
+          <div
+            onClick={closeLib}
+            className={"salon-s267 salon-library-overlay"}
+          >
             <div
               onClick={stop}
               role={"dialog"}
               aria-label={"Your library"}
               aria-modal="true"
               tabIndex={-1}
-              className={"salon-s266 salon-dialog"}
+              ref={dialogRef}
+              className={"salon-s266 salon-dialog salon-library-dialog"}
             >
               <button
                 onClick={closeLib}
@@ -584,6 +594,28 @@ export default function ModalLibrary(values) {
                     className={"salon-s264"}
                   />
                 </label>
+                {(libraryDirty || saveMessage) && (
+                  <div className="library-save">
+                    {libraryDirty && (
+                      <button
+                        type="button"
+                        onClick={saveLibrary}
+                        className="library-save-button"
+                      >
+                        Save changes
+                      </button>
+                    )}
+                    {saveMessage && (
+                      <p
+                        role="status"
+                        className="library-save-status"
+                        data-error={saveError}
+                      >
+                        {saveMessage}
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

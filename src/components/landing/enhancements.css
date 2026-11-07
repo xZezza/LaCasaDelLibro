@@ -109,8 +109,22 @@ input:focus-visible,
 /* Move the image and its fade together so no hard lower edge is exposed. */
 .salon-hero .salon-s7 {
   transform: translateY(calc(-1 * clamp(40px, 5vw, 72px)));
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .35) 18%, #000 42%, #000 70%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .35) 18%, #000 42%, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 18%,
+    #000 42%,
+    #000 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 18%,
+    #000 42%,
+    #000 70%,
+    transparent 100%
+  );
 }
 
 /* The desktop composition follows the handoff. On phones the room gets its own
@@ -201,10 +215,137 @@ input:focus-visible,
 
 /* One consistent highlight for every item in the navigation pill. */
 .salon-nav > div > a {
-  transition: background-color .2s ease, color .2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 .salon-nav > div > a:hover,
 .salon-nav > div > a:focus-visible {
   background: oklch(0.86 0.1 78);
   color: oklch(0.28 0.04 60);
+}
+
+.library-save {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.library-save-button {
+  width: 100%;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: oklch(0.86 0.1 78);
+  color: oklch(0.28 0.04 60);
+  font:
+    500 14px "Jost",
+    sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.library-save-button:hover {
+  background: oklch(0.8 0.12 75);
+}
+.library-save-status {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: oklch(0.42 0.03 305);
+  text-align: center;
+}
+.library-save-status[data-error="true"] {
+  color: #913a39;
+}
+@media (width > 960px) {
+  .salon-library-overlay {
+    padding: 16px;
+  }
+  .salon-library-dialog {
+    width: 1140px;
+    max-width: none;
+    max-height: none;
+    zoom: var(--library-scale, 0.8);
+  }
+}
+
+/* The quote is always readable. Its entrance adds motion without hiding it. */
+.salon-opening-quote[data-reveal="true"] blockquote span {
+  animation: opening-quote-reveal 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--quote-delay, 0s);
+}
+@keyframes opening-quote-reveal {
+  from {
+    opacity: 0.6;
+    filter: blur(1.5px);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .salon-opening-quote blockquote span {
+    animation: none !important;
+  }
+}
+
+/* A full sequence on both sides keeps manual scrolling continuous at the seam. */
+@keyframes book-marquee {
+  from {
+    transform: translate3d(-25%, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.salon-carousel-arrow {
+  position: absolute;
+  top: calc(50% - 23px);
+  z-index: 2;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid oklch(0.25 0.035 305 / 0.15);
+  background: oklch(0.99 0.006 85 / 0.94);
+  color: oklch(0.25 0.035 305);
+  box-shadow: 0 4px 16px oklch(0.25 0.035 305 / 0.12);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.salon-carousel-arrow:hover {
+  background: oklch(0.86 0.1 78);
+}
+.salon-carousel-arrow.previous {
+  left: 12px;
+}
+.salon-carousel-arrow.next {
+  right: 12px;
+}
+.salon-carousel-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 650px) {
+  .salon-carousel-arrow {
+    width: 34px;
+    height: 34px;
+  }
+  .salon-carousel-arrow.previous {
+    left: 8px;
+  }
+  .salon-carousel-arrow.next {
+    right: 8px;
+  }
 }
