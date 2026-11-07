@@ -95,5 +95,124 @@
       "acotar-1"
     ],
     "image": "/images/characters/cassian.png"
+  },
+  {
+    "id": "violet",
+    "name": "Violet",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2",
+      "empyrean-3"
+    ],
+    "image": "/images/characters/violet.png"
+  },
+  {
+    "id": "xaden",
+    "name": "Xaden",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2",
+      "empyrean-3"
+    ],
+    "image": "/images/characters/xaden.png"
+  },
+  {
+    "id": "hedwig",
+    "name": "Hedwig",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-1",
+      "potter-2"
+    ],
+    "image": "/images/characters/hedwig.png",
+    "kind": "creature",
+    "scale": 0.78,
+    "motion": "flutter"
+  },
+  {
+    "id": "crookshanks",
+    "name": "Crookshanks",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-3",
+      "potter-1"
+    ],
+    "image": "/images/characters/crookshanks.png",
+    "kind": "creature",
+    "scale": 0.78,
+    "motion": "pad"
+  },
+  {
+    "id": "fleetfoot",
+    "name": "Fleetfoot",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/fleetfoot.png",
+    "kind": "creature",
+    "scale": 0.9,
+    "motion": "pad"
+  },
+  {
+    "id": "abraxos",
+    "name": "Abraxos",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "image": "/images/characters/abraxos.png",
+    "kind": "creature",
+    "scale": 1,
+    "motion": "flutter"
+  },
+  {
+    "id": "tairn",
+    "name": "Tairn",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2"
+    ],
+    "image": "/images/characters/tairn.png",
+    "kind": "creature",
+    "scale": 1.08,
+    "motion": "flutter"
+  },
+  {
+    "id": "andarna",
+    "name": "Andarna",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1"
+    ],
+    "image": "/images/characters/andarna.png",
+    "kind": "creature",
+    "scale": 0.8,
+    "motion": "flutter"
+  },
+  {
+    "id": "sgaeyl",
+    "name": "Sgaeyl",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2"
+    ],
+    "image": "/images/characters/sgaeyl.png",
+    "kind": "creature",
+    "scale": 1.02,
+    "motion": "flutter"
+  },
+  {
+    "id": "buttercup",
+    "name": "Buttercup",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-3"
+    ],
+    "image": "/images/characters/buttercup.png",
+    "kind": "creature",
+    "scale": 0.78,
+    "motion": "pad"
   }
 ]

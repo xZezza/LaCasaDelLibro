@@ -1,0 +1,147 @@
+.library-visitor {
+  position: absolute;
+  z-index: 9;
+  width: var(--visitor-size, 160px);
+  height: var(--visitor-size, 160px);
+  pointer-events: none;
+  user-select: none;
+}
+.library-visitor[hidden] {
+  display: none;
+}
+.visitor-figure {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  filter: drop-shadow(2px 3px 2px #29170e55);
+  transform-origin: center bottom;
+}
+.visitor-pose {
+  position: absolute;
+  inset: 0;
+  background-image: var(--visitor-art);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  transition: opacity 0.55s ease;
+}
+.visitor-closed {
+  background-position: left center;
+  opacity: 1;
+}
+.visitor-reading {
+  background-position: right center;
+  opacity: 0;
+}
+.visitor-foot-shadow {
+  position: absolute;
+  z-index: -1;
+  bottom: 1%;
+  left: 32%;
+  width: 35%;
+  height: 3%;
+  border-radius: 50%;
+  background: #38210c66;
+  filter: blur(2px);
+}
+.visitor-name {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 3px 9px;
+  border: 1px solid #d2b77a88;
+  border-radius: 20px;
+  background: #fff7e9e8;
+  color: #4d5543;
+  font:
+    italic 10px/1.2 Georgia,
+    serif;
+  box-shadow: 0 2px 6px #402b1c22;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+[data-phase="entering"] .visitor-figure {
+  animation: visitor-arrives 1.55s ease-out both;
+}
+[data-phase="opening"] .visitor-reading,
+[data-phase="reading"] .visitor-reading,
+[data-phase="leaving"] .visitor-reading {
+  opacity: 1;
+}
+[data-phase="opening"] .visitor-closed,
+[data-phase="reading"] .visitor-closed,
+[data-phase="leaving"] .visitor-closed {
+  opacity: 0;
+}
+[data-phase="opening"] .visitor-name,
+[data-phase="reading"] .visitor-name {
+  opacity: 1;
+}
+[data-phase="reading"] .visitor-figure {
+  animation: visitor-breathes 3.6s ease-in-out infinite;
+}
+[data-phase="leaving"] {
+  animation: visitor-leaves 1.1s ease-in both;
+}
+[data-phase="entering"][data-motion="flutter"] .visitor-figure {
+  animation: visitor-flutters 1.55s ease-out both;
+}
+@keyframes visitor-flutters {
+  0% {
+    opacity: 0;
+    transform: translate(-55px, -20px) rotate(-4deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-25px, -8px) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+@keyframes visitor-arrives {
+  0% {
+    opacity: 0;
+    transform: translateX(-65px) scale(0.94);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-36px, -2px) scale(0.97);
+  }
+  65% {
+    transform: translate(-12px, 1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes visitor-breathes {
+  50% {
+    transform: translateY(-1px) rotate(0.35deg);
+  }
+}
+@keyframes visitor-leaves {
+  to {
+    opacity: 0;
+    transform: translate(25px, 3px) scale(0.98);
+  }
+}
+@media (max-width: 650px) {
+  .visitor-name {
+    font-size: 8px;
+    padding: 2px 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .library-visitor {
+    display: none !important;
+  }
+}
+
+.salon-story-guest {
+  left: 30%;
+  top: 20px;
+}

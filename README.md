@@ -4,9 +4,11 @@ Landing page per presentare il progetto di un’app dedicata alla lettura e invi
 
 ## Stato attuale
 
-Landing locale Astro con pnpm: logo libro/segnalibro oro e favicon verde, navbar trasparente, atmosfera giorno/notte, libreria con dorsi fotografici e spostamento dei libri, carosello continuo con frecce e trackpad. Anteprime del diario in stile quaderno e della community, con brani condivisi e forum dimostrativi. Layout responsive; movimento ridotto rispettato.
+Landing Astro statica con pnpm e componenti React per le interazioni. La grafica segue l’handoff Claude Design del 7 novembre 2026: carta avorio, prugna, lilla e giallo caldo; nuovi logo, illustrazioni, font e struttura.
 
-Diario, profili e risposte sono esempi interattivi locali: nessun backend e nessuna pubblicazione dei testi. Il comando Rotate è stato rimosso; il volume mantiene una vista 3D fissa.
+Libreria dimostrativa con ricerca, tre ripiani, spostamenti, orientamento dei volumi, colori, pareti, lucine e decorazioni. Carosello continuo con apertura della scheda libro. Diario con valutazioni e scelta privata/condivisa collegata alla preview della community. Tutti i dati restano in memoria e si ripristinano ricaricando la pagina: nessun account, backend o pubblicazione reale dei testi.
+
+Tutti i 21 personaggi e animaletti approvati sono conservati e compaiono all’apertura della libreria. Le illustrazioni sono caricate una alla volta; il giro senza ripetizioni viene ricordato nel browser. Movimento ridotto rispettato, finestre utilizzabili da tastiera e layout adattato al telefono.
 
 Le modifiche rimangono locali: non sono state inviate a GitHub né pubblicate su Vercel. I collegamenti social verranno aggiunti quando saranno disponibili gli URL reali.
 
@@ -45,3 +47,14 @@ La bozza usa `noindex, nofollow`; rimuovere questa direttiva quando la landing d
 ## Contenuti
 
 Le decisioni già definite e quelle ancora aperte sono in `docs/brief.md`.
+
+## Struttura della nuova landing
+
+- `src/pages/index.astro`: pagina statica, metadati e font.
+- `src/components/landing/`: sezioni del nuovo handoff, logica interattiva e stili.
+- `public/images/claude/`: illustrazioni e logo del nuovo design.
+- `public/images/characters/`: personaggi e compagni conservati dalla versione precedente.
+- `src/data/library-visitors.json`: catalogo delle 21 comparse.
+- `docs/brief-before-claude-2026-11-07.md`: decisioni della vecchia versione, solo come storico.
+
+Il codice di anteprima proprietario di Claude (`support.js`, `sc-for`, `sc-if`, `DCLogic`) è stato convertito in normali componenti React. Non è necessario per eseguire o pubblicare il sito. I componenti della precedente landing rimangono disponibili come archivio e non vengono caricati dalla nuova pagina.

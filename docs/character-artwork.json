@@ -130,5 +130,180 @@
     "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for a warm fantasy bookshelf website. Make a NEW original interpretation of the named literary character, not a reproduction of a fan artist's drawing, face, outfit rendering or composition.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile cloth and leather, finely drawn face, subtle warm amber rim light, elegant and inviting, NOT chibi, NOT childish, NOT a photograph. Consistent premium storybook illustration series.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: full-body person, closed plain green book held in both hands near waist, body facing three-quarter toward viewer's right. RIGHT CELL: EXACT same person, identical face/clothes/height/body position, book now OPEN in both hands and looking down at it reading. Full feet in both cells, identical baseline at 96% canvas height; complete figure centered within each half, 90% canvas height. Empty genuinely transparent alpha background, no scenery/floor/base/shadow. No text, signature, watermark, panel borders or labels. All props inside their own cell, never overlapping the other figure. Wings if present mostly folded. Book is plain, no real cover design or text.\nSubject: Cassian from A Court of Thorns and Roses: broad-shouldered muscular adult male fae, warm tan skin, shoulder-length dark brown hair partly tied into a small loose bun, hazel eyes, subtle stubble, confident friendly mischievous grin. Black leather warrior armor with muted metal shoulder guards and RED gemstones on wrists and shoulders, large dark membranous batlike wings folded behind shoulders, pointed ears. Hands holding book.",
     "generator": "built-in image_gen",
     "frames": 2
+  },
+  {
+    "id": "violet",
+    "name": "Violet",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2",
+      "empyrean-3"
+    ],
+    "image": "/images/characters/violet.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for The Salon, a cosy fantasy bookshelf website. Create a NEW original interpretation of the named literary character; do not reproduce any fan artist's composition, linework or exact face, or the likeness of film actors.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile fabric and leather, detailed expressive face, soft warm amber rim light, elegant inviting premium storybook illustration. Match a coherent series of realistic illustrated fantasy readers. NOT chibi, not a cartoon child, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: one full-body person, closed plain forest-green book held in both hands at waist, three-quarter turned toward viewer's right. RIGHT CELL: SAME person, same face, clothes, size and body placement, holding that book OPEN in both hands and looking down to read. Both figures fully visible including feet on identical baseline at 97% of canvas height; centered in their respective halves and 90% of canvas height. Genuine transparent alpha background; no scenery, floor, shadows outside figures, text, signatures, labels, borders or watermarks. No overlap across cell boundary. All books blank without real cover artwork or lettering.\nSubject: Violet Sorrengail from Fourth Wing: young adult woman, petite slender build, fair skin, light hazel-grey eyes, long brown hair in one thick braid over a shoulder, with the final third of the braid fading naturally to SILVER-WHITE. Focused determined expression. Fitted black high-collared rider leathers, dark leather cross-body straps and buckles, black trousers and practical knee boots, small sheathed daggers on belt, no exposed weapons in hands, no wings. Hands holding book. Do not add fresh wounds or blood.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "xaden",
+    "name": "Xaden",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2",
+      "empyrean-3"
+    ],
+    "image": "/images/characters/xaden.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose character sprite for The Salon, a cosy fantasy bookshelf website. Create a NEW original interpretation of the named literary character; do not reproduce any fan artist's composition, linework or exact face, or the likeness of film actors.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic proportions, tactile fabric and leather, detailed expressive face, soft warm amber rim light, elegant inviting premium storybook illustration. Match a coherent series of realistic illustrated fantasy readers. NOT chibi, not a cartoon child, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells side by side. LEFT CELL: one full-body person, closed plain forest-green book held in both hands at waist, three-quarter turned toward viewer's right. RIGHT CELL: SAME person, same face, clothes, size and body placement, holding that book OPEN in both hands and looking down to read. Both figures fully visible including feet on identical baseline at 97% of canvas height; centered in their respective halves and 90% of canvas height. Genuine transparent alpha background; no scenery, floor, shadows outside figures, text, signatures, labels, borders or watermarks. No overlap across cell boundary. All books blank without real cover artwork or lettering.\nSubject: Xaden Riorson from Fourth Wing: tall muscular young adult man, warm bronze skin, short tousled wavy black hair, very dark eyes with tiny golden flecks, small healed scar through eyebrow. Confident reserved expression. Sleeveless fitted black rider leather tunic with buckle straps, dark trousers and boots. Intricate new abstract dark swirling tattoo covers left arm, shoulder and climbs one side of neck. Two sword hilts behind shoulders, both swords sheathed, hands holding book. No wings. Do not reproduce a reference tattoo exactly.",
+    "generator": "built-in image_gen",
+    "frames": 2
+  },
+  {
+    "id": "hedwig",
+    "name": "Hedwig",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-1",
+      "potter-2"
+    ],
+    "scale": 0.78,
+    "kind": "creature",
+    "image": "/images/characters/hedwig.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose animal companion sprite for a cosy fantasy bookshelf website.\nCreate a NEW original interpretation of the named fictional animal. Do not copy film stills, merchandise, logos or any fan artist's composition or rendering.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic anatomy, detailed fur/feathers/scales, subtle warm amber light, inviting and elegant, coherent with painterly fantasy character sprites. Not chibi, not toy-like, not a cartoon, not a photo.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells. Same animal in both cells, identical size, identity, markings and baseline. LEFT: animal beside/on a small CLOSED plain forest-green book, alert and curious. RIGHT: same animal beside/on the same book now OPEN, gently interacting with a page as specified below. Complete body, paws/feet/tail/wings all visible inside each cell, no overlap across cells. Figure plus book centered in each half with generous padding, feet and book resting on the same imaginary baseline at 96% canvas height. Genuine transparent alpha canvas. No floor, scenery, cast shadow, people, lettering, labels, watermarks or extra animals. Book has no text or real cover art.\nSubject: Hedwig / Edvige, Harry Potter's snowy owl. Beautiful snowy-white plumage with restrained small grey-black flecks on folded wings, round yellow-amber eyes, dark small beak and soft white feathered legs. In LEFT frame she perches calmly on the closed book, wings folded and looks toward the viewer. In RIGHT frame the book is open under her feet and she tilts her head inquisitively down toward its blank pages, one wing very slightly lifted for balance. Dignified natural owl anatomy. Same owl proportions in both frames.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://www.harrypotter.com/fact-file/characters-and-pets/hedwig"
+    ],
+    "editPrompt": "Remove ONLY the pale white background from this two-pose snowy owl sprite. Make all space surrounding owl, feathers, talons and books genuinely transparent alpha including holes between feathers and books. Preserve the WHITE feathers themselves completely opaque and detailed; do not erase the owl. Preserve both owl poses, eyes, wings, books, exact two square cells, canvas dimensions and artwork. No background color, checkerboard drawing, floor or shadow. No other changes.",
+    "motion": "flutter"
+  },
+  {
+    "id": "crookshanks",
+    "name": "Crookshanks",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-3",
+      "potter-1"
+    ],
+    "scale": 0.78,
+    "kind": "creature",
+    "image": "/images/characters/crookshanks.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose animal companion sprite for a cosy fantasy bookshelf website.\nCreate a NEW original interpretation of the named fictional animal. Do not copy film stills, merchandise, logos or any fan artist's composition or rendering.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic anatomy, detailed fur/feathers/scales, subtle warm amber light, inviting and elegant, coherent with painterly fantasy character sprites. Not chibi, not toy-like, not a cartoon, not a photo.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells. Same animal in both cells, identical size, identity, markings and baseline. LEFT: animal beside/on a small CLOSED plain forest-green book, alert and curious. RIGHT: same animal beside/on the same book now OPEN, gently interacting with a page as specified below. Complete body, paws/feet/tail/wings all visible inside each cell, no overlap across cells. Figure plus book centered in each half with generous padding, feet and book resting on the same imaginary baseline at 96% canvas height. Genuine transparent alpha canvas. No floor, scenery, cast shadow, people, lettering, labels, watermarks or extra animals. Book has no text or real cover art.\nSubject: Crookshanks / Grattastinchi, Hermione Granger's cat. Large fluffy rich ginger-orange cat, broad squashed flat face, long dense bottle-brush tail, amber eyes, slightly grumpy intelligent expression, short sturdy bowed-looking legs. In LEFT frame seated beside closed book, tail curled around paws. In RIGHT same seated pose with one front paw gently touching an open blank page and head tipped down. Natural cat anatomy, no clothes.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://www.harrypotter.com/features/the-creatures-that-were-the-real-stars-of-the-harry-potter-books"
+    ],
+    "motion": "pad"
+  },
+  {
+    "id": "fleetfoot",
+    "name": "Fleetfoot",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "scale": 0.9,
+    "kind": "creature",
+    "image": "/images/characters/fleetfoot.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose animal companion sprite for a cosy fantasy bookshelf website.\nCreate a NEW original interpretation of the named fictional animal. Do not copy film stills, merchandise, logos or any fan artist's composition or rendering.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic anatomy, detailed fur/feathers/scales, subtle warm amber light, inviting and elegant, coherent with painterly fantasy character sprites. Not chibi, not toy-like, not a cartoon, not a photo.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells. Same animal in both cells, identical size, identity, markings and baseline. LEFT: animal beside/on a small CLOSED plain forest-green book, alert and curious. RIGHT: same animal beside/on the same book now OPEN, gently interacting with a page as specified below. Complete body, paws/feet/tail/wings all visible inside each cell, no overlap across cells. Figure plus book centered in each half with generous padding, feet and book resting on the same imaginary baseline at 96% canvas height. Genuine transparent alpha canvas. No floor, scenery, cast shadow, people, lettering, labels, watermarks or extra animals. Book has no text or real cover art.\nSubject: Fleetfoot, Celaena/Aelin's female dog from Throne of Glass. Elegant large mixed-breed hound, long slender muzzle, long legs, silky silver-golden coat, folded soft ears, caramel-brown eyes, feathery golden tail. Do not make a stocky golden retriever; retain graceful hound proportions, a gentle alert expression. LEFT seated with closed book in front of paws. RIGHT same seated posture leaning muzzle down to sniff the open book, one soft ear hanging forward. No collar with text, no clothing.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://throneofglass.fandom.com/wiki/Fleetfoot"
+    ],
+    "motion": "pad"
+  },
+  {
+    "id": "abraxos",
+    "name": "Abraxos",
+    "series": "Throne of Glass",
+    "bookIds": [],
+    "scale": 1,
+    "kind": "creature",
+    "image": "/images/characters/abraxos.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose fantasy creature sprite for a cosy illustrated bookshelf website.\nCreate a NEW original interpretation of the named fictional creature, no reproduction of existing official or fan artwork. Style: sophisticated hand-painted fantasy book illustration, semi-realistic creature anatomy, finely detailed scales and wing membranes, warm amber rim light, elegant mature storybook art. Majestic but calm and curious. NOT a chibi baby toy, NOT a cartoon, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet, EXACTLY TWO equal square cells side by side. SAME creature in both cells with identical size, scale color, horns, wings and markings. LEFT: creature sitting/curled beside a small CLOSED plain forest-green book. RIGHT: SAME creature in same body placement with head lowered curiously toward that book now OPEN, lightly touching a blank page with a talon/wing claw. Complete creature including folded wings, limbs and tail inside its own cell with generous empty padding; no parts crossing the middle. Creature and book grounded at imaginary baseline at 95% height. Fold wings and curl tail to fit each square. Genuine transparent alpha background, absolutely no background panel, floor, scenery, pedestal, people, lettering, logos, watermark or other animals. Plain book without real cover artwork. No fire or smoke hiding anatomy.\nSubject: Abraxos, Manon Blackbeak's WYVERN from Throne of Glass. Correct wyvern anatomy: ONLY TWO hind legs, TWO winged forelimbs (wings double as front arms), NO extra front legs. Small for his species but sturdy, slate-grey leathery hide mottled with dark brown and muted moss green, many subtle OLD healed scars, very dark kind intelligent eyes. Reinforced silvery shimmering patches on wing membranes, discreet iron-grey replacement teeth and metal spikes near tail tip. Gentle rather than vicious. One tiny original white wildflower sprig beside the book, since he loves wildflowers. In right frame he lowers nose to sniff the flower and open book. Distinguish him from four-legged dragons.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://throneofglass.fandom.com/wiki/Abraxos"
+    ],
+    "editPrompt": "Correct ONLY Abraxos's limb anatomy in BOTH poses of this two-pose wyvern sprite. A wyvern has exactly TWO hind legs and TWO winged forelimbs, four limbs total. Remove the separate non-winged front legs/front paws if present. Each wing must clearly grow from a forelimb that can end in a small grounding wing-claw, with membrane visibly attached along it; no additional arms below the wings. Keep the same scarred slate-grey creature, dark eyes, silver repaired wing membranes, iron tail spikes, flower sprig, books, face, body position and tail, and the exact two equal square cells. Right pose sniffing flower/open book may touch page with a wing-claw. Retain genuine transparent alpha and canvas dimensions. Do not redesign the creature.",
+    "motion": "flutter"
+  },
+  {
+    "id": "tairn",
+    "name": "Tairn",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2"
+    ],
+    "scale": 1.08,
+    "kind": "creature",
+    "image": "/images/characters/tairn.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose fantasy creature sprite for a cosy illustrated bookshelf website.\nCreate a NEW original interpretation of the named fictional creature, no reproduction of existing official or fan artwork. Style: sophisticated hand-painted fantasy book illustration, semi-realistic creature anatomy, finely detailed scales and wing membranes, warm amber rim light, elegant mature storybook art. Majestic but calm and curious. NOT a chibi baby toy, NOT a cartoon, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet, EXACTLY TWO equal square cells side by side. SAME creature in both cells with identical size, scale color, horns, wings and markings. LEFT: creature sitting/curled beside a small CLOSED plain forest-green book. RIGHT: SAME creature in same body placement with head lowered curiously toward that book now OPEN, lightly touching a blank page with a talon/wing claw. Complete creature including folded wings, limbs and tail inside its own cell with generous empty padding; no parts crossing the middle. Creature and book grounded at imaginary baseline at 95% height. Fold wings and curl tail to fit each square. Genuine transparent alpha background, absolutely no background panel, floor, scenery, pedestal, people, lettering, logos, watermark or other animals. Plain book without real cover artwork. No fire or smoke hiding anatomy.\nSubject: Tairn, Violet's ancient mighty BLACK dragon from Fourth Wing. Four powerful legs PLUS two separate large membranous wings mostly folded. Heavy muscular chest, thick mature horned neck, massive stern noble head, dark charcoal-black scales with warm grey highlights and golden eyes. Long tail curls into view and ends in a prominent heavy rounded MORNINGSTAR mace with several spikes. Majestic old adult, not a juvenile. Left upright seated, book near front claws; right same pose bowing head toward open book with a foreclaw beside page.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://ravensdiary.com/fourth-wing-dragons/"
+    ],
+    "motion": "flutter"
+  },
+  {
+    "id": "andarna",
+    "name": "Andarna",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1"
+    ],
+    "scale": 0.8,
+    "kind": "creature",
+    "image": "/images/characters/andarna.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose fantasy creature sprite for a cosy illustrated bookshelf website.\nCreate a NEW original interpretation of the named fictional creature, no reproduction of existing official or fan artwork. Style: sophisticated hand-painted fantasy book illustration, semi-realistic creature anatomy, finely detailed scales and wing membranes, warm amber rim light, elegant mature storybook art. Majestic but calm and curious. NOT a chibi baby toy, NOT a cartoon, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet, EXACTLY TWO equal square cells side by side. SAME creature in both cells with identical size, scale color, horns, wings and markings. LEFT: creature sitting/curled beside a small CLOSED plain forest-green book. RIGHT: SAME creature in same body placement with head lowered curiously toward that book now OPEN, lightly touching a blank page with a talon/wing claw. Complete creature including folded wings, limbs and tail inside its own cell with generous empty padding; no parts crossing the middle. Creature and book grounded at imaginary baseline at 95% height. Fold wings and curl tail to fit each square. Genuine transparent alpha background, absolutely no background panel, floor, scenery, pedestal, people, lettering, logos, watermark or other animals. Plain book without real cover artwork. No fire or smoke hiding anatomy.\nSubject: Andarna, Violet's small young GOLDEN FEATHERTAIL dragon in her early Fourth Wing appearance, specifically the initial golden version. Four legs plus two separate delicate golden wings. Warm honey-gold scales, finer youthful horns, curious gentle amber eyes, relatively small slim body, delicate forked soft-featherlike tail fin, NOT a spiked mace or scorpion tail. Young graceful dragon, not a giant adult, not cartoonishly large eyes. Left seated alert beside closed book; right same pose playfully tilts head at open pages, one tiny claw rests beside a page.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://ravensdiary.com/fourth-wing-dragons/"
+    ],
+    "motion": "flutter"
+  },
+  {
+    "id": "sgaeyl",
+    "name": "Sgaeyl",
+    "series": "Fourth Wing / The Empyrean",
+    "bookIds": [
+      "empyrean-1",
+      "empyrean-2"
+    ],
+    "scale": 1.02,
+    "kind": "creature",
+    "image": "/images/characters/sgaeyl.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose fantasy creature sprite for a cosy illustrated bookshelf website.\nCreate a NEW original interpretation of the named fictional creature, no reproduction of existing official or fan artwork. Style: sophisticated hand-painted fantasy book illustration, semi-realistic creature anatomy, finely detailed scales and wing membranes, warm amber rim light, elegant mature storybook art. Majestic but calm and curious. NOT a chibi baby toy, NOT a cartoon, not photographic.\nComposition: ONE wide 2:1 horizontal sprite sheet, EXACTLY TWO equal square cells side by side. SAME creature in both cells with identical size, scale color, horns, wings and markings. LEFT: creature sitting/curled beside a small CLOSED plain forest-green book. RIGHT: SAME creature in same body placement with head lowered curiously toward that book now OPEN, lightly touching a blank page with a talon/wing claw. Complete creature including folded wings, limbs and tail inside its own cell with generous empty padding; no parts crossing the middle. Creature and book grounded at imaginary baseline at 95% height. Fold wings and curl tail to fit each square. Genuine transparent alpha background, absolutely no background panel, floor, scenery, pedestal, people, lettering, logos, watermark or other animals. Plain book without real cover artwork. No fire or smoke hiding anatomy.\nSubject: Sgaeyl, Xaden's mature female NAVY-BLUE DAGGERTAIL dragon from Fourth Wing. Four legs PLUS two separate membranous wings folded behind. Sleek muscular adult body, deep sapphire/navy scales with restrained blue highlights, elegant angular head and swept horns, golden eyes, calm fierce intelligence. Long tail curled forward with a clearly visible sharp KNIFE-SHAPED tip, not a mace or scorpion stinger. Left seated with closed book near forefeet; right same body placement lowers head toward open book and rests a foreclaw near page.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://www.enchantedencyclopedia.com/sgaeyl.html"
+    ],
+    "motion": "flutter"
+  },
+  {
+    "id": "buttercup",
+    "name": "Buttercup",
+    "series": "The Hunger Games",
+    "bookIds": [
+      "hunger-1",
+      "hunger-3"
+    ],
+    "scale": 0.78,
+    "kind": "creature",
+    "image": "/images/characters/buttercup.png",
+    "prompt": "Use case: illustration-story. Asset type: transparent two-pose animal companion sprite for a cosy fantasy bookshelf website.\nCreate a NEW original interpretation of the named fictional animal. Do not copy film stills, merchandise, logos or any fan artist's composition or rendering.\nStyle: sophisticated hand-painted fantasy book illustration, semi-realistic anatomy, detailed fur/feathers/scales, subtle warm amber light, inviting and elegant, coherent with painterly fantasy character sprites. Not chibi, not toy-like, not a cartoon, not a photo.\nComposition: ONE wide 2:1 horizontal sprite sheet with EXACTLY TWO equal square cells. Same animal in both cells, identical size, identity, markings and baseline. LEFT: animal beside/on a small CLOSED plain forest-green book, alert and curious. RIGHT: same animal beside/on the same book now OPEN, gently interacting with a page as specified below. Complete body, paws/feet/tail/wings all visible inside each cell, no overlap across cells. Figure plus book centered in each half with generous padding, feet and book resting on the same imaginary baseline at 96% canvas height. Genuine transparent alpha canvas. No floor, scenery, cast shadow, people, lettering, labels, watermarks or extra animals. Book has no text or real cover art.\nSubject: Buttercup / Ranuncolo, Primrose Everdeen's cat from The Hunger Games. Scruffy stocky muddy yellow-ginger cat, coarse slightly matted fur, squashed nose, yellow-green eyes, one old healed notched ear, wary grumpy but endearing expression. Clearly different from a fluffy flat-faced ginger Persian: rougher short/medium fur, sturdy ordinary street-cat body and battered ear. LEFT resting beside closed book. RIGHT same body position with a front paw on the open page, looking up suspiciously. No fresh injuries or blood, no clothing.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "sources": [
+      "https://mfla.omeka.net/exhibits/show/animals-of-panem/item/206"
+    ],
+    "motion": "pad"
   }
 ]
