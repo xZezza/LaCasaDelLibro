@@ -40,3 +40,6 @@ Tornando alla hero o a una citazione dopo averla lasciata, compare un nuovo pers
 
 ## Organizzazione del codice — 7 novembre
 Ogni sezione visiva è nella propria cartella con `index.jsx` e `styles.css`; gli stili condivisi sono in `src/styles/global.css`. Dati, utility, hook e configurazione sono separati. Immagini attive divise per branding, hero, community, decorazioni e personaggi. Il materiale della vecchia landing è stato archiviato fuori dal progetto attivo prima della rimozione. Tutte le illustrazioni approvate e le varianti sono conservate. Fasce responsive confermate: desktop oltre 960 px, tablet 651–960 px, telefono fino a 650 px; il desktop resta fluido su schermi grandi. Controlli ripetibili: `pnpm check`, `pnpm test`, `pnpm build`.
+
+## Apertura su schermi grandi
+La hero usa una scena centrale larga al massimo 1200 px, condivisa con gli altri contenuti, con testo, illustrazione e comparse nello stesso riferimento. Il testo e la scena sono allineati alla stessa larghezza della navbar. L’immagine non si allontana più verso il bordo destro del monitor e l’altezza non aumenta solo perché lo schermo è molto largo o alto. I margini esterni crescono simmetricamente; il bordo destro della scena sfuma nello sfondo. Si tratta di una larghezza massima, non di un nuovo breakpoint: restano valide le soglie 650 e 960 px.

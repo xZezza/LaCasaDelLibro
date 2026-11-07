@@ -60,7 +60,7 @@
   }
 
   .salon-s166 {
-    max-width: 1200px;
+    max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
     padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 48px) 0;
   }
