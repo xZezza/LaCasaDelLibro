@@ -1,0 +1,79 @@
+@layer components {
+  .salon-s162 {
+    position: relative;
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: oklch(0.86 0.1 85);
+    transition: opacity 1s ease 0.1s;
+    animation: drift 5s ease-in-out infinite;
+  }
+
+  .salon-s163 {
+    position: relative;
+    margin: 0;
+    max-width: none;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 2.8vw, 38px);
+    line-height: 1.2;
+    color: oklch(0.96 0.02 85);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.26em;
+    text-shadow: 0 0 24px oklch(0.8 0.1 85 / 0.35);
+  }
+
+  .salon-s164 {
+    position: relative;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(0.82 0.03 300);
+    transition: opacity 0.8s ease 0.9s;
+  }
+
+  .salon-s165 {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 48px);
+    border-radius: 24px;
+    background: radial-gradient(
+      ellipse 60% 70% at 50% 110%,
+      oklch(0.5 0.1 320 / 0.55),
+      transparent 70%
+      ),
+      radial-gradient(
+      ellipse 40% 50% at 85% 10%,
+      oklch(0.45 0.09 270 / 0.6),
+      transparent 70%
+      ),
+      linear-gradient(180deg, oklch(0.27 0.06 285), oklch(0.33 0.07 300));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    box-shadow: 0 40px 80px -40px oklch(0.25 0.06 290 / 0.6);
+  }
+
+  .salon-s166 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 48px) 0;
+  }
+
+  .quote-guest-stars {
+    padding-inline: clamp(160px, 18vw, 220px);
+    min-height: 240px;
+  }
+
+  @media (max-width: 650px) {
+    .quote-guest-stars {
+      padding-inline: 20px;
+      padding-bottom: 170px;
+    }
+  }
+}

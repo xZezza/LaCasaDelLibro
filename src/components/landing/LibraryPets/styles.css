@@ -1,0 +1,9 @@
+@layer guests {
+  .library-pet-placement {
+    position: absolute;
+    z-index: 4;
+    width: 112px;
+    height: 112px;
+    pointer-events: none;
+  }
+}

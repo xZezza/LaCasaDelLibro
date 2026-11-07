@@ -1,0 +1,668 @@
+@layer components {
+  .salon-s80 {
+    display: block;
+  }
+
+  .salon-s81 {
+    margin: 0 auto;
+    max-width: 640px;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.55;
+    color: oklch(0.48 0.1 300);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .salon-s82 {
+    width: 60px;
+    height: 1px;
+    background: oklch(0.55 0.09 300 / 0.4);
+    display: block;
+  }
+
+  .salon-s84 {
+    margin: 40px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .salon-s85 {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) clamp(48px, 6vw, 72px);
+    text-align: center;
+  }
+
+  .salon-s87 {
+    position: absolute;
+    bottom: -46px;
+    left: -26px;
+    width: 120px;
+    height: 120px;
+    z-index: 4;
+    transform: rotate(-14deg);
+  }
+
+  .salon-s88 {
+    position: absolute;
+    inset: 0;
+    background: oklch(0.86 0.03 80);
+    border-radius: 6px 18px 18px 6px;
+    transform: rotate(3deg) translate(10px, 8px);
+    box-shadow: 0 30px 60px -34px oklch(0.25 0.035 305 / 0.4);
+  }
+
+  .salon-s89 {
+    position: absolute;
+    inset: 0;
+    background: oklch(0.9 0.025 82);
+    border-radius: 6px 18px 18px 6px;
+    transform: rotate(1.4deg) translate(5px, 4px);
+  }
+
+  .salon-s90 {
+    position: absolute;
+    top: -6px;
+    right: 22px;
+    width: 22px;
+    height: 90px;
+    transition: background 0.3s;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
+  }
+
+  .salon-s91 {
+    flex: none;
+    width: 58px;
+    height: 86px;
+    border-radius: 2px 4px 4px 2px;
+    transition: background 0.3s;
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 4px rgba(0, 0, 0, 0.08),
+      inset 0 0 0 5px oklch(0.9 0.08 85 / 0.6);
+  }
+
+  .salon-s92 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .salon-s93 {
+    color: oklch(0.25 0.035 305);
+    font-weight: 500;
+  }
+
+  .salon-s94 {
+    margin-top: 6px;
+    font-size: 13px;
+    color: oklch(0.42 0.03 305);
+    line-height: 1.5;
+  }
+
+  .salon-s95 {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: oklch(0.42 0.03 305);
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: oklch(0.25 0.035 305 / 0.06);
+  }
+
+  .salon-s97 {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding-right: 36px;
+  }
+
+  .salon-s98 {
+    height: 1px;
+    background: oklch(0.25 0.035 305 / 0.14);
+  }
+
+  .salon-s100 {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .salon-s101 {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+
+  .salon-s102 {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .salon-s103 {
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .salon-s104 {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .salon-s105 {
+    margin-top: 6px;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 18px;
+  }
+
+  .salon-s106 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+    gap: 18px 22px;
+  }
+
+  .salon-s107 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.05;
+  }
+
+  .salon-s108 {
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .salon-s109 {
+    padding: 12px 14px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .salon-s110 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+    gap: 10px;
+  }
+
+  .salon-s111 {
+    margin-top: 6px;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .salon-s112 {
+    flex: none;
+    cursor: pointer;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font: 500 11px "Jost",
+      sans-serif;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+
+  .salon-s113 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .salon-s114 {
+    margin-top: 6px;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 18px;
+    line-height: 1.4;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0 24px,
+      oklch(0.6 0.04 250 / 0.16) 24px 25px
+      );
+  }
+
+  .salon-s115 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .salon-s116 {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .salon-s117 {
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    color: oklch(0.3 0.06 260);
+    font-size: 15px;
+    color: oklch(0.55 0.09 300);
+  }
+
+  .salon-s118 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .salon-s119 {
+    width: 104px;
+    font-size: 14px;
+  }
+
+  .salon-s120 {
+    display: block;
+    overflow: visible;
+  }
+
+  .salon-s121 {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  .salon-hover133:hover {
+    transform: scale(1.15);
+  }
+
+  .salon-s122 {
+    display: flex;
+    gap: 2px;
+  }
+
+  .salon-s123 {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .salon-s124 {
+    display: flex;
+    gap: 5px;
+    margin-left: auto;
+  }
+
+  .salon-s125 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+  }
+
+  .salon-s126 {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .salon-s128 {
+    border: 0;
+    background: transparent;
+    padding: 2px 0;
+    cursor: pointer;
+    white-space: nowrap;
+    font: 500 13px "Jost",
+      sans-serif;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .salon-hover141:hover {
+    color: oklch(0.55 0.09 300);
+  }
+
+  .salon-s129 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding-top: 14px;
+    border-top: 1px solid oklch(0.25 0.035 305 / 0.14);
+  }
+
+  .salon-s130 {
+    position: relative;
+    background: oklch(0.99 0.006 85);
+    color: oklch(0.25 0.035 305);
+    border-radius: 6px 18px 18px 6px;
+    padding: clamp(22px, 3vw, 36px);
+    box-shadow: 0 40px 80px -36px oklch(0.25 0.035 305 / 0.45),
+      inset 14px 0 18px -12px oklch(0.6 0.05 60 / 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .salon-s131 {
+    position: relative;
+    transform: rotate(-1deg);
+  }
+
+  .salon-s132 {
+    position: relative;
+  }
+
+  .salon-s133 {
+    display: inline-block;
+    margin-right: 0.26em;
+  }
+
+  .salon-s134 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: clamp(21px, 2vw, 25px);
+    line-height: 1.3;
+    color: oklch(0.32 0.04 305);
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0;
+  }
+
+  .salon-s135 {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(0.45 0.03 305);
+    white-space: nowrap;
+    transition: opacity 0.8s ease 0.7s;
+  }
+
+  .salon-s136 {
+    margin: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: none;
+  }
+
+  .salon-s137 {
+    margin: 22px 0 0;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    font-size: 19px;
+    color: oklch(0.55 0.09 300);
+  }
+
+  .salon-s138 {
+    border-radius: 2px 3px 3px 2px;
+  }
+
+  .salon-s139 {
+    flex: none;
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  .salon-s140 {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: oklch(0.42 0.03 305);
+  }
+
+  .salon-s141 {
+    margin-top: 2px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .salon-s142 {
+    margin-top: 4px;
+    font-size: 13px;
+    color: oklch(0.42 0.03 305);
+  }
+
+  .salon-s143 {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .salon-s144 {
+    font-weight: 500;
+    border-bottom: 2px solid oklch(0.55 0.09 300);
+    padding-bottom: 9px;
+    margin-bottom: -11px;
+  }
+
+  .salon-s145 {
+    color: oklch(0.42 0.03 305);
+  }
+
+  .salon-s146 {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    border-bottom: 1px solid oklch(0.25 0.035 305 / 0.12);
+    padding-bottom: 10px;
+  }
+
+  .salon-s147 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: oklch(0.35 0.03 305);
+  }
+
+  .salon-s148 {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(0.42 0.03 305);
+  }
+
+  .salon-s149 {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: oklch(0.97 0.012 82);
+  }
+
+  .salon-s150 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .salon-s151 {
+    font-size: 12px;
+    color: oklch(0.52 0.09 300);
+  }
+
+  .salon-s152 {
+    padding: 12px;
+    border-radius: 10px;
+    background: oklch(0.93 0.025 80);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .salon-s153 {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .salon-s154 {
+    align-self: flex-start;
+    font-size: 12px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: oklch(0.86 0.1 78);
+    color: oklch(0.28 0.04 60);
+  }
+
+  .salon-s155 {
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    font-size: 14px;
+    color: oklch(0.42 0.03 305);
+    border-bottom: 1px solid oklch(0.25 0.035 305 / 0.2);
+    padding-bottom: 4px;
+  }
+
+  .salon-s156 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+    gap: 10px;
+  }
+
+  .salon-s157 {
+    flex: 1 1 300px;
+    min-width: 0;
+    background: oklch(0.97 0.012 82);
+    color: oklch(0.25 0.035 305);
+    border-radius: 16px;
+    padding: clamp(16px, 2vw, 22px);
+    transform: rotate(0.8deg);
+    box-shadow: 0 30px 60px -30px oklch(0.25 0.035 305 / 0.4),
+      inset 0 0 0 1px oklch(0.25 0.035 305 / 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .salon-s158 {
+    margin-top: auto;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .salon-s159 {
+    display: flex;
+    flex-direction: column;
+    padding-top: clamp(0px, 4vw, 60px);
+  }
+
+  .salon-s160 {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) clamp(90px, 11vw, 140px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: clamp(48px, 6vw, 80px);
+    align-items: stretch;
+  }
+
+  .salon-s161 {
+    position: relative;
+    overflow: hidden;
+    color: oklch(0.25 0.035 305);
+  }
+
+  .quote-guest-potter {
+    min-height: 140px;
+    padding-right: 130px;
+    justify-content: center;
+  }
+
+  @media (max-width: 650px) {
+    .quote-guest-potter {
+      padding-right: 100px;
+      min-height: 126px;
+    }
+  }
+}
+
+@layer refinements {
+  @media (max-width: 650px) {
+    .salon-journal > div {
+      min-width: 0;
+    }
+  }
+}
+
+/* Desktop > 960px · tablet 651–960px · phone ≤ 650px */
+
+@layer responsive {
+  @media (width > 960px) {
+    .salon-s160 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 651px) and (max-width: 960px) {
+    .salon-s160 {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    .salon-s159 {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .salon-s160 {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      padding-bottom: 64px;
+    }
+
+    .salon-s159 {
+      padding-top: 0;
+    }
+
+    .salon-s87 {
+      display: none;
+    }
+  }
+}

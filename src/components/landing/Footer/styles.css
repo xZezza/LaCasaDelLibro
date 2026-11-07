@@ -1,0 +1,24 @@
+@layer components {
+  .salon-s202 {
+    display: block;
+    width: 84px;
+    aspect-ratio: 716/469;
+    background: url("/images/branding/logo.png") center / contain
+      no-repeat;
+  }
+
+  .salon-s203 {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px clamp(20px, 4vw, 48px) 40px;
+    border-top: 1px solid oklch(0.25 0.035 305 / 0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: oklch(0.42 0.03 305);
+  }
+}

@@ -48,13 +48,41 @@ La bozza usa `noindex, nofollow`; rimuovere questa direttiva quando la landing d
 
 Le decisioni già definite e quelle ancora aperte sono in `docs/brief.md`.
 
-## Struttura della nuova landing
+## Struttura
 
-- `src/pages/index.astro`: pagina statica, metadati e font.
-- `src/components/landing/`: sezioni del nuovo handoff, logica interattiva e stili.
-- `public/images/claude/`: illustrazioni e logo del nuovo design.
-- `public/images/characters/`: personaggi e compagni conservati dalla versione precedente.
-- `src/data/library-visitors.json`: catalogo delle 21 comparse.
-- `docs/brief-before-claude-2026-11-07.md`: decisioni della vecchia versione, solo come storico.
+- `src/pages/index.astro`: ingresso della pagina, metadati, font e favicon.
+- `src/components/landing/index.jsx`: composizione delle sezioni.
+- `src/components/landing/NomeComponente/index.jsx` e `styles.css`: componente e stile nella stessa cartella.
+- `src/components/landing/LandingController.js`: stato condiviso e azioni della dimostrazione.
+- `src/data/landing/`: catalogo dimostrativo, colori e configurazioni dei libri.
+- `src/data/library-visitors.json`: catalogo delle comparse approvate.
+- `src/hooks/`: comportamento riutilizzabile, come il ridimensionamento della finestra della libreria.
+- `src/lib/`: utility per serializzare la libreria.
+- `src/config/breakpoints.js`: soglie dei dispositivi usate dal comportamento JavaScript.
+- `src/styles/global.css`: fondazioni e stili condivisi tra sezioni.
+- `public/images/`: sottocartelle `branding`, `hero`, `community`, `decorations`, `characters`.
+- `tests/`: controlli sullo stato della libreria; `scripts/check-project.mjs`: verifica della struttura e degli asset.
 
-Il codice di anteprima proprietario di Claude (`support.js`, `sc-for`, `sc-if`, `DCLogic`) è stato convertito in normali componenti React. Non è necessario per eseguire o pubblicare il sito. I componenti della precedente landing rimangono disponibili come archivio e non vengono caricati dalla nuova pagina.
+Gli stili restano vicini al componente. Le regole comuni sono condivise; l’ordine dei livelli CSS è dichiarato una volta nelle fondazioni: `components`, `refinements`, `guests`, `responsive`. Questo conserva le priorità delle rifiniture e delle comparse dopo il riordino.
+
+## Dispositivi
+
+| Fascia | Larghezza |
+| --- | --- |
+| Desktop | oltre 960 px, senza limite massimo rigido |
+| Tablet | da 651 a 960 px inclusi |
+| Telefono | fino a 650 px incluso |
+
+Il desktop resta fluido anche su schermi più grandi di 1440 px. Le sezioni principali usano due colonne su desktop e una su tablet/telefono. La libreria entra nella schermata desktop; sui dispositivi più piccoli può scorrere verticalmente.
+
+## Controlli
+
+```sh
+pnpm check
+pnpm test
+pnpm build
+```
+
+Il primo comando controlla import, raggiungibilità dei file, riferimenti alle immagini, comparse approvate, manifest e soglie responsive. I test verificano salvataggio/annullamento, spostamento dei libri, animali fissi e geometria dei volumi. La build genera il sito statico.
+
+Il codice e gli asset della precedente landing sono stati tolti dai percorsi attivi dopo aver creato un archivio locale completo. I 21 personaggi/animali approvati, le varianti originali e i documenti di provenienza sono conservati. Vedi `docs/code-review-2026-11-07.md` per controlli e archivio.

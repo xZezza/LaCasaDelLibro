@@ -1,9 +1,0 @@
----
-import spines from '../data/spines.json';
-const { id } = Astro.props as { id: string };
-const spine = (spines as Record<string, {image: string}>)[id];
----
-{spine && <svg class="illustrative-spine" viewBox="0 0 80 500" preserveAspectRatio="none" aria-hidden="true">
-  <image href={spine.image} width="80" height="500" preserveAspectRatio="none" />
-</svg>}
-<style>.illustrative-spine { display: block; width: 100%; height: 100%; }</style>
