@@ -1,4 +1,5 @@
 import React from "react";
+import StoryGuests from "./StoryGuests";
 
 export default function Follow(values) {
   const { q5Cap, q5Words, quote5Ref, s, showNotes, socials, w, x } = values;
@@ -136,7 +137,11 @@ export default function Follow(values) {
               ></circle>
             </svg>
           </div>
-          <figure ref={quote5Ref} className={"salon-s194"}>
+          <figure
+            ref={quote5Ref}
+            className="salon-s194 quote-with-guest quote-guest-throne"
+          >
+            <StoryGuests group="throne" placement="throne" />
             <blockquote
               aria-label={
                 "You could rattle the stars. You could do anything, if only you dared."

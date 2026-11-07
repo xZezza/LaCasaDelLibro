@@ -1,11 +1,16 @@
 import React from "react";
+import StoryGuests from "./StoryGuests";
 
 export default function QuoteStars(values) {
   const { q4Cap, q4Sky, q4Words, quote4Ref, w, x } = values;
   return (
     <>
       <div className={"salon-s166"}>
-        <figure ref={quote4Ref} className={"salon-s165"}>
+        <figure
+          ref={quote4Ref}
+          className="salon-s165 quote-with-guest quote-guest-stars"
+        >
+          <StoryGuests group="acotar" placement="stars" />
           {"\n    "}
           {q4Sky}
           {"\n    "}

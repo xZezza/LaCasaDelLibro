@@ -31,3 +31,12 @@ Stati dimostrativi in memoria, ripristinati ricaricando la pagina. Catalogo limi
 La nuova illustrazione della stanza si integra con i colori della pagina. L’immagine della community ha invece un taglio fotografico/cosplay più ricco e diverso: valutare una scena di lettura più coerente con l’illustrazione principale. Nessuna immagine sostituita autonomamente durante la migrazione.
 
 Nessun commit, push o deploy eseguito.
+
+## Rifiniture successive della landing
+- Libreria proporzionata alla finestra desktop: verificata a 1280×720 e 1280×600, senza scorrimento interno.
+- Save changes appare solo dopo una modifica reale; tornando allo stato salvato scompare. Salvataggio locale verificato ricaricando la pagina. Conferma temporanea dopo il salvataggio.
+- Prima citazione presente e leggibile nell’HTML iniziale; animazione leggera all’ingresso, senza fase invisibile.
+- Carosello con quattro sequenze di riserva, frecce nei due sensi e trascinamento bidirezionale.
+- Comparse rimosse dalla libreria e collegate alle scene della landing: tutti i 27 file originali protetti restano invariati.
+- Osservati Buttercup nell’hero, Crookshanks/Edvige per Harry Potter, Azriel per ACOTAR e Rowan per Trono di Vetro. Nessuna nuova illustrazione generata.
+- Controllata larghezza telefono 390 px: nessun debordamento orizzontale.

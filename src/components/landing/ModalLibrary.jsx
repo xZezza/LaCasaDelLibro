@@ -1,6 +1,6 @@
 import React from "react";
-import StoryGuests from "./StoryGuests";
 import useLibraryFit from "./useLibraryFit";
+import LibraryPets from "./LibraryPets";
 
 export default function ModalLibrary(values) {
   const {
@@ -195,7 +195,19 @@ export default function ModalLibrary(values) {
                     boxShadow: caseFrame,
                   }}
                 >
-                  <StoryGuests />
+                  <LibraryPets
+                    layoutKey={shelves
+                      .map(
+                        (sh) =>
+                          sh.label +
+                          sh.segs
+                            .map((sg) =>
+                              sg.books.map((b) => [b.id, b.fw, b.fh].join(":")),
+                            )
+                            .join("|"),
+                      )
+                      .join("/")}
+                  />
                   {shelves.map((sh, index23) => (
                     <React.Fragment key={index23}>
                       <div
@@ -206,7 +218,10 @@ export default function ModalLibrary(values) {
                         {"\n            "}
                         {sh.lights}
                         {"\n            "}
-                        <div className={"salon-s241"}>
+                        <div
+                          className={"salon-s241"}
+                          data-library-shelf-items=""
+                        >
                           {sh.segs.map((sg, index22) => (
                             <React.Fragment key={index22}>
                               <div className={"salon-s236"}>

@@ -1,4 +1,5 @@
 import React from "react";
+import StoryGuests from "./StoryGuests";
 
 export default function Hero(values) {
   const { openLib, x } = values;
@@ -55,6 +56,7 @@ export default function Hero(values) {
             </p>
           </div>
         </header>
+        <StoryGuests group="all" placement="hero" />
       </div>
     </>
   );

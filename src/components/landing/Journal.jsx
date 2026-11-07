@@ -1,4 +1,5 @@
 import React from "react";
+import StoryGuests from "./StoryGuests";
 
 export default function Journal(values) {
   const {
@@ -427,7 +428,11 @@ export default function Journal(values) {
             </div>
           </div>
           <div className={"salon-s159"}>
-            <figure ref={quote6Ref} className={"salon-s136"}>
+            <figure
+              ref={quote6Ref}
+              className="salon-s136 quote-with-guest quote-guest-potter"
+            >
+              <StoryGuests group="potter" placement="potter" />
               <blockquote
                 aria-label={"I solemnly swear that I am up to no good."}
                 className={"salon-s134"}

@@ -8,7 +8,7 @@ Landing Astro statica con pnpm e componenti React per le interazioni. La grafica
 
 Libreria dimostrativa con ricerca, tre ripiani, spostamenti, orientamento dei volumi, colori, pareti, lucine e decorazioni. Carosello continuo con apertura della scheda libro. Diario con valutazioni e scelta privata/condivisa collegata alla preview della community. “Save changes” conserva la libreria in questo browser; il pulsante appare solo per le modifiche non salvate. Gli altri dati restano in memoria e si ripristinano ricaricando la pagina: nessun account, backend o pubblicazione reale dei testi.
 
-Tutti i 21 personaggi e animaletti approvati sono conservati e compaiono all’apertura della libreria. Le illustrazioni sono caricate una alla volta; il giro senza ripetizioni viene ricordato nel browser. Movimento ridotto rispettato, finestre utilizzabili da tastiera e layout adattato al telefono.
+Tutti i 21 personaggi e animaletti approvati sono conservati: compaiono nella scena iniziale e, per saga, accanto alle citazioni. Nella libreria piccola possono comparire solo gli animaletti, negli spazi liberi dei ripiani. Le illustrazioni sono caricate una alla volta; il giro senza ripetizioni viene ricordato nel browser. Movimento ridotto rispettato, finestre utilizzabili da tastiera e layout adattato al telefono.
 
 Le modifiche rimangono locali: non sono state inviate a GitHub né pubblicate su Vercel. I collegamenti social verranno aggiunti quando saranno disponibili gli URL reali.
 

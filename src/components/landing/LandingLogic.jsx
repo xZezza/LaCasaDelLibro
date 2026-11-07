@@ -661,12 +661,12 @@ export default class LandingLogic extends React.Component {
       this._qio6 = new IntersectionObserver(
         (es) => {
           const e = es[es.length - 1];
-          if (e.intersectionRatio >= 0.6) {
+          if (e.isIntersecting) {
             if (!this.state.quote6In) this.setState({ quote6In: true });
           } else if (e.intersectionRatio === 0 && this.state.quote6In)
             this.setState({ quote6In: false });
         },
-        { threshold: [0, 0.6], rootMargin: "0px 0px -22% 0px" },
+        { threshold: [0, 0.15], rootMargin: "0px" },
       );
       this._qio6.observe(this.quote6Ref.current);
     } else this.setState({ quote6In: true });
@@ -674,12 +674,12 @@ export default class LandingLogic extends React.Component {
       this._qio5 = new IntersectionObserver(
         (es) => {
           const e = es[es.length - 1];
-          if (e.intersectionRatio >= 0.6) {
+          if (e.isIntersecting) {
             if (!this.state.quote5In) this.setState({ quote5In: true });
           } else if (e.intersectionRatio === 0 && this.state.quote5In)
             this.setState({ quote5In: false });
         },
-        { threshold: [0, 0.6], rootMargin: "0px 0px -22% 0px" },
+        { threshold: [0, 0.15], rootMargin: "0px" },
       );
       this._qio5.observe(this.quote5Ref.current);
     } else this.setState({ quote5In: true });
@@ -687,12 +687,12 @@ export default class LandingLogic extends React.Component {
       this._qio4 = new IntersectionObserver(
         (es) => {
           const e = es[es.length - 1];
-          if (e.intersectionRatio >= 0.6) {
+          if (e.isIntersecting) {
             if (!this.state.quote4In) this.setState({ quote4In: true });
           } else if (e.intersectionRatio === 0 && this.state.quote4In)
             this.setState({ quote4In: false });
         },
-        { threshold: [0, 0.6], rootMargin: "0px 0px -22% 0px" },
+        { threshold: [0, 0.15], rootMargin: "0px" },
       );
       this._qio4.observe(this.quote4Ref.current);
     } else this.setState({ quote4In: true });

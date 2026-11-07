@@ -141,7 +141,136 @@
   }
 }
 
+.story-guest-host {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  width: var(--guest-size, 160px);
+  height: var(--guest-size, 160px);
+}
 .salon-story-guest {
-  left: 30%;
-  top: 20px;
+  left: auto;
+  top: auto;
+  right: 0;
+  bottom: 0;
+}
+.story-guest-hero {
+  --guest-size: clamp(170px, 18vw, 252px);
+  right: 9%;
+  bottom: 18%;
+}
+.quote-with-guest {
+  position: relative;
+}
+.quote-guest-potter {
+  min-height: 140px;
+  padding-right: 130px;
+  justify-content: center;
+}
+.story-guest-potter {
+  --guest-size: 140px;
+  right: 0;
+  bottom: 8px;
+}
+.quote-guest-stars {
+  padding-right: clamp(160px, 18vw, 220px);
+  min-height: 240px;
+}
+.story-guest-stars {
+  --guest-size: 214px;
+  right: 14px;
+  bottom: 28px;
+}
+.quote-guest-throne {
+  width: 100%;
+  max-width: 760px;
+  min-height: 164px;
+  padding-inline: 150px;
+  justify-content: center;
+}
+.story-guest-throne {
+  --guest-size: 164px;
+  right: 0;
+  bottom: 10px;
+}
+.story-guest-host .visitor-name {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #111;
+  font-size: 11px;
+  text-shadow: 0 1px 3px rgba(255, 250, 237, 0.8);
+}
+@media (max-width: 650px) {
+  .story-guest-hero {
+    --guest-size: 148px;
+    right: 10%;
+    bottom: 48px;
+  }
+  .quote-guest-potter {
+    padding-right: 100px;
+    min-height: 126px;
+  }
+  .story-guest-potter {
+    --guest-size: 108px;
+    right: -4px;
+    bottom: 6px;
+  }
+  .quote-guest-stars {
+    padding-right: 120px;
+    padding-left: 20px;
+  }
+  .story-guest-stars {
+    --guest-size: 130px;
+    right: 4px;
+    bottom: 30px;
+  }
+  .quote-guest-throne {
+    padding-inline: 0;
+    padding-bottom: 90px;
+    min-height: 212px;
+  }
+  .story-guest-throne {
+    --guest-size: 116px;
+    right: -4px;
+    bottom: 10px;
+  }
+}
+
+.story-guest-stars .visitor-name {
+  color: #fffaf1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.library-pet-placement {
+  position: absolute;
+  z-index: 4;
+  width: 112px;
+  height: 112px;
+  pointer-events: none;
+}
+.story-guest-shelf {
+  --guest-size: 112px;
+  right: 0;
+  bottom: 0;
+}
+.story-guest-shelf .visitor-name {
+  font-size: 10px;
+  top: calc(100% + 5px);
+}
+
+.story-guest-shelf .salon-story-guest {
+  left: 0;
+  right: auto;
+}
+.story-guest-shelf .visitor-name {
+  top: auto;
+  bottom: calc(100% + 5px);
 }
