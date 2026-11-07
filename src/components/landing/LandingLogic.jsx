@@ -1,4 +1,5 @@
 import React from "react";
+import visitors from "../../data/library-visitors.json";
 // Logic for The Salon landing page (design reference).
 // renderVals() returns every value used by {{ }} holes in sections/*.html.
 // DCLogic ≈ React.Component without render(); React is a global.
@@ -231,6 +232,14 @@ const DECOS = {
 };
 Object.keys(DECOS).forEach((k) => {
   DECOS[k].src = svgUri(DECO_SVG[k]);
+});
+// Permanent companions use the approved two-pose art, cropped to the first pose.
+visitors.filter((guest) => guest.kind === "creature").forEach((guest) => {
+  const size = ["tairn", "sgaeyl", "abraxos"].includes(guest.id) ? 62 : 46;
+  DECOS["pet-" + guest.id] = {
+    name: guest.name, w: size, h: size, hue: 145,
+    src: guest.image, pet: true, series: guest.series,
+  };
 });
 let DN = 0;
 const mkDeco = (type, shelf) => {
@@ -800,6 +809,12 @@ export default class LandingLogic extends React.Component {
     this.setState((s) => ({ lib: fn(s.lib.map((b) => ({ ...b }))) }));
   }
   addDeco(type, shelf, beforeId) {
+    if (!DECOS[type]) return;
+    const existing = DECOS[type].pet && this.state.lib.find((b) => b.deco === type);
+    if (existing) {
+      this.setState({ sel: existing.id, toast: `${existing.t} is already on your shelf.` });
+      return;
+    }
     if (shelf == null) {
       const cnt = [0, 1, 2].map(
         (s) => this.state.lib.filter((b) => b.shelf === s).length,
@@ -878,6 +893,7 @@ export default class LandingLogic extends React.Component {
         fw: d.w,
         fh: d.h,
         bgImg: `url("${d.src}")`,
+        isPet: !!d.pet,
         lift: sel ? "translateY(-8px)" : "none",
         glow:
           (d.glow
@@ -1847,6 +1863,23 @@ export default class LandingLogic extends React.Component {
       libraryDirty:
         serializeLibrary(this.state) !== this.state.savedLayoutSignature,
       saveLibrary: this.saveLibrary,
+      // Create the callback with the rendered controls, including on retained
+      // development instances that predate the new discard class field.
+      discardLibrary: () => {
+        clearTimeout(this._saveConfirmationTimer);
+        clearTimeout(this._toastT);
+        this._drag = null;
+        this._newType = null;
+        this.setState((current) => {
+          const snapshot = JSON.parse(current.savedLayoutSignature);
+          return {
+            lib: snapshot.lib, wall: snapshot.wall, caseC: snapshot.caseC,
+            lights: snapshot.lights, angle: snapshot.angle,
+            sel: null, toast: "", saveMessage: "", saveError: false,
+            q: "", qOpen: false, expanded: {},
+          };
+        });
+      },
       saveMessage:
         this.state.saveError ||
         serializeLibrary(this.state) === this.state.savedLayoutSignature
@@ -1897,7 +1930,14 @@ export default class LandingLogic extends React.Component {
         bg: this.state.lights === k ? ink : "transparent",
         fg: this.state.lights === k ? paper : muted,
       })),
-      tray: Object.keys(DECOS).map((k) => ({
+      companions: Object.entries(DECOS).filter(([, d]) => d.pet).map(([key, d]) => ({
+        key, name: d.name, image: d.src, series: d.series,
+        add: () => {
+          const selected = this.state.lib.find((b) => b.id === this.state.sel);
+          this.addDeco(key, selected ? selected.shelf : null, null);
+        },
+      })),
+      tray: Object.keys(DECOS).filter((k) => !DECOS[k].pet).map((k) => ({
         name: DECOS[k].name,
         bgImg: `url("${DECOS[k].src}")`,
         dragStart: (e) => {

@@ -1695,12 +1695,15 @@ a:hover {
   gap: 10px;
   padding: 14px 24px;
   border-radius: 999px;
-  background: oklch(0.86 0.1 78);
+  background: transparent;
+  border: 1px solid oklch(0.25 0.035 305 / 0.25);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   color: oklch(0.28 0.04 60);
   font-size: 15px;
 }
 .salon-hover212:hover {
-  background: oklch(0.8 0.12 75);
+  background: oklch(0.86 0.1 78);
+  border-color: transparent;
   color: oklch(0.22 0.04 60);
 }
 .salon-s198 {

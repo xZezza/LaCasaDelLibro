@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useLibraryFit from "./useLibraryFit";
 import LibraryPets from "./LibraryPets";
 
@@ -11,6 +11,7 @@ export default function ModalLibrary(values) {
     caseFrame,
     caseShelf,
     cases,
+    companions,
     clearQ,
     closeLib,
     d,
@@ -22,6 +23,7 @@ export default function ModalLibrary(values) {
     libOpen,
     libraryDirty,
     saveLibrary,
+    discardLibrary,
     saveMessage,
     saveError,
     lightOpts,
@@ -56,6 +58,8 @@ export default function ModalLibrary(values) {
     x,
   } = values;
   const dialogRef = useLibraryFit(libOpen);
+  const [companionKey, setCompanionKey] = useState("pet-hedwig");
+  const companion = companions.find((pet) => pet.key === companionKey) || companions[0];
   return (
     <>
       {Boolean(libOpen) && (
@@ -364,7 +368,7 @@ export default function ModalLibrary(values) {
                                             className={"salon-s234"}
                                             style={{
                                               background:
-                                                "center / contain no-repeat " +
+                                                (b.isPet ? "left center / 200% 100% no-repeat " : "center / contain no-repeat ") +
                                                 b.bgImg,
                                             }}
                                           ></div>
@@ -581,6 +585,20 @@ export default function ModalLibrary(values) {
                     ))}
                   </div>
                 </div>
+                <div className="salon-s258 library-companion">
+                  <label htmlFor="library-companion" className="salon-s99">Keep a companion</label>
+                  <div className="library-companion-picker">
+                    <span className="library-companion-portrait" aria-hidden="true"
+                      style={{ backgroundImage: `url("${companion.image}")` }} />
+                    <select id="library-companion" value={companion.key}
+                      onChange={(event) => setCompanionKey(event.target.value)}>
+                      {companions.map((pet) => <option key={pet.key} value={pet.key}>{pet.name}</option>)}
+                    </select>
+                    <button type="button" onClick={companion.add}
+                      aria-label={"Add " + companion.name + " as a permanent companion"}>Add</button>
+                  </div>
+                  <p className="library-companion-hint">Stays on your shelf. Drag to move, select to remove.</p>
+                </div>
                 <div className={"salon-s258"}>
                   <span className={"salon-s99"}>{"Tidy by"}</span>
                   <div className={"salon-s254"}>
@@ -612,13 +630,10 @@ export default function ModalLibrary(values) {
                 {(libraryDirty || saveMessage) && (
                   <div className="library-save">
                     {libraryDirty && (
-                      <button
-                        type="button"
-                        onClick={saveLibrary}
-                        className="library-save-button"
-                      >
-                        Save changes
-                      </button>
+                      <div className="library-save-actions">
+                        <button type="button" onClick={discardLibrary} className="library-discard-button">Discard changes</button>
+                        <button type="button" onClick={saveLibrary} className="library-save-button">Save changes</button>
+                      </div>
                     )}
                     {saveMessage && (
                       <p

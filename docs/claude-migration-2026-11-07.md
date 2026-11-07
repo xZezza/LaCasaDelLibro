@@ -40,3 +40,15 @@ Nessun commit, push o deploy eseguito.
 - Comparse rimosse dalla libreria e collegate alle scene della landing: tutti i 27 file originali protetti restano invariati.
 - Osservati Buttercup nell’hero, Crookshanks/Edvige per Harry Potter, Azriel per ACOTAR e Rowan per Trono di Vetro. Nessuna nuova illustrazione generata.
 - Controllata larghezza telefono 390 px: nessun debordamento orizzontale.
+
+## Verifica finale — dettagli 19:50–20:00
+Queste decisioni sostituiscono le precedenti note sulla rimozione di tutte le comparse dalla libreria: i personaggi restano nelle sezioni della landing; solo gli animali visitano a turno gli spazi liberi della libreria. Osservata in anteprima l’alternanza Andarna → Tairn, senza sovrapposizione ai libri. Nome sopra la figura e appoggio al ripiano.
+
+Aggiunto Keep a companion, otto animali approvati come decorazioni permanenti trascinabili. Verificati aggiunta di Crookshanks, salvataggio, ricaricamento con persistenza, stato pulito senza pulsanti. Aggiunti Hedwig e colore Cream senza salvare; Discard changes ha rimosso Hedwig, conservato Crookshanks e ripristinato il colore precedente. Entrambi i pulsanti nascosti dopo annullamento. Freccia del selettore centrata con icona dedicata.
+
+Pulsanti social trasparenti a riposo; in anteprima solo TikTok con hover è risultato giallo, gli altri due trasparenti. Citazione finale e titolo centrati sullo stesso asse; Aelin sulla destra, solo personaggi ToG. Favicon fornite da Gaia copiate identiche e collegate (ICO, PNG, Apple, manifest). Verificati 27 file protetti invariati rispetto al manifest. pnpm build e git diff --check superati. Nessun push/deploy.
+
+## Correzioni successive — 7 novembre, ore 20:07
+Segnalazione Gaia: Discard non funziona sulla pagina aperta. Riprodotto callback undefined su istanza conservata priva del nuovo campo di classe; collegamento spostato direttamente nei valori dei controlli renderizzati. Verifiche automatiche superate: ripristino iniziale dopo aggiunta animale, spostamento libro e cambio di tutti i parametri; ripristino dopo salvataggio con conservazione dell’animale salvato e storage invariato. Reset anche di ricerca ed espansioni.
+
+Citazione stellata: padding laterali simmetrici per centrare testo, stelle e attribuzione sull’intero pannello; spazio separato sotto il testo su telefono. Comparse: riattivazione dopo uscita completa e rientro nella sezione. Test mirato della logica di visibilità passato per hero, ACOTAR, ToG e HP, con ospite diverso e filtri di saga rispettati. pnpm build superato. In questo passaggio lo strumento di controllo browser non era disponibile: manca una nuova verifica visiva, da distinguere dai controlli automatici. Nessun push/deploy.

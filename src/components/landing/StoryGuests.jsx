@@ -22,7 +22,7 @@ const creatureScale = {
   sgaeyl: 0.78,
 };
 
-// Keep the approved artwork intact. Scenes visit once; shelf animals rotate.
+// Keep approved artwork intact. Re-entering a scene starts a fresh visit; shelf animals also rotate while visible.
 export default function StoryGuests({
   group = "all",
   placement = "hero",
@@ -125,11 +125,17 @@ export default function StoryGuests({
     }
     const observer = new IntersectionObserver(
       (entries) => {
-        visible = entries.at(-1).isIntersecting;
+        const entry = entries.at(-1);
+        visible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
         if (visible) void start();
-        else clearVisit();
+        else {
+          clearVisit();
+          // Rearm only after leaving the scene, not during a small scroll at
+          // the entrance threshold. The saved queue chooses a new character.
+          if (!entry.isIntersecting) consumed = false;
+        }
       },
-      { threshold: 0.15 },
+      { threshold: [0, 0.15] },
     );
     observer.observe(host.parentElement);
     const onVisibility = () => {
