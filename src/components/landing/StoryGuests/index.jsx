@@ -1,3 +1,4 @@
+import { imageAsset } from "../../../lib/image-assets.js";
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import guests from "../../../data/library-visitors.json";
@@ -87,7 +88,7 @@ export default function StoryGuests({
       for (const id of fresh.length ? fresh : queue) {
         const guest = pool.find((g) => g.id === id);
         const image = new Image();
-        image.src = guest.image;
+        image.src = imageAsset(guest.image);
         try {
           await image.decode();
         } catch {
@@ -171,7 +172,7 @@ export default function StoryGuests({
           data-phase={phase}
           data-motion={visit.motion || "pad"}
           style={{
-            "--visitor-art": `url("${visit.image}")`,
+            "--visitor-art": `url("${imageAsset(visit.image)}")`,
             "--visitor-size": `calc(var(--guest-size, 160px) * ${(visit.scale || 1) * (placement === "potter" ? 1 : creatureScale[visit.id] || 1)})`,
           }}
         >

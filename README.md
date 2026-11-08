@@ -88,3 +88,12 @@ pnpm build
 Il primo comando controlla import, raggiungibilità dei file, riferimenti alle immagini, comparse approvate, manifest e soglie responsive. I test verificano salvataggio/annullamento, spostamento dei libri, animali fissi e geometria dei volumi. La build genera il sito statico.
 
 Il codice e gli asset della precedente landing sono stati tolti dai percorsi attivi dopo aver creato un archivio locale completo. I 21 personaggi/animali approvati, le varianti originali e i documenti di provenienza sono conservati. Vedi `docs/code-review-2026-11-07.md` per controlli e archivio.
+
+## Immagini ottimizzate
+
+Le versioni WebP senza perdita si trovano in `public/images/optimized/`; tutti gli originali restano nei percorsi precedenti. Dimensioni, pixel visibili e trasparenze sono verificati prima di adottare ogni variante. Catalogo delle comparse e provenienza continuano a riferirsi agli originali.
+
+- `pnpm images:optimize`: genera le varianti e il rapporto in `docs/image-optimization.json`.
+- `pnpm images:check`: controlla integrità degli originali, dimensioni, pixel visibili e alpha delle copie.
+
+Il processo riutilizza Sharp già installato da Astro e mantiene gli originali quando il WebP sarebbe più pesante. Il risparmio indicato nel rapporto riguarda i file attivi, non un intero caricamento della pagina.

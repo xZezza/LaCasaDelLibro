@@ -18,3 +18,5 @@
 - Organizzazione: ogni componente visivo in `src/components/landing/NomeComponente/index.jsx`, con `styles.css` importato nello stesso componente. Dati in `src/data/`, hook in `src/hooks/`, utility in `src/lib/`, configurazione in `src/config/`.
 - Ordine CSS dichiarato in `src/styles/global.css`: components → refinements → guests → responsive. Conservare questo ordine per non perdere le rifiniture precedenti. Gli stili realmente condivisi sono in components/landing/shared; global.css contiene solo fondamenti, token e accessibilità generale. Non aggiungere fogli di override generici.
 - Asset attivi in `public/images/{branding,hero,community,decorations,characters}`; favicon e manifest nella radice pubblica. Non reintrodurre gli asset della vecchia landing nel build.
+
+- Immagini: originali e catalogo delle comparse restano intatti; le copie senza perdita sono in public/images/optimized e vengono risolte da src/lib/image-assets.js. Dopo aggiornamenti agli asset usare pnpm images:optimize e pnpm images:check. Non modificare risoluzione, pose o trasparenze durante una semplice ottimizzazione.

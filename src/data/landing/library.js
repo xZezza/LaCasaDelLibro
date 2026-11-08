@@ -1,3 +1,4 @@
+import { imageAsset } from "../../lib/image-assets.js";
 import visitors from "../library-visitors.json" with { type: "json" };
 
 const SPINES = [
@@ -217,7 +218,7 @@ visitors.filter((guest) => guest.kind === "creature").forEach((guest) => {
   const size = ["tairn", "sgaeyl", "abraxos"].includes(guest.id) ? 62 : 46;
   DECOS["pet-" + guest.id] = {
     name: guest.name, w: size, h: size, hue: 145,
-    src: guest.image, pet: true, series: guest.series,
+    src: imageAsset(guest.image), pet: true, series: guest.series,
   };
 });
 

@@ -3,7 +3,7 @@
     display: block;
     width: clamp(96px, 9vw, 118px);
     aspect-ratio: 716/469;
-    background: url("/images/branding/logo.png") center / contain
+    background: url("/images/optimized/branding/logo.webp") center / contain
       no-repeat;
   }
 
