@@ -105,12 +105,18 @@ export default function Library(values) {
               </button>
             </div>
           </div>
-          <div className={"salon-s76"}>
-            <div className={"salon-s75"}>
-              <div className={"salon-s73"}>
+          <button
+            type="button"
+            onClick={openLib}
+            aria-label="Open the full library"
+            aria-haspopup="dialog"
+            className={"salon-s76"}
+          >
+            <span className={"salon-s75"}>
+              <span className={"salon-s73"}>
                 {shelfBooks.map((b, index5) => (
                   <React.Fragment key={index5}>
-                    <div
+                    <span
                       className={"salon-s72 salon-hover83"}
                       style={{
                         width: b.w + "px",
@@ -120,16 +126,16 @@ export default function Library(values) {
                       }}
                     >
                       <span className={"salon-s71"}>{b.t}</span>
-                    </div>
+                    </span>
                   </React.Fragment>
                 ))}
-              </div>
-              <div
+              </span>
+              <span
                 className={"salon-s74"}
                 style={{ background: woodGrad }}
-              ></div>
-            </div>
-          </div>
+              ></span>
+            </span>
+          </button>
           <p className={"salon-s77"}>{shelfCaption}</p>
         </div>
       </section>

@@ -166,6 +166,7 @@
   }
 
   .salon-s74 {
+    display: block;
     height: 16px;
     border-radius: 2px;
     box-shadow: 0 20px 30px -12px oklch(0.25 0.035 305 / 0.5);
@@ -173,11 +174,21 @@
   }
 
   .salon-s75 {
+    display: block;
     transform: rotateX(6deg) rotateY(-6deg);
     transform-origin: bottom center;
   }
 
   .salon-s76 {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
     margin-top: 34px;
     perspective: 900px;
   }

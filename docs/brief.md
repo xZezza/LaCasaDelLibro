@@ -53,3 +53,5 @@ CSS globale limitato a reset, token e accessibilità. Stili comuni definiti una 
 Verifica della pulizia: sei test di stato superati, nove combinazioni di anteprima aperta (tre orientamenti × tre impostazioni lucine) renderizzate senza valori mancanti, 24 file di illustrazioni/catalogo con impronta invariata e risposta corretta dell’anteprima locale. Build e controllo della struttura completati. Verifica visiva nel browser non disponibile durante questo intervento. Nessun commit, push o deploy.
 
 Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la piena visibilità al 18% anziché al 34% e la velatura avorio termina al 58% anziché al 72%, avvicinando visivamente la stanza alle scritte. Conservati raccordo destro, composizione mobile e limite desktop di 1440 px.
+
+8 novembre: l’intera anteprima dello scaffale nella sezione Library apre la libreria completa con un clic o un tocco, inclusi i libri e il ripiano. Accessibile anche con Tab e Invio/Spazio tramite un pulsante nativo; i controlli Read/To read e i colori restano separati.
