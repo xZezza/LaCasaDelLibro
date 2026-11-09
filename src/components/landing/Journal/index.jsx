@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import ReadingThread from "../ReadingThread";
 import QuoteText from "../QuoteText";
 import "../shared/typography.css";
@@ -295,10 +296,12 @@ export default function Journal(values) {
                     <button
                       onClick={sh.best.toggle}
                       type="button"
-                      className={"salon-s112"}
+                      className={"salon-s112 salon-marker-control"}
                       aria-pressed={sh.best.selected}
                     >
+                      <span className="salon-marker-text">
                       {sh.best.state}
+                    </span>
                     </button>
                   </div>
                   <div className={"salon-s113"}>
@@ -313,10 +316,12 @@ export default function Journal(values) {
                     <button
                       onClick={sh.review.toggle}
                       type="button"
-                      className={"salon-s112"}
+                      className={"salon-s112 salon-marker-control"}
                       aria-pressed={sh.review.selected}
                     >
+                      <span className="salon-marker-text">
                       {sh.review.state}
+                    </span>
                     </button>
                   </div>
                 </div>
@@ -391,14 +396,15 @@ export default function Journal(values) {
                       <button
                         onClick={l.pick}
                         type="button"
-                        className={"salon-s128 salon-hover141"}
+                        className={"salon-s128 salon-marker-action salon-marker-link"}
                         style={{
                           color: l.fg,
-                          borderBottom: "1px solid " + l.line,
                         }}
                       >
+                        <span className="salon-marker-text">
                         {l.name}
                         {" →"}
+                      </span>
                       </button>
                     </React.Fragment>
                   ))}

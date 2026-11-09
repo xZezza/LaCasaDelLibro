@@ -8,9 +8,6 @@
     line-height: 1.2;
     color: oklch(0.3 0.04 305);
     text-wrap: balance;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     column-gap: 0.26em;
   }
 

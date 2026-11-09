@@ -1,3 +1,4 @@
+import { visitorScale } from "../../../lib/guest-layout.js";
 import { imageAsset } from "../../../lib/image-assets.js";
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
@@ -12,16 +13,6 @@ const groups = {
     guest.series === "Throne of Glass" && guest.kind !== "creature",
 };
 const seenThisPage = new Set();
-const creatureScale = {
-  crookshanks: 0.52,
-  buttercup: 0.52,
-  hedwig: 0.58,
-  fleetfoot: 0.62,
-  andarna: 0.6,
-  abraxos: 0.78,
-  tairn: 0.78,
-  sgaeyl: 0.78,
-};
 
 // Keep approved artwork intact. Re-entering a scene starts a fresh visit; shelf animals also rotate while visible.
 export default function StoryGuests({
@@ -173,7 +164,7 @@ export default function StoryGuests({
           data-motion={visit.motion || "pad"}
           style={{
             "--visitor-art": `url("${imageAsset(visit.image)}")`,
-            "--visitor-size": `calc(var(--guest-size, 160px) * ${(visit.scale || 1) * (placement === "potter" ? 1 : creatureScale[visit.id] || 1)})`,
+            "--visitor-size": `calc(var(--guest-size, 160px) * ${visitorScale(visit, placement)})`,
           }}
         >
           <div className="visitor-zoom">

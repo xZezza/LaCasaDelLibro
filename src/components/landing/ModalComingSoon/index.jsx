@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import "../shared/dialog.css";
 import React from "react";
 import "./styles.css";
@@ -41,9 +42,11 @@ export default function ModalComingSoon(values) {
               <button
                 onClick={closeSoon}
                 type="button"
-                className={"salon-s301 salon-hover330"}
+                className={"salon-s301 salon-marker-action salon-marker-primary"}
               >
+                <span className="salon-marker-text">
                 {"Got it"}
+              </span>
               </button>
             </div>
           </div>

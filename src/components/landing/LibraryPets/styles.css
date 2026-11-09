@@ -2,8 +2,8 @@
   .library-pet-placement {
     position: absolute;
     z-index: 4;
-    width: 112px;
-    height: 112px;
+    width: var(--shelf-guest-size, 112px);
+    height: var(--shelf-guest-size, 112px);
     pointer-events: none;
   }
 }

@@ -1,6 +1,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
+import guests from "../../../data/library-visitors.json";
+import { shelfGuestPosition, visitorScale } from "../../../lib/guest-layout.js";
+
+const maxScale = Math.max(...guests.filter(guest => guest.kind === "creature").map(guest => visitorScale(guest, "shelf")));
 
 // A decorative visit can use only the unoccupied end of a shelf.
 export default function LibraryPets({ layoutKey }) {
@@ -40,26 +44,20 @@ export default function LibraryPets({ layoutKey }) {
       const bounds = stage.getBoundingClientRect();
       const zoom = bounds.width / stage.offsetWidth;
       if (!zoom) return;
-      const size = 112;
-      const spots = [...stage.querySelectorAll("[data-library-shelf-items]")]
-        .map((row) => {
-          const box = row.getBoundingClientRect();
-          const last = Math.max(
-            box.left + 8 * zoom,
-            ...[...row.children].map((el) => el.getBoundingClientRect().right),
-          );
-          const free = (box.right - last) / zoom - 28;
-          return {
-            free,
-            left: (last - bounds.left) / zoom + 18,
-            top: (box.bottom - bounds.top) / zoom - size,
-          };
-        })
-        .filter((spot) => spot.free >= size + 8)
-        .sort((a, b) => b.free - a.free);
-      const next = spots[0]
-        ? { left: Math.round(spots[0].left), top: Math.round(spots[0].top) }
-        : null;
+      const rows = [...stage.querySelectorAll("[data-library-shelf-items]")].map(row => {
+        const box = row.getBoundingClientRect();
+        const last = Math.max(box.left,
+          ...[...row.children].map(el => el.getBoundingClientRect().right));
+        return {
+          left: (box.left - bounds.left) / zoom,
+          right: (box.right - bounds.left) / zoom,
+          top: (box.top - bounds.top) / zoom,
+          bottom: (box.bottom - bounds.top) / zoom,
+          occupiedRight: (last - bounds.left) / zoom,
+        };
+      });
+      const hoverScale = parseFloat(getComputedStyle(stage).getPropertyValue("--visitor-hover-scale")) || 1.2;
+      const next = shelfGuestPosition(rows, {maxScale, hoverScale});
       setPosition((current) =>
         JSON.stringify(current) === JSON.stringify(next) ? current : next,
       );
@@ -87,7 +85,10 @@ export default function LibraryPets({ layoutKey }) {
     <div
       ref={rootRef}
       className="library-pet-placement"
-      style={position && !suppressed ? position : { display: "none" }}
+      style={position && !suppressed ? {
+        left: position.left, top: position.top,
+        "--shelf-guest-size": position.size + "px",
+      } : { display: "none" }}
     >
       {position && !suppressed && (
         <StoryGuests group="creatures" placement="shelf" repeat />

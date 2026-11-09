@@ -105,19 +105,9 @@
 
   .salon-s216 {
     cursor: pointer;
-    padding: 5px 9px;
-    border-radius: 999px;
-    border: 1px solid oklch(0.25 0.035 305 / 0.18);
-    background: transparent;
-    color: oklch(0.25 0.035 305);
     font: 500 11px "Jost",
       sans-serif;
     white-space: nowrap;
-  }
-
-  .salon-hover233:hover {
-    background: oklch(0.86 0.1 78);
-    border-color: oklch(0.86 0.1 78);
   }
 
   .salon-s217 {
@@ -383,8 +373,6 @@
   }
 
   .salon-s244 {
-    border: 0;
-    background: transparent;
     cursor: pointer;
     padding: 2px 4px;
     font: 500 11px "Jost",
@@ -452,8 +440,6 @@
   .salon-s251 {
     cursor: pointer;
     min-height: 38px;
-    padding: 0 13px;
-    border-radius: 999px;
     font: 500 12px "Jost",
       sans-serif;
   }
@@ -462,17 +448,8 @@
     cursor: pointer;
     min-height: 38px;
     padding: 0 13px;
-    border-radius: 999px;
-    border: 1px solid oklch(0.25 0.035 305 / 0.25);
-    background: transparent;
-    color: oklch(0.25 0.035 305);
     font: 500 12px "Jost",
       sans-serif;
-  }
-
-  .salon-hover273:hover {
-    border-color: oklch(0.55 0.09 300);
-    color: oklch(0.55 0.09 300);
   }
 
   .salon-s253 {
@@ -523,10 +500,7 @@
   }
 
   .salon-s259 {
-    border: 0;
     cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 999px;
     font: 500 12px "Jost",
       sans-serif;
   }
@@ -534,10 +508,8 @@
   .salon-s260 {
     display: flex;
     align-self: flex-start;
-    gap: 3px;
-    padding: 3px;
-    border-radius: 999px;
-    background: oklch(0.9 0.025 80);
+    gap: 18px;
+
   }
 
   .salon-s261 {
@@ -565,20 +537,16 @@
     gap: 6px;
   }
 
+  .library-tidy-options {
+    column-gap: 24px;
+    row-gap: 8px;
+  }
+
   .salon-s263 {
     cursor: pointer;
     padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid oklch(0.25 0.035 305 / 0.2);
-    background: transparent;
-    color: oklch(0.25 0.035 305);
     font: 400 12px "Jost",
       sans-serif;
-  }
-
-  .salon-hover287:hover {
-    border-color: oklch(0.55 0.09 300);
-    color: oklch(0.55 0.09 300);
   }
 
   .salon-s264 {
@@ -644,18 +612,10 @@
   .library-save-button {
     width: 100%;
     padding: 12px 20px;
-    border: 0;
-    border-radius: 999px;
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
     font: 500 14px "Jost",
       sans-serif;
     cursor: pointer;
     transition: background 0.2s;
-  }
-
-  .library-save-button:hover {
-    background: oklch(0.8 0.12 75);
   }
 
   .library-save-status {
@@ -687,6 +647,9 @@
 
   .salon-s235[data-companion="true"] {
     position: relative;
+    box-sizing: content-box;
+    padding: calc(var(--companion-height) * (var(--visitor-hover-scale) - 1) + 12px)
+      calc(var(--companion-width) * (var(--visitor-hover-scale) - 1) / 2 + 12px) 0;
   }
 
   .salon-s235[data-companion="true"] > .salon-s234 {
@@ -700,7 +663,7 @@
     }
 
     .salon-s235[data-companion="true"]:hover > .salon-s234 {
-      transform: scale(1.2);
+      transform: scale(var(--visitor-hover-scale));
     }
   }
 
@@ -731,17 +694,9 @@
   }
 
   .library-companion-picker button {
-    border: 1px solid oklch(0.25 0.035 305 / 0.2);
-    border-radius: 999px;
     padding: 8px 12px;
-    background: transparent;
-    color: oklch(0.25 0.035 305);
     font: 500 13px "Jost", sans-serif;
     cursor: pointer;
-  }
-
-  .library-companion-picker button:hover {
-    background: oklch(0.86 0.1 78);
   }
 
   .library-companion-hint {
@@ -784,17 +739,10 @@
     flex: 1;
     min-width: 0;
     padding: 12px 10px;
-    border: 1px solid oklch(0.25 0.035 305 / 0.25);
-    border-radius: 999px;
-    background: transparent;
-    color: oklch(0.25 0.035 305);
     font: 500 13px "Jost", sans-serif;
     cursor: pointer;
   }
 
-  .library-discard-button:hover {
-    background: oklch(0.25 0.035 305 / 0.06);
-  }
 }
 
 /* Desktop > 960px · tablet 651–960px · phone ≤ 650px */
@@ -953,18 +901,6 @@
     filter: var(--deco-shadow) drop-shadow(0 0 2px oklch(.55 .09 300)) drop-shadow(0 0 2px oklch(.55 .09 300));
   }
 
-  .salon-s251 {
-    border: 1px solid oklch(.25 .035 305 / .25);
-    background: transparent;
-    color: oklch(.25 .035 305);
-  }
-
-  .salon-s251[aria-pressed="true"] {
-    border-color: oklch(.55 .09 300);
-    background: oklch(.55 .09 300);
-    color: oklch(.97 .01 82);
-  }
-
   .salon-s257 {
     border: 2px solid oklch(.25 .035 305 / .15);
   }
@@ -973,13 +909,4 @@
     border-color: oklch(.25 .035 305);
   }
 
-  .salon-s259 {
-    background: transparent;
-    color: oklch(.42 .03 305);
-  }
-
-  .salon-s259[aria-pressed="true"] {
-    background: oklch(.25 .035 305);
-    color: oklch(.955 .018 82);
-  }
 }

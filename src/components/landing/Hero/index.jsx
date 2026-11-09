@@ -2,10 +2,7 @@ import React from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
 
-export default function Hero(values) {
-  const {
-    openLib,
-  } = values;
+export default function Hero() {
   return (
     <>
       <div className={"salon-s23 salon-hero"}>
@@ -41,18 +38,7 @@ export default function Hero(values) {
                   "The Salon is a home for your books and the feelings they leave behind. Arrange your shelves, keep a private journal for every story, and find people who want to talk about it as much as you do."
                 }
               </p>
-              <div className={"salon-s19"}>
-                <a href={"#follow"} className={"salon-s17 salon-hover22"}>
-                  {"Follow the journey"}
-                </a>
-                <button
-                  onClick={openLib}
-                  type="button"
-                  className={"salon-s18 salon-hover24"}
-                >
-                  {"Open the library"}
-                </button>
-              </div>
+
               <p className={"salon-s20"}>
                 {"made for fantasy, romantasy & dystopian worlds · 15+"}
                 <br />

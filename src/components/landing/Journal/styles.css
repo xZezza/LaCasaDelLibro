@@ -114,10 +114,7 @@
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: oklch(0.42 0.03 305);
-    padding: 3px 8px;
-    border-radius: 999px;
-    background: oklch(0.25 0.035 305 / 0.06);
+
   }
 
   .salon-s97 {
@@ -227,13 +224,11 @@
   .salon-s112 {
     flex: none;
     cursor: pointer;
-    padding: 5px 11px;
-    border-radius: 999px;
     font: 500 11px "Jost",
       sans-serif;
     letter-spacing: 0.04em;
     white-space: nowrap;
-    transition: all 0.25s;
+
   }
 
   .salon-s113 {
@@ -344,8 +339,6 @@
   }
 
   .salon-s128 {
-    border: 0;
-    background: transparent;
     padding: 2px 0;
     cursor: pointer;
     white-space: nowrap;
@@ -353,10 +346,6 @@
       sans-serif;
     letter-spacing: 0.02em;
     transition: color 0.2s;
-  }
-
-  .salon-hover141:hover {
-    color: oklch(0.55 0.09 300);
   }
 
   .salon-s129 {
@@ -396,9 +385,6 @@
     font-size: clamp(21px, 2vw, 25px);
     line-height: 1.3;
     color: oklch(0.32 0.04 305);
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: wrap;
     column-gap: 0;
   }
 
@@ -407,7 +393,6 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: oklch(0.45 0.03 305);
-    white-space: nowrap;
     transition: opacity 0.8s ease 0.7s;
   }
 
@@ -496,14 +481,17 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.42 0.03 305);
+    color: oklch(0.46 0.115 300);
   }
 
   .salon-s149 {
     font-size: 12px;
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: oklch(0.97 0.012 82);
+
+  }
+
+  .salon-s149 + .salon-s149::before {
+    content: "·";
+    margin-inline-end: 8px;
   }
 
   .salon-s150 {
@@ -534,10 +522,7 @@
   .salon-s154 {
     align-self: flex-start;
     font-size: 12px;
-    padding: 5px 11px;
-    border-radius: 999px;
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
+
   }
 
   .salon-s155 {
@@ -604,15 +589,17 @@
   }
 
   .quote-guest-potter {
-    min-height: 140px;
-    padding-right: 130px;
+    --scene-guest-size: 140px;
+    min-height: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
+    padding-right: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + 2 * var(--scene-guest-clearance));
     justify-content: center;
   }
 
   @media (max-width: 650px) {
     .quote-guest-potter {
-      padding-right: 100px;
-      min-height: 126px;
+      --scene-guest-size: 108px;
+      padding-inline: 0;
+      padding-bottom: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
     }
   }
 }
@@ -677,18 +664,6 @@
 
   .salon-s123[aria-pressed="true"] {
     box-shadow: 0 0 0 1.5px oklch(.95 .018 82),0 0 0 2.5px oklch(.25 .035 305);
-  }
-
-  .salon-s112 {
-    border: 1px solid oklch(.25 .035 305 / .3);
-    background: transparent;
-    color: oklch(.35 .03 305);
-  }
-
-  .salon-s112[aria-pressed="true"] {
-    border-color: oklch(.25 .035 305);
-    background: oklch(.25 .035 305);
-    color: oklch(.94 .02 82);
   }
 
   .salon-s119 {

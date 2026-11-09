@@ -132,46 +132,6 @@
     text-wrap: pretty;
   }
 
-  .salon-s17 {
-    white-space: nowrap;
-    padding: 15px 28px;
-    border-radius: 999px;
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 0.02em;
-  }
-
-  .salon-hover22:hover {
-    background: oklch(0.8 0.12 75);
-    color: oklch(0.22 0.04 60);
-  }
-
-  .salon-s18 {
-    cursor: pointer;
-    padding: 15px 28px;
-    border-radius: 999px;
-    border: 1px solid oklch(0.25 0.035 305 / 0.3);
-    background: transparent;
-    color: oklch(0.25 0.035 305);
-    font: 400 15px "Jost",
-      sans-serif;
-  }
-
-  .salon-hover24:hover {
-    border-color: oklch(0.25 0.035 305);
-  }
-
-  .salon-s19 {
-    margin-top: 34px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-items: center;
-    pointer-events: auto;
-  }
-
   .salon-s20 {
     margin: 22px 0 0;
     font-family: "Kalam", cursive;
@@ -210,6 +170,7 @@
      full viewport as three different positioning references. */
 
   .salon-hero-stage {
+    --hero-guest-size: clamp(170px, 18vw, 252px);
     position: relative;
     width: 100%;
     max-width: var(--page-max-width, 1440px);
@@ -311,20 +272,6 @@
   }
 
   @media (max-width: 650px) {
-    .salon-hero .salon-s19 {
-      gap: 10px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s19 > a,
-    .salon-hero .salon-s19 > button {
-      padding: 13px 20px;
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 650px) {
     .salon-hero .salon-s20 {
       font-size: 16px;
     }
@@ -345,7 +292,11 @@
 
   @media (min-width: 651px) and (max-width: 960px) {
     .salon-s21 {
-      max-width: 66%;
+      max-width: min(66%, calc(100% - var(--hero-guest-size) * var(--visitor-hover-scale) - 48px));
+    }
+
+    .story-guest-hero {
+      right: calc(24px + var(--guest-size) * (var(--visitor-hover-scale) - 1) / 2);
     }
 
     .salon-s15 {

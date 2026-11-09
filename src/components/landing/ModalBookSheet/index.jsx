@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import "../shared/dialog.css";
 import BookCover from "../BookCover";
 import "../shared/typography.css";
@@ -71,11 +72,11 @@ export default function ModalBookSheet(values) {
                         <button
                           onClick={o.pick}
                           type="button"
-                          className={"salon-s282"}
+                          className={"salon-s282 salon-marker-control"}
                           aria-pressed={o.selected}
-                        >
+                        ><span className="salon-marker-text">
                           {o.name}
-                        </button>
+                        </span></button>
                       </React.Fragment>
                     ))}
                   </div>
@@ -111,16 +112,20 @@ export default function ModalBookSheet(values) {
                   <button
                     onClick={goJournal}
                     type="button"
-                    className={"salon-s289 salon-hover315"}
+                    className={"salon-s289 salon-marker-action salon-marker-primary"}
                   >
+                    <span className="salon-marker-text">
                     {"Start my journal"}
+                  </span>
                   </button>
                   <button
                     onClick={goForum}
                     type="button"
-                    className={"salon-s290 salon-hover317"}
+                    className={"salon-s290 salon-marker-action salon-marker-link"}
                   >
+                    <span className="salon-marker-text">
                     {"Forum →"}
+                  </span>
                   </button>
                 </div>
                 <p className={"salon-s292"}>

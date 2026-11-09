@@ -305,5 +305,20 @@
       "https://mfla.omeka.net/exhibits/show/animals-of-panem/item/206"
     ],
     "motion": "pad"
+  },
+  {
+    "id": "ron",
+    "name": "Ron Weasley",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-1",
+      "potter-2"
+    ],
+    "image": "/images/characters/ron.png",
+    "kind": "person",
+    "prompt": "Use case: illustration-story. Create an original painterly fantasy character sprite for The Salon reading website, matching an elegant semi-realistic storybook cutout with natural anatomy, detailed fabric and warm soft light. Transparent background, wide 2:1 canvas with exactly two equal square cells side by side. In each cell show the SAME character full body head to boots, centered, same scale, same baseline and clothing. Left cell: standing calmly holding a CLOSED dark green book at waist. Right cell: same standing character reading that book OPEN in both hands, eyes down. Isolated clean silhouettes, ample transparent space around each figure. No scenery, floor, platform, text, logos, watermark, extra characters. Original interpretation of literary character, not an actor likeness and not a copy of any supplied fan art. Ron Weasley: school-age boy with red hair, freckles and blue eyes, white shirt, burgundy and gold striped tie, grey knit vest, black school robe with burgundy lining, dark trousers and black shoes. Friendly slightly amused expression.",
+    "generator": "built-in image_gen",
+    "frames": 2,
+    "created": "2026-11-08"
   }
 ]

@@ -3,60 +3,18 @@
     display: block;
     width: clamp(96px, 9vw, 118px);
     aspect-ratio: 716/469;
-    background: url("/images/optimized/branding/logo.webp") center / contain
-      no-repeat;
+    background: url("/images/optimized/branding/logo.webp") center / contain no-repeat;
   }
 
-  .salon-s1 {
-    display: flex;
-    align-items: center;
-  }
+  .salon-s1 { display: flex; align-items: center; }
 
-  .salon-s2 {
-    padding: 9px 16px;
-    border-radius: 999px;
-    color: oklch(0.28 0.035 305);
-  }
-
-  .salon-hover3:hover {
-    background: oklch(0.25 0.035 305 / 0.07);
-    color: oklch(0.25 0.035 305);
-  }
-
-  .salon-hover4:hover {
-    background: oklch(0.25 0.035 305 / 0.07);
-    color: oklch(0.25 0.035 305);
-  }
-
-  .salon-hover5:hover {
-    background: oklch(0.25 0.035 305 / 0.07);
-    color: oklch(0.25 0.035 305);
-  }
-
-  .salon-s3 {
-    white-space: nowrap;
-    padding: 9px 16px;
-    border-radius: 999px;
-    color: oklch(0.28 0.035 305);
-  }
-
-  .salon-hover7:hover {
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
-  }
+  .salon-s2, .salon-s3 { padding-block: 9px; white-space: nowrap; }
 
   .salon-s4 {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2px;
-    padding: 5px;
-    border-radius: 999px;
-    background: oklch(0.97 0.012 82 / 0.82);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px -12px oklch(0.25 0.035 305 / 0.35),
-      inset 0 0 0 1px oklch(0.25 0.035 305 / 0.08);
+    gap: clamp(14px, 2vw, 24px);
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -64,9 +22,7 @@
 
   .salon-s5 {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0 0 auto;
     z-index: 5;
     max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
@@ -79,102 +35,17 @@
   }
 }
 
-@layer refinements {
-  @media (max-width: 650px) {
-    .salon-nav {
-      gap: 6px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > a {
-      flex: none;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > div {
-      gap: 0;
-      padding: 3px;
-      flex: 1;
-      justify-content: flex-end;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > div > a {
-      font-size: 12px;
-      padding: 8px 9px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > a > span {
-      width: 76px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav {
-      flex-wrap: nowrap;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > a > span {
-      width: 60px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > div {
-      flex-wrap: nowrap;
-      min-width: 0;
-      justify-content: space-around;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-nav > div > a {
-      padding: 8px 6px;
-      font-size: 11px;
-      white-space: nowrap;
-      letter-spacing: 0;
-    }
-  }
-
-  .salon-nav > div > a {
-    transition: background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .salon-nav > div > a:hover,
-  .salon-nav > div > a:focus-visible {
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
-  }
-}
-
-/* Desktop > 960px · tablet 651–960px · phone ≤ 650px */
-
 @layer responsive {
   @media (min-width: 651px) and (max-width: 960px) {
-    .salon-nav {
-      padding-inline: 28px;
-    }
-
-    .salon-nav > div > a {
-      padding-inline: 13px;
-    }
+    .salon-nav { padding-inline: 28px; }
+    .salon-nav > div { gap: 18px; }
   }
 
   @media (max-width: 650px) {
-    .salon-nav > div > a {
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-    }
+    .salon-nav { flex-wrap: nowrap; gap: 10px; padding: 10px 16px; }
+    .salon-nav > a { flex: none; }
+    .salon-nav > a > span { width: 52px; }
+    .salon-nav > div { flex: 1; min-width: 0; flex-wrap: nowrap; justify-content: space-between; gap: 6px; }
+    .salon-nav > div > a { font-size: 11px; letter-spacing: 0; padding: 8px 0; }
   }
 }

@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 24,
-    "optimized": 22,
-    "originalBytes": 28370133,
-    "servedBytes": 18768888,
-    "savedBytes": 9601245,
-    "savedPercent": 33.84
+    "images": 25,
+    "optimized": 23,
+    "originalBytes": 29200752,
+    "servedBytes": 19311946,
+    "savedBytes": 9888806,
+    "savedPercent": 33.86
   },
   "images": [
     {
@@ -281,6 +281,19 @@
       "optimized": "/images/optimized/characters/buttercup.webp",
       "optimizedBytes": 1277234,
       "optimizedSha256": "f77bc5181afa3ede354f03dd236904b4a2334ac13bebdd99a37b76fb2286ce64",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/characters/ron.png",
+      "originalBytes": 830619,
+      "originalSha256": "cfd704c5ef8a3c169391865f2f03bd23b4b93fb5c591a128efffcb9713c026f0",
+      "width": 1774,
+      "height": 887,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/characters/ron.webp",
+      "optimizedBytes": 543058,
+      "optimizedSha256": "2844fe2797881d1f314de5db4a0c94f33710cacfec52f30d336a4368c19958e5",
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     },

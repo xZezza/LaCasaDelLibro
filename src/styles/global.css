@@ -5,6 +5,7 @@
 @layer components {
   :root {
     --page-max-width: 1440px;
+    --visitor-hover-scale: 1.2;
   }
 
   html {

@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import FairyLights from "../FairyLights";
 import "../shared/dialog.css";
 import "../shared/typography.css";
@@ -152,10 +153,10 @@ export default function ModalLibrary(values) {
                                         onClick={ad.run}
                                         title={"Add to " + ad.label}
                                         type="button"
-                                        className={"salon-s216 salon-hover233"}
-                                      >
+                                        className={"salon-s216 salon-marker-control"}
+                                      ><span className="salon-marker-text">
                                         {ad.name}
-                                      </button>
+                                      </span></button>
                                     </React.Fragment>
                                   ))}
                                 </div>
@@ -302,7 +303,7 @@ export default function ModalLibrary(values) {
                                           title={b.t}
                                           className={"salon-s235"}
                                           data-companion={b.isPet || b.deco === "dragon" ? "true" : undefined}
-                                          data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px'}}
+                                          data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px','--companion-width':b.fw+'px','--companion-height':b.fh+'px'}}
                                         >
                                           <div
                                             role={"img"}
@@ -357,10 +358,12 @@ export default function ModalLibrary(values) {
                               <button
                                 onClick={sh.toggle}
                                 type="button"
-                                className={"salon-s244"}
+                                className={"salon-s244 salon-marker-action salon-marker-link"}
                                 style={{ color: wallInk }}
                               >
+                                <span className="salon-marker-text">
                                 {sh.toggleLabel}
+                              </span>
                               </button>
                             </>
                           )}
@@ -392,10 +395,12 @@ export default function ModalLibrary(values) {
                                 <button
                                   onClick={m.run}
                                   type="button"
-                                  className={"salon-s251"}
+                                  className={"salon-s251 salon-marker-control"}
                                   aria-pressed={m.selected}
                                 >
+                                  <span className="salon-marker-text">
                                   {m.name}
+                                </span>
                                 </button>
                               </React.Fragment>
                             ))}
@@ -406,9 +411,11 @@ export default function ModalLibrary(values) {
                             <button
                               onClick={removeSel}
                               type="button"
-                              className={"salon-s252 salon-hover273"}
+                              className={"salon-s252 salon-marker-action salon-marker-secondary"}
                             >
+                              <span className="salon-marker-text">
                               {"Remove"}
+                            </span>
                             </button>
                           </>
                         )}
@@ -480,10 +487,12 @@ export default function ModalLibrary(values) {
                         <button
                           onClick={o.pick}
                           type="button"
-                          className={"salon-s259"}
+                          className={"salon-s259 salon-marker-control"}
                           aria-pressed={o.selected}
                         >
+                          <span className="salon-marker-text">
                           {o.name}
+                        </span>
                         </button>
                       </React.Fragment>
                     ))}
@@ -524,22 +533,24 @@ export default function ModalLibrary(values) {
                       onChange={(event) => setCompanionKey(event.target.value)}>
                       {companions.map((pet) => <option key={pet.key} value={pet.key}>{pet.name}</option>)}
                     </select>
-                    <button type="button" onClick={companion.add}
-                      aria-label={"Add " + companion.name + " as a permanent companion"}>Add</button>
+                    <button type="button" onClick={companion.add} className="salon-companion-add salon-marker-action salon-marker-secondary"
+                      aria-label={"Add " + companion.name + " as a permanent companion"}><span className="salon-marker-text">Add</span></button>
                   </div>
                   <p className="library-companion-hint">Stays on your shelf. Drag to move, select to remove.</p>
                 </div>
                 <div className={"salon-s258"}>
                   <span className={"salon-s99"}>{"Tidy by"}</span>
-                  <div className={"salon-s254"}>
+                  <div className="salon-s254 library-tidy-options">
                     {sorts.map((s, index30) => (
                       <React.Fragment key={index30}>
                         <button
                           onClick={s.run}
                           type="button"
-                          className={"salon-s263 salon-hover287"}
+                          className={"salon-s263 salon-marker-action salon-marker-secondary"}
                         >
+                          <span className="salon-marker-text">
                           {s.name}
+                        </span>
                         </button>
                       </React.Fragment>
                     ))}
@@ -561,8 +572,8 @@ export default function ModalLibrary(values) {
                   <div className="library-save">
                     {libraryDirty && (
                       <div className="library-save-actions">
-                        <button type="button" onClick={discardLibrary} className="library-discard-button">Discard changes</button>
-                        <button type="button" onClick={saveLibrary} className="library-save-button">Save changes</button>
+                        <button type="button" onClick={discardLibrary} className="library-discard-button salon-marker-action salon-marker-secondary"><span className="salon-marker-text">Discard changes</span></button>
+                        <button type="button" onClick={saveLibrary} className="library-save-button salon-marker-action salon-marker-primary"><span className="salon-marker-text">Save changes</span></button>
                       </div>
                     )}
                     {saveMessage && (

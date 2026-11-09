@@ -51,16 +51,8 @@
     margin-top: 12px;
     cursor: pointer;
     padding: 12px 24px;
-    border-radius: 999px;
-    border: 0;
-    background: oklch(0.86 0.1 78);
-    color: oklch(0.28 0.04 60);
     font: 500 14px "Jost",
       sans-serif;
-  }
-
-  .salon-hover330:hover {
-    background: oklch(0.8 0.12 75);
   }
 
   .salon-s302 {

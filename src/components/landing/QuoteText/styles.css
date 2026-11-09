@@ -1,4 +1,9 @@
 @layer components {
+  .salon-quote-text {
+    text-align: center;
+    text-wrap: balance;
+  }
+
   .salon-s24 {
     position: absolute;
     top: 0;

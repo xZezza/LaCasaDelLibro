@@ -596,10 +596,6 @@ export default class LandingController extends React.Component {
       name,
       pick: () => this.setState({ pv: k }),
       fg: this.state.pv === k ? "oklch(0.55 0.09 300)" : "oklch(0.42 0.03 305)",
-      line:
-        this.state.pv === k
-          ? "oklch(0.55 0.09 300)"
-          : "oklch(0.25 0.035 305 / 0.25)",
     }));
     const pv = saga
       ? {

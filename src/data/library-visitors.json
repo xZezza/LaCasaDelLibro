@@ -214,5 +214,16 @@
     "kind": "creature",
     "scale": 0.78,
     "motion": "pad"
+  },
+  {
+    "id": "ron",
+    "name": "Ron Weasley",
+    "series": "Harry Potter",
+    "bookIds": [
+      "potter-1",
+      "potter-2"
+    ],
+    "image": "/images/characters/ron.png",
+    "kind": "person"
   }
 ]

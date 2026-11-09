@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
@@ -34,9 +35,11 @@ export default function Library(values) {
             <button
               onClick={openLib}
               type="button"
-              className={"salon-s60 salon-hover68"}
+              className={"salon-s60 salon-marker-action salon-marker-primary"}
             >
+              <span className="salon-marker-text">
               {"Open the full library"}
+            </span>
             </button>
             {Boolean(showNotes) && (
               <>
@@ -51,18 +54,22 @@ export default function Library(values) {
               <button
                 onClick={showRead}
                 type="button"
-                className={"salon-s63"}
+                className={"salon-s63 salon-marker-control"}
                 aria-pressed={readingTab === "read"}
               >
+                <span className="salon-marker-text">
                 {"Read"}
+              </span>
               </button>
               <button
                 onClick={showToRead}
                 type="button"
-                className={"salon-s63"}
+                className={"salon-s63 salon-marker-control"}
                 aria-pressed={readingTab === "toread"}
               >
+                <span className="salon-marker-text">
                 {"To read"}
+              </span>
               </button>
             </div>
             <div className={"salon-s69"}>

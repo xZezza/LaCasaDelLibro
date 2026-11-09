@@ -1,0 +1,55 @@
+@layer refinements {
+  /* Text-only actions. The marker follows the label, never the whole hit area. */
+  .salon-marker-action,
+  .salon-marker-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    max-width: 100%;
+    padding-inline: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: oklch(0.25 0.035 305);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .salon-marker-text {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+  }
+
+  .salon-marker-text::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-inline: -0.22em;
+    bottom: 0.12em;
+    height: 0.62em;
+    border-radius: 35% 55% 30% 45% / 55% 35% 60% 40%;
+    background: oklch(0.86 0.1 78 / 0.85);
+    transform: rotate(-1.5deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.22s ease;
+    pointer-events: none;
+  }
+
+  .salon-marker-action:not(:disabled):is(:hover, :focus-visible) .salon-marker-text::before,
+  .salon-marker-control:not(:disabled):is(:hover, :focus-visible, [aria-pressed="true"]) .salon-marker-text::before {
+    transform: rotate(-1.5deg) scaleX(1);
+  }
+
+  .salon-marker-primary,
+  .salon-marker-control[aria-pressed="true"] {
+    font-weight: 500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .salon-marker-text::before { transition: none; }
+  }
+}

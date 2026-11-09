@@ -41,7 +41,7 @@
     }
 
     .visitor-zoom:hover {
-      transform: scale(1.2);
+      transform: scale(var(--visitor-hover-scale));
     }
   }
 
@@ -81,7 +81,11 @@
     left: 50%;
     top: 100%;
     transform: translateX(-50%);
-    white-space: nowrap;
+    width: max-content;
+    max-width: min(var(--guest-size, 160px), calc(var(--visitor-size, 160px) + 16px));
+    overflow-wrap: anywhere;
+    white-space: normal;
+    text-wrap: balance;
     padding: 3px 9px;
     border: 1px solid #d2b77a88;
     border-radius: 20px;
@@ -153,27 +157,17 @@
   }
 
   .story-guest-hero {
-    --guest-size: clamp(170px, 18vw, 252px);
+    --guest-size: var(--hero-guest-size, 252px);
     right: 9%;
     bottom: 18%;
   }
 
-  .story-guest-potter {
-    --guest-size: 140px;
-    right: 0;
-    bottom: 8px;
-  }
-
-  .story-guest-stars {
-    --guest-size: 214px;
-    right: 14px;
-    bottom: 28px;
-  }
-
+  .story-guest-potter,
+  .story-guest-stars,
   .story-guest-throne {
-    --guest-size: 164px;
-    right: 0;
-    bottom: 10px;
+    --guest-size: var(--scene-guest-size);
+    right: calc(var(--scene-guest-clearance) + var(--guest-size) * (var(--visitor-hover-scale) - 1) / 2);
+    bottom: var(--scene-guest-floor);
   }
 
   .story-guest-host .visitor-name {
@@ -199,44 +193,23 @@
     }
   }
 
-  @media (max-width: 650px) {
-    .story-guest-potter {
-      --guest-size: 108px;
-      right: -4px;
-      bottom: 6px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .story-guest-stars {
-      --guest-size: 130px;
-      right: 4px;
-      bottom: 30px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .story-guest-throne {
-      --guest-size: 116px;
-      right: -4px;
-      bottom: 10px;
-    }
-  }
-
   .story-guest-stars .visitor-name {
     color: #fffaf1;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
 
   .story-guest-shelf {
-    --guest-size: 112px;
+    --guest-size: var(--shelf-guest-size, 112px);
     right: 0;
     bottom: 0;
   }
 
   .story-guest-shelf .visitor-name {
     font-size: 10px;
-    top: calc(100% + 5px);
+    line-height: 12px;
+    max-width: var(--guest-size, 112px);
+    top: auto;
+    bottom: calc(100% + 5px);
   }
 
   .story-guest-shelf .salon-story-guest {
@@ -244,10 +217,6 @@
     right: auto;
   }
 
-  .story-guest-shelf .visitor-name {
-    top: auto;
-    bottom: calc(100% + 5px);
-  }
 }
 
 @layer components {
@@ -257,17 +226,19 @@
 
   .quote-with-guest {
     position: relative;
+    --scene-guest-floor: 48px;
+    --scene-guest-clearance: 24px;
   }
 
   @keyframes visitor-flutters {
     0% {
       opacity: 0;
-      transform: translate(-55px, -20px) rotate(-4deg);
+      transform: translate(-12px, -4px) rotate(-1deg);
     }
 
     45% {
       opacity: 1;
-      transform: translate(-25px, -8px) rotate(2deg);
+      transform: translate(-6px, -2px) rotate(0.5deg);
     }
 
     100% {
@@ -279,16 +250,16 @@
   @keyframes visitor-arrives {
     0% {
       opacity: 0;
-      transform: translateX(-65px) scale(0.94);
+      transform: translateX(-12px) scale(0.94);
     }
 
     30% {
       opacity: 1;
-      transform: translate(-36px, -2px) scale(0.97);
+      transform: translate(-6px, -2px) scale(0.97);
     }
 
     65% {
-      transform: translate(-12px, 1px);
+      transform: translate(-3px, 1px);
     }
 
     100% {
@@ -306,7 +277,7 @@
   @keyframes visitor-leaves {
     to {
       opacity: 0;
-      transform: translate(25px, 3px) scale(0.98);
+      transform: translate(12px, 3px) scale(0.98);
     }
   }
 }

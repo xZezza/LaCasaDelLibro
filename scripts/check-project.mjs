@@ -43,7 +43,7 @@ for (const file of source) {
   }
 }
 const guests = JSON.parse(fs.readFileSync(path.join(root, 'src/data/library-visitors.json'), 'utf8'));
-const requiredGuests = ['rhysand', 'azriel', 'feyre', 'nesta', 'aelin', 'rowan', 'poppy', 'casteel', 'katniss', 'peeta', 'cassian', 'violet', 'xaden', 'hedwig', 'crookshanks', 'fleetfoot', 'abraxos', 'tairn', 'andarna', 'sgaeyl', 'buttercup'];
+const requiredGuests = ['rhysand', 'azriel', 'feyre', 'nesta', 'aelin', 'rowan', 'poppy', 'casteel', 'katniss', 'peeta', 'cassian', 'violet', 'xaden', 'hedwig', 'crookshanks', 'fleetfoot', 'abraxos', 'tairn', 'andarna', 'sgaeyl', 'buttercup', 'ron'];
 const ids = new Set(guests.map(guest => guest.id));
 if (ids.size !== guests.length) errors.push('Duplicate visitor IDs.');
 for (const id of requiredGuests) if (!ids.has(id)) errors.push(`Missing approved visitor: ${id}`);

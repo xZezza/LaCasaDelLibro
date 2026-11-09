@@ -1,3 +1,4 @@
+import "../shared/actions.css";
 import QuoteText from "../QuoteText";
 import "../shared/typography.css";
 import React from "react";
@@ -169,11 +170,12 @@ export default function Follow(values) {
                 <a
                   href={s.href}
                   onClick={s.open}
-                  className={"salon-s197 salon-hover212"}
+                  className={"salon-s197 salon-marker-action salon-marker-secondary"}
                 >
-                  <span className={"salon-s83"}></span>
+                  <span className="salon-marker-text">
                   {s.name}
                   {"\n        "}
+                </span>
                 </a>
               </React.Fragment>
             ))}
