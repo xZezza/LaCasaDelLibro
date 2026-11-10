@@ -1,0 +1,222 @@
+{
+  "violet": {
+    "name": "Violet Sorrengail",
+    "description": "Raised among books and destined to be a scribe, Violet finds herself training to become a dragon rider. She faces a brutal new world with a sharp mind and the determination to forge her own path.",
+    "personality": "Curious · Loyal · Determined",
+    "strength": "Intelligence and resourcefulness",
+    "strengthDetail": "She notices details and finds unexpected solutions.",
+    "vulnerability": "The need to prove herself",
+    "vulnerabilityDetail": "She can push beyond her limits and resist help.",
+    "tone": "lilac"
+  },
+  "rhysand": {
+    "name": "Rhysand",
+    "description": "Behind a teasing smile and an unreadable manner, Rhysand keeps his intentions close. He meets a dangerous world with sharp wit and a fierce instinct to protect those he values.",
+    "personality": "Witty · Private · Protective",
+    "strength": "Strategy and leadership",
+    "strengthDetail": "He reads a situation carefully before making his move.",
+    "vulnerability": "Carrying too much alone",
+    "vulnerabilityDetail": "Protecting others can mean keeping them at a distance.",
+    "tone": "lilac"
+  },
+  "azriel": {
+    "name": "Azriel",
+    "description": "Quiet and watchful, Azriel tends to listen before he speaks. His restrained manner hides a deeply loyal nature and an eye for what others miss.",
+    "personality": "Reserved · Observant · Loyal",
+    "strength": "Patience and precision",
+    "strengthDetail": "He pays attention to the smallest details.",
+    "vulnerability": "Keeping his feelings hidden",
+    "vulnerabilityDetail": "His silence can make it difficult to let others in.",
+    "tone": "lilac"
+  },
+  "feyre": {
+    "name": "Feyre",
+    "description": "A huntress with an artist’s eye, Feyre has learned to survive by looking after others. Beneath her practical instincts is a longing for beauty and a life she can choose for herself.",
+    "personality": "Creative · Brave · Protective",
+    "strength": "Adaptability and compassion",
+    "strengthDetail": "She keeps finding a way forward in unfamiliar places.",
+    "vulnerability": "Putting herself last",
+    "vulnerabilityDetail": "Responsibility can make it hard to accept care in return.",
+    "tone": "rose"
+  },
+  "nesta": {
+    "name": "Nesta",
+    "description": "Nesta meets the world with a sharp tongue and a guarded heart. Fiercely independent, she is slow to offer trust and unwilling to pretend that difficult feelings are simple.",
+    "personality": "Proud · Intense · Independent",
+    "strength": "Resolve and fierce loyalty",
+    "strengthDetail": "When she commits, she does so wholeheartedly.",
+    "vulnerability": "Letting people close",
+    "vulnerabilityDetail": "Her defensive edges can keep support out, too.",
+    "tone": "rose"
+  },
+  "cassian": {
+    "name": "Cassian",
+    "description": "A warrior with a ready laugh, Cassian brings warmth as well as strength to the people around him. Beneath his easy confidence is a serious commitment to those he protects.",
+    "personality": "Direct · Warm · Loyal",
+    "strength": "Courage and encouragement",
+    "strengthDetail": "He faces challenges head-on and helps others do the same.",
+    "vulnerability": "Hiding hurt behind humour",
+    "vulnerabilityDetail": "Being the strong one can leave little room for his own doubts.",
+    "tone": "gold"
+  },
+  "aelin": {
+    "name": "Aelin / Celaena",
+    "description": "A skilled assassin with a taste for books, music and beautiful things, Celaena refuses to be defined only by survival. Wit and defiance are as much a part of her as discipline.",
+    "personality": "Bold · Clever · Defiant",
+    "strength": "Ingenuity and determination",
+    "strengthDetail": "She looks for possibilities even when the odds are against her.",
+    "vulnerability": "Taking on too much",
+    "vulnerabilityDetail": "Pride and protectiveness can make sharing a burden difficult.",
+    "tone": "gold"
+  },
+  "rowan": {
+    "name": "Rowan",
+    "description": "An experienced Fae warrior, Rowan values discipline, honesty and actions over easy words. His stern manner leaves little doubt about the standards he sets for himself and others.",
+    "personality": "Disciplined · Direct · Watchful",
+    "strength": "Patience and experience",
+    "strengthDetail": "He stays focused when a situation demands a clear head.",
+    "vulnerability": "Emotional distance",
+    "vulnerabilityDetail": "A guarded manner can make trust slow to grow.",
+    "tone": "sage"
+  },
+  "poppy": {
+    "name": "Poppy",
+    "description": "Sheltered by rules and expectations, Poppy is full of questions about the world beyond them. Her compassion and curiosity sit alongside a growing desire to make choices of her own.",
+    "personality": "Curious · Compassionate · Spirited",
+    "strength": "Empathy and resolve",
+    "strengthDetail": "She questions what she is told and cares deeply about others.",
+    "vulnerability": "Learning whom to trust",
+    "vulnerabilityDetail": "A sheltered life can make unfamiliar intentions hard to read.",
+    "tone": "rose"
+  },
+  "casteel": {
+    "name": "Casteel",
+    "description": "Casteel has an easy confidence, a quick wit and a habit of revealing only what he chooses. His playful manner sits alongside a determined and protective streak.",
+    "personality": "Charming · Bold · Guarded",
+    "strength": "Confidence and quick thinking",
+    "strengthDetail": "He adapts quickly and rarely loses his nerve.",
+    "vulnerability": "Holding his cards too close",
+    "vulnerabilityDetail": "Secrecy can complicate the trust he hopes to build.",
+    "tone": "blue"
+  },
+  "katniss": {
+    "name": "Katniss Everdeen",
+    "description": "A hunter from District 12, Katniss is used to providing for her family. Practical and wary, she expresses her love through action and meets danger with a powerful instinct to protect.",
+    "personality": "Resourceful · Protective · Wary",
+    "strength": "Survival skills and courage",
+    "strengthDetail": "She acts decisively when someone she loves is at risk.",
+    "vulnerability": "Trusting other people",
+    "vulnerabilityDetail": "Self-reliance can make accepting help feel dangerous.",
+    "tone": "sage"
+  },
+  "peeta": {
+    "name": "Peeta Mellark",
+    "description": "A baker’s son with an artist’s touch, Peeta notices people as carefully as he notices colour. Kindness and a gift for words give him a quiet strength in a harsh world.",
+    "personality": "Kind · Perceptive · Steadfast",
+    "strength": "Empathy and communication",
+    "strengthDetail": "He understands how words can comfort, connect and persuade.",
+    "vulnerability": "Putting others before himself",
+    "vulnerabilityDetail": "His willingness to protect can come at his own expense.",
+    "tone": "gold"
+  },
+  "xaden": {
+    "name": "Xaden Riorson",
+    "description": "A formidable wingleader at Basgiath, Xaden commands attention without offering easy explanations. His controlled exterior and sharp judgement make him difficult to read.",
+    "personality": "Strategic · Guarded · Resolute",
+    "strength": "Leadership and composure",
+    "strengthDetail": "He assesses danger quickly and acts with purpose.",
+    "vulnerability": "Keeping his guard up",
+    "vulnerabilityDetail": "Protectiveness and secrecy can make openness difficult.",
+    "tone": "blue"
+  },
+  "ron": {
+    "name": "Ron Weasley",
+    "description": "Growing up in a large wizarding family has given Ron humour, warmth and a keen sense of friendship. He may doubt himself, but his courage often appears exactly when it is needed.",
+    "personality": "Funny · Loyal · Brave",
+    "strength": "Friendship and practical instinct",
+    "strengthDetail": "He brings heart, humour and a talent for chess to a challenge.",
+    "vulnerability": "Feeling overlooked",
+    "vulnerabilityDetail": "Comparisons with others can shake his confidence.",
+    "tone": "gold"
+  },
+  "hedwig": {
+    "name": "Hedwig",
+    "description": "Harry’s snowy owl is both a messenger and a familiar presence in an unfamiliar world. Proud and expressive, she has a clear sense of how she expects to be treated.",
+    "personality": "Loyal · Proud · Expressive",
+    "strength": "Reliability and companionship",
+    "strengthDetail": "She offers a reassuring link to the people Harry cares about.",
+    "vulnerability": "A proud temperament",
+    "vulnerabilityDetail": "She makes her displeasure clear when she feels neglected.",
+    "tone": "gold"
+  },
+  "crookshanks": {
+    "name": "Crookshanks",
+    "description": "Hermione’s shaggy ginger cat is watchful, independent and not easily fooled. His grumpy appearance gives little away about the attention he pays to his surroundings.",
+    "personality": "Perceptive · Independent · Persistent",
+    "strength": "Sharp animal instincts",
+    "strengthDetail": "He notices things that the people around him can overlook.",
+    "vulnerability": "Being misunderstood",
+    "vulnerabilityDetail": "His determined behaviour does not always make sense to others.",
+    "tone": "sage"
+  },
+  "fleetfoot": {
+    "name": "Fleetfoot",
+    "description": "An affectionate dog in the world of Throne of Glass, Fleetfoot brings warmth to a story full of danger. Her presence is a reminder that companionship can be a kind of comfort.",
+    "personality": "Affectionate · Lively · Trusting",
+    "strength": "Warmth and companionship",
+    "strengthDetail": "She brings an uncomplicated affection to those around her.",
+    "vulnerability": "Depending on others",
+    "vulnerabilityDetail": "Like any beloved companion, she needs care and protection.",
+    "tone": "sage"
+  },
+  "abraxos": {
+    "name": "Abraxos",
+    "description": "A wyvern whose gentle curiosity challenges first impressions, Abraxos has a distinctive spirit. There is more to him than the fearsome creature others expect to see.",
+    "personality": "Gentle · Curious · Loyal",
+    "strength": "Determination and instinct",
+    "strengthDetail": "He keeps going and responds with unexpected sensitivity.",
+    "vulnerability": "Being underestimated",
+    "vulnerabilityDetail": "Others can mistake a gentle nature for weakness.",
+    "tone": "sage"
+  },
+  "tairn": {
+    "name": "Tairn",
+    "description": "An imposing black dragon with little patience for foolishness, Tairn has a forceful presence and a dry edge to his judgement. Earning his respect is no small thing.",
+    "personality": "Formidable · Blunt · Protective",
+    "strength": "Experience and judgement",
+    "strengthDetail": "He recognises resolve and does not confuse it with appearances.",
+    "vulnerability": "An uncompromising nature",
+    "vulnerabilityDetail": "His standards leave little room for hesitation or excuses.",
+    "tone": "blue"
+  },
+  "andarna": {
+    "name": "Andarna",
+    "description": "A small golden dragon with a curious and spirited nature, Andarna is eager to engage with the world. Her warmth sits alongside a strong wish to make her own choices.",
+    "personality": "Curious · Spirited · Affectionate",
+    "strength": "Courage and an open heart",
+    "strengthDetail": "She approaches the unfamiliar with enthusiasm.",
+    "vulnerability": "Wanting to do more",
+    "vulnerabilityDetail": "Her eagerness can run ahead of the protection she still needs.",
+    "tone": "rose"
+  },
+  "sgaeyl": {
+    "name": "Sgaeyl",
+    "description": "A blue dragon with a commanding presence, Sgaeyl is watchful, exacting and difficult to intimidate. Her independence makes clear that her trust must be earned.",
+    "personality": "Fierce · Discerning · Independent",
+    "strength": "Decisiveness and resolve",
+    "strengthDetail": "She meets danger with a clear and unwavering purpose.",
+    "vulnerability": "An intimidating manner",
+    "vulnerabilityDetail": "Her formidable presence leaves little space for easy familiarity.",
+    "tone": "lilac"
+  },
+  "buttercup": {
+    "name": "Buttercup",
+    "description": "Prim’s scruffy cat has a suspicious gaze and a stubborn streak. Far from an immediately charming companion, he has his own ways of showing where he belongs.",
+    "personality": "Stubborn · Wary · Attached",
+    "strength": "Persistence and survival instinct",
+    "strengthDetail": "He is tougher and more enduring than he first appears.",
+    "vulnerability": "A prickly disposition",
+    "vulnerabilityDetail": "Trust and affection do not come easily to him.",
+    "tone": "blue"
+  }
+}

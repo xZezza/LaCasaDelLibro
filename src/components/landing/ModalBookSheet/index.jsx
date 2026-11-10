@@ -29,6 +29,7 @@ function Icon({ name }) {
 function BookSheet({ sb, closeSheet, stopSheet, entry, updateEntry }) {
   const [page, setPage] = useState("journal");
   const [angled, setAngled] = useState(false);
+  const [turn, setTurn] = useState(0);
   const tabsId = useId();
   const tabsRef = useRef(null);
   const paperStyle = { "--book-sheet-paper": `url("${imageAsset("/images/decorations/ivory-paper-texture.png")}")` };
@@ -48,16 +49,21 @@ function BookSheet({ sb, closeSheet, stopSheet, entry, updateEntry }) {
           <button type="button" className="book-sheet-icon-button book-sheet-favourite" aria-label={`Favourite ${sb.t}`} aria-pressed={!!entry.favourite} onClick={() => updateEntry({ favourite: !entry.favourite })}>
             <Icon name="heart" />
           </button>
-          <div className="book-sheet-book-scene" data-angled={angled}>
+          <button type="button" className="book-sheet-book-scene" data-angled={angled}
+            aria-label={`Rotate ${sb.t}`} title="Tap to rotate" onClick={() => setTurn(current => current + 1)}>
+            <div key={turn} className="book-sheet-motion" data-motion={turn === 0 ? "fan" : "spin"}>
             <div className="salon-s275">
               <div className="salon-s274">
                 <div className="salon-s269" style={{ background: sb.bg }} />
                 <div className="salon-s270" />
                 <div className="salon-s271" style={{ "--cover-bg": sb.bg }} />
+                {Array.from({ length: 18 }, (_, index) => index + 1).map(leaf => <span key={leaf} className="book-sheet-fan-leaf" aria-hidden="true"
+                  style={{ "--leaf-angle": `${-leaf * 9.5}deg`, "--leaf-depth": `${leaf * .5}px` }} />)}
                 <div className="salon-s273"><BookCover book={sb} titleClass="salon-s272" /></div>
               </div>
             </div>
-          </div>
+            </div>
+          </button>
           <div className="book-sheet-view-controls" role="group" aria-label="Book view">
             <button type="button" className="book-sheet-icon-button" aria-label="Show cover" aria-pressed={!angled} onClick={() => setAngled(false)}><Icon name="book" /></button>
             <button type="button" className="book-sheet-icon-button" aria-label="Rotate book" aria-pressed={angled} onClick={() => setAngled(current => !current)}><Icon name="rotate" /></button>

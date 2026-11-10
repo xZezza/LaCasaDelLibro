@@ -1,5 +1,6 @@
 // @refresh reset
 import React from "react";
+import CharacterSheet from "./CharacterSheet";
 import ModalAccessibility from "./ModalAccessibility";
 import LandingController from "./LandingController.js";
 import "./styles.css";
@@ -39,6 +40,7 @@ export default class Landing extends LandingController {
         <ModalLibrary {...v} />
         <ModalBookSheet {...v} />
         <ModalComingSoon {...v} />
+        <CharacterSheet />
         <ModalAccessibility
           open={
             v.libOpen

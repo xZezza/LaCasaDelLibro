@@ -281,3 +281,8 @@
     }
   }
 }
+
+@layer guests {
+  .character-guest-trigger { display: block; padding: 0; border: 0; border-radius: 8px; background: none; color: inherit; font: inherit; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+  .character-guest-trigger:focus-visible { outline: 2px solid #ad8849; outline-offset: 4px; }
+}

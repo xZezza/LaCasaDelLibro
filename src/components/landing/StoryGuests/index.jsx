@@ -2,6 +2,7 @@ import { visitorScale } from "../../../lib/guest-layout.js";
 import { imageAsset } from "../../../lib/image-assets.js";
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
+import { openCharacterSheet } from "../CharacterSheet";
 import guests from "../../../data/library-visitors.json";
 
 const groups = {
@@ -36,7 +37,11 @@ export default function StoryGuests({
       consumed = false,
       request = 0;
     let timers = [];
-    const later = (delay, fn) => timers.push(setTimeout(fn, delay));
+    const later = (delay, fn) => timers.push(setTimeout(() => {
+      // Keep the tapped visitor present until its portrait has closed.
+      if (document.querySelector(".character-sheet[open]") || host.contains(document.activeElement)) later(250, fn);
+      else fn();
+    }, delay));
     function clearVisit() {
       request++;
       running = false;
@@ -154,7 +159,6 @@ export default function StoryGuests({
       ref={hostRef}
       className={`story-guest-host story-guest-${placement}`}
       data-guest-group={group}
-      aria-hidden="true"
     >
       {visit && (
         <div
@@ -167,14 +171,16 @@ export default function StoryGuests({
             "--visitor-size": `calc(var(--guest-size, 160px) * ${visitorScale(visit, placement)})`,
           }}
         >
-          <div className="visitor-zoom">
-            <div className="visitor-figure">
+          <button type="button" className="visitor-zoom character-guest-trigger"
+            aria-label={`About ${visit.name}`} aria-haspopup="dialog"
+            onClick={event => { event.stopPropagation(); openCharacterSheet(visit.id, event.currentTarget); }}>
+            <div className="visitor-figure" aria-hidden="true">
               <span className="visitor-pose visitor-closed" />
               <span className="visitor-pose visitor-reading" />
               <span className="visitor-foot-shadow" />
             </div>
             <span className="visitor-name">{visit.name}</span>
-          </div>
+          </button>
         </div>
       )}
     </div>

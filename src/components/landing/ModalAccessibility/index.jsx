@@ -18,6 +18,7 @@ export default function ModalAccessibility({ open }) {
       ].filter((el) => !el.disabled && el.getClientRects().length);
     (focusable()[0] || dialog).focus({ preventScroll: true });
     function trap(e) {
+      if (document.querySelector(".character-sheet[open]")) return;
       if (e.key !== "Tab") return;
       const list = focusable(),
         first = list[0],

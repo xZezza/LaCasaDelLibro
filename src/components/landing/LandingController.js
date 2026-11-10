@@ -307,6 +307,7 @@ export default class LandingController extends React.Component {
     this._measureTimer = setTimeout(this._onResize, 400);
     if (document.fonts) document.fonts.ready.then(this._onResize);
     this._key = (e) => {
+      if (document.querySelector(".character-sheet[open]")) return;
       if (e.key === "Escape" && this.state.soon) {
         this.setState({ soon: null });
         return;
