@@ -4,6 +4,14 @@
     "generator": "built-in image_gen",
     "created": "2026-11-10",
     "prompt": "Use case: product-mockup. Asset type: seamless material texture for the background behind an illustrated book in an elegant reading-journal website. Create a flat, orthographic close-up of fine warm ivory handmade cotton paper. Very subtle irregular organic paper fibres, delicate shallow tooth and tiny natural flecks, soft cream and oat tones, low contrast. Inspired by the tactile unprinted paper and linen samples in the user's reference, but create an original surface. A refined quiet material, slightly time-worn but clean; no stains or damage. Entire canvas is nothing but one continuous evenly lit paper surface, edge-to-edge. No objects, no book, no folds, no border, no vignette, no gradients of light, no printed or handwritten text, no symbols, no recognizable patterns, no wood grain, no leather. Fine realistic material detail suitable for a reusable background tile, seamlessly matching edges. Neutral diffuse light, no perspective. Square format.",
-    "use": "Background of the book column in ModalBookSheet; original texture inspired by user material references."
+    "use": "Warm notebook paper texture in the My journal panel of ModalBookSheet; original preserved."
+  },
+  {
+    "asset": "/images/decorations/book-sheet-starry-landscape.png",
+    "generator": "built-in image_gen",
+    "created": "2026-11-10",
+    "reference": "Approved starry landscape PNG mockup from this conversation, exec-a5626291-848a-4e95-84e1-2078c8577688.png",
+    "prompt": "Extract and recreate only the left-column background illustration of the approved mockup as a portrait artwork: indigo and dusty lavender watercolor sky, fine antique-gold stars and constellation lines at upper left, pale crescent at upper right, layered blue-sage mountains, fine gold botanical sprigs and cream flowers at lower edges. Continue the landscape behind the removed book. No text, book, interface controls, frame or outer backdrop. Center remains quiet for the interactive CSS book.",
+    "use": "Separate illustrated background for ModalBookSheet. Book, fields, icons and controls remain real interactive HTML elements."
   }
 ]

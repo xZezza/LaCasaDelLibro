@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 26,
-    "optimized": 24,
-    "originalBytes": 32083497,
-    "servedBytes": 21187372,
-    "savedBytes": 10896125,
-    "savedPercent": 33.96
+    "images": 27,
+    "optimized": 25,
+    "originalBytes": 34685689,
+    "servedBytes": 23021168,
+    "savedBytes": 11664521,
+    "savedPercent": 33.63
   },
   "images": [
     {
@@ -342,6 +342,19 @@
       "optimized": "/images/optimized/decorations/ivory-paper-texture.webp",
       "optimizedBytes": 1875426,
       "optimizedSha256": "556058443e4e8b1cbcc6f93addab2e1cf7b6ab9f834ebd7ca4112e1838d8fa07",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/book-sheet-starry-landscape.png",
+      "originalBytes": 2602192,
+      "originalSha256": "d7567ddc8a884c81844ff2f969bd61744207644ddd45b02435f95cc0525325fc",
+      "width": 971,
+      "height": 1619,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/book-sheet-starry-landscape.webp",
+      "optimizedBytes": 1833796,
+      "optimizedSha256": "ebcec2b6eb3a256d0c42476d5a929bf07cd23cfeba8ec45d744a7b88cb24de9c",
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     }

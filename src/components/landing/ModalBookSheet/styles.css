@@ -1,307 +1,176 @@
 @layer components {
-  .salon-s268 {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    z-index: 3;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid oklch(0.25 0.035 305 / 0.08);
-    background: oklch(0.975 0.012 84 / 0.35);
+  .salon-s295 {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: grid;
+    place-items: center;
+    padding: clamp(12px, 3vh, 36px) clamp(12px, 3vw, 40px);
+    background: oklch(0.25 0.035 305 / 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .salon-s294 {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.43fr) minmax(0, 0.57fr);
+    width: min(1120px, 100%);
+    max-height: 100%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-radius: 24px;
+    background: oklch(0.975 0.012 84);
     color: oklch(0.25 0.035 305);
-    font-size: 20px;
+    box-shadow: 0 40px 90px -25px oklch(0.25 0.035 305 / 0.5);
+    animation: pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .book-sheet-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.25 0.035 305 / 0.12);
+    background: oklch(0.975 0.012 84 / 0.85);
+    color: inherit;
+    font: 300 29px "Jost", sans-serif;
     cursor: pointer;
   }
 
-  .salon-hover293:hover {
-    background: oklch(0.25 0.035 305 / 0.08);
+  .book-sheet-close:hover { background: oklch(0.92 0.025 80); }
+
+  .book-sheet-art {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    min-height: clamp(540px, 82vh, 740px);
+    padding: clamp(72px, calc(18vh - 35px), 130px) 32px clamp(34px, calc(12vh - 30px), 78px);
+    background: var(--book-sheet-landscape) center / cover no-repeat, oklch(0.55 0.065 265);
+    color: oklch(0.94 0.04 85);
   }
 
-  .salon-s269 {
-    position: absolute;
-    inset: 0;
-    transform: translateZ(-12px);
-    border-radius: 2px 4px 4px 2px;
-    box-shadow: 24px 30px 40px -16px oklch(0.25 0.035 305 / 0.5);
+  .book-sheet-icon-button {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    padding: 11px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: oklch(0.25 0.03 270 / 0.12);
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
   }
 
-  .salon-s270 {
-    position: absolute;
-    top: 1.2%;
-    bottom: 1.2%;
-    right: -11px;
-    width: 22px;
-    transform: rotateY(90deg);
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.12),
-      transparent 30%,
-      transparent 70%,
-      rgba(0, 0, 0, 0.18)
-      ),
-      repeating-linear-gradient(
-      90deg,
-      oklch(0.97 0.012 85) 0 1px,
-      oklch(0.88 0.02 80) 1px 2px
-      );
-  }
+  .book-sheet-icon-button svg { width: 100%; height: 100%; }
+  .book-sheet-icon-button[aria-pressed="true"] { color: oklch(0.88 0.09 85); }
+  .book-sheet-icon-button:hover { background: oklch(0.25 0.03 270 / 0.35); transform: translateY(-2px); }
+  .book-sheet-favourite { position: absolute; top: 38px; right: 28px; }
+  .book-sheet-favourite[aria-pressed="true"] svg { fill: currentColor; }
+  .book-sheet-view-controls { display: flex; gap: 20px; }
 
-  .salon-s271 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -12px;
-    width: 24px;
-    transform: rotateY(-90deg);
-  }
-
-  .salon-s272 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 22px;
-    line-height: 1.05;
-    font-weight: 500;
-    text-wrap: balance;
-  }
-
-  .salon-s273 {
-    position: absolute;
-    inset: 0;
-    transform: translateZ(12px);
-    border-radius: 2px 4px 4px 2px;
-    overflow: hidden;
-    box-shadow: inset 3px 0 0 rgba(0, 0, 0, 0.18);
-  }
-
+  .book-sheet-book-scene { width: min(76%, 270px); perspective: 1100px; }
+  .salon-s275 { position: relative; width: 100%; aspect-ratio: 5 / 7; perspective: 1100px; }
   .salon-s274 {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transform: rotateY(-14deg) rotateZ(-4deg);
+    transform: rotateY(-16deg) rotateX(2deg);
+    transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
+  .book-sheet-book-scene[data-angled="true"] .salon-s274 { transform: rotateY(-38deg) rotateX(4deg); }
+  .salon-s269 { position: absolute; inset: 0; transform: translateZ(-12px); border-radius: 2px 4px 4px 2px; box-shadow: 18px 24px 30px -12px oklch(0.2 0.035 270 / 0.65); }
+  .salon-s270 {
+    position: absolute;
+    top: 1.2%; bottom: 1.2%; right: -11px;
+    width: 22px;
+    transform: rotateY(90deg);
+    background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 30%, transparent 70%, rgba(0,0,0,.18)), repeating-linear-gradient(90deg, oklch(0.97 0.012 85) 0 1px, oklch(0.88 0.02 80) 1px 2px);
+  }
+  .salon-s271 { position: absolute; top: 0; bottom: 0; left: -12px; width: 24px; transform: rotateY(-90deg); background: linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08) 50%,rgba(0,0,0,.35)),var(--cover-bg); }
+  .salon-s273 { position: absolute; inset: 0; transform: translateZ(12px); border-radius: 2px 4px 4px 2px; overflow: hidden; box-shadow: inset 3px 0 0 rgba(0,0,0,.18); }
+  .salon-s272 { font-family: "Cormorant Garamond", serif; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.05; font-weight: 500; text-wrap: balance; }
 
-  .salon-s275 {
+  .book-sheet-art .book-cover-motif { scale: 1.4; }
+  .book-sheet-art .salon-s39 { font-size: 12px; }
+  .book-sheet-art .salon-s42 { font-size: 11px; }
+
+  .book-sheet-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(8px, calc(5vh - 22px), 26px);
+    min-width: 0;
+    padding: clamp(20px, calc(5vh - 12px), 36px) clamp(24px, 3.2vw, 46px);
+  }
+  .book-sheet-heading { padding-right: 8px; }
+  .book-sheet-genre { padding-right: 32px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.52 0.09 300); }
+  .book-sheet-title { margin: 8px 0 0; padding-right: 18px; font: 500 clamp(32px, 3.5vw, 46px) / 1.05 "Cormorant Garamond", serif; text-wrap: balance; }
+  .book-sheet-author { margin-top: 8px; font-size: 17px; color: oklch(0.42 0.03 305); }
+  .book-sheet-synopsis { margin: clamp(12px, calc(4vh - 12px), 24px) 0 0; font-size: 16px; line-height: 1.6; font-weight: 300; color: oklch(0.35 0.03 305); text-wrap: pretty; }
+  .book-sheet-metadata { margin: clamp(10px, calc(3vh - 9px), 18px) 0 0; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .book-sheet-shelf h3, .book-sheet-page-heading { margin: 0; font-weight: 400; }
+  .book-sheet-status-controls { display: flex; align-items: center; gap: 24px; margin-top: 10px; }
+  .book-sheet-status { font: 500 16px "Jost", sans-serif; }
+  .book-sheet-shelf-icon { margin-left: auto; width: 20px; color: oklch(0.45 0.04 305); }
+  .book-sheet-shelf-icon svg { display: block; width: 100%; }
+
+  .book-sheet-pages { perspective: 1100px; }
+  .book-sheet-page {
     position: relative;
-    z-index: 1;
-    width: 190px;
-    aspect-ratio: 5/7;
-    perspective: 1100px;
-  }
-
-  .salon-s276 {
-    flex: 1 1 260px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 28px 24px;
-    background: linear-gradient(oklch(0.965 0.018 80 / 0.2), oklch(0.965 0.018 80 / 0.2)),
-      var(--book-sheet-texture) center / cover no-repeat,
-      oklch(0.94 0.024 80);
-    border-right: 1px solid oklch(0.4 0.04 60 / 0.08);
-  }
-
-  .salon-s277 {
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: oklch(0.52 0.09 300);
-  }
-
-  .salon-s278 {
-    margin-top: 6px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(30px, 3.4vw, 40px);
-    font-weight: 500;
-    line-height: 1.02;
-    text-wrap: balance;
-  }
-
-  .salon-s279 {
-    margin-top: 6px;
-    font-size: 15px;
-    color: oklch(0.42 0.03 305);
-  }
-
-  .salon-s280 {
-    margin: 14px 0 0;
-    font-size: 15px;
-    line-height: 1.6;
-    font-weight: 300;
-    color: oklch(0.35 0.03 305);
-    text-wrap: pretty;
-  }
-
-  .salon-s281 {
-    margin-top: 12px;
-    display: inline-flex;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-
-  }
-
-  .salon-s284 {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: oklch(0.42 0.03 305);
-  }
-
-  .salon-s285 {
-    margin-top: 4px;
-    font-family: "Kalam", cursive;
-    font-weight: 300;
-    color: oklch(0.3 0.06 260 / 0.55);
-    font-size: 16px;
-  }
-
-  .salon-s287 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
-    gap: 10px 18px;
-  }
-
-  .salon-s288 {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px 18px;
-    border-radius: 12px;
-    background: repeating-linear-gradient(
-      180deg,
-      transparent 0 27px,
-      oklch(0.6 0.04 250 / 0.12) 27px 28px
-      ),
-      oklch(0.99 0.006 85);
-    box-shadow: inset 0 0 0 1px oklch(0.25 0.035 305 / 0.07);
-  }
-
-  .salon-s292 {
-    margin: 0;
-    font-size: 12px;
-    color: oklch(0.5 0.03 305);
-  }
-
-  .salon-s293 {
-    flex: 1.4 1 340px;
-    min-width: 0;
-    padding: clamp(24px, 2.8vw, 32px);
     display: flex;
     flex-direction: column;
     gap: 14px;
-  }
-
-  .salon-s294 {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    max-height: 100%;
-    overscroll-behavior: contain;
-    overflow: auto;
-    background: oklch(0.975 0.012 84);
-    color: oklch(0.25 0.035 305);
-    border-radius: 20px;
-    box-shadow: 0 50px 100px -30px oklch(0.25 0.035 305 / 0.6);
-    animation: pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    display: grid;
-    grid-template-columns: minmax(250px, 0.85fr) minmax(0, 1.4fr);
-  }
-
-  .salon-s295 {
-    position: fixed;
-    inset: 0;
-    z-index: 110;
-    background: oklch(0.25 0.035 305 / 0.45);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(10px, 3vw, 40px);
-  }
-
-  .salon-s271 {
-    background: linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08) 50%,rgba(0,0,0,.35)),var(--cover-bg);
-  }
-
-}
-
-@layer components {
-  .book-sheet-book-scene {
-    position: relative;
-    width: min(100%, 260px);
-    min-height: 350px;
-    display: grid;
-    place-items: center;
-    padding-bottom: 40px;
-  }
-  .book-sheet-paper {
-    position: absolute;
-    inset: auto 0 8px 12px;
-    height: 170px;
-    background: oklch(0.985 0.012 85);
-    box-shadow: 0 3px 5px oklch(0.3 0.025 60 / 0.1);
-    transform: rotate(6deg);
-  }
-  .book-sheet-glasses {
-    position: absolute;
-    z-index: 3;
-    width: 112px;
-    right: -6px;
-    bottom: 13px;
-    color: oklch(0.45 0.04 65);
-    transform: rotate(-14deg);
-    filter: drop-shadow(1px 3px 1px oklch(0.35 0.025 65 / 0.14));
-  }
-  .book-sheet-ribbon {
-    position: absolute;
-    z-index: 2;
-    top: 98%;
-    left: 28px;
-    width: 14px;
-    height: 34px;
-    background: oklch(0.58 0.07 300);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-    transform: rotate(-4deg);
-  }
-  .book-sheet-tabs { display: flex; gap: 28px; border-bottom: 1px solid oklch(0.3 0.03 305 / 0.1); }
-  .book-sheet-tab { font: 500 14px "Jost", sans-serif; }
-  .book-sheet-pages { perspective: 1100px; }
-  .book-sheet-page {
+    padding: clamp(14px, calc(3vh - 5px), 22px) 22px clamp(12px, 2vh, 18px) 32px;
+    border: 1px solid oklch(0.85 0.035 80 / 0.5);
+    border-radius: 17px 20px 19px 16px;
+    background: linear-gradient(90deg, transparent 20px, oklch(0.7 0.09 50 / 0.3) 20px 21px, transparent 21px 23px, oklch(0.7 0.09 50 / 0.18) 23px 24px, transparent 24px), repeating-linear-gradient(180deg, transparent 0 31px, oklch(0.6 0.04 250 / 0.17) 31px 32px), linear-gradient(oklch(0.98 0.028 85 / 0.82), oklch(0.96 0.028 85 / 0.82)), var(--book-sheet-paper) center / cover;
+    box-shadow: 0 7px 9px -5px oklch(0.45 0.065 70 / 0.32), 0 2px 3px oklch(0.6 0.06 70 / 0.12), inset 0 1px 1px oklch(0.99 0.02 85);
     transform-origin: left center;
     animation: book-sheet-page-turn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
   .book-sheet-page[data-page="forum"] { --page-turn-direction: -1; }
-  .book-sheet-page-heading { display: flex; justify-content: space-between; align-items: center; }
-  .book-sheet-page-number { font: italic 13px "Cormorant Garamond", serif; color: oklch(0.58 0.025 65); }
-  .book-sheet-typed {
-    display: inline-block;
-    max-width: 100%;
-    animation: book-sheet-type 1.25s steps(var(--typing-steps)) var(--typing-delay) both;
+  .book-sheet-page-heading { padding-right: 24px; }
+  .book-sheet-ribbon {
+    position: absolute;
+    top: -4px; right: 24px;
+    width: 22px; height: 39px;
+    background: linear-gradient(90deg, oklch(0.7 0.11 80), oklch(0.86 0.12 85) 16%, oklch(0.81 0.12 85) 80%, oklch(0.7 0.11 80));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+    filter: drop-shadow(1px 2px 2px oklch(0.4 0.07 70 / 0.2));
   }
+  .book-sheet-journal-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 20px; }
+  .book-sheet-field { min-width: 0; cursor: text; }
+  .book-sheet-field-heading { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 22px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.38 0.035 305); }
+  .book-sheet-field-icons { display: inline-flex; flex-shrink: 0; gap: 4px; color: oklch(0.5 0.04 305); }
+  .book-sheet-field-icons svg { width: 16px; height: 16px; }
+  .book-sheet-field-icons svg:last-child { width: 14px; opacity: 0.65; }
+  .book-sheet-field input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; font: 300 19px "Kalam", cursive; color: oklch(0.39 0.065 260); }
+  .book-sheet-field input::placeholder { color: oklch(0.52 0.045 260); opacity: 1; }
+  .book-sheet-field:focus-within .book-sheet-field-heading { color: oklch(0.38 0.035 305); }
   .book-sheet-stars { display: flex; margin-top: 2px; }
-  .book-sheet-stars button {
-    display: grid;
-    place-items: center;
-    width: 28px;
-    height: 36px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: oklch(0.7 0.025 65);
-    cursor: pointer;
-  }
-  .book-sheet-stars svg { width: 23px; height: 23px; fill: transparent; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; transition: fill 0.15s, color 0.15s; }
+  .book-sheet-stars button { display: grid; place-items: center; width: 32px; height: 44px; padding: 0; border: 0; background: transparent; color: oklch(0.7 0.025 65); cursor: pointer; }
+  .book-sheet-stars svg { width: 25px; height: 25px; fill: transparent; transition: fill 0.15s, color 0.15s; }
   .book-sheet-stars button[data-filled="true"] svg { fill: oklch(0.84 0.13 80); color: oklch(0.6 0.1 75); }
-  .book-sheet-score { font-size: 11px; color: oklch(0.55 0.025 305); }
-  .book-sheet-page-footnote { margin: 0; padding-top: 8px; font-size: 10px; line-height: 1.5; color: oklch(0.5 0.025 305); }
+  .book-sheet-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .book-sheet-discussion-title { margin: 0; font: 500 21px/1.15 "Cormorant Garamond", serif; text-wrap: balance; }
   .book-sheet-reply { padding-left: 12px; border-left: 2px solid oklch(0.73 0.06 300 / 0.4); }
   .book-sheet-reader { font-size: 11px; font-weight: 500; color: oklch(0.48 0.07 300); }
   .book-sheet-reply p { margin: 3px 0 0; font: italic 17px/1.35 "Cormorant Garamond", serif; }
+  .book-sheet-page-footnote { margin: 0; font-size: 10px; line-height: 1.5; color: oklch(0.5 0.025 305); }
+  .book-sheet-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+  .book-sheet-tab { font: 400 16px "Jost", sans-serif; }
+  .book-sheet-footnote { margin: 0; font-size: 12px; color: oklch(0.5 0.03 305); }
+
   @media (hover: hover) and (pointer: fine) {
     .book-sheet-stars:has(button:hover) svg { fill: transparent; color: oklch(0.7 0.025 65); }
     .book-sheet-stars button:is(:hover, :has(~ button:hover)) svg { fill: oklch(0.84 0.13 80); color: oklch(0.6 0.1 75); }
@@ -310,22 +179,80 @@
     from { opacity: 0.4; transform: rotateY(calc(var(--page-turn-direction, 1) * -12deg)) translateX(8px); }
     to { opacity: 1; transform: rotateY(0) translateX(0); }
   }
-  @keyframes book-sheet-type {
-    from { clip-path: inset(0 100% 0 0); }
-    to { clip-path: inset(0); }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .book-sheet-page, .book-sheet-typed { animation: none; }
-    .book-sheet-stars svg { transition: none; }
+    .salon-s294, .book-sheet-page { animation: none; }
+    .salon-s274, .book-sheet-icon-button, .book-sheet-stars svg { transition: none; }
   }
 }
-@layer responsive {
-  @media (max-width: 650px) {
-    .salon-s294 { grid-template-columns: minmax(0, 1fr); }
-    .book-sheet-still-life { padding: 24px; }
-    .book-sheet-book-scene { min-height: 280px; max-width: 230px; }
-    .book-sheet-still-life .salon-s275 { width: 135px; }
-    .book-sheet-still-life .salon-s272 { font-size: 18px; }
 
+@layer refinements {
+  /* The marker already identifies focused text actions, within the label. */
+  .salon-s294 .salon-marker-control:focus-visible {
+    outline: none;
+  }
+
+  .book-sheet-field input:focus-visible {
+    outline: none;
+    box-shadow: 0 2px 0 oklch(0.72 0.11 78);
+  }
+
+  .book-sheet-field:focus-within .book-sheet-field-heading > span:first-child {
+    background: linear-gradient(transparent 55%, oklch(0.86 0.1 78 / 0.65) 55% 90%, transparent 90%);
+  }
+
+  .book-sheet-close:focus-visible,
+  .book-sheet-icon-button:focus-visible {
+    outline: 2px solid oklch(0.69 0.11 78);
+    outline-offset: 3px;
+  }
+
+  .book-sheet-stars button:focus-visible {
+    outline: none;
+  }
+
+  .book-sheet-stars button:focus-visible svg {
+    stroke: oklch(0.5 0.09 75);
+    stroke-width: 2;
+    fill: oklch(0.86 0.1 78 / 0.5);
+  }
+
+  .book-sheet-page:focus-visible {
+    outline: 2px solid oklch(0.69 0.11 78);
+    outline-offset: 3px;
+  }
+}
+
+@layer responsive {
+  @media (max-width: 960px) and (min-width: 651px) {
+    .salon-s294 { grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr); }
+    .book-sheet-content { padding-inline: 24px; }
+    .book-sheet-art { padding-inline: 20px; }
+    .book-sheet-book-scene { width: 86%; }
+    .book-sheet-journal-grid { gap: 12px; }
+    .book-sheet-field-heading { letter-spacing: 0.08em; }
+    .book-sheet-field-icons { gap: 2px; }
+    .book-sheet-field-icons svg { width: 13px; }
+    .book-sheet-field input { font-size: 17px; }
+  }
+  @media (max-width: 650px) {
+    .salon-s295 { padding: 10px; }
+    .salon-s294 { grid-template-columns: minmax(0, 1fr); }
+    .book-sheet-art { min-height: 350px; padding: 64px 24px 22px; gap: 20px; background-position: center 40%; }
+    .book-sheet-book-scene { width: 135px; }
+    .salon-s272 { font-size: 20px; }
+    .book-sheet-art .book-cover-motif { scale: 0.9; }
+    .book-sheet-art .salon-s39, .book-sheet-art .salon-s42 { font-size: 9px; }
+    .book-sheet-favourite { top: 18px; left: 18px; right: auto; }
+    .book-sheet-content { gap: 24px; padding: 26px 20px; }
+    .book-sheet-title { font-size: 36px; }
+    .book-sheet-genre, .book-sheet-title { padding-right: 0; }
+    .book-sheet-author { font-size: 16px; }
+    .book-sheet-synopsis { margin-top: 18px; }
+    .book-sheet-page { padding: 22px 14px 18px 28px; }
+    .book-sheet-journal-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .book-sheet-field-heading { font-size: 11px; }
+    .book-sheet-field input { font-size: 21px; }
+    .book-sheet-stars button { width: 44px; }
+    .book-sheet-ribbon { right: 18px; }
   }
 }

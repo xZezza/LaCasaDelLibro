@@ -8,9 +8,11 @@ Landing Astro statica con pnpm e componenti React per le interazioni. La grafica
 
 Libreria dimostrativa con ricerca, tre ripiani, spostamenti, orientamento dei volumi, colori, pareti, lucine e decorazioni. Carosello continuo con apertura della scheda libro. Diario con valutazioni e scelta privata/condivisa collegata alla preview della community. “Save changes” conserva la libreria in questo browser; il pulsante appare solo per le modifiche non salvate. Gli altri dati restano in memoria e si ripristinano ricaricando la pagina: nessun account, backend o pubblicazione reale dei testi.
 
+La scheda libro del carosello riprende il mockup approvato: sfondo stellato illustrato, copertina interattiva e pagina di diario materica con segnalibro oro. Conserva i tre font e le selezioni con pennellata gialla; note, stelle, preferito e stato di lettura sono dimostrativi e restano in memoria fino al ricaricamento. Forum e diario si alternano nella stessa scheda.
+
 Tutti i 22 personaggi e animaletti approvati sono conservati: compaiono nella scena iniziale e, per saga, accanto alle citazioni. Nella libreria piccola possono comparire solo gli animaletti, negli spazi liberi dei ripiani. Le illustrazioni sono caricate una alla volta; il giro senza ripetizioni viene ricordato nel browser. Movimento ridotto rispettato, finestre utilizzabili da tastiera e layout adattato al telefono.
 
-Le modifiche rimangono locali: non sono state inviate a GitHub né pubblicate su Vercel. I collegamenti social verranno aggiunti quando saranno disponibili gli URL reali.
+Il lavoro di sviluppo avviene sul branch `dev`. Commit e push richiedono una richiesta esplicita; `main` non viene aggiornato automaticamente. I collegamenti social verranno aggiunti quando saranno disponibili gli URL reali.
 
 Repository: https://github.com/xZezza/LaCasaDelLibro
 
