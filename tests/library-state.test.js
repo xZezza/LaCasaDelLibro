@@ -84,7 +84,7 @@ test('every shelf mode has finite geometry and decoration assets resolve to imag
     assert.ok(Number.isFinite(book.angle));
     assert.ok([book.h, book.l, book.c, book.T, book.H, book.D].every(Number.isFinite));
   }
-  for (const decoration of page.renderVals().tray) assert.match(decoration.bgImg, /^url\("\/images\/decorations\//);
+  for (const decoration of page.renderVals().tray) assert.match(decoration.bgImg, /^url\("\/images\/(?:optimized\/)?decorations\//);
   assert.equal(page.renderVals().companions.length, 8);
 });
 
@@ -97,4 +97,32 @@ test('reload accepts lights Off and rejects duplicate IDs or unknown settings', 
   assert.equal(isValidLibrarySnapshot({ ...saved, lights: 'unknown' }, config), false);
   assert.equal(isValidLibrarySnapshot({ ...saved, caseC: 999 }, config), false);
   assert.equal(isValidLibrarySnapshot({ ...saved, lib: [...saved.lib, saved.lib[0]] }, config), false);
+});
+
+
+test('illustrated decorations preserve their identity through moving and saving', () => {
+  const page = controller();
+  for (const key of ['lavender', 'teacup', 'ivy', 'blossoms']) {
+    page.addDeco(key, 1);
+    const added = page.state.lib.find(item => item.id === page.state.sel);
+    assert.equal(added.deco, key);
+    page.move(added.id, 2, null);
+    assert.equal(page.state.lib.find(item => item.id === added.id).shelf, 2);
+  }
+  const snapshot = JSON.parse(serializeLibrary(page.state));
+  assert.equal(isValidLibrarySnapshot(snapshot, { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS }), true);
+  assert.equal(new Set(snapshot.lib.map(item => item.id)).size, snapshot.lib.length);
+});
+
+test('illustrated book presentation keeps stored dimensions and all three interaction geometries consistent', () => {
+  const page = controller();
+  const stored = page.state.lib.find(item => !item.deco);
+  const before = serializeLibrary(page.state);
+  for (const mode of ['spine', 'cover', 'lying']) {
+    const face = page.bookVals({ ...stored, mode });
+    assert.equal(face.fw, mode === 'spine' ? face.T : mode === 'cover' ? face.D : face.H);
+    assert.equal(face.fh, mode === 'lying' ? face.T : face.H);
+    assert.ok(face.T > stored.T && face.H > stored.H && face.D > stored.D);
+  }
+  assert.equal(serializeLibrary(page.state), before);
 });

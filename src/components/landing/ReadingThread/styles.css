@@ -52,7 +52,7 @@
   }
 
   .reading-thread text {
-    fill: oklch(.55 .09 300);
+    fill: light-dark(oklch(.55 .09 300), oklch(0.73 0.09 300));
     font: 300 15px "Kalam",cursive;
   }
 

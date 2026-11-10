@@ -12,7 +12,7 @@ export default function Hero() {
               <div
                 role={"img"}
                 aria-label={
-                  "A sunlit reading room with a bookcase decorated with flowers and fairy lights"
+                  "A cozy reading room with a bookcase decorated with flowers and fairy lights"
                 }
                 className={"salon-s6"}
               ></div>

@@ -6,7 +6,7 @@
     font-weight: 400;
     font-size: clamp(22px, 2.6vw, 36px);
     line-height: 1.2;
-    color: oklch(0.3 0.04 305);
+    color: light-dark(oklch(0.3 0.04 305), oklch(0.87 0.02 85));
     column-gap: 0.26em;
   }
 
@@ -14,7 +14,7 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.45 0.03 305);
+    color: light-dark(oklch(0.45 0.03 305), oklch(0.72 0.02 85));
     transition: opacity 0.8s ease 0.6s;
   }
 

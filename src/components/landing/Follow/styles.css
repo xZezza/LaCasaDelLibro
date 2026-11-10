@@ -5,7 +5,7 @@
     left: clamp(30px, 8vw, 90px);
     width: 28px;
     height: 140px;
-    background: oklch(0.55 0.09 300);
+    background: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
   }
 
@@ -24,7 +24,7 @@
     font-style: italic;
     font-size: clamp(21px, 2vw, 25px);
     line-height: 1.3;
-    color: oklch(0.32 0.04 305);
+    color: light-dark(oklch(0.32 0.04 305), oklch(0.85 0.02 85));
     text-wrap: balance;
     column-gap: 0;
   }
@@ -33,7 +33,7 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.45 0.03 305);
+    color: light-dark(oklch(0.45 0.03 305), oklch(0.72 0.02 85));
     transition: opacity 0.8s ease 0.8s;
   }
 
@@ -51,7 +51,7 @@
     margin: 18px 0 0;
     font-family: "Cormorant Garamond", serif;
     font-weight: 400;
-    font-size: clamp(40px, 5.4vw, 72px);
+    font-size: clamp(32px, 3.7vw, 48px);
     line-height: 1;
     max-width: 16ch;
     text-wrap: balance;
@@ -60,10 +60,10 @@
   .salon-s196 {
     margin: 22px 0 0;
     max-width: 520px;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.7;
     font-weight: 300;
-    color: oklch(0.38 0.03 305);
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
     text-wrap: pretty;
   }
 
@@ -76,7 +76,7 @@
   }
 
   .salon-s198 {
-    margin-top: 36px;
+    margin-top: 22px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -89,17 +89,17 @@
     font-family: "Kalam", cursive;
     font-weight: 300;
     font-size: 20px;
-    color: oklch(0.55 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s200 {
     position: relative;
     border-radius: 6px;
-    padding: clamp(56px, 7vw, 96px) clamp(24px, 5vw, 72px);
+    padding: clamp(28px, 4vw, 48px) clamp(24px, 5vw, 72px);
     text-align: center;
-    background: oklch(0.925 0.025 80);
-    box-shadow: inset 0 0 0 1px oklch(0.25 0.035 305 / 0.08),
-      0 30px 60px -40px oklch(0.25 0.035 305 / 0.4);
+    background: light-dark(oklch(0.925 0.025 80), oklch(0.175 0.028 15));
+    box-shadow: inset 0 0 0 1px light-dark(oklch(0.25 0.035 305 / 0.08), oklch(0.92 0.02 85 / 0.08)),
+      0 30px 60px -40px light-dark(oklch(0.25 0.035 305 / 0.4), oklch(0.92 0.02 85 / 0.4));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,7 +116,7 @@
   .quote-guest-throne {
     --scene-guest-size: 164px;
     width: 100%;
-    max-width: 760px;
+    max-width: 1000px;
     min-height: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
     padding-inline: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + 2 * var(--scene-guest-clearance));
     justify-content: center;

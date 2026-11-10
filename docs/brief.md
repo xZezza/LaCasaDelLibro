@@ -4,7 +4,7 @@
 Il progetto Claude Design consegnato in `design_handoff_the_salon` sostituisce tutte le precedenti linee grafiche e la struttura della landing. Il brief precedente è stato rimosso su richiesta di Gaia.
 
 ## Obiettivo
-Presentare una futura app per conservare libri, ricordi di lettura e pensieri personali, con una community in cui condividere solo ciò che si sceglie. Pubblico dai 15 anni in su, senza limite superiore, con particolare attenzione a fantasy, romantasy e distopia. Landing in inglese, progetto ancora in sviluppo. Conversione principale verso i social; URL reali ancora da fornire.
+Presentare una futura app per conservare libri, ricordi di lettura e pensieri personali, con una community in cui condividere solo ciò che si sceglie. Pubblico dai 15 anni in su, senza limite superiore, con particolare attenzione a fantasy, romantasy e distopia. Landing in inglese, progetto ancora in sviluppo. Conversione principale verso i social; Instagram confermato: https://www.instagram.com/therealbooksalon/. URL TikTok e Threads ancora da fornire.
 
 ## Nuova identità e struttura
 Carta avorio, inchiostro prugna, lilla e giallo caldo. Cormorant Garamond, Jost e Kalam. Logo e due illustrazioni forniti con l’handoff. Nuova hero, citazioni animate, carosello di libri, libreria personalizzabile, scheda diario, anteprima libro/saga, community e invito a seguire il progetto. Mantenere composizione e interazioni del riferimento, adattando accessibilità e telefono.
@@ -22,13 +22,13 @@ Carosello: ombre dei libri più leggere e spazio di sfumatura sufficiente nel co
 La prima citazione è visibile già nell’HTML iniziale, senza dipendere dallo scroll o dal caricamento delle animazioni. All’ingresso nella schermata mantiene un’animazione morbida delle parole, che parte da testo già visibile.
 
 ## Interazioni dimostrative
-Libreria con ricerca nel catalogo dimostrativo, tre ripiani, spostamento e orientamento dei libri, colori, pareti, lucine, decorazioni e ordinamento. Carosello continuo bidirezionale con sequenze di riserva ai lati, frecce precedente/successivo, trascinamento e scheda libro. Diario con colori, valutazioni e scelta privata/condivisa collegata alla preview della community. “Save changes” compare solo in presenza di modifiche rispetto all’ultimo salvataggio (o allo stato iniziale) e scompare dopo aver salvato, con conferma per tre secondi. Il pulsante conserva disposizione dei libri, decorazioni, colori, parete, lucine e angolo della libreria nel browser, anche dopo un ricaricamento. Gli altri dati restano dimostrativi in memoria; nessun account, pubblicazione reale dei pensieri o backend. La finestra della libreria si ridimensiona proporzionalmente per entrare nella schermata desktop. Le pagine complete e i profili social non sono ancora disponibili. I bottoni social lo dichiarano in una finestra dedicata.
+Libreria con ricerca nel catalogo dimostrativo, tre ripiani, spostamento e orientamento dei libri, colori, pareti, lucine, decorazioni e ordinamento. Carosello continuo bidirezionale con sequenze di riserva ai lati, frecce precedente/successivo, trascinamento e scheda libro. Diario con colori, valutazioni e scelta privata/condivisa collegata alla preview della community. “Save changes” compare solo in presenza di modifiche rispetto all’ultimo salvataggio (o allo stato iniziale) e scompare dopo aver salvato, con conferma per tre secondi. Il pulsante conserva disposizione dei libri, decorazioni, colori, parete, lucine e angolo della libreria nel browser, anche dopo un ricaricamento. Gli altri dati restano dimostrativi in memoria; nessun account, pubblicazione reale dei pensieri o backend. La finestra della libreria si ridimensiona proporzionalmente per entrare nella schermata desktop. Le pagine complete non sono ancora disponibili. Instagram rimanda al profilo ufficiale https://www.instagram.com/therealbooksalon/; TikTok e Threads restano dimostrativi e lo dichiarano in una finestra dedicata.
 
 ## Personaggi e animali: contenuti protetti dalla migrazione
 Conservare tutti gli asset originali già approvati in `public/images/characters/`, il catalogo `src/data/library-visitors.json` e la documentazione della loro creazione. Le 22 comparse sono conservate e compaiono nella landing: ospite casuale nella scena iniziale, Ron Weasley, Edvige o Grattastinchi accanto alla citazione di Harry Potter, personaggi ACOTAR nella citazione delle stelle e solo personaggi di Trono di Vetro nella citazione finale (per ora Aelin/Celaena e Rowan, nessun animale). Nella libreria piccola compaiono solo gli animaletti, collocati in uno spazio libero sul ripiano: nessuna comparsa se manca lo spazio e pausa quando si spostano libri o decorazioni. Gli animaletti restano per circa 12 secondi, poi dopo una pausa di 3 secondi ne compare uno nuovo. Sono vicini ai libri, con il nome sopra la figura per evitare il bordo del ripiano. Dimensioni dei personaggi aumentate di circa il 12%, mantenendo proporzioni e appoggio a terra. Gli animali hanno una scala distinta e più piccola, soprattutto gatti e civetta; solo accanto alla citazione di Harry Potter sono più grandi per renderli protagonisti. La citazione finale è centrata sullo stesso asse del titolo e dei pulsanti, indipendentemente dal personaggio sulla destra. Nome centrato rispetto alla figura e distanziato dai piedi, senza riquadro, bordo o sfondo: nero nelle sezioni chiare, bianco nella citazione stellata. Nelle sezioni della landing una nuova comparsa a ogni rientro nella sezione, con rotazione senza ripetizioni in ciascun gruppo e senza coprire testi o pulsanti. Feyre mantiene abito azzurro e stivali avorio. Le preferenze di movimento ridotto disattivano le comparse. Nessuna nuova illustrazione sostituisce quelle approvate.
 
 ## Prima della pubblicazione
-Fornire i veri indirizzi social, definire la privacy del servizio effettivo e controllare i contenuti editoriali finali. Valutare con Gaia qualità e coerenza delle immagini del nuovo handoff. Per ora mantenere `noindex, nofollow`. Modifiche locali: nessun commit, push o deploy senza richiesta esplicita.
+Fornire i veri indirizzi TikTok e Threads, definire la privacy del servizio effettivo e controllare i contenuti editoriali finali. Valutare con Gaia qualità e coerenza delle immagini del nuovo handoff. Per ora mantenere `noindex, nofollow`. Modifiche locali: nessun commit, push o deploy senza richiesta esplicita.
 
 ## Ultimi dettagli confermati
 Favicon ufficiali fornite da Gaia il 7 novembre, collegate in tutte le dimensioni disponibili, icona Apple e manifest. I pulsanti Instagram, TikTok e Threads hanno fondo trasparente a riposo e diventano gialli solo al passaggio del mouse. Decorate comprende “Keep a companion”: scelta tra gli otto animali approvati, aggiunta permanente alla libreria, trascinamento/rimozione come le altre decorazioni e inclusione nel salvataggio locale. Le visite temporanee continuano ad alternarsi negli spazi liberi.
@@ -111,7 +111,7 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 
 10 novembre — su richiesta, rotazione dei personaggi riportata a 1,15 secondi, mantenendo accelerazione e arresto morbidi, ritaglio della prima posa, contenimento nella colonna, riavvio al tocco e rispetto del movimento ridotto. Animazione dei libri invariata.
 
-10 novembre — sfondi dei ritratti diversificati per personaggio con cinque tinte pastello della palette esistente: lilla, rosa, oro, salvia e azzurro. Tinta stabile per ogni personaggio, sfumatura morbida e bordo dell’arco coordinato. Rotazione e dimensioni invariate.
+10 novembre — Instagram ufficiale confermato da Gaia: https://www.instagram.com/therealbooksalon/. Il collegamento Instagram della sezione finale apre il profilo reale; TikTok e Threads conservano la finestra dimostrativa in attesa degli indirizzi confermati. Nessuna modifica grafica; nessun commit, push o deploy per questo intervento.
 
 
 10 novembre — Book Forum: la sezione community mostra solo il forum della pagina libro, con un unico foglio a righe e conversazione illustrativa approvata (prova 2). Eliminati dalla sezione i riquadri saga e gruppo di lettura. Conservati Jost, Cormorant Garamond e Kalam. Cartolina: ingresso in avanti con ingrandimento e ritorno in 3,8 secondi, una volta quando entra in vista; movimento attenuato su telefono e disattivato con movimento ridotto. Modifiche locali, senza push o deploy.
@@ -125,3 +125,46 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 10 novembre — comportamento definitivo cartolina: primo avvio quando il 55% della cartolina entra nella vista, una sola volta per apertura della pagina; successive ripetizioni al passaggio del mouse. Nessun avvio fuori schermo al caricamento. Durata 1,6 secondi e movimento ridotto conservati.
 
 10 novembre — rimosso il testo “Continue in the book forum →” dal foglio Book Forum su richiesta di Gaia.
+
+
+10 novembre — approvata direzione libreria illustrata materica: noce, fondo avorio neutro, dorsi in tela con titoli orizzontali e fregi botanici dorati. Applicata a mini libreria e libreria completa tramite soli stili, senza sostituire la scena con un'immagine. Conservati handler, stato, dimensioni dei libri, trasformazioni 3D, trascinamento, rotazione, impilamento, personalizzazione e salvataggio. Nessun push o deploy.
+
+10 novembre — prova modalità scura richiesta da Gaia: fondo prugna molto scuro, testi avorio e accenti lavanda, logo chiaro. Invito finale compattato con titolo massimo 48 px e padding ridotto. Modifiche locali.
+
+10 novembre — prova scura schiarita su richiesta: prugna polveroso al posto dello sfondo quasi nero. Ampliata la citazione finale su desktop per evitare tre righe, conservando testo e dimensioni.
+
+10 novembre — fedeltà al mockup della mini libreria: integrata l’illustrazione approvata su livelli indipendenti, con sette dorsi, mensola, supporti, edera e vaso di lavanda. Originale trasparente generato separatamente e conservato in public/images/decorations/library-editorial. Read usa i sette titoli illustrati approvati; To read conserva titoli dinamici, tela e fregi. Cinque materiali principali e comando More per tutti i colori esistenti; filtri della sola mensola mantengono la personalizzazione. Verifiche visive in corso: obiettivo di fedeltà non ancora dichiarato concluso. Nessun push o deploy.
+
+10 novembre — correzione: pagina chiara per impostazione iniziale; modalità scura opzionale con pulsante luna/sole nella navbar. Banner compatto conservato.
+
+10 novembre — tema opzionale definitivo ink (`html[data-theme="ink"]`): palette fornita da Gaia, superfici hue 15/chroma .028, testi avorio, accenti rimappati e filtri immagini/logo. Tema chiaro iniziale conservato.
+
+10 novembre — mini libreria allineata all’illustrazione approvata: stato iniziale Read/Noce con composizione originale completa (carta, filetti, titoli, campioni, mensola, libri, edera e lavanda). Al passaggio sui singoli libri la base viene mascherata solo sotto quel libro, che si solleva come livello separato senza duplicati. I controlli HTML restano attivi sopra la composizione; colori, More e To read usano la versione a livelli con contenuti dinamici. Su telefono pannello più alto e controlli più leggibili; nota decorativa interna omessa per evitare sovrapposizioni, istruzione esterna conservata. Verificati 320, 390 e 768 px e desktop, cambio materiali, apertura/chiusura More, To read/Read e accesso alla libreria completa. Nessun push o deploy.
+
+10 novembre — stesso stile illustrato applicato alla libreria completa: rilegature e palette dei sette titoli della landing, dorsi illustrati per le sei edizioni dritte, copertine con cornice botanica e celeste, pagine avorio stratificate, carta neutra sulla parete e legno materico sulle mensole. Decorazione confinata alle facce 3D; wrapper trascinabili, handler, geometria dei libri, viste, salvataggio, ricerca, luci, decorazioni e comparse conservati. Nessun push o deploy.
+
+10 novembre — controllo contrasti: citazione stellata sempre bianca sul pannello viola; ripristinati testi chiari dei controlli su fondo scuro, schiariti input e nomi forum in ink e nomi delle comparse. Superfici editoriali rimaste chiare mantengono testo scuro.
+
+10 novembre — contrasto ink: navbar con fondo inchiostro al 94% per separare i testi dalla scena; evidenziature hero e comandi prugna-lavanda scuro al posto dell’oro, con testo avorio. Tema chiaro invariato.
+
+10 novembre — hero ink: variante notturna generata della stanza originale, con pareti bordeaux, luce lunare e lucine ambrate. Asset diurno conservato per modalità chiara; variante solo in ink.
+
+10 novembre — hero notturna: sfumatura trasparente esplicita sui bordi alto e basso, anche su telefono, per raccordare l’immagine allo sfondo ink senza stacchi.
+
+10 novembre — corretto lo stacco navbar/hero ink: eliminati bordo e fondo uniforme della navbar, sostituiti da gradiente trasparente verso la scena sul medesimo fondo ink della pagina. Rimosso alone dorato globale in ink che schiariva il bordo alto della scena.
+
+10 novembre — correzione definitiva navbar ink: completamente trasparente come il tema chiaro, immagine notturna visibile dietro al menu; nessuna sfumatura superiore su desktop/tablet, conservato raccordo inferiore.
+
+10 novembre — rimossa la scheda To read dalla mini libreria della landing su richiesta di Gaia. Read centrato; coperta anche la scritta incorporata nel riferimento illustrato. Libreria completa e suoi ripiani invariati.
+
+10 novembre — scheda libro sempre chiara anche in ink, compresi diario e forum. Mini libreria ink con superficie scura e composizione ritagliata interattiva, senza cartolina avorio incorporata; testi chiari coordinati.
+
+10 novembre — sviluppo libreria interna dal mockup illustrato approvato: atlante di sei rilegature senza testo, con titoli live in Cormorant Garamond e palette della landing; atlante separato per edera, lavanda, lanterna, tazza, fiori e luna. Nuove decorazioni aggiungibili, spostabili e salvabili con il catalogo esistente; comparse approvate conservate. Ingrandimento delle sole dimensioni di presentazione dei libri, mantenendo geometria coerente per dorso, copertina e libro sdraiato; dati salvati originali non riscalati. Mensole aperte, supporti e carta materica. Verifiche in corso, obiettivo ancora attivo.
+
+10 novembre — revisione visiva ink e struttura: corretti i testi sui cartoncini pastello del diario con schema chiaro locale; schede libro/personaggio isolate in light, immagini escluse dal filtro ink. Rimossi dal globale filtri di prodotto e selettore data-hl inutilizzato; gestione accessibilità senza UI spostata in hooks, tutti i componenti visivi index hanno CSS accanto.
+
+10 novembre — corretto il fondo che si sollevava insieme ai libri della mini libreria: durante hover viene usato il ritaglio trasparente, con ombra lieve e fondo avorio sotto la maschera. Libreria interna: titoli resi nuovamente visibili sopra le nuove rilegature; dimensioni di presentazione più larghe per leggibilità, senza mutare dimensioni salvate. Tre copertine iniziali esposte sul ripiano centrale e pila sul terzo; composizioni già salvate rispettate. Atlanti serviti in WebP senza perdita, originali conservati e verificati dal catalogo.
+
+10 novembre — correzione finale hover mini libreria: creato sfondo con mensola realmente vuota e parete continua. I sette libri trasparenti sono ora sempre elementi separati; rimossa la mascheratura a sagoma durante il sollevamento, causa della zona chiara netta segnalata da Gaia.
+
+10 novembre — verifica ink a 1440×1000, 820×1180 e 390×844: nessun overflow orizzontale della pagina; controllati menu, focus tastiera, hover marker, materiali libreria, social, scheda libro/diario/forum e ritratto personaggio. Corretto alone caldo della hero in ink e stacco superiore su telefono; regole responsive consolidate nel CSS Hero. Escape chiude la scheda personaggio; entrambe le schede restano chiare.

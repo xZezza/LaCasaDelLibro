@@ -35,8 +35,8 @@
   .quote-stars > span {
     position: absolute;
     border-radius: 50%;
-    background: oklch(.97 .02 270);
-    box-shadow: 0 0 4px oklch(.97 .02 270 / .7);
+    background: light-dark(oklch(.97 .02 270), oklch(0.157 0.028 15));
+    box-shadow: 0 0 4px light-dark(oklch(.97 .02 270 / .7), oklch(0.157 0.028 15 / .7));
     animation: twinkle var(--twinkle-duration) ease-in-out var(--twinkle-delay) infinite;
   }
 
@@ -469,7 +469,7 @@
     width: 110px;
     height: 1.5px;
     border-radius: 2px;
-    background: linear-gradient(90deg,oklch(.97 .03 85),transparent);
+    background: linear-gradient(90deg,light-dark(oklch(.97 .03 85), oklch(0.157 0.028 15)),transparent);
     box-shadow: 0 0 6px oklch(.95 .05 85);
     opacity: 0;
   }

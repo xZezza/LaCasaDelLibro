@@ -31,29 +31,29 @@
     font-family: "Kalam", cursive;
     font-weight: 300;
     font-size: 17px;
-    color: oklch(0.38 0.03 305);
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
   }
 
   .salon-s171 {
     position: relative;
     margin-top: 40px;
     width: min(100%, 440px);
-    background: oklch(0.985 0.008 82);
+    background: light-dark(oklch(0.985 0.008 82), oklch(0.144 0.028 15));
     padding: 12px 12px 46px;
     transform: rotate(-2.5deg);
-    box-shadow: 0 24px 50px -24px oklch(0.25 0.035 305 / 0.45);
+    box-shadow: 0 24px 50px -24px light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45));
   }
 
   .salon-s172 {
     width: 46px;
     height: 62px;
     border-radius: 3px;
-    box-shadow: inset 0 7px 0 -5px oklch(0.82 0.11 78 / 0.6);
+    box-shadow: inset 0 7px 0 -5px light-dark(oklch(0.82 0.11 78 / 0.6), oklch(0.86 0.11 78.0 / 0.6));
   }
 
   .salon-s173 {
     font-size: 11px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s174 {
@@ -73,7 +73,7 @@
 
   .salon-s176 {
     font-size: 14px;
-    color: oklch(0.38 0.03 305);
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
     font-weight: 300;
     line-height: 1.5;
   }
@@ -82,7 +82,7 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.52 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s178 {
@@ -90,14 +90,14 @@
     font-weight: 300;
     font-size: 15px;
     line-height: 1.35;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
   }
 
   .salon-s179 {
     margin-top: 4px;
     padding: 10px 12px;
     border-radius: 8px;
-    background: oklch(0.93 0.03 80);
+    background: light-dark(oklch(0.93 0.03 80), oklch(0.184 0.028 15));
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -106,13 +106,13 @@
   .salon-s180 {
     height: 100%;
     border-radius: 999px;
-    background: oklch(0.62 0.07 145);
+    background: light-dark(oklch(0.62 0.07 145), oklch(0.8 0.07 145.0));
   }
 
   .salon-s181 {
     height: 6px;
     border-radius: 999px;
-    background: oklch(0.25 0.035 305 / 0.1);
+    background: light-dark(oklch(0.25 0.035 305 / 0.1), oklch(0.92 0.02 85 / 0.1));
     overflow: hidden;
   }
 
@@ -121,7 +121,7 @@
     justify-content: space-between;
     gap: 10px;
     font-size: 12px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s183 {
@@ -150,8 +150,8 @@
       transparent 0 27px,
       oklch(0.6 0.04 250 / 0.12) 27px 28px
       ),
-      oklch(0.985 0.008 82);
-    box-shadow: 0 12px 30px -18px oklch(0.25 0.035 305 / 0.4);
+      light-dark(oklch(0.985 0.008 82), oklch(0.144 0.028 15));
+    box-shadow: 0 12px 30px -18px light-dark(oklch(0.25 0.035 305 / 0.4), oklch(0.92 0.02 85 / 0.4));
     transition: transform 0.3s;
   }
 
@@ -162,7 +162,7 @@
   .salon-s186 {
     margin: 6px 0 0;
     font-size: 12px;
-    color: oklch(0.45 0.03 305);
+    color: light-dark(oklch(0.45 0.03 305), oklch(0.72 0.02 85));
     letter-spacing: 0.03em;
   }
 
@@ -220,8 +220,8 @@
   .community-postcard-stage .salon-s171 { margin-top: 0; box-sizing: border-box; max-width: calc(100% / 1.12); transform-origin: left top; }
   .community-postcard-lift { animation: community-postcard-forward 1.6s cubic-bezier(.45,0,.25,1) both; }
   @keyframes community-postcard-forward {
-    0%, 100% { transform: rotate(-2.5deg) scale(1); box-shadow: 0 24px 50px -24px oklch(0.25 0.035 305 / .45); }
-    48% { transform: rotate(-1deg) scale(1.12); box-shadow: 0 42px 60px -12px oklch(0.25 0.035 305 / .4); }
+    0%, 100% { transform: rotate(-2.5deg) scale(1); box-shadow: 0 24px 50px -24px light-dark(oklch(0.25 0.035 305 / .45), oklch(0.92 0.02 85 / .45)); }
+    48% { transform: rotate(-1deg) scale(1.12); box-shadow: 0 42px 60px -12px light-dark(oklch(0.25 0.035 305 / .4), oklch(0.92 0.02 85 / .4)); }
   }
   .community-postcard-stage:has(.community-postcard-lift) { z-index: 3; }
   .community-conversation { border-top: 3px solid #ba8f94; transform: rotate(-.6deg); }
@@ -230,7 +230,7 @@
   .community-question { padding-top: 12px; padding-bottom: 6px; }
   .community-replies { display: flex; flex-direction: column; gap: 26px; padding: 20px 0; }
   .community-replies .salon-s178 { margin-top: 7px; }
-  .community-prompt { padding: 12px; border-radius: 6px; background: oklch(.925 .015 82); color: oklch(.48 .03 305); }
+  .community-prompt { padding: 12px; border-radius: 6px; background: light-dark(oklch(.925 .015 82), oklch(0.175 0.028 15)); color: oklch(.48 .03 305); }
   .community-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 18px; }
 }
 @layer responsive {
@@ -241,7 +241,7 @@
     .community-book { width: 36px; height: 52px; }
     @keyframes community-postcard-forward {
       0%, 100% { transform: rotate(-2.5deg) scale(1); }
-      48% { transform: rotate(-1deg) scale(1.08); box-shadow: 0 32px 45px -12px oklch(.25 .035 305 / .4); }
+      48% { transform: rotate(-1deg) scale(1.08); box-shadow: 0 32px 45px -12px light-dark(oklch(.25 .035 305 / .4), oklch(0.92 0.02 85 / .4)); }
     }
   }
   @media (prefers-reduced-motion: reduce) {

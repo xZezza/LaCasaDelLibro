@@ -7,7 +7,7 @@
       oklch(0.9 0.05 75 / 0.6),
       transparent 70%
       ),
-      oklch(0.955 0.018 82);
+      light-dark(oklch(0.955 0.018 82), oklch(0.171 0.028 15));
   }
 
   .salon-skip {
@@ -42,4 +42,11 @@
       scrollbar-width: thin;
     }
   }
+}
+
+@layer refinements { html[data-theme="ink"] .salon-landing { background: oklch(0.171 0.028 15); } }
+
+@layer refinements {
+ html[data-theme="ink"] .salon-landing img { filter: brightness(.82) saturate(.9); }
+ html[data-theme="ink"] .salon-landing .salon-s294 img { filter: none; }
 }

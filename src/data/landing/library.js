@@ -196,11 +196,15 @@ const LIB = [
     H: 92 + ((t.length * 11 + i * 13) % 28),
     D: 66,
     mode:
-      i === 2 || i === 11 ? "cover" : i === 7 || i === 8 ? "lying" : "spine",
+      i >= 6 && i <= 8 || i === 11 ? "cover" : i === 13 || i === 14 ? "lying" : "spine",
   };
 });
 
 const DECOS = {
+  lavender: { name: "Lavender", w: 76, h: 146, hue: 300 },
+  teacup: { name: "Teacup", w: 90, h: 82, hue: 80 },
+  ivy: { name: "Ivy", w: 48, h: 130, hue: 145 },
+  blossoms: { name: "Blossoms", w: 60, h: 65, hue: 80 },
   plant: { name: "Plant", w: 31, h: 53, hue: 145 },
   cactus: { name: "Cactus", w: 24, h: 39, hue: 140 },
   candle: { name: "Candle", w: 15, h: 40, hue: 85, glow: true },
@@ -213,6 +217,9 @@ const DECOS = {
 Object.keys(DECOS).forEach((k) => {
   DECOS[k].src = `/images/decorations/${k}.svg`;
 });
+for (const key of ["lavender", "teacup", "ivy", "blossoms"]) {
+  DECOS[key].src = imageAsset("/images/decorations/library-editorial/ornament-atlas.png");
+}
 // Permanent companions use the approved two-pose art, cropped to the first pose.
 visitors.filter((guest) => guest.kind === "creature").forEach((guest) => {
   const size = ["tairn", "sgaeyl", "abraxos"].includes(guest.id) ? 62 : 46;
@@ -242,6 +249,9 @@ LIB.splice(10, 0, mkDeco("dragon", 1));
 LIB.splice(11, 0, mkDeco("moon", 2));
 LIB.splice(14, 0, mkDeco("candle", 2));
 LIB.push(mkDeco("fairy", 2));
+LIB.push(mkDeco("lavender", 0));
+LIB.push(mkDeco("teacup", 1));
+LIB.unshift(mkDeco("ivy", 0));
 const CASES = [
   ["Oak", "oklch(0.7 0.08 70)", "oklch(0.6 0.08 62)", "oklch(0.76 0.08 72)"],
   [

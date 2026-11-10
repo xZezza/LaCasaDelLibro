@@ -4,9 +4,12 @@
 
 @layer components {
   :root {
+    color-scheme: light;
     --page-max-width: 1440px;
     --visitor-hover-scale: 1.2;
   }
+
+  :root[data-theme="ink"] { color-scheme: dark; }
 
   html {
     scroll-behavior: smooth;
@@ -14,19 +17,19 @@
 
   body {
     margin: 0;
-    background: oklch(0.955 0.018 82);
-    color: oklch(0.25 0.035 305);
+    background: light-dark(oklch(0.955 0.018 82), oklch(0.171 0.028 15));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
     font-family: "Jost", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   a {
-    color: oklch(0.52 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
     text-decoration: none;
   }
 
   a:hover {
-    color: oklch(0.25 0.035 305);
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
   }
 
   * {

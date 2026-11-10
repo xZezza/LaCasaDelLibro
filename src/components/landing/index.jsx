@@ -1,7 +1,7 @@
 // @refresh reset
 import React from "react";
 import CharacterSheet from "./CharacterSheet";
-import ModalAccessibility from "./ModalAccessibility";
+import ModalAccessibility from "../../hooks/ModalAccessibility";
 import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";

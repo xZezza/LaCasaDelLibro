@@ -17,7 +17,7 @@
     font-weight: 400;
     font-size: clamp(24px, 2.8vw, 38px);
     line-height: 1.2;
-    color: oklch(0.96 0.02 85);
+    color: #fffaf1;
     text-shadow: 0 0 24px oklch(0.8 0.1 85 / 0.35);
   }
 

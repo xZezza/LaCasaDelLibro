@@ -71,18 +71,18 @@ export default function Journal(values) {
                 <path
                   d={"M60 64 C 58 84, 50 98, 38 114"}
                   fill={"none"}
-                  stroke={"oklch(0.55 0.07 130)"}
+                  stroke={"light-dark(oklch(0.55 0.07 130), oklch(0.73 0.07 130.0))"}
                   strokeWidth={"2.2"}
                   strokeLinecap={"round"}
                 ></path>
                 <path
                   d={"M50 92 C 36 88, 28 94, 22 102 C 34 104, 44 100, 50 92 Z"}
-                  fill={"oklch(0.66 0.07 135)"}
+                  fill={"light-dark(oklch(0.66 0.07 135), oklch(0.84 0.07 135.0))"}
                   opacity={".85"}
                 ></path>
                 <path
                   d={"M56 80 C 68 72, 80 74, 88 80 C 78 88, 66 88, 56 80 Z"}
-                  fill={"oklch(0.62 0.07 135)"}
+                  fill={"light-dark(oklch(0.62 0.07 135), oklch(0.8 0.07 135.0))"}
                   opacity={".8"}
                 ></path>
                 <ellipse
@@ -90,7 +90,7 @@ export default function Journal(values) {
                   cy={"38"}
                   rx={"11"}
                   ry={"22"}
-                  fill={"oklch(0.74 0.09 350)"}
+                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
                   opacity={".88"}
                   transform={"rotate(0 60 60)"}
                 ></ellipse>
@@ -99,7 +99,7 @@ export default function Journal(values) {
                   cy={"38"}
                   rx={"11"}
                   ry={"22"}
-                  fill={"oklch(0.74 0.09 350)"}
+                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
                   opacity={".88"}
                   transform={"rotate(72 60 60)"}
                 ></ellipse>
@@ -108,7 +108,7 @@ export default function Journal(values) {
                   cy={"38"}
                   rx={"11"}
                   ry={"22"}
-                  fill={"oklch(0.74 0.09 350)"}
+                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
                   opacity={".88"}
                   transform={"rotate(144 60 60)"}
                 ></ellipse>
@@ -117,7 +117,7 @@ export default function Journal(values) {
                   cy={"38"}
                   rx={"11"}
                   ry={"22"}
-                  fill={"oklch(0.74 0.09 350)"}
+                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
                   opacity={".88"}
                   transform={"rotate(216 60 60)"}
                 ></ellipse>
@@ -126,7 +126,7 @@ export default function Journal(values) {
                   cy={"38"}
                   rx={"11"}
                   ry={"22"}
-                  fill={"oklch(0.74 0.09 350)"}
+                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
                   opacity={".88"}
                   transform={"rotate(288 60 60)"}
                 ></ellipse>
@@ -135,7 +135,7 @@ export default function Journal(values) {
                   cy={"44"}
                   rx={"6"}
                   ry={"13"}
-                  fill={"oklch(0.88 0.05 350)"}
+                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
                   opacity={".6"}
                   transform={"rotate(36 60 60)"}
                 ></ellipse>
@@ -144,7 +144,7 @@ export default function Journal(values) {
                   cy={"44"}
                   rx={"6"}
                   ry={"13"}
-                  fill={"oklch(0.88 0.05 350)"}
+                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
                   opacity={".6"}
                   transform={"rotate(108 60 60)"}
                 ></ellipse>
@@ -153,7 +153,7 @@ export default function Journal(values) {
                   cy={"44"}
                   rx={"6"}
                   ry={"13"}
-                  fill={"oklch(0.88 0.05 350)"}
+                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
                   opacity={".6"}
                   transform={"rotate(180 60 60)"}
                 ></ellipse>
@@ -162,7 +162,7 @@ export default function Journal(values) {
                   cy={"44"}
                   rx={"6"}
                   ry={"13"}
-                  fill={"oklch(0.88 0.05 350)"}
+                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
                   opacity={".6"}
                   transform={"rotate(252 60 60)"}
                 ></ellipse>
@@ -171,7 +171,7 @@ export default function Journal(values) {
                   cy={"44"}
                   rx={"6"}
                   ry={"13"}
-                  fill={"oklch(0.88 0.05 350)"}
+                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
                   opacity={".6"}
                   transform={"rotate(324 60 60)"}
                 ></ellipse>
@@ -179,13 +179,13 @@ export default function Journal(values) {
                   cx={"60"}
                   cy={"60"}
                   r={"8"}
-                  fill={"oklch(0.72 0.12 80)"}
+                  fill={"light-dark(oklch(0.72 0.12 80), oklch(0.86 0.12 80.0))"}
                 ></circle>
                 <circle
                   cx={"57"}
                   cy={"57"}
                   r={"2"}
-                  fill={"oklch(0.95 0.06 90)"}
+                  fill={"light-dark(oklch(0.95 0.06 90), oklch(0.23 0.042 90))"}
                   opacity={".8"}
                 ></circle>
               </svg>
@@ -248,7 +248,7 @@ export default function Journal(values) {
                           background:
                             "radial-gradient(circle, " +
                             bookColor +
-                            " 0 5px, oklch(0.2 0.02 305) 5.5px 8px, oklch(0.3 0.02 305) 8.5px 9.5px, oklch(0.2 0.02 305) 10px)",
+                            " 0 5px, light-dark(oklch(0.2 0.02 305), oklch(0.94 0.02 85)) 5.5px 8px, light-dark(oklch(0.3 0.02 305), oklch(0.87 0.02 85)) 8.5px 9.5px, light-dark(oklch(0.2 0.02 305), oklch(0.94 0.02 85)) 10px)",
                         }}
                       ></span>
                       <span className={"salon-s103"}>

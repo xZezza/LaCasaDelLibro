@@ -65,6 +65,8 @@ async function generate() {
     '/images/community/reading-circle.jpg',
     '/images/decorations/ivory-paper-texture.png',
     '/images/decorations/book-sheet-starry-landscape.png',
+    '/images/decorations/library-editorial/binding-atlas.png',
+    '/images/decorations/library-editorial/ornament-atlas.png',
   ])];
   const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'salon-image-optimization-'));
   const variants = {}, images = [];

@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import useLibraryFit from "../../../hooks/useLibraryFit.js";
 import LibraryPets from "../LibraryPets";
+const ILLUSTRATED_EDITIONS = ["A Court of Thorns and Roses", "Fourth Wing", "The Hunger Games", "Six of Crows", "The Cruel Prince", "Divergent", "Throne of Glass"];
 export default function ModalLibrary(values) {
   const {
     angle,
@@ -50,6 +51,8 @@ export default function ModalLibrary(values) {
     walls,
   } = values;
   const dialogRef = useLibraryFit(libOpen);
+  const [showMoreTreasures, setShowMoreTreasures] = useState(false);
+  const visibleTreasures = showMoreTreasures ? tray : ["ivy", "lavender", "blossoms", "candle"].map((key) => tray.find((item) => item.key === key)).filter(Boolean);
   const [companionKey, setCompanionKey] = useState("pet-hedwig");
   const companion = companions.find((pet) => pet.key === companionKey) || companions[0];
   return (
@@ -93,7 +96,7 @@ export default function ModalLibrary(values) {
                         width={"16"}
                         height={"16"}
                         fill={"none"}
-                        stroke={"oklch(0.42 0.03 305)"}
+                        stroke={"light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85))"}
                         strokeWidth={"1.6"}
                         strokeLinecap={"round"}
                         className={"salon-s209"}
@@ -188,7 +191,8 @@ export default function ModalLibrary(values) {
                   style={{
                     position: "relative",
                     background: wallBg,
-                    boxShadow: caseFrame,
+                    boxShadow: "none",
+                    "--case-frame": caseFrame,
                   }}
                 >
                   <LibraryPets
@@ -209,7 +213,7 @@ export default function ModalLibrary(values) {
                       <div
                         onDragOver={sh.over}
                         onDrop={sh.drop}
-                        className={"salon-s246"}
+                        className={"salon-s246"} data-shelf={index23}
                       >
                         {"\n            "}
                         <FairyLights mode={sh.lightsMode} />
@@ -245,7 +249,7 @@ export default function ModalLibrary(values) {
                                           onClick={b.select}
                                           title={b.t}
                                           className={"salon-s233"}
-                                          data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
+                                          data-binding={ILLUSTRATED_EDITIONS.includes(b.t) ? ILLUSTRATED_EDITIONS.indexOf(b.t) % 6 : [...b.t].reduce((n, c) => n + c.charCodeAt(0), 0) % 6} data-edition={ILLUSTRATED_EDITIONS.indexOf(b.t)} data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
                                         >
                                           <div
                                             className={"salon-s232"}
@@ -301,7 +305,7 @@ export default function ModalLibrary(values) {
                                           onDrop={b.drop}
                                           onClick={b.select}
                                           title={b.t}
-                                          className={"salon-s235"}
+                                          className={"salon-s235"} data-deco={b.deco}
                                           data-companion={b.isPet || b.deco === "dragon" ? "true" : undefined}
                                           data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px','--companion-width':b.fw+'px','--companion-height':b.fh+'px'}}
                                         >
@@ -345,7 +349,7 @@ export default function ModalLibrary(values) {
                         <div
                           className={"salon-s242"}
                           style={{ background: caseShelf }}
-                        ></div>
+                        ><span className="library-shelf-support library-shelf-support-left" aria-hidden="true"/><span className="library-shelf-support library-shelf-support-right" aria-hidden="true"/></div>
                         <div className={"salon-s245"}>
                           <span
                             className={"salon-s243"}
@@ -447,8 +451,9 @@ export default function ModalLibrary(values) {
                 </div>
               </div>
               <div className={"salon-s265"}>
+                <div className="library-customize-title">Make it yours</div>
                 <div className={"salon-s258"}>
-                  <span className={"salon-s99"}>{"Bookcase"}</span>
+                  <span className={"salon-s99"}>{"Shelf"}</span>
                   <div className={"salon-s254"}>
                     {cases.map((c, index26) => (
                       <React.Fragment key={index26}>
@@ -501,7 +506,7 @@ export default function ModalLibrary(values) {
                 <div className={"salon-s258"}>
                   <span className={"salon-s99"}>{"Decorate"}</span>
                   <div className={"salon-s262"}>
-                    {tray.map((d, index29) => (
+                    {visibleTreasures.map((d, index29) => (
                       <React.Fragment key={index29}>
                         <button
                           draggable={true}
@@ -510,7 +515,7 @@ export default function ModalLibrary(values) {
                           title={"Add " + d.name}
                           aria-label={"Add " + d.name}
                           type="button"
-                          className={"salon-s261 salon-hover284"}
+                          className={"salon-s261 salon-hover284"} data-deco={d.key}
                         >
                           <div
                             className={"salon-s234"}
@@ -524,6 +529,7 @@ export default function ModalLibrary(values) {
                     ))}
                   </div>
                 </div>
+                <button type="button" className="library-more-treasures" aria-expanded={showMoreTreasures} onClick={() => setShowMoreTreasures((value) => !value)}>{showMoreTreasures ? "Fewer treasures" : "More treasures"}</button>
                 <div className="salon-s258 library-companion">
                   <label htmlFor="library-companion" className="salon-s99">Keep a companion</label>
                   <div className="library-companion-picker">
@@ -568,12 +574,12 @@ export default function ModalLibrary(values) {
                     className={"salon-s264"}
                   />
                 </label>
-                {(libraryDirty || saveMessage) && (
+                {true && (
                   <div className="library-save">
-                    {libraryDirty && (
+                    {true && (
                       <div className="library-save-actions">
-                        <button type="button" onClick={discardLibrary} className="library-discard-button salon-marker-action salon-marker-secondary"><span className="salon-marker-text">Discard changes</span></button>
-                        <button type="button" onClick={saveLibrary} className="library-save-button salon-marker-action salon-marker-primary"><span className="salon-marker-text">Save changes</span></button>
+                        <button type="button" onClick={discardLibrary} disabled={!libraryDirty} className="library-discard-button salon-marker-action salon-marker-secondary"><span className="salon-marker-text">Discard changes</span></button>
+                        <button type="button" onClick={saveLibrary} disabled={!libraryDirty} className="library-save-button salon-marker-action salon-marker-primary"><span className="salon-marker-text">Save changes</span></button>
                       </div>
                     )}
                     {saveMessage && (

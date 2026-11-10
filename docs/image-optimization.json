@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 27,
-    "optimized": 25,
-    "originalBytes": 34685689,
-    "servedBytes": 23021168,
-    "savedBytes": 11664521,
-    "savedPercent": 33.63
+    "images": 29,
+    "optimized": 27,
+    "originalBytes": 40443508,
+    "servedBytes": 26502718,
+    "savedBytes": 13940790,
+    "savedPercent": 34.47
   },
   "images": [
     {
@@ -355,6 +355,32 @@
       "optimized": "/images/optimized/decorations/book-sheet-starry-landscape.webp",
       "optimizedBytes": 1833796,
       "optimizedSha256": "ebcec2b6eb3a256d0c42476d5a929bf07cd23cfeba8ec45d744a7b88cb24de9c",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-editorial/binding-atlas.png",
+      "originalBytes": 3773446,
+      "originalSha256": "9a6b7f4802fedff1d635b03c7fd8164b90c6aa3a9a0e43c32d1a8af76eb0fab0",
+      "width": 1536,
+      "height": 1024,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/library-editorial/binding-atlas.webp",
+      "optimizedBytes": 2650026,
+      "optimizedSha256": "ed115db7918c5b12a5e2a8ffc5313d3701c83b45cc835d53bb0419a112aeea5d",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-editorial/ornament-atlas.png",
+      "originalBytes": 1984373,
+      "originalSha256": "edac7672ff0e189a9d13927c13409164264065f9889082a547e7aca03bbb34aa",
+      "width": 1536,
+      "height": 1024,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-editorial/ornament-atlas.webp",
+      "optimizedBytes": 831524,
+      "optimizedSha256": "e6f8167031a696b295ca06dfa9fd033a7042cd832c4a9adca6a252e0417893b5",
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     }

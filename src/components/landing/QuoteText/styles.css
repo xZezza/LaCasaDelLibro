@@ -10,7 +10,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: oklch(0.25 0.035 305 / 0.16);
+    background: light-dark(oklch(0.25 0.035 305 / 0.16), oklch(0.92 0.02 85 / 0.16));
     transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
@@ -20,7 +20,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: oklch(0.25 0.035 305 / 0.16);
+    background: light-dark(oklch(0.25 0.035 305 / 0.16), oklch(0.92 0.02 85 / 0.16));
     transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s;
   }
 

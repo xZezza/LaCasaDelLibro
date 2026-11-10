@@ -4,7 +4,7 @@
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: oklch(0.52 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s58 {
@@ -21,7 +21,7 @@
     font-size: 17px;
     line-height: 1.7;
     font-weight: 300;
-    color: oklch(0.38 0.03 305);
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
     max-width: 46ch;
     text-wrap: pretty;
   }
@@ -30,7 +30,7 @@
     width: 7px;
     height: 7px;
     transform: rotate(45deg);
-    background: oklch(0.55 0.09 300);
+    background: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
     display: block;
   }
 
@@ -48,13 +48,13 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s127 {
     margin: 0;
     font-size: 13px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s258 {

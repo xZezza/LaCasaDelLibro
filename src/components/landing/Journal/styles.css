@@ -10,7 +10,7 @@
     font-weight: 300;
     font-size: clamp(20px, 2.2vw, 28px);
     line-height: 1.55;
-    color: oklch(0.48 0.1 300);
+    color: light-dark(oklch(0.48 0.1 300), oklch(0.66 0.1 300));
     text-align: center;
     text-wrap: balance;
   }
@@ -18,7 +18,7 @@
   .salon-s82 {
     width: 60px;
     height: 1px;
-    background: oklch(0.55 0.09 300 / 0.4);
+    background: light-dark(oklch(0.55 0.09 300 / 0.4), oklch(0.73 0.09 300 / 0.4));
     display: block;
   }
 
@@ -52,16 +52,16 @@
   .salon-s88 {
     position: absolute;
     inset: 0;
-    background: oklch(0.86 0.03 80);
+    background: light-dark(oklch(0.86 0.03 80), oklch(0.238 0.028 15));
     border-radius: 6px 18px 18px 6px;
     transform: rotate(3deg) translate(10px, 8px);
-    box-shadow: 0 30px 60px -34px oklch(0.25 0.035 305 / 0.4);
+    box-shadow: 0 30px 60px -34px light-dark(oklch(0.25 0.035 305 / 0.4), oklch(0.92 0.02 85 / 0.4));
   }
 
   .salon-s89 {
     position: absolute;
     inset: 0;
-    background: oklch(0.9 0.025 82);
+    background: light-dark(oklch(0.9 0.025 82), oklch(0.274 0.028 15));
     border-radius: 6px 18px 18px 6px;
     transform: rotate(1.4deg) translate(5px, 4px);
   }
@@ -95,14 +95,14 @@
   }
 
   .salon-s93 {
-    color: oklch(0.25 0.035 305);
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
     font-weight: 500;
   }
 
   .salon-s94 {
     margin-top: 6px;
     font-size: 13px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
     line-height: 1.5;
   }
 
@@ -126,7 +126,7 @@
 
   .salon-s98 {
     height: 1px;
-    background: oklch(0.25 0.035 305 / 0.14);
+    background: light-dark(oklch(0.25 0.035 305 / 0.14), oklch(0.92 0.02 85 / 0.14));
   }
 
   .salon-s100 {
@@ -157,7 +157,7 @@
   .salon-s103 {
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 17px;
     line-height: 1.2;
   }
@@ -173,7 +173,7 @@
     margin-top: 6px;
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 18px;
   }
 
@@ -193,12 +193,14 @@
   .salon-s108 {
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 15px;
     line-height: 1.3;
   }
 
   .salon-s109 {
+    color-scheme: light;
+    color: oklch(0.25 0.035 305);
     padding: 12px 14px;
     border-radius: 10px;
     display: flex;
@@ -216,7 +218,7 @@
     margin-top: 6px;
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 18px;
     line-height: 1.4;
   }
@@ -242,7 +244,7 @@
     margin-top: 6px;
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 18px;
     line-height: 1.4;
     background: repeating-linear-gradient(
@@ -268,9 +270,9 @@
   .salon-s117 {
     font-family: "Kalam", cursive;
     font-weight: 300;
-    color: oklch(0.3 0.06 260);
+    color: light-dark(oklch(0.3 0.06 260), oklch(0.85 0.036 260));
     font-size: 15px;
-    color: oklch(0.55 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s118 {
@@ -353,16 +355,16 @@
     flex-wrap: wrap;
     gap: 8px 20px;
     padding-top: 14px;
-    border-top: 1px solid oklch(0.25 0.035 305 / 0.14);
+    border-top: 1px solid light-dark(oklch(0.25 0.035 305 / 0.14), oklch(0.92 0.02 85 / 0.14));
   }
 
   .salon-s130 {
     position: relative;
-    background: oklch(0.99 0.006 85);
-    color: oklch(0.25 0.035 305);
+    background: light-dark(oklch(0.99 0.006 85), oklch(0.139 0.028 15));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
     border-radius: 6px 18px 18px 6px;
     padding: clamp(22px, 3vw, 36px);
-    box-shadow: 0 40px 80px -36px oklch(0.25 0.035 305 / 0.45),
+    box-shadow: 0 40px 80px -36px light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45)),
       inset 14px 0 18px -12px oklch(0.6 0.05 60 / 0.45);
     display: flex;
     flex-direction: column;
@@ -384,7 +386,7 @@
     font-style: italic;
     font-size: clamp(21px, 2vw, 25px);
     line-height: 1.3;
-    color: oklch(0.32 0.04 305);
+    color: light-dark(oklch(0.32 0.04 305), oklch(0.85 0.02 85));
     column-gap: 0;
   }
 
@@ -392,7 +394,7 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.45 0.03 305);
+    color: light-dark(oklch(0.45 0.03 305), oklch(0.72 0.02 85));
     transition: opacity 0.8s ease 0.7s;
   }
 
@@ -409,7 +411,7 @@
     font-family: "Kalam", cursive;
     font-weight: 300;
     font-size: 19px;
-    color: oklch(0.55 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s138 {
@@ -427,7 +429,7 @@
     font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s141 {
@@ -441,7 +443,7 @@
   .salon-s142 {
     margin-top: 4px;
     font-size: 13px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s143 {
@@ -452,13 +454,13 @@
 
   .salon-s144 {
     font-weight: 500;
-    border-bottom: 2px solid oklch(0.55 0.09 300);
+    border-bottom: 2px solid light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
     padding-bottom: 9px;
     margin-bottom: -11px;
   }
 
   .salon-s145 {
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 
   .salon-s146 {
@@ -466,7 +468,7 @@
     gap: 18px;
     flex-wrap: wrap;
     font-size: 13px;
-    border-bottom: 1px solid oklch(0.25 0.035 305 / 0.12);
+    border-bottom: 1px solid light-dark(oklch(0.25 0.035 305 / 0.12), oklch(0.92 0.02 85 / 0.12));
     padding-bottom: 10px;
   }
 
@@ -474,14 +476,14 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
-    color: oklch(0.35 0.03 305);
+    color: light-dark(oklch(0.35 0.03 305), oklch(0.82 0.02 85));
   }
 
   .salon-s148 {
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.46 0.115 300);
+    color: light-dark(oklch(0.46 0.115 300), oklch(0.73 0.09 300));
   }
 
   .salon-s149 {
@@ -502,13 +504,13 @@
 
   .salon-s151 {
     font-size: 12px;
-    color: oklch(0.52 0.09 300);
+    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
   .salon-s152 {
     padding: 12px;
     border-radius: 10px;
-    background: oklch(0.93 0.025 80);
+    background: light-dark(oklch(0.93 0.025 80), oklch(0.184 0.028 15));
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -529,8 +531,8 @@
     font-family: "Kalam", cursive;
     font-weight: 300;
     font-size: 14px;
-    color: oklch(0.42 0.03 305);
-    border-bottom: 1px solid oklch(0.25 0.035 305 / 0.2);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
+    border-bottom: 1px solid light-dark(oklch(0.25 0.035 305 / 0.2), oklch(0.92 0.02 85 / 0.2));
     padding-bottom: 4px;
   }
 
@@ -543,13 +545,13 @@
   .salon-s157 {
     flex: 1 1 300px;
     min-width: 0;
-    background: oklch(0.97 0.012 82);
-    color: oklch(0.25 0.035 305);
+    background: light-dark(oklch(0.97 0.012 82), oklch(0.157 0.028 15));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
     border-radius: 16px;
     padding: clamp(16px, 2vw, 22px);
     transform: rotate(0.8deg);
-    box-shadow: 0 30px 60px -30px oklch(0.25 0.035 305 / 0.4),
-      inset 0 0 0 1px oklch(0.25 0.035 305 / 0.08);
+    box-shadow: 0 30px 60px -30px light-dark(oklch(0.25 0.035 305 / 0.4), oklch(0.92 0.02 85 / 0.4)),
+      inset 0 0 0 1px light-dark(oklch(0.25 0.035 305 / 0.08), oklch(0.92 0.02 85 / 0.08));
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -585,7 +587,7 @@
   .salon-s161 {
     position: relative;
     overflow: hidden;
-    color: oklch(0.25 0.035 305);
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
   }
 
   .quote-guest-potter {
@@ -651,19 +653,19 @@
 
 @layer components {
   .salon-s100 {
-    box-shadow: 0 0 0 1.5px oklch(.99 .006 85),0 0 0 2.5px transparent;
+    box-shadow: 0 0 0 1.5px light-dark(oklch(.99 .006 85), oklch(0.139 0.028 15)),0 0 0 2.5px transparent;
   }
 
   .salon-s100[aria-pressed="true"] {
-    box-shadow: 0 0 0 1.5px oklch(.99 .006 85),0 0 0 2.5px oklch(.25 .035 305);
+    box-shadow: 0 0 0 1.5px light-dark(oklch(.99 .006 85), oklch(0.139 0.028 15)),0 0 0 2.5px light-dark(oklch(.25 .035 305), oklch(0.92 0.02 85));
   }
 
   .salon-s123 {
-    box-shadow: 0 0 0 1.5px oklch(.95 .018 82),0 0 0 2.5px transparent;
+    box-shadow: 0 0 0 1.5px light-dark(oklch(.95 .018 82), oklch(0.197 0.028 15)),0 0 0 2.5px transparent;
   }
 
   .salon-s123[aria-pressed="true"] {
-    box-shadow: 0 0 0 1.5px oklch(.95 .018 82),0 0 0 2.5px oklch(.25 .035 305);
+    box-shadow: 0 0 0 1.5px light-dark(oklch(.95 .018 82), oklch(0.197 0.028 15)),0 0 0 2.5px light-dark(oklch(.25 .035 305), oklch(0.92 0.02 85));
   }
 
   .salon-s119 {
@@ -676,7 +678,7 @@
 
   .salon-s121 path {
     fill: none;
-    stroke: oklch(.25 .035 305 / .3);
+    stroke: light-dark(oklch(.25 .035 305 / .3), oklch(0.92 0.02 85 / .3));
   }
 
   .salon-s121[aria-pressed="true"] path {

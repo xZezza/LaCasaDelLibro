@@ -6,7 +6,7 @@
     font-weight: 400;
     font-size: clamp(22px, 2.6vw, 36px);
     line-height: 1.2;
-    color: oklch(0.3 0.04 305);
+    color: light-dark(oklch(0.3 0.04 305), oklch(0.87 0.02 85));
     text-wrap: balance;
     column-gap: 0.26em;
   }
@@ -15,7 +15,7 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: oklch(0.45 0.03 305);
+    color: light-dark(oklch(0.45 0.03 305), oklch(0.72 0.02 85));
     transition: opacity 0.8s ease 1.1s;
   }
 
@@ -46,7 +46,7 @@
     font-size: 17px;
     line-height: 1.7;
     font-weight: 300;
-    color: oklch(0.38 0.03 305);
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
     max-width: 48ch;
     text-wrap: balance;
   }
@@ -62,7 +62,7 @@
     inset: 0;
     transform: translateZ(-11px);
     border-radius: 2px 4px 4px 2px;
-    box-shadow: 14px 18px 30px -16px oklch(0.25 0.035 305 / 0.34);
+    box-shadow: 14px 18px 30px -16px light-dark(oklch(0.25 0.035 305 / 0.34), oklch(0.92 0.02 85 / 0.34));
   }
 
   .salon-s35 {
@@ -81,8 +81,8 @@
       ),
       repeating-linear-gradient(
       90deg,
-      oklch(0.97 0.012 85) 0 1px,
-      oklch(0.88 0.02 80) 1px 2px
+      light-dark(oklch(0.97 0.012 85), oklch(0.157 0.028 15)) 0 1px,
+      light-dark(oklch(0.88 0.02 80), oklch(0.256 0.028 15)) 1px 2px
       );
   }
 
@@ -110,8 +110,8 @@
     border-radius: 2px 4px 4px 2px;
     overflow: hidden;
     box-shadow: inset 3px 0 0 rgba(0, 0, 0, 0.18),
-      0 22px 40px -22px oklch(0.25 0.035 305 / 0.55),
-      0 2px 6px oklch(0.25 0.035 305 / 0.12);
+      0 22px 40px -22px light-dark(oklch(0.25 0.035 305 / 0.55), oklch(0.92 0.02 85 / 0.55)),
+      0 2px 6px light-dark(oklch(0.25 0.035 305 / 0.12), oklch(0.92 0.02 85 / 0.12));
   }
 
   .salon-s46 {
@@ -182,10 +182,10 @@
     place-items: center;
     padding: 0;
     border-radius: 50%;
-    border: 1px solid oklch(0.25 0.035 305 / 0.15);
-    background: oklch(0.99 0.006 85 / 0.94);
-    color: oklch(0.25 0.035 305);
-    box-shadow: 0 4px 16px oklch(0.25 0.035 305 / 0.12);
+    border: 1px solid light-dark(oklch(0.25 0.035 305 / 0.15), oklch(0.92 0.02 85 / 0.15));
+    background: light-dark(oklch(0.99 0.006 85 / 0.94), oklch(0.139 0.028 15 / 0.94));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
+    box-shadow: 0 4px 16px light-dark(oklch(0.25 0.035 305 / 0.12), oklch(0.92 0.02 85 / 0.12));
     cursor: pointer;
     transition: background 0.2s;
   }

@@ -49,3 +49,33 @@
     .salon-nav > div > a { font-size: 11px; letter-spacing: 0; padding: 8px 0; }
   }
 }
+
+@layer components { :root[data-theme="ink"] .salon-s0 { filter: brightness(0) invert(.92) sepia(.25); } }
+
+@layer components {
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .theme-toggle:hover { background: oklch(0.7 0.08 300 / .14); }
+  .theme-toggle svg { display: block; width: 20px; height: 20px; }
+}
+
+@layer refinements {
+ html[data-theme="ink"] .salon-nav {
+   background: transparent;
+   border-bottom: 0;
+   color: oklch(0.92 0.02 85);
+ }
+}

@@ -13,12 +13,14 @@
     max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
     padding: 28px clamp(20px, 4vw, 48px) 40px;
-    border-top: 1px solid oklch(0.25 0.035 305 / 0.1);
+    border-top: 1px solid light-dark(oklch(0.25 0.035 305 / 0.1), oklch(0.92 0.02 85 / 0.1));
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
     font-size: 13px;
-    color: oklch(0.42 0.03 305);
+    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
   }
 }
+
+@layer components { :root[data-theme="ink"] .salon-s202 { filter: brightness(0) invert(.92) sepia(.25); } }

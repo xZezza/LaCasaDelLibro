@@ -4,6 +4,7 @@ import React from "react";
 import "./styles.css";
 
 export default function Library(values) {
+  const [showAllWoods, setShowAllWoods] = React.useState(false);
   const {
     openLib,
     readingTab,
@@ -11,7 +12,6 @@ export default function Library(values) {
     shelfCaption,
     showNotes,
     showRead,
-    showToRead,
     woodGrad,
     woodNext,
     woodPause,
@@ -48,7 +48,7 @@ export default function Library(values) {
             )}
           </div>
         </div>
-        <div className={"salon-s78"}>
+        <div className={"salon-s78 library-editorial-card"} data-all-materials={showAllWoods} data-reading-tab={readingTab} data-wood={woods.find((w) => w.selected)?.name || "Walnut"}>
           <div className={"salon-s70"}>
             <div className={"salon-s64"}>
               <button
@@ -61,16 +61,7 @@ export default function Library(values) {
                 {"Read"}
               </span>
               </button>
-              <button
-                onClick={showToRead}
-                type="button"
-                className={"salon-s63 salon-marker-control"}
-                aria-pressed={readingTab === "toread"}
-              >
-                <span className="salon-marker-text">
-                {"To read"}
-              </span>
-              </button>
+
             </div>
             <div className={"salon-s69"}>
               <span>{"Shelf"}</span>
@@ -88,7 +79,7 @@ export default function Library(values) {
                 className={"salon-s68"}
               >
                 <div ref={woodRef} className={"salon-s67"}>
-                  {woods.map((w, index4) => (
+                  {(showAllWoods ? woods : ["Walnut", "Oak", "Cream", "Sage", "Lavender"].map((name) => woods.find((w) => w.name === name)).filter(Boolean)).map((w, index4) => (
                     <React.Fragment key={index4}>
                       <button
                         onClick={w.pick}
@@ -96,7 +87,7 @@ export default function Library(values) {
                         aria-label={w.name}
                         type="button"
                         className={"salon-s66"}
-                        aria-pressed={w.selected} style={{background:w.top}}
+                        data-material={w.name} aria-pressed={w.selected} style={{background:w.top}}
                       ></button>
                     </React.Fragment>
                   ))}
@@ -110,6 +101,7 @@ export default function Library(values) {
               >
                 {"›"}
               </button>
+              <button type="button" className="library-materials-more" aria-expanded={showAllWoods} onClick={() => setShowAllWoods((v) => !v)} aria-label={showAllWoods ? "Show five main materials" : "Show all shelf materials"}>{showAllWoods ? "Less ⌃" : "More ⌄"}</button>
             </div>
           </div>
           <button
@@ -117,14 +109,17 @@ export default function Library(values) {
             onClick={openLib}
             aria-label="Open the full library"
             aria-haspopup="dialog"
-            className={"salon-s76"}
+            className={"salon-s76 library-editorial-scene"} data-reading-tab={readingTab} data-wood={woods.find((w) => w.selected)?.name || "Walnut"}
           >
+            <span className="library-editorial-hint" aria-hidden="true">drag, turn, stack them <span>⤵</span></span>
+            <span className="library-editorial-prop library-editorial-ivy" aria-hidden="true" />
+            <span className="library-editorial-prop library-editorial-vase" aria-hidden="true" />
             <span className={"salon-s75"}>
               <span className={"salon-s73"}>
                 {shelfBooks.map((b, index5) => (
                   <React.Fragment key={index5}>
                     <span
-                      className={"salon-s72 salon-hover83"}
+                      className={"salon-s72 salon-hover83"} data-art-index={index5}
                       style={{
                         width: b.w + "px",
                         height: b.h + "px",

@@ -6,12 +6,13 @@
     display: grid;
     place-items: center;
     padding: clamp(12px, 3vh, 36px) clamp(12px, 3vw, 40px);
-    background: oklch(0.25 0.035 305 / 0.45);
+    background: light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45));
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
 
   .salon-s294 {
+    color-scheme: light;
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 0.43fr) minmax(0, 0.57fr);
@@ -20,9 +21,9 @@
     overflow: auto;
     overscroll-behavior: contain;
     border-radius: 24px;
-    background: oklch(0.975 0.012 84);
-    color: oklch(0.25 0.035 305);
-    box-shadow: 0 40px 90px -25px oklch(0.25 0.035 305 / 0.5);
+    background: light-dark(oklch(0.975 0.012 84), oklch(0.153 0.028 15));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
+    box-shadow: 0 40px 90px -25px light-dark(oklch(0.25 0.035 305 / 0.5), oklch(0.92 0.02 85 / 0.5));
     animation: pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 
@@ -34,14 +35,14 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid oklch(0.25 0.035 305 / 0.12);
-    background: oklch(0.975 0.012 84 / 0.85);
+    border: 1px solid light-dark(oklch(0.25 0.035 305 / 0.12), oklch(0.92 0.02 85 / 0.12));
+    background: light-dark(oklch(0.975 0.012 84 / 0.85), oklch(0.153 0.028 15 / 0.85));
     color: inherit;
     font: 300 29px "Jost", sans-serif;
     cursor: pointer;
   }
 
-  .book-sheet-close:hover { background: oklch(0.92 0.025 80); }
+  .book-sheet-close:hover { background: light-dark(oklch(0.92 0.025 80), oklch(0.175 0.028 15)); }
 
   .book-sheet-art {
     position: relative;
@@ -94,7 +95,7 @@
     top: 1.2%; bottom: 1.2%; right: -11px;
     width: 22px;
     transform: rotateY(90deg);
-    background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 30%, transparent 70%, rgba(0,0,0,.18)), repeating-linear-gradient(90deg, oklch(0.97 0.012 85) 0 1px, oklch(0.88 0.02 80) 1px 2px);
+    background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 30%, transparent 70%, rgba(0,0,0,.18)), repeating-linear-gradient(90deg, light-dark(oklch(0.97 0.012 85), oklch(0.157 0.028 15)) 0 1px, light-dark(oklch(0.88 0.02 80), oklch(0.256 0.028 15)) 1px 2px);
   }
   .salon-s271 { position: absolute; top: 0; bottom: 0; left: -12px; width: 24px; transform: rotateY(-90deg); background: linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08) 50%,rgba(0,0,0,.35)),var(--cover-bg); }
   .salon-s273 { position: absolute; inset: 0; transform: translateZ(12px); border-radius: 2px 4px 4px 2px; overflow: hidden; box-shadow: inset 3px 0 0 rgba(0,0,0,.18); }
@@ -113,15 +114,15 @@
     padding: clamp(20px, calc(5vh - 12px), 36px) clamp(24px, 3.2vw, 46px);
   }
   .book-sheet-heading { padding-right: 8px; }
-  .book-sheet-genre { padding-right: 32px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.52 0.09 300); }
+  .book-sheet-genre { padding-right: 32px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300)); }
   .book-sheet-title { margin: 8px 0 0; padding-right: 18px; font: 500 clamp(32px, 3.5vw, 46px) / 1.05 "Cormorant Garamond", serif; text-wrap: balance; }
-  .book-sheet-author { margin-top: 8px; font-size: 17px; color: oklch(0.42 0.03 305); }
-  .book-sheet-synopsis { margin: clamp(12px, calc(4vh - 12px), 24px) 0 0; font-size: 16px; line-height: 1.6; font-weight: 300; color: oklch(0.35 0.03 305); text-wrap: pretty; }
+  .book-sheet-author { margin-top: 8px; font-size: 17px; color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85)); }
+  .book-sheet-synopsis { margin: clamp(12px, calc(4vh - 12px), 24px) 0 0; font-size: 16px; line-height: 1.6; font-weight: 300; color: light-dark(oklch(0.35 0.03 305), oklch(0.82 0.02 85)); text-wrap: pretty; }
   .book-sheet-metadata { margin: clamp(10px, calc(3vh - 9px), 18px) 0 0; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
   .book-sheet-shelf h3, .book-sheet-page-heading { margin: 0; font-weight: 400; }
   .book-sheet-status-controls { display: flex; align-items: center; gap: 24px; margin-top: 10px; }
   .book-sheet-status { font: 500 16px "Jost", sans-serif; }
-  .book-sheet-shelf-icon { margin-left: auto; width: 20px; color: oklch(0.45 0.04 305); }
+  .book-sheet-shelf-icon { margin-left: auto; width: 20px; color: light-dark(oklch(0.45 0.04 305), oklch(0.72 0.02 85)); }
   .book-sheet-shelf-icon svg { display: block; width: 100%; }
 
   .book-sheet-pages { perspective: 1100px; }
@@ -133,8 +134,8 @@
     padding: clamp(14px, calc(3vh - 5px), 22px) 22px clamp(12px, 2vh, 18px) 32px;
     border: 1px solid oklch(0.85 0.035 80 / 0.5);
     border-radius: 17px 20px 19px 16px;
-    background: linear-gradient(90deg, transparent 20px, oklch(0.7 0.09 50 / 0.3) 20px 21px, transparent 21px 23px, oklch(0.7 0.09 50 / 0.18) 23px 24px, transparent 24px), repeating-linear-gradient(180deg, transparent 0 31px, oklch(0.6 0.04 250 / 0.17) 31px 32px), linear-gradient(oklch(0.98 0.028 85 / 0.82), oklch(0.96 0.028 85 / 0.82)), var(--book-sheet-paper) center / cover;
-    box-shadow: 0 7px 9px -5px oklch(0.45 0.065 70 / 0.32), 0 2px 3px oklch(0.6 0.06 70 / 0.12), inset 0 1px 1px oklch(0.99 0.02 85);
+    background: linear-gradient(90deg, transparent 20px, oklch(0.7 0.09 50 / 0.3) 20px 21px, transparent 21px 23px, oklch(0.7 0.09 50 / 0.18) 23px 24px, transparent 24px), repeating-linear-gradient(180deg, transparent 0 31px, oklch(0.6 0.04 250 / 0.17) 31px 32px), linear-gradient(light-dark(oklch(0.98 0.028 85 / 0.82), oklch(0.157 0.028 15 / 0.82)), light-dark(oklch(0.96 0.028 85 / 0.82), oklch(0.157 0.028 15 / 0.82))), var(--book-sheet-paper) center / cover;
+    box-shadow: 0 7px 9px -5px oklch(0.45 0.065 70 / 0.32), 0 2px 3px oklch(0.6 0.06 70 / 0.12), inset 0 1px 1px light-dark(oklch(0.99 0.02 85), oklch(0.139 0.028 15));
     transform-origin: left center;
     animation: book-sheet-page-turn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
@@ -150,13 +151,13 @@
   }
   .book-sheet-journal-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 20px; }
   .book-sheet-field { min-width: 0; cursor: text; }
-  .book-sheet-field-heading { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 22px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.38 0.035 305); }
-  .book-sheet-field-icons { display: inline-flex; flex-shrink: 0; gap: 4px; color: oklch(0.5 0.04 305); }
+  .book-sheet-field-heading { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 22px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: light-dark(oklch(0.38 0.035 305), oklch(0.79 0.02 85)); }
+  .book-sheet-field-icons { display: inline-flex; flex-shrink: 0; gap: 4px; color: light-dark(oklch(0.5 0.04 305), oklch(0.67 0.02 85)); }
   .book-sheet-field-icons svg { width: 16px; height: 16px; }
   .book-sheet-field-icons svg:last-child { width: 14px; opacity: 0.65; }
-  .book-sheet-field input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; font: 300 19px "Kalam", cursive; color: oklch(0.39 0.065 260); }
-  .book-sheet-field input::placeholder { color: oklch(0.52 0.045 260); opacity: 1; }
-  .book-sheet-field:focus-within .book-sheet-field-heading { color: oklch(0.38 0.035 305); }
+  .book-sheet-field input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; font: 300 19px "Kalam", cursive; color: light-dark(oklch(0.39 0.065 260), oklch(0.85 0.036 260)); }
+  .book-sheet-field input::placeholder { color: light-dark(oklch(0.52 0.045 260), oklch(0.75 0.036 260)); opacity: 1; }
+  .book-sheet-field:focus-within .book-sheet-field-heading { color: light-dark(oklch(0.38 0.035 305), oklch(0.79 0.02 85)); }
   .book-sheet-stars { display: flex; margin-top: 2px; }
   .book-sheet-stars button { display: grid; place-items: center; width: 32px; height: 44px; padding: 0; border: 0; background: transparent; color: oklch(0.7 0.025 65); cursor: pointer; }
   .book-sheet-stars svg { width: 25px; height: 25px; fill: transparent; transition: fill 0.15s, color 0.15s; }
@@ -164,12 +165,12 @@
   .book-sheet-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .book-sheet-discussion-title { margin: 0; font: 500 21px/1.15 "Cormorant Garamond", serif; text-wrap: balance; }
   .book-sheet-reply { padding-left: 12px; border-left: 2px solid oklch(0.73 0.06 300 / 0.4); }
-  .book-sheet-reader { font-size: 11px; font-weight: 500; color: oklch(0.48 0.07 300); }
+  .book-sheet-reader { font-size: 11px; font-weight: 500; color: light-dark(oklch(0.48 0.07 300), oklch(0.73 0.09 300)); }
   .book-sheet-reply p { margin: 3px 0 0; font: italic 17px/1.35 "Cormorant Garamond", serif; }
-  .book-sheet-page-footnote { margin: 0; font-size: 10px; line-height: 1.5; color: oklch(0.5 0.025 305); }
+  .book-sheet-page-footnote { margin: 0; font-size: 10px; line-height: 1.5; color: light-dark(oklch(0.5 0.025 305), oklch(0.67 0.02 85)); }
   .book-sheet-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
   .book-sheet-tab { font: 400 16px "Jost", sans-serif; }
-  .book-sheet-footnote { margin: 0; font-size: 12px; color: oklch(0.5 0.03 305); }
+  .book-sheet-footnote { margin: 0; font-size: 12px; color: light-dark(oklch(0.5 0.03 305), oklch(0.67 0.02 85)); }
 
   @media (hover: hover) and (pointer: fine) {
     .book-sheet-stars:has(button:hover) svg { fill: transparent; color: oklch(0.7 0.025 65); }

@@ -1,5 +1,5 @@
 @layer components {
-  .character-sheet { width: min(1112px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 26px; background: #fcf9f3; color: #352b3d; overflow: auto; overscroll-behavior: contain; box-shadow: 0 24px 90px #24162d44; }
+  .character-sheet { color-scheme: light; width: min(1112px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 26px; background: #fcf9f3; color: #352b3d; overflow: auto; overscroll-behavior: contain; box-shadow: 0 24px 90px #24162d44; }
   .character-sheet::backdrop { background: #30233880; backdrop-filter: blur(6px); }
   .character-sheet-card { position: relative; display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(24px, 4vw, 54px); padding: 38px; }
   .character-sheet-close { position: absolute; right: 14px; top: 14px; z-index: 2; width: 44px; height: 44px; border: 1px solid #352b3d20; border-radius: 50%; color: inherit; background: #fcf9f3dd; font: 300 28px Jost, sans-serif; cursor: pointer; }

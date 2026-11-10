@@ -475,7 +475,8 @@ export default class LandingController extends React.Component {
         },
       };
     }
-    const { T, H, D, mode } = b,
+    const { mode } = b,
+      T = b.T * 2.4, H = b.H * 1.6, D = b.D * 1.75,
       a = this.state.angle,
       sel = this.state.sel === b.id;
     const fw = mode === "spine" ? T : mode === "cover" ? D : H;
@@ -492,6 +493,7 @@ export default class LandingController extends React.Component {
       ...b,
       isBook: true,
       isDeco: false,
+      T, H, D,
       fw,
       fh,
       selected: sel,
@@ -895,14 +897,17 @@ export default class LandingController extends React.Component {
           next: "Next chat: end of part 2",
         },
       ],
-      socials: ["Instagram", "TikTok", "Threads"].map((name) => ({
-        name,
-        href: "#",
-        open: (e) => {
-          e.preventDefault();
-          this.setState({ soon: name });
-        },
-      })),
+      socials: [
+        { name: "Instagram", href: "https://www.instagram.com/therealbooksalon/" },
+        ...["TikTok", "Threads"].map((name) => ({
+          name,
+          href: "#",
+          open: (e) => {
+            e.preventDefault();
+            this.setState({ soon: name });
+          },
+        })),
+      ],
       soonOpen: !!this.state.soon,
       soonName: this.state.soon || "",
       closeSoon: () => this.setState({ soon: null }),
@@ -983,6 +988,7 @@ export default class LandingController extends React.Component {
         },
       })),
       tray: Object.keys(DECOS).filter((k) => !DECOS[k].pet).map((k) => ({
+        key: k,
         name: DECOS[k].name,
         bgImg: `url("${DECOS[k].src}")`,
         dragStart: (e) => {

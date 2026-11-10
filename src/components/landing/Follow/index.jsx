@@ -27,18 +27,18 @@ export default function Follow(values) {
               <path
                 d={"M60 64 C 58 84, 50 98, 38 114"}
                 fill={"none"}
-                stroke={"oklch(0.55 0.07 130)"}
+                stroke={"light-dark(oklch(0.55 0.07 130), oklch(0.73 0.07 130.0))"}
                 strokeWidth={"2.2"}
                 strokeLinecap={"round"}
               ></path>
               <path
                 d={"M50 92 C 36 88, 28 94, 22 102 C 34 104, 44 100, 50 92 Z"}
-                fill={"oklch(0.66 0.07 135)"}
+                fill={"light-dark(oklch(0.66 0.07 135), oklch(0.84 0.07 135.0))"}
                 opacity={".85"}
               ></path>
               <path
                 d={"M56 80 C 68 72, 80 74, 88 80 C 78 88, 66 88, 56 80 Z"}
-                fill={"oklch(0.62 0.07 135)"}
+                fill={"light-dark(oklch(0.62 0.07 135), oklch(0.8 0.07 135.0))"}
                 opacity={".8"}
               ></path>
               <ellipse
@@ -135,13 +135,13 @@ export default function Follow(values) {
                 cx={"60"}
                 cy={"60"}
                 r={"8"}
-                fill={"oklch(0.74 0.12 85)"}
+                fill={"light-dark(oklch(0.74 0.12 85), oklch(0.86 0.12 85.0))"}
               ></circle>
               <circle
                 cx={"57"}
                 cy={"57"}
                 r={"2"}
-                fill={"oklch(0.95 0.06 90)"}
+                fill={"light-dark(oklch(0.95 0.06 90), oklch(0.23 0.042 90))"}
                 opacity={".8"}
               ></circle>
             </svg>

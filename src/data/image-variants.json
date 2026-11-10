@@ -23,5 +23,7 @@
   "/images/characters/ron.png": "/images/optimized/characters/ron.webp",
   "/images/branding/logo.png": "/images/optimized/branding/logo.webp",
   "/images/decorations/ivory-paper-texture.png": "/images/optimized/decorations/ivory-paper-texture.webp",
-  "/images/decorations/book-sheet-starry-landscape.png": "/images/optimized/decorations/book-sheet-starry-landscape.webp"
+  "/images/decorations/book-sheet-starry-landscape.png": "/images/optimized/decorations/book-sheet-starry-landscape.webp",
+  "/images/decorations/library-editorial/binding-atlas.png": "/images/optimized/decorations/library-editorial/binding-atlas.webp",
+  "/images/decorations/library-editorial/ornament-atlas.png": "/images/optimized/decorations/library-editorial/ornament-atlas.webp"
 }
