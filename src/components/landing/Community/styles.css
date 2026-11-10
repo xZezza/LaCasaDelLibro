@@ -214,3 +214,37 @@
     }
   }
 }
+
+@layer components {
+  .community-postcard-stage { position: relative; padding: 32px 24px 54px; margin-top: 8px; }
+  .community-postcard-stage .salon-s171 { margin-top: 0; box-sizing: border-box; max-width: calc(100% / 1.12); transform-origin: left top; }
+  .community-postcard-lift { animation: community-postcard-forward 1.6s cubic-bezier(.45,0,.25,1) both; }
+  @keyframes community-postcard-forward {
+    0%, 100% { transform: rotate(-2.5deg) scale(1); box-shadow: 0 24px 50px -24px oklch(0.25 0.035 305 / .45); }
+    48% { transform: rotate(-1deg) scale(1.12); box-shadow: 0 42px 60px -12px oklch(0.25 0.035 305 / .4); }
+  }
+  .community-postcard-stage:has(.community-postcard-lift) { z-index: 3; }
+  .community-conversation { border-top: 3px solid #ba8f94; transform: rotate(-.6deg); }
+  .community-book { background: linear-gradient(90deg, rgba(0,0,0,.25), transparent 14%), #733538; }
+  .community-conversation h3, .community-conversation p { margin: 0; }
+  .community-question { padding-top: 12px; padding-bottom: 6px; }
+  .community-replies { display: flex; flex-direction: column; gap: 26px; padding: 20px 0; }
+  .community-replies .salon-s178 { margin-top: 7px; }
+  .community-prompt { padding: 12px; border-radius: 6px; background: oklch(.925 .015 82); color: oklch(.48 .03 305); }
+  .community-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 18px; }
+}
+@layer responsive {
+  @media (max-width: 650px) {
+    .community-postcard-stage { padding-inline: 18px; }
+    .community-postcard-stage .salon-s171 { width: 100%; box-sizing: border-box; }
+    .community-conversation { grid-template-columns: 36px minmax(0, 1fr); }
+    .community-book { width: 36px; height: 52px; }
+    @keyframes community-postcard-forward {
+      0%, 100% { transform: rotate(-2.5deg) scale(1); }
+      48% { transform: rotate(-1deg) scale(1.08); box-shadow: 0 32px 45px -12px oklch(.25 .035 305 / .4); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .community-postcard-lift { animation: none; }
+  }
+}

@@ -112,3 +112,16 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 10 novembre — su richiesta, rotazione dei personaggi riportata a 1,15 secondi, mantenendo accelerazione e arresto morbidi, ritaglio della prima posa, contenimento nella colonna, riavvio al tocco e rispetto del movimento ridotto. Animazione dei libri invariata.
 
 10 novembre — sfondi dei ritratti diversificati per personaggio con cinque tinte pastello della palette esistente: lilla, rosa, oro, salvia e azzurro. Tinta stabile per ogni personaggio, sfumatura morbida e bordo dell’arco coordinato. Rotazione e dimensioni invariate.
+
+
+10 novembre — Book Forum: la sezione community mostra solo il forum della pagina libro, con un unico foglio a righe e conversazione illustrativa approvata (prova 2). Eliminati dalla sezione i riquadri saga e gruppo di lettura. Conservati Jost, Cormorant Garamond e Kalam. Cartolina: ingresso in avanti con ingrandimento e ritorno in 3,8 secondi, una volta quando entra in vista; movimento attenuato su telefono e disattivato con movimento ridotto. Modifiche locali, senza push o deploy.
+
+10 novembre — sfondi dei ritratti diversificati per personaggio con cinque tinte pastello della palette esistente: lilla, rosa, oro, salvia e azzurro. Tinta stabile per ogni personaggio, sfumatura morbida e bordo dell’arco coordinato. Rotazione e dimensioni invariate.
+
+10 novembre — cartolina community: corretto lo zoom che usciva dal lato sinistro. Riservato spazio nella colonna e ancorato l’ingrandimento in alto a sinistra, verso lo spazio libero a destra e in basso. Durata ridotta a 1,6 secondi, ripetibile al clic, tocco e Invio/Spazio. Conservato il rispetto del movimento ridotto.
+
+10 novembre — cartolina: su correzione di Gaia il movimento parte al montaggio della pagina e si ripete entrando con il mouse sulla cartolina; rimossi riavvio al clic e semantica di pulsante. Durata 1,6 secondi e movimento ridotto conservati.
+
+10 novembre — comportamento definitivo cartolina: primo avvio quando il 55% della cartolina entra nella vista, una sola volta per apertura della pagina; successive ripetizioni al passaggio del mouse. Nessun avvio fuori schermo al caricamento. Durata 1,6 secondi e movimento ridotto conservati.
+
+10 novembre — rimosso il testo “Continue in the book forum →” dal foglio Book Forum su richiesta di Gaia.
