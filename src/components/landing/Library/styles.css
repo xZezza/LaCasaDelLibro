@@ -502,3 +502,11 @@
 :root:not([data-theme="ink"]) .library-editorial-card[data-reading-tab="read"][data-wood="Walnut"][data-all-materials="false"] .salon-s72::after {opacity:1;background-image:url('/images/decorations/library-editorial/approved-cutout.png');}
 }
 }
+
+/* Read is live text over uninterrupted paper; no painted rectangle is needed. */
+@layer refinements {
+:root .library-editorial-card::after {display:none;}
+@media (min-width:651px) {
+:root:not([data-theme="ink"]) .library-editorial-card[data-reading-tab="read"][data-wood="Walnut"][data-all-materials="false"]::before {background-image:url('/images/optimized/decorations/library-editorial/empty-shelf-clean-header.webp');}
+}
+}

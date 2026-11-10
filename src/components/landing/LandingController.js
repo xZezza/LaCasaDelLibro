@@ -1,3 +1,4 @@
+import { illustratedColour } from "../../data/landing/library-art.js";
 import React from "react";
 import { READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
 import { COVERS } from "../../data/landing/books.js";
@@ -949,7 +950,10 @@ export default class LandingController extends React.Component {
       sorts: [
         {
           name: "Colour",
-          run: () => this.sortBy((a, b) => a.h - b.h || a.l - b.l),
+          run: () => this.sortBy((a, b) => {
+            const first = illustratedColour(a), second = illustratedColour(b);
+            return first.hue - second.hue || first.lightness - second.lightness;
+          }),
         },
         { name: "Height", run: () => this.sortBy((a, b) => b.H - a.H) },
         {

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import useLibraryFit from "../../../hooks/useLibraryFit.js";
 import LibraryPets from "../LibraryPets";
-const ILLUSTRATED_EDITIONS = ["A Court of Thorns and Roses", "Fourth Wing", "The Hunger Games", "Six of Crows", "The Cruel Prince", "Divergent", "Throne of Glass"];
+import { illustratedBinding } from "../../../data/landing/library-art.js";
 export default function ModalLibrary(values) {
   const {
     angle,
@@ -249,7 +249,7 @@ export default function ModalLibrary(values) {
                                           onClick={b.select}
                                           title={b.t}
                                           className={"salon-s233"}
-                                          data-binding={ILLUSTRATED_EDITIONS.includes(b.t) ? ILLUSTRATED_EDITIONS.indexOf(b.t) % 6 : [...b.t].reduce((n, c) => n + c.charCodeAt(0), 0) % 6} data-edition={ILLUSTRATED_EDITIONS.indexOf(b.t)} data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
+                                          data-binding={illustratedBinding(b.t).index} data-edition={illustratedBinding(b.t).edition} data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
                                         >
                                           <div
                                             className={"salon-s232"}
@@ -529,7 +529,7 @@ export default function ModalLibrary(values) {
                     ))}
                   </div>
                 </div>
-                <button type="button" className="library-more-treasures" aria-expanded={showMoreTreasures} onClick={() => setShowMoreTreasures((value) => !value)}>{showMoreTreasures ? "Fewer treasures" : "More treasures"}</button>
+                <button type="button" className="library-more-treasures salon-marker-action salon-marker-secondary" aria-expanded={showMoreTreasures} onClick={() => setShowMoreTreasures((value) => !value)}><span className="salon-marker-text">{showMoreTreasures ? "Fewer treasures" : "More treasures"}</span></button>
                 <div className="salon-s258 library-companion">
                   <label htmlFor="library-companion" className="salon-s99">Keep a companion</label>
                   <div className="library-companion-picker">

@@ -1,3 +1,4 @@
+import { illustratedColour } from "../src/data/landing/library-art.js";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import LandingController from '../src/components/landing/LandingController.js';
@@ -125,4 +126,20 @@ test('illustrated book presentation keeps stored dimensions and all three intera
     assert.ok(face.T > stored.T && face.H > stored.H && face.D > stored.D);
   }
   assert.equal(serializeLibrary(page.state), before);
+});
+
+
+test('Colour arrangement follows the visible illustrated bindings on each shelf', () => {
+  const page = controller();
+  const ids = page.state.lib.map(item => item.id).sort();
+  page.renderVals().sorts.find(action => action.name === 'Colour').run();
+  for (const shelf of [0, 1, 2]) {
+    const items = page.state.lib.filter(item => item.shelf === shelf);
+    for (let index = 1; index < items.length; index++) {
+      const previous = illustratedColour(items[index - 1]), current = illustratedColour(items[index]);
+      assert.ok(previous.hue <= current.hue);
+      if (previous.hue === current.hue) assert.ok(previous.lightness <= current.lightness);
+    }
+  }
+  assert.deepEqual(page.state.lib.map(item => item.id).sort(), ids);
 });

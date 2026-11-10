@@ -1098,3 +1098,43 @@
 
 
 }
+
+@layer refinements {
+.salon-library-dialog .salon-s241 {height:220px;}
+@media (max-width:650px) {.salon-library-dialog .salon-s241 {height:220px;}}
+}
+
+@layer refinements {.salon-library-dialog [data-deco="ivy"] > .salon-s234 {background-size:465.4545% 220.2151%!important;background-position:9.5357% 5.3667%!important;}}
+@layer refinements {.salon-library-dialog [data-deco="lavender"] > .salon-s234 {background-size:465.4545% 220.2151%!important;background-position:49.3367% 1.7889%!important;}}
+@layer refinements {.salon-library-dialog [data-deco="candle"] > .salon-s234 {background-size:614.4000% 347.1186%!important;background-position:90.2022% 17.8326%!important;}}
+@layer refinements {.salon-library-dialog [data-deco="teacup"] > .salon-s234 {background-size:480.0000% 280.5479%!important;background-position:9.8684% 81.9423%!important;}}
+@layer refinements {.salon-library-dialog [data-deco="blossoms"] > .salon-s234 {background-size:480.0000% 296.8116%!important;background-position:49.3421% 82.4742%!important;}}
+@layer refinements {.salon-library-dialog [data-deco="moon"] > .salon-s234 {background-size:512.0000% 246.7470%!important;background-position:91.4239% 87.0279%!important;}}
+/* Readable text, brush markers for text actions, and a clean filled save action. */
+@layer refinements {
+.salon-library-dialog {--library-ink:light-dark(oklch(.25 .035 305),oklch(.92 .02 85));--library-muted:light-dark(#736279,#c5b8cd);color:var(--library-ink);}
+.salon-library-dialog .salon-s205,.salon-library-dialog .salon-s207,.salon-library-dialog .salon-s127,.salon-library-dialog .library-companion-hint {color:var(--library-muted);}
+.salon-library-dialog .salon-s210::placeholder {color:var(--library-muted);opacity:1;}
+.salon-library-dialog .library-more-treasures {border-bottom:0;min-height:32px;color:var(--library-ink);}
+.salon-library-dialog .library-save-button .salon-marker-text::before {display:none;}
+.salon-library-dialog .library-save-button:hover:not(:disabled) {filter:brightness(1.12);}
+.salon-library-dialog .salon-marker-control[aria-pressed="true"] {color:var(--library-ink);font-weight:500;}
+.salon-library-dialog button:focus-visible,.salon-library-dialog select:focus-visible,.salon-library-dialog input:focus-visible {outline:2px solid light-dark(#8a672e,#e5c57b);outline-offset:3px;}
+.salon-library-dialog .salon-marker-text::before {background:light-dark(oklch(.86 .1 78 / .85),oklch(.42 .085 305 / .85));}
+}
+
+@layer refinements {
+.salon-library-dialog .salon-s233[data-binding="2"] {--book-paint:#704b17;}
+.salon-library-dialog .salon-s233[data-binding="2"] .salon-s224 {color:#fff2c9;background:#482b0cd9;}
+.salon-library-dialog .salon-s233[data-binding="2"] .salon-s227 {color:#fff2c9;background:#482b0cc7;border-radius:3px;padding:3px;}
+}
+
+/* Lights sit in the reserved air above each row, rather than adding a fourth gap. */
+@layer refinements {
+.salon-library-dialog .salon-s246 {margin-bottom:4px;}
+.salon-library-dialog .salon-s246 > .fairy-lights {position:absolute;top:0;left:12px;right:12px;width:auto;z-index:2;pointer-events:none;}
+.salon-library-dialog .salon-s245 {min-height:32px;padding:3px 6px 5px;line-height:24px;}
+.salon-library-dialog .salon-s243 {line-height:24px;}
+.salon-library-dialog .salon-s206 {font-size:56px;}
+@media (max-width:650px) {.salon-library-dialog .salon-s206 {font-size:34px;}.salon-library-dialog .salon-s246 > .fairy-lights {left:5px;right:5px;}}
+}

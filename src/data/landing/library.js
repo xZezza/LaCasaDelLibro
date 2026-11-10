@@ -207,7 +207,7 @@ const DECOS = {
   blossoms: { name: "Blossoms", w: 60, h: 65, hue: 80 },
   plant: { name: "Plant", w: 31, h: 53, hue: 145 },
   cactus: { name: "Cactus", w: 24, h: 39, hue: 140 },
-  candle: { name: "Candle", w: 15, h: 40, hue: 85, glow: true },
+  candle: { name: "Candle", w: 42, h: 58, hue: 85, glow: true },
   crystal: { name: "Crystal ball", w: 30, h: 37, hue: 290, glow: true },
   dragon: { name: "Little dragon", w: 54, h: 48, hue: 170 },
   fairy: { name: "Fairy jar", w: 25, h: 43, hue: 95, glow: true },
