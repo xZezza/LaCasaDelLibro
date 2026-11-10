@@ -1,0 +1,9 @@
+[
+  {
+    "asset": "/images/decorations/ivory-paper-texture.png",
+    "generator": "built-in image_gen",
+    "created": "2026-11-10",
+    "prompt": "Use case: product-mockup. Asset type: seamless material texture for the background behind an illustrated book in an elegant reading-journal website. Create a flat, orthographic close-up of fine warm ivory handmade cotton paper. Very subtle irregular organic paper fibres, delicate shallow tooth and tiny natural flecks, soft cream and oat tones, low contrast. Inspired by the tactile unprinted paper and linen samples in the user's reference, but create an original surface. A refined quiet material, slightly time-worn but clean; no stains or damage. Entire canvas is nothing but one continuous evenly lit paper surface, edge-to-edge. No objects, no book, no folds, no border, no vignette, no gradients of light, no printed or handwritten text, no symbols, no recognizable patterns, no wood grain, no leather. Fine realistic material detail suitable for a reusable background tile, seamlessly matching edges. Neutral diffuse light, no perspective. Square format.",
+    "use": "Background of the book column in ModalBookSheet; original texture inspired by user material references."
+  }
+]

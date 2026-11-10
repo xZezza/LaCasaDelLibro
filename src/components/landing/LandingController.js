@@ -73,14 +73,63 @@ export default class LandingController extends React.Component {
     if (!a || !el) return;
     const dur = 70000,
       half = el.scrollWidth / 4;
+    // Direct input takes over from an arrow animation immediately.
+    cancelAnimationFrame(this._nudge);
+    this._nudging = false;
     a.pause();
     a.currentTime =
       ((((a.currentTime || 0) + (px / half) * dur) % dur) + dur) % dur;
     clearTimeout(this._scrubT);
     this._scrubT = setTimeout(() => {
-      if (!this._hover && !this._drag2) a.play();
+      this._scrubT = null;
+      if (!this._hover && !this._drag2 && !this._coverWheelFrame) a.play();
     }, 1200);
   }
+  flushCoverWheel() {
+    cancelAnimationFrame(this._coverWheelFrame);
+    this._coverWheelFrame = null;
+    const remaining = this._coverWheelPixels || 0;
+    this._coverWheelPixels = 0;
+    if (remaining) this.scrubCovers(remaining);
+  }
+  wheelCovers = (event) => {
+    // Keep vertical page scrolling and trackpad pinch-to-zoom native.
+    if (event.ctrlKey || event.metaKey || !this.anim()) return;
+    const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+    const delta = horizontal ? event.deltaX : event.shiftKey ? event.deltaY : 0;
+    if (!delta) return;
+    // A native non-passive listener is needed: React's wheel listener is passive.
+    if (event.cancelable) event.preventDefault();
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? this._coversViewport.clientWidth : 1;
+    const pixels = delta * unit;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      this.scrubCovers(pixels);
+      return;
+    }
+    this._coverWheelPixels = (this._coverWheelPixels || 0) + pixels;
+    this.anim().pause();
+    cancelAnimationFrame(this._nudge);
+    this._nudging = false;
+    if (this._coverWheelFrame) return;
+    let previous = performance.now();
+    const step = (now) => {
+      const elapsed = Math.min(now - previous, 64);
+      previous = now;
+      const pending = this._coverWheelPixels;
+      // Short, time-based smoothing preserves the trackpad's own momentum.
+      const delta = Math.abs(pending) < 0.1 ? pending : pending * (1 - Math.exp(-elapsed / 32));
+      this._coverWheelPixels -= delta;
+      this.scrubCovers(delta);
+      if (Math.abs(this._coverWheelPixels) >= 0.1) {
+        this._coverWheelFrame = requestAnimationFrame(step);
+      } else {
+        this.scrubCovers(this._coverWheelPixels);
+        this._coverWheelPixels = 0;
+        this._coverWheelFrame = null;
+      }
+    };
+    this._coverWheelFrame = requestAnimationFrame(step);
+  };
   anim() {
     const el = this.trackRef.current;
     return el && el.getAnimations ? el.getAnimations()[0] : null;
@@ -88,9 +137,13 @@ export default class LandingController extends React.Component {
   setPaused(p) {
     this._hover = p;
     const a = this.anim();
-    if (a && !this._nudging) p ? a.pause() : a.play();
+    if (a && !this._nudging) {
+      if (p || this._coverWheelFrame || this._scrubT || this._drag2) a.pause();
+      else a.play();
+    }
   }
   scrollCovers(d) {
+    this.flushCoverWheel();
     const a = this.anim(),
       el = this.trackRef.current;
     if (!el) return;
@@ -139,7 +192,6 @@ export default class LandingController extends React.Component {
     toast: "",
     expanded: {},
     sheet: null,
-    statuses: {},
     lib: LIB,
     wall: 0,
     caseC: 0,
@@ -148,6 +200,8 @@ export default class LandingController extends React.Component {
     angle: -10,
   };
   componentDidMount() {
+    this._coversViewport = this.trackRef.current?.parentElement;
+    this._coversViewport?.addEventListener("wheel", this.wheelCovers, { passive: false });
     try {
       const saved = JSON.parse(
         localStorage.getItem("the-salon-library-layout-v1") || "null",
@@ -233,15 +287,17 @@ export default class LandingController extends React.Component {
     if (window.IntersectionObserver && this.quoteRef.current) {
       this._qio = new IntersectionObserver(
         (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
+          const entry = entries[entries.length - 1];
+          if (entry.intersectionRatio >= 0.3) {
             this.setState({ openingQuoteRevealed: true });
-            this._qio.disconnect();
+          } else if (entry.intersectionRatio === 0) {
+            this.setState({ openingQuoteRevealed: false });
           }
         },
-        { threshold: 0.01 },
+        { threshold: [0, 0.3], rootMargin: "0px 0px -48px 0px" },
       );
       this._qio.observe(this.quoteRef.current);
-    }
+    } else this.setState({ openingQuoteRevealed: true });
     this._onResize = () => this.measureThread();
     window.addEventListener("resize", this._onResize);
     if (window.ResizeObserver && this.jGridRef.current) {
@@ -265,6 +321,8 @@ export default class LandingController extends React.Component {
     window.addEventListener("keydown", this._key);
   }
   componentWillUnmount() {
+    this._coversViewport?.removeEventListener("wheel", this.wheelCovers);
+    cancelAnimationFrame(this._coverWheelFrame);
     clearTimeout(this._saveConfirmationTimer);
     clearTimeout(this._measureTimer);
     clearTimeout(this._toastT);
@@ -716,63 +774,15 @@ export default class LandingController extends React.Component {
         })),
       sheetOpen: this.state.sheet != null,
       sb: COVERS[this.state.sheet ?? 0],
-      goForum: () => {
-        this.setState({ sheet: null, libOpen: false });
-        this.setPaused(false);
-        setTimeout(() => {
-          const el = document.getElementById("salon");
-          if (el)
-            window.scrollTo({
-              top: el.getBoundingClientRect().top + window.scrollY - 20,
-              behavior: "smooth",
-            });
-        }, 60);
-      },
-      goJournal: () => {
-        this.setState({ sheet: null, libOpen: false });
-        this.setPaused(false);
-        setTimeout(() => {
-          const el = document.getElementById("journal");
-          if (el)
-            window.scrollTo({
-              top: el.getBoundingClientRect().top + window.scrollY - 20,
-              behavior: "smooth",
-            });
-        }, 60);
-      },
       closeSheet: () => {
         this.setState({ sheet: null });
         this.setPaused(false);
       },
       stopSheet: (e) => e.stopPropagation(),
-      sheetStatus: [
-        ["toread", "To read"],
-        ["reading", "Reading"],
-        ["read", "Read"],
-      ].map(([k, name]) => {
-        const on =
-          (this.state.statuses[this.state.sheet ?? 0] || "toread") === k;
-        return {
-          name,
-          selected: on,
-          pick: () =>
-            this.setState((s) => ({
-              statuses: { ...s.statuses, [s.sheet]: k },
-            })),
-        };
-      }),
       trackRef: this.trackRef,
-      wheelCovers: (e) => {
-        const d =
-          Math.abs(e.deltaX) > Math.abs(e.deltaY)
-            ? e.deltaX
-            : e.shiftKey
-              ? e.deltaY
-              : 0;
-        if (d) this.scrubCovers(d);
-      },
       dragStartCovers: (e) => {
         if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        this.flushCoverWheel();
         this._dragMoved = 0;
         if (e.pointerType === "mouse" && e.button !== 0) return;
         this._drag2 = {

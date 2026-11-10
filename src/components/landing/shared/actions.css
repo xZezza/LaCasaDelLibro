@@ -40,12 +40,13 @@
   }
 
   .salon-marker-action:not(:disabled):is(:hover, :focus-visible) .salon-marker-text::before,
-  .salon-marker-control:not(:disabled):is(:hover, :focus-visible, [aria-pressed="true"]) .salon-marker-text::before {
+  .salon-marker-control:not(:disabled):is(:hover, :focus-visible, [aria-pressed="true"], [aria-selected="true"]) .salon-marker-text::before {
     transform: rotate(-1.5deg) scaleX(1);
   }
 
   .salon-marker-primary,
-  .salon-marker-control[aria-pressed="true"] {
+  .salon-marker-control[aria-pressed="true"],
+  .salon-marker-control[aria-selected="true"] {
     font-weight: 500;
   }
 

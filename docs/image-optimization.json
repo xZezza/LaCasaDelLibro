@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 25,
-    "optimized": 23,
-    "originalBytes": 29200752,
-    "servedBytes": 19311946,
-    "savedBytes": 9888806,
-    "savedPercent": 33.86
+    "images": 26,
+    "optimized": 24,
+    "originalBytes": 32083497,
+    "servedBytes": 21187372,
+    "savedBytes": 10896125,
+    "savedPercent": 33.96
   },
   "images": [
     {
@@ -331,6 +331,19 @@
       "optimized": null,
       "servedBytes": 397250,
       "reason": "Original is already smaller than the lossless WebP candidate."
+    },
+    {
+      "original": "/images/decorations/ivory-paper-texture.png",
+      "originalBytes": 2882745,
+      "originalSha256": "ab397aebcf7f4b04b497a8ac0aa836f34f1d442aaafadeaa618e2ed6c3ac5969",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/ivory-paper-texture.webp",
+      "optimizedBytes": 1875426,
+      "optimizedSha256": "556058443e4e8b1cbcc6f93addab2e1cf7b6ab9f834ebd7ca4112e1838d8fa07",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
     }
   ]
 }

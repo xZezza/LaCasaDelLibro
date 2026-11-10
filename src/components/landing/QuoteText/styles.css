@@ -35,9 +35,9 @@
 @layer refinements {
   @keyframes opening-quote-reveal {
     from {
-      opacity: 0.6;
-      filter: blur(1.5px);
-      transform: translateY(8px);
+      opacity: 0.3;
+      filter: blur(3px);
+      transform: translateY(16px);
     }
 
     to {
@@ -85,11 +85,30 @@
   }
 
   .salon-opening-quote[data-reveal="true"] .quote-word {
-    animation: opening-quote-reveal .85s cubic-bezier(.2,.8,.2,1) both;
-    animation-delay: calc(.1s + var(--word-index) * .045s);
+    animation: opening-quote-reveal 1s cubic-bezier(.2,.8,.2,1) both;
+    animation-delay: calc(.08s + var(--word-index) * .035s);
+  }
+
+  .salon-opening-quote[data-reveal="true"] :is(.salon-s24, .salon-s25) {
+    animation: opening-quote-rule 1s ease both;
+  }
+
+  .salon-opening-quote[data-reveal="true"] .salon-s25 { animation-delay: .2s; }
+  .salon-opening-quote[data-reveal="true"] > figcaption {
+    animation: opening-quote-reveal .7s ease .7s both;
+  }
+  @keyframes opening-quote-rule {
+    from { transform: scaleX(.15); }
+    to { transform: scaleX(1); }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .salon-opening-quote[data-reveal="true"] :is(.quote-word, .salon-s24, .salon-s25, figcaption) {
+      animation: none;
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
     .quote-reveal .quote-word, .quote-reveal > figcaption, .quote-reveal > .salon-s162 {
       opacity: 1;
       filter: none;

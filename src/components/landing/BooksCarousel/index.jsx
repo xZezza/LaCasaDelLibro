@@ -17,7 +17,6 @@ export default function BooksCarousel(values) {
     quoteRef,
     resumeCovers,
     trackRef,
-    wheelCovers,
   } = values;
   return (
     <>
@@ -78,7 +77,6 @@ export default function BooksCarousel(values) {
             }}
             onMouseEnter={pauseCovers}
             onMouseLeave={resumeCovers}
-            onWheel={wheelCovers}
             onPointerDown={dragStartCovers}
             onPointerMove={dragMoveCovers}
             onPointerUp={dragEndCovers}

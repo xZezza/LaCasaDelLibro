@@ -27,7 +27,7 @@ export default function QuoteStars(values) {
           >
             {"✦ ✧ ✦"}
           </span>
-          <QuoteText text={"To the stars who listen — and the dreams that are answered."} className="salon-s163" />
+          <QuoteText text={"To the stars who listen and the dreams that are answered."} breakBefore="and" className="salon-s163" />
           <figcaption className={"salon-s164"} >
             {"Sarah J. Maas · "}
             <span className={"salon-s28"}>{"A Court of Mist and Fury"}</span>
