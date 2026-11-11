@@ -4,6 +4,7 @@ import "../shared/dialog.css";
 import "../shared/typography.css";
 import React, { useState } from "react";
 import "./styles.css";
+import useLibraryHands from "../../../hooks/useLibraryHands.js";
 import useLibraryFit from "../../../hooks/useLibraryFit.js";
 import LibraryPets from "../LibraryPets";
 import { illustratedBinding } from "../../../data/landing/library-art.js";
@@ -25,6 +26,7 @@ export default function ModalLibrary(values) {
     libraryDirty,
     saveLibrary,
     discardLibrary,
+    commitBookMotion,
     saveMessage,
     saveError,
     lightOpts,
@@ -51,6 +53,7 @@ export default function ModalLibrary(values) {
     walls,
   } = values;
   const dialogRef = useLibraryFit(libOpen);
+  useLibraryHands(dialogRef, libOpen, shelves, commitBookMotion);
   const [showMoreTreasures, setShowMoreTreasures] = useState(false);
   const visibleTreasures = showMoreTreasures ? tray : ["ivy", "lavender", "blossoms", "candle"].map((key) => tray.find((item) => item.key === key)).filter(Boolean);
   const [companionKey, setCompanionKey] = useState("pet-hedwig");
@@ -86,7 +89,7 @@ export default function ModalLibrary(values) {
                   <div className={"salon-s208"}>
                     <span className={"salon-s206"}>{"Your library"}</span>
                     <span className={"salon-s207"}>
-                      {"drag, turn, lay them flat"}
+                      {"drag to move · hold an edge to turn"}
                     </span>
                   </div>
                   <div className={"salon-s222"}>
@@ -226,11 +229,11 @@ export default function ModalLibrary(values) {
                             <React.Fragment key={index22}>
                               <div className={"salon-s236"}>
                                 {sg.books.map((b, index21) => (
-                                  <React.Fragment key={index21}>
+                                  <React.Fragment key={b.id}>
                                     {Boolean(b.isBook) && (
                                       <>
                                         <div
-                                          draggable={true}
+                                          draggable={false}
                                           tabIndex={0}
                                           role="button"
                                           aria-label={b.t}
@@ -249,7 +252,8 @@ export default function ModalLibrary(values) {
                                           onClick={b.select}
                                           title={b.t}
                                           className={"salon-s233"}
-                                          data-binding={illustratedBinding(b.t).index} data-edition={illustratedBinding(b.t).edition} data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c}}
+                                          data-hand-id={b.id} data-book-id={b.id} data-library-item-id={b.id}
+                                          data-binding={illustratedBinding(b.t).index} data-edition={illustratedBinding(b.t).edition} data-mode={b.mode} data-selected={b.selected} style={{'--book-width':b.T+'px','--book-height':b.H+'px','--book-depth':b.D+'px','--book-angle':b.angle+'deg','--book-hue':b.h,'--book-lightness':b.l,'--book-chroma':b.c,'--hand-x':b.rotation.x+'deg','--hand-y':(b.rotation.y+b.angle)+'deg','--hand-z':b.rotation.z+'deg','--book-offset-x':b.offsetX+'px','--book-offset-y':b.offsetY+'px',...(b.rotation && b.fw ? {width:b.fw+'px',height:b.fh+'px'} : {})}}
                                         >
                                           <div
                                             className={"salon-s232"}
@@ -280,6 +284,7 @@ export default function ModalLibrary(values) {
                                             <div
                                               className={"salon-s231"}
                                             ></div>
+                                            <div className="library-book-bottom" />
                                           </div>
                                         </div>
                                       </>
@@ -287,7 +292,7 @@ export default function ModalLibrary(values) {
                                     {Boolean(b.isDeco) && (
                                       <>
                                         <div
-                                          draggable={true}
+                                          draggable={false}
                                           tabIndex={0}
                                           role="button"
                                           aria-label={b.t}
@@ -305,9 +310,9 @@ export default function ModalLibrary(values) {
                                           onDrop={b.drop}
                                           onClick={b.select}
                                           title={b.t}
-                                          className={"salon-s235"} data-deco={b.deco}
+                                          className={"salon-s235"} data-hand-id={b.id} data-library-item-id={b.id} data-deco={b.deco}
                                           data-companion={b.isPet || b.deco === "dragon" ? "true" : undefined}
-                                          data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px','--companion-width':b.fw+'px','--companion-height':b.fh+'px'}}
+                                          data-selected={b.selected} data-glow={b.hasGlow} style={{width:b.fw+'px',height:b.fh+'px','--companion-width':b.fw+'px','--companion-height':b.fh+'px','--object-width':b.objectW+'px','--object-height':b.objectH+'px','--object-bound-height':b.fh+'px','--object-z':b.rotation.z+'deg'}}
                                         >
                                           <div
                                             role={"img"}
@@ -443,7 +448,7 @@ export default function ModalLibrary(values) {
                     <>
                       <p className={"salon-s127"}>
                         {
-                          "Tap a book to turn it or lay it flat. Drag books and decorations between shelves."
+                          "Drag books and objects to move them. Drag a book’s edge to turn it. Release over a shelf to set it down."
                         }
                       </p>
                     </>

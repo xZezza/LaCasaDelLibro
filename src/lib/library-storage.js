@@ -1,3 +1,4 @@
+import { isValidBookRotation } from "./library-motion.js";
 export function serializeLibrary({ lib, wall, caseC, lights, angle }) {
   return JSON.stringify({ version: 1, lib, wall, caseC, lights, angle });
 }
@@ -10,8 +11,8 @@ export function isValidLibrarySnapshot(saved, { decorations, walls, cases, light
     if (!book || typeof book.id !== "string" || ids.has(book.id) ||
         typeof book.t !== "string" || book.t.length > 240 || ![0, 1, 2].includes(book.shelf)) return false;
     ids.add(book.id);
-    if (book.deco) return Object.hasOwn(decorations, book.deco);
-    return ["spine", "cover", "lying"].includes(book.mode) &&
+    if (book.deco) return isValidBookRotation(book.rotation) && Object.hasOwn(decorations, book.deco);
+    return isValidBookRotation(book.rotation) && ["spine", "cover", "lying"].includes(book.mode) &&
       ["h", "l", "c", "T", "H", "D"].every(key => Number.isFinite(book[key])) &&
       book.h >= 0 && book.h <= 360 && book.l > 0 && book.l <= 1 &&
       book.c >= 0 && book.c <= 0.5 && book.T >= 1 && book.T <= 100 &&

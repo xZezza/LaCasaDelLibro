@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 30,
-    "optimized": 28,
-    "originalBytes": 42386232,
-    "servedBytes": 27786292,
-    "savedBytes": 14599940,
-    "savedPercent": 34.45
+    "images": 31,
+    "optimized": 29,
+    "originalBytes": 44623016,
+    "servedBytes": 28788446,
+    "savedBytes": 15834570,
+    "savedPercent": 35.49
   },
   "images": [
     {
@@ -381,6 +381,19 @@
       "optimized": "/images/optimized/decorations/library-editorial/ornament-atlas.webp",
       "optimizedBytes": 831524,
       "optimizedSha256": "e6f8167031a696b295ca06dfa9fd033a7042cd832c4a9adca6a252e0417893b5",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-editorial/ornament-botanical-v2.png",
+      "originalBytes": 2236784,
+      "originalSha256": "27cd614002f33133440753ee0fe37843396ca11adf8996d291ff226a467a57ba",
+      "width": 1536,
+      "height": 1024,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp",
+      "optimizedBytes": 1002154,
+      "optimizedSha256": "3d96d5e972504ad06ee2ea8d402fa58355abc2f102f3e91735bbd0dd15305c14",
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     },

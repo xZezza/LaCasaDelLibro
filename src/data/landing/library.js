@@ -202,23 +202,23 @@ const LIB = [
 
 const DECOS = {
   lavender: { name: "Lavender", w: 76, h: 146, hue: 300 },
-  teacup: { name: "Teacup", w: 90, h: 82, hue: 80 },
-  ivy: { name: "Ivy", w: 48, h: 130, hue: 145 },
-  blossoms: { name: "Blossoms", w: 60, h: 65, hue: 80 },
+  teacup: { name: "Teacup", w: 102, h: 70, hue: 80 },
+  ivy: { name: "Ivy", w: 98, h: 110, hue: 145 },
+  blossoms: { name: "Blossoms", w: 60, h: 104, hue: 80 },
   plant: { name: "Plant", w: 31, h: 53, hue: 145 },
   cactus: { name: "Cactus", w: 24, h: 39, hue: 140 },
-  candle: { name: "Candle", w: 42, h: 58, hue: 85, glow: true },
+  candle: { name: "Candle", w: 48, h: 101, hue: 85, glow: true },
   crystal: { name: "Crystal ball", w: 30, h: 37, hue: 290, glow: true },
   dragon: { name: "Little dragon", w: 54, h: 48, hue: 170 },
   fairy: { name: "Fairy jar", w: 25, h: 43, hue: 95, glow: true },
   potion: { name: "Potion", w: 21, h: 39, hue: 350 },
-  moon: { name: "Moon lamp", w: 33, h: 43, hue: 90, glow: true },
+  moon: { name: "Moon lamp", w: 60, h: 90, hue: 90, glow: true },
 };
 Object.keys(DECOS).forEach((k) => {
   DECOS[k].src = `/images/decorations/${k}.svg`;
 });
-for (const key of ["lavender", "teacup", "ivy", "blossoms"]) {
-  DECOS[key].src = imageAsset("/images/decorations/library-editorial/ornament-atlas.png");
+for (const key of ["lavender", "teacup", "ivy", "blossoms", "candle", "moon"]) {
+  DECOS[key].src = imageAsset("/images/decorations/library-editorial/ornament-botanical-v2.png");
 }
 // Permanent companions use the approved two-pose art, cropped to the first pose.
 visitors.filter((guest) => guest.kind === "creature").forEach((guest) => {

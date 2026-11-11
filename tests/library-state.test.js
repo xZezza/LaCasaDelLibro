@@ -143,3 +143,50 @@ test('Colour arrangement follows the visible illustrated bindings on each shelf'
   }
   assert.deepEqual(page.state.lib.map(item => item.id).sort(), ids);
 });
+
+test('hand rotations apply to every book and survive save while discard restores the snapshot', () => {
+  const page = controller();
+  const ids = page.state.lib.filter(b => !b.deco).map(b => b.id);
+  for (const id of ids) page.renderVals().commitBookMotion(id, { shelf: 0, rotation: { x: -28, y: 53, z: 12 } });
+  for (const book of page.state.lib.filter(b => !b.deco)) {
+    assert.deepEqual(book.rotation, { x: -28, y: 53, z: 12 });
+    const displayed = page.bookVals(book);
+    assert.ok(displayed.fw > 0 && displayed.fh > 0);
+  }
+  const snapshot = JSON.parse(serializeLibrary(page.state));
+  assert.equal(isValidLibrarySnapshot(snapshot, { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS }), true);
+  snapshot.lib.find(b => !b.deco).rotation.x = Infinity;
+  assert.equal(isValidLibrarySnapshot(snapshot, { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS }), false);
+  page.renderVals().discardLibrary();
+  assert.equal(page.state.lib.filter(b => !b.deco).some(b => b.rotation), false);
+});
+
+test('moving a hand-rotated book retains its orientation and mode shortcuts reset the custom rotation', () => {
+  const page = controller();
+  const book = page.state.lib.find(b => !b.deco);
+  page.renderVals().commitBookMotion(book.id, { shelf: book.shelf, rotation: { x: -30, y: 60, z: 0 } });
+  page.renderVals().commitBookMotion(book.id, { shelf: 2, beforeId: null });
+  assert.equal(page.state.lib.find(b => b.id === book.id).shelf, 2);
+  assert.equal(page.state.lib.find(b => b.id === book.id).rotation.y, 60);
+  page.renderVals().modes.find(m => m.name === 'Lay flat').run();
+  assert.equal(page.state.lib.find(b => b.id === book.id).rotation, undefined);
+  assert.equal(page.state.lib.find(b => b.id === book.id).mode, 'lying');
+});
+
+test('decorations reject rotation, stay upright in older layouts and can still move between shelves', () => {
+  const page = controller();
+  const object = page.state.lib.find(b => b.deco === 'lavender');
+  page.renderVals().commitBookMotion(object.id, { shelf: object.shelf, rotation: { x: 0, y: 0, z: 25 } });
+  page.renderVals().commitBookMotion(object.id, { shelf: 2, beforeId: null });
+  const moved = page.state.lib.find(b => b.id === object.id);
+  assert.equal(moved.shelf, 2);
+  assert.equal(moved.rotation, undefined);
+  const displayed = page.bookVals({ ...moved, rotation: { x: 0, y: 0, z: 25 } });
+  assert.deepEqual(displayed.rotation, { x: 0, y: 0, z: 0 });
+  assert.equal(displayed.fw, displayed.objectW);
+  assert.equal(displayed.fh, displayed.objectH);
+  const snapshot = JSON.parse(serializeLibrary(page.state));
+  assert.equal(isValidLibrarySnapshot(snapshot, { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS }), true);
+  page.renderVals().discardLibrary();
+  assert.equal(page.state.lib.find(b => b.id === object.id).rotation, undefined);
+});

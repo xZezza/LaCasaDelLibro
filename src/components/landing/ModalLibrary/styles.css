@@ -1062,7 +1062,7 @@
 }
 @layer responsive {
 @media (width > 960px) {
-.salon-library-dialog {width:1440px;display:grid;grid-template-columns:minmax(0,1fr) 320px;}
+.salon-library-dialog {width:1200px;display:grid;grid-template-columns:minmax(0,1fr) 300px;}
 .salon-library-dialog .salon-s256 {min-width:0;}
 .salon-library-dialog .salon-s265 {min-width:0;}
 }
@@ -1100,8 +1100,8 @@
 }
 
 @layer refinements {
-.salon-library-dialog .salon-s241 {height:220px;}
-@media (max-width:650px) {.salon-library-dialog .salon-s241 {height:220px;}}
+.salon-library-dialog .salon-s241 {height:200px;}
+@media (max-width:650px) {.salon-library-dialog .salon-s241 {height:200px;}}
 }
 
 @layer refinements {.salon-library-dialog [data-deco="ivy"] > .salon-s234 {background-size:465.4545% 220.2151%!important;background-position:9.5357% 5.3667%!important;}}
@@ -1137,4 +1137,208 @@
 .salon-library-dialog .salon-s243 {line-height:24px;}
 .salon-library-dialog .salon-s206 {font-size:56px;}
 @media (max-width:650px) {.salon-library-dialog .salon-s206 {font-size:34px;}.salon-library-dialog .salon-s246 > .fairy-lights {left:5px;right:5px;}}
+}
+
+/* Interior finishing: consistent label markers and readable controls in both themes. */
+@layer refinements {
+  .salon-library-dialog {
+    --library-ink: light-dark(#35273f, #f4eadb);
+    --library-muted: light-dark(#67576d, #d0c2d6);
+    --library-marker: light-dark(#edc978, #65446f);
+    --library-edge: light-dark(#a08a9e, #9d88a7);
+  }
+
+  .salon-library-dialog .salon-marker-text::before {
+    bottom: .04em;
+    height: .28em;
+    inset-inline: -.16em;
+    background: var(--library-marker);
+  }
+
+  .salon-library-dialog .salon-marker-control,
+  .salon-library-dialog .salon-marker-action {
+    color: var(--library-ink);
+    text-decoration: none;
+  }
+
+  .salon-library-dialog .salon-marker-control[aria-pressed="true"] {
+    font-weight: 600;
+  }
+
+  .salon-library-dialog .salon-s259,
+  .salon-library-dialog .salon-s263,
+  .salon-library-dialog .library-more-treasures {
+    font-size: 14px;
+  }
+
+  .salon-library-dialog .salon-s215,
+  .salon-library-dialog .salon-s219,
+  .salon-library-dialog .library-save-status,
+  .salon-library-dialog .library-companion-hint {
+    color: var(--library-muted);
+  }
+
+  .salon-library-dialog .salon-s257 {
+    border: 1px solid light-dark(#786b615c, #e4d9ce66);
+    outline: 2px solid transparent;
+    outline-offset: 3px;
+  }
+
+  .salon-library-dialog .salon-s257[aria-pressed="true"] {
+    outline-color: var(--library-ink);
+    box-shadow: 0 0 0 2px light-dark(#f8eedf, #292331);
+  }
+
+  .salon-library-dialog .salon-s257:focus-visible {
+    outline: 2px dashed var(--library-ink);
+    outline-offset: 5px;
+  }
+
+  .salon-library-dialog .library-companion-picker select {
+    color: var(--library-ink);
+    border-color: var(--library-edge);
+    background-color: light-dark(#fffaf1, #211a29);
+    background-image: none;
+    appearance: auto;
+    -webkit-appearance: auto;
+    padding-right: 8px;
+    color-scheme: inherit;
+  }
+
+  .salon-library-dialog .library-save-button {
+    background: light-dark(#53365f, #d4b8df);
+    color: light-dark(#fff7e9, #302039);
+  }
+
+  .salon-library-dialog .library-save-button:disabled {
+    background: light-dark(#e2d8df, #44374d);
+    color: light-dark(#65556b, #c8b9d0);
+    opacity: 1;
+  }
+
+  .salon-library-dialog .library-discard-button {color: var(--library-ink);}
+  .salon-library-dialog .library-save-status[data-error="true"] {color: light-dark(#913a39, #ffb5ac);}
+  .salon-library-dialog .salon-s264 {accent-color: light-dark(#634472, #d1afdf);}
+}
+
+/* Direct hand gestures: all books share the same grip and physical face geometry. */
+@layer refinements {
+  .salon-library-dialog [data-book-id] {touch-action:none;user-select:none;-webkit-user-select:none;}
+  .salon-library-dialog [data-book-id] > .salon-s232 {
+    transform:rotateX(var(--hand-x,-7deg)) rotateY(var(--hand-y)) rotateZ(var(--hand-z,0deg));
+  }
+  .salon-library-dialog [data-book-id][data-selected="true"] {transform:none;}
+  .salon-library-dialog [data-in-hand] {cursor:grabbing;}
+  .salon-library-dialog [data-hand-target="true"] {outline:2px dashed light-dark(#785284,#d3b2df);outline-offset:4px;}
+  .library-book-bottom {position:absolute;left:0;top:calc((var(--book-height) - var(--book-depth))/2);width:var(--book-width);height:var(--book-depth);backface-visibility:hidden;transform:rotateX(-90deg) translateZ(calc(var(--book-height)/2));background:repeating-linear-gradient(90deg,#e9dcc3 0 1px,#b6a78d 1px 1.5px,#e1d1b3 1.5px 3px);box-shadow:inset 0 0 0 2px var(--book-paint);}
+  .salon-library-dialog.library-hand-preview {position:fixed;z-index:1000;display:block;zoom:1;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none;animation:none;pointer-events:none;}
+  .library-hand-preview .salon-s233,.library-hand-preview .salon-s232 {transition:none!important;}
+  .library-hand-preview .salon-s233 {filter:drop-shadow(5px 16px 9px #21122045);box-shadow:none;}
+  @media(prefers-reduced-motion:reduce) {.salon-library-dialog [data-book-id],.salon-library-dialog [data-book-id] > .salon-s232 {transition:none;}}
+}
+
+@layer refinements {
+  .salon-library-dialog [data-hand-id] {touch-action:none;user-select:none;-webkit-user-select:none;}
+  .salon-library-dialog [data-hand-id].salon-s235 {position:relative;transform:none;}
+  .salon-library-dialog [data-hand-id].salon-s235 > .salon-s234 {position:absolute;left:50%;bottom:0;width:var(--object-width);height:var(--object-height);transform:translateX(-50%) rotate(var(--object-z,0deg));transform-origin:center;}
+  .salon-library-dialog [data-hand-id].salon-s235[data-companion="true"]:hover > .salon-s234 {transform:translateX(-50%) rotate(var(--object-z,0deg)) scale(var(--visitor-hover-scale,1));transform-origin:center bottom;}
+  .library-hand-preview .salon-s235 {transition:none!important;filter:drop-shadow(5px 16px 9px #21122045);}
+}
+
+@layer refinements {
+  .salon-library-dialog [data-book-id] > .salon-s232 {left:calc(50% - var(--book-offset-x,0px));top:calc(50% - var(--book-offset-y,0px));}
+  .salon-library-dialog [data-hand-id].salon-s235 > .salon-s234 {bottom:calc((var(--object-bound-height) - var(--object-height))/2);}
+}
+
+/* Approved botanical objects, compact shelves and titles printed directly on cloth. */
+@layer refinements {
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {
+    background:none;padding:0;border-radius:0;
+    color:#f4dfa8;text-shadow:0 1px 2px #211209,0 0 3px #21120999;
+  }
+  .salon-library-dialog .salon-s233[data-binding="4"] .salon-s224 {color:#563522;text-shadow:0 1px 1px #fff8;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="ivy"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:320.6681% 190.3346%!important;background-position:2.9328% 7.8189%!important;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="lavender"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:388.8608% 208.1301%!important;background-position:50.3944% 0%!important;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="candle"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:676.6520% 214.2259%!important;background-position:88.0061% 1.4652%!important;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="teacup"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:322.6891% 315.0769%!important;background-position:3.0189% 89.9857%!important;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="blossoms"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:546.6192% 209.8361%!important;background-position:48.6056% 95.8955%!important;}
+  .salon-library-dialog :is(.salon-s235,.salon-s261)[data-deco="moon"] > .salon-s234 {background-image:url('/images/optimized/decorations/library-editorial/ornament-botanical-v2.webp')!important;background-size:505.2632% 224.5614%!important;background-position:90.0162% 95.2465%!important;}
+  .salon-library-dialog [data-deco="candle"],.salon-library-dialog [data-deco="moon"] {--deco-shadow:drop-shadow(0 4px 3px #33201b30);}
+}
+
+@layer refinements {
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {font-size:14px;overflow-wrap:anywhere;}
+  .salon-library-dialog .salon-s227 {font-size:16px;overflow-wrap:anywhere;text-wrap:balance;}
+}
+
+/* A room-sized view, following the reference: never shrink the whole scene to fit. */
+@layer responsive {
+  @media (width > 960px) {
+    .salon-library-overlay {padding:16px;align-items:stretch;}
+    .salon-library-dialog {width:100%;max-width:1440px;max-height:calc(100dvh - 32px);zoom:1;overflow:auto;grid-template-columns:minmax(0,1fr) 280px;}
+    .salon-library-dialog .salon-s241 {height:260px;}
+  }
+}
+@layer refinements {
+}
+
+@layer responsive {
+  .salon-library-dialog.library-hand-preview {display:block;max-height:none;overflow:visible;}
+}
+
+/* A shared 30% enlargement fills the existing shelves without stretching the room. */
+@layer refinements {
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {font-size:18px;}
+  .salon-library-dialog .salon-s227 {font-size:20px;}
+}
+@layer responsive {
+  @media(max-width:960px) {.salon-library-dialog .salon-s241 {height:260px;}}
+}
+
+@layer refinements {
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {font-size:clamp(11px,calc(var(--book-width)*.20),18px);letter-spacing:.01em;overflow-wrap:normal;word-break:normal;}
+}
+
+/* Clear foil lettering on the cloth, with no printed backplate. */
+@layer refinements {
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {
+    writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;
+    font-size:20px;font-weight:600;line-height:1.1;letter-spacing:.015em;
+    max-height:84%;max-width:100%;overflow:hidden;background:none;padding:0;
+    color:#fff0c9;text-shadow:0 1px 2px #211309,0 0 2px #211309;
+  }
+  .salon-library-dialog .salon-s233[data-binding="4"] .salon-s224 {color:#44281e;text-shadow:0 1px 1px #fff8;}
+}
+@layer responsive {
+  @media(width > 960px) {
+    .salon-library-overlay {align-items:center;}
+    .salon-library-dialog {width:1440px;max-height:none;zoom:var(--library-scale,1);overflow:visible;}
+    .salon-library-dialog .salon-s256 {padding:16px 22px;gap:8px;}
+    .salon-library-dialog .salon-s223 {display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:24px;padding-right:0;}
+    .salon-library-dialog .salon-s205 {grid-column:1/-1;}
+    .salon-library-dialog .salon-s208 {gap:8px;}
+    .salon-library-dialog .salon-s206 {font-size:42px;}
+    .salon-library-dialog .salon-s207 {display:none;}
+    .salon-library-dialog .salon-s222 {margin-top:0;max-width:460px;}
+    .salon-library-dialog .salon-s247 {padding-top:4px;}
+    .salon-library-dialog .salon-s241 {height:244px;}
+    .salon-library-dialog .salon-s245 {min-height:24px;padding:0 6px;}
+    .salon-library-dialog .salon-s265 {gap:10px;padding:34px 22px 16px;}
+    .salon-library-dialog .salon-s258 {gap:5px;}
+    .salon-library-dialog .salon-s99 {font-size:20px;}
+    .salon-library-dialog .library-customize-title {padding-bottom:8px;font-size:28px;}
+    .salon-library-dialog .salon-s257 {width:28px;height:28px;}
+    .salon-library-dialog.library-hand-preview {width:auto;zoom:1;overflow:visible;}
+  }
+}
+
+@layer responsive {
+  @media(width > 960px) {.salon-library-dialog .salon-s265 {border-radius:0 22px 22px 0;}}
+}
+
+/* Plants rest on the pot base; trailing ivy is allowed to hang below the shelf. */
+@layer refinements {
+  .salon-library-dialog [data-hand-id][data-deco="ivy"] > .salon-s234 {bottom:calc(var(--object-height)*-.27);}
+  .salon-library-dialog [data-hand-id][data-deco="plant"] > .salon-s234 {bottom:calc(var(--object-height)*-.021);}
+  .salon-library-dialog [data-hand-id][data-deco="lavender"] > .salon-s234 {bottom:calc(var(--object-height)*-.012);}
 }

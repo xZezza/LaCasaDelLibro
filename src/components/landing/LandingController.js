@@ -1,3 +1,4 @@
+import { bookRotation, bookBounds, LIBRARY_PRESENTATION_SCALE } from "../../lib/library-motion.js";
 import { illustratedColour } from "../../data/landing/library-art.js";
 import React from "react";
 import { READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
@@ -444,13 +445,16 @@ export default class LandingController extends React.Component {
   bookVals(b) {
     if (b.deco) {
       const d = DECOS[b.deco],
+        displayW = d.w * LIBRARY_PRESENTATION_SCALE, displayH = d.h * LIBRARY_PRESENTATION_SCALE,
         sel = this.state.sel === b.id;
       return {
         ...b,
         isBook: false,
         isDeco: true,
-        fw: d.w,
-        fh: d.h,
+        objectW: displayW, objectH: displayH,
+        rotation: { x: 0, y: 0, z: 0 },
+        fw: displayW,
+        fh: displayH,
         bgImg: `url("${d.src}")`,
         isPet: !!d.pet,
         selected: sel,
@@ -477,11 +481,13 @@ export default class LandingController extends React.Component {
       };
     }
     const { mode } = b,
-      T = b.T * 2.4, H = b.H * 1.6, D = b.D * 1.75,
+      T = b.T * 1.92 * LIBRARY_PRESENTATION_SCALE, H = b.H * 1.28 * LIBRARY_PRESENTATION_SCALE, D = b.D * 1.4 * LIBRARY_PRESENTATION_SCALE,
       a = this.state.angle,
       sel = this.state.sel === b.id;
-    const fw = mode === "spine" ? T : mode === "cover" ? D : H;
-    const fh = mode === "lying" ? T : H;
+    const rotation = bookRotation(b);
+    const bounds = b.rotation ? bookBounds(T, H, D, rotation, a, 700) : null;
+    const fw = bounds ? bounds.width : mode === "spine" ? T : mode === "cover" ? D : H;
+    const fh = bounds ? bounds.height : mode === "lying" ? T : H;
     const drag = (e) => {
       this._newType = null;
       this._drag = b.id;
@@ -494,7 +500,8 @@ export default class LandingController extends React.Component {
       ...b,
       isBook: true,
       isDeco: false,
-      T, H, D,
+      T, H, D, rotation,
+      offsetX: bounds?.offsetX || 0, offsetY: bounds?.offsetY || 0,
       fw,
       fh,
       selected: sel,
@@ -748,14 +755,14 @@ export default class LandingController extends React.Component {
     const selB = this.state.lib.find((b) => b.id === this.state.sel);
     const setMode = (mode) => () =>
       this.setLib((lib) =>
-        lib.map((b) => (b.id === this.state.sel ? { ...b, mode } : b)),
+        lib.map((b) => (b.id === this.state.sel ? { ...b, mode, rotation: undefined } : b)),
       );
     const modes = [
       ["spine", "Spine out"],
       ["cover", "Cover out"],
       ["lying", "Lay flat"],
     ].map(([k, name]) => {
-      const on = selB && selB.mode === k;
+      const on = selB && !selB.rotation && selB.mode === k;
       return {
         name,
         run: setMode(k),
@@ -915,6 +922,14 @@ export default class LandingController extends React.Component {
       libraryDirty:
         serializeLibrary(this.state) !== this.state.savedLayoutSignature,
       saveLibrary: this.saveLibrary,
+      commitBookMotion: (id, target) => {
+        if (target.rotation) {
+          this.setLib(lib => lib.map(b => b.id === id && !b.deco ? { ...b, rotation: { ...target.rotation } } : b));
+        } else {
+          this.move(id, target.shelf, target.beforeId);
+        }
+        this.setState({ sel: id });
+      },
       // Create the callback with the rendered controls, including on retained
       // development instances that predate the new discard class field.
       discardLibrary: () => {

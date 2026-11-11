@@ -1,56 +1,39 @@
-import { useLayoutEffect, useRef } from "react";
-import { MEDIA_QUERIES } from "../config/breakpoints.js";
+import { useLayoutEffect, useRef } from 'react';
+import { BREAKPOINTS, MEDIA_QUERIES } from '../config/breakpoints.js';
 
-// Use layout zoom rather than a visual transform so drag/drop and pointer targets
-// stay aligned with the displayed books at every desktop window size.
+// Fit the complete room uniformly: book/object ratios and pointer coordinates stay aligned.
 export default function useLibraryFit(open) {
   const dialogRef = useRef(null);
   useLayoutEffect(() => {
     const dialog = dialogRef.current;
     if (!open || !dialog) return;
-    const desktop = matchMedia(MEDIA_QUERIES.tabletAndPhone);
-    let frame;
+    const desktop = matchMedia(MEDIA_QUERIES.desktop);
+    let frame = 0;
     function fit() {
-      if (desktop.matches) {
-        dialog.style.removeProperty("--library-scale");
-        return;
+      if (!dialog.isConnected) return;
+      for (const title of dialog.querySelectorAll('[data-book-id] .salon-s224')) {
+        title.style.fontSize = '20px';
+        const available = title.clientHeight;
+        if (available > 0 && title.scrollHeight > available + 1) {
+          title.style.fontSize = `${20 * available / title.scrollHeight * .97}px`;
+        }
       }
-      dialog.style.setProperty("--library-scale", "1");
-      const padding = getComputedStyle(dialog.parentElement);
-      const height =
-        innerHeight -
-        parseFloat(padding.paddingTop) -
-        parseFloat(padding.paddingBottom) -
-        2;
-      const width =
-        innerWidth -
-        parseFloat(padding.paddingLeft) -
-        parseFloat(padding.paddingRight) -
-        2;
-      const scale = Math.min(
-        0.9,
-        height / Math.max(dialog.scrollHeight, dialog.offsetHeight),
-        width / dialog.offsetWidth,
-      );
-      dialog.style.setProperty("--library-scale", String(scale));
+      if (!desktop.matches) { dialog.style.removeProperty('--library-scale'); return; }
+      dialog.style.maxWidth = `${BREAKPOINTS.desktopMax}px`;
+      dialog.style.setProperty('--library-scale', '1');
+      const inset = getComputedStyle(dialog.parentElement);
+      const availableW = innerWidth - parseFloat(inset.paddingLeft) - parseFloat(inset.paddingRight) - 2;
+      const availableH = innerHeight - parseFloat(inset.paddingTop) - parseFloat(inset.paddingBottom) - 2;
+      const scale = Math.min(1, availableW / dialog.offsetWidth, availableH / Math.max(dialog.scrollHeight, dialog.offsetHeight));
+      dialog.style.setProperty('--library-scale', String(scale));
     }
-    function schedule() {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(fit);
-    }
+    function schedule() { cancelAnimationFrame(frame); frame = requestAnimationFrame(fit); }
     fit();
     const observer = new ResizeObserver(schedule);
-    // Observe the contents, whose natural size stays stable when zoom changes.
-    [...dialog.children]
-      .filter((el) => el.tagName === "DIV")
-      .forEach((el) => observer.observe(el));
-    window.addEventListener("resize", schedule);
+    [...dialog.children].filter(el => el.tagName === 'DIV').forEach(el => observer.observe(el));
+    window.addEventListener('resize', schedule); desktop.addEventListener('change', schedule);
     document.fonts?.ready.then(schedule);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-      window.removeEventListener("resize", schedule);
-    };
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('resize', schedule); desktop.removeEventListener('change', schedule); };
   }, [open]);
   return dialogRef;
 }
