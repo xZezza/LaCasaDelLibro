@@ -1,5 +1,6 @@
 import QuoteText from "../QuoteText";
 import BookCover from "../BookCover";
+import MobileBooksCarousel from "../MobileBooksCarousel";
 import React from "react";
 import "./styles.css";
 
@@ -13,6 +14,7 @@ export default function BooksCarousel(values) {
     pauseCovers,
     prevCovers,
     nextCovers,
+    openMobileCover,
     openingQuoteRevealed,
     quoteRef,
     resumeCovers,
@@ -35,13 +37,14 @@ export default function BooksCarousel(values) {
               <span className={"salon-s28"}>{"Clockwork Angel"}</span>
             </figcaption>
           </figure>
-          <h2 className={"salon-s31"}>{"The stories you carry with you."}</h2>
+          <h2 id="stories-title" className={"salon-s31"}>{"The stories you carry with you."}</h2>
           <p className={"salon-s32"}>
             {
               "The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them."
             }
           </p>
         </div>
+        <MobileBooksCarousel books={covers.filter(book => !book.duplicate)} onOpen={openMobileCover} />
         <div className="salon-s51 salon-carousel-wrap">
           <button
             type="button"

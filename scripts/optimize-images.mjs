@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { ILLUSTRATED_COVERS } from '../src/data/landing/illustrated-covers.js';
 import path from 'node:path';
 import os from 'node:os';
 import { createRequire } from 'node:module';
@@ -51,6 +52,12 @@ async function check() {
       }
       await comparePixels(diskPath(item.original), diskPath(item.optimized));
     } else if (variants[item.original]) throw new Error(`Unexpected image variant: ${item.original}`);
+    if (item.responsive) {
+      const smaller = await fs.readFile(diskPath(item.responsive.url));
+      if (digest(smaller) !== item.responsive.sha256 || smaller.length !== item.responsive.bytes) throw new Error(`Invalid responsive image: ${item.original}`);
+      const expected = await sharp(original).resize({ width: item.responsive.width, withoutEnlargement: true }).png().toBuffer();
+      await comparePixels(expected, smaller);
+    }
   }
   if (Object.keys(variants).length !== report.images.filter(item => item.optimized).length) throw new Error('Unverified image variants.');
   console.log(`Image verification OK: ${Object.keys(variants).length} lossless variants; original hashes, visible pixels, alpha and dimensions unchanged.`);
@@ -60,6 +67,8 @@ async function generate() {
   const guests = await json(path.join(root, 'src/data/library-visitors.json'));
   const sources = [...new Set([
     ...guests.map(guest => guest.image),
+    ...ILLUSTRATED_COVERS.map(cover => cover.src),
+    "/images/decorations/carousel-covers/lilac-sprig.png",
     '/images/branding/logo.png',
     '/images/hero/reading-room.jpg',
     '/images/hero/reading-journal-fantasy.png',
@@ -116,5 +125,26 @@ async function generate() {
   }
 }
 
+// High-density covers for the mobile carousel (maximum displayed cover width: 170 CSS px).
+// These are separate responsive copies; full-resolution originals/variants stay intact.
+async function generateCarouselSizes() {
+  const report = await json(reportFile);
+  for (const cover of ILLUSTRATED_COVERS) {
+    const item = report.images.find(image => image.original === cover.src);
+    if (!item) throw new Error(`Missing full-resolution image record: ${cover.src}`);
+    const resized = await sharp(diskPath(cover.src)).resize({ width: 600, withoutEnlargement: true }).png().toBuffer();
+    const encoded = await sharp(resized).webp({ lossless: true, alphaQuality: 100, effort: 6 }).toBuffer();
+    const url = cover.src.replace('/images/', '/images/optimized/').replace('.png', '-mobile.webp');
+    await fs.mkdir(path.dirname(diskPath(url)), { recursive: true });
+    await fs.writeFile(diskPath(url), encoded);
+    const verified = await comparePixels(resized, encoded);
+    item.responsive = { url, width: verified.width, height: verified.height, bytes: encoded.length, sha256: digest(encoded) };
+    console.log(`${cover.title}: responsive ${verified.width}x${verified.height}, ${encoded.length} bytes`);
+  }
+  report.responsiveNote = 'Separate 600px-wide lossless display copies for mobile book covers; originals and full-resolution variants remain unchanged. Totals refer to default image URLs.';
+  await fs.writeFile(reportFile, JSON.stringify(report, null, 2) + '\n');
+}
+
 if (process.argv.includes('--check')) await check();
-else await generate();
+else if (process.argv.includes('--carousel')) await generateCarouselSizes();
+else { await generate(); await generateCarouselSizes(); }

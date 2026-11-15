@@ -1,0 +1,69 @@
+@layer components {
+  .mobile-books { display: none; }
+}
+@layer responsive {
+  @media (max-width: 650px) {
+    .mobile-books {
+      --mobile-cover-width: clamp(110px, 34vw, 170px);
+      --mobile-cover-gap: 20px;
+      display: block;
+      position: relative;
+      margin-top: 20px;
+    }
+    .mobile-books-stage { position: relative; }
+    .mobile-books-track {
+      display: flex;
+      position: relative;
+      gap: var(--mobile-cover-gap);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 14px calc((100% - var(--mobile-cover-width)) / 2) 28px;
+      scroll-padding-inline: calc((100% - var(--mobile-cover-width)) / 2);
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-books-track::-webkit-scrollbar { display: none; }
+    .mobile-books-slide { flex: 0 0 var(--mobile-cover-width); scroll-snap-align: center; min-width: 0; perspective: 1000px; }
+    .mobile-books-book {
+      display: block;
+      width: 100%;
+      aspect-ratio: 5 / 7;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      transform: scale(.78) translateY(8px);
+      transform-origin: center;
+      transition: transform 350ms ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .mobile-books-slide[data-active="true"] .mobile-books-book { transform: none; }
+    .mobile-books-binding {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--binding-color);
+      border-radius: 4px 7px 7px 4px;
+      transform: none;
+      transform-style: preserve-3d;
+      box-shadow: 8px 0 0 #e4d9bf, 11px 1px 0 var(--binding-color), 8px 16px 22px -11px #32203566;
+    }
+    .mobile-books-binding > img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+    .mobile-books-cover-lettering { position: absolute; inset: 25% 12% 12%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: #fae6b4; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(14px, 3.9vw, 19px); line-height: 1.04; text-wrap: balance; }
+    .mobile-books-cover-lettering small { font-family: 'Cormorant Garamond', serif; font-size: .48em; letter-spacing: .16em; text-transform: uppercase; }
+    .mobile-books-flowers { position: absolute; z-index: 1; width: clamp(32px, 10vw, 50px); height: auto; left: calc((100% - var(--mobile-cover-width)) / 2 - 24px); bottom: 11px; pointer-events: none; }
+    .mobile-books-arrow { position: absolute; z-index: 2; top: calc((var(--mobile-cover-width) * 1.4) / 2 - 8px); display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: none; color: #fff; cursor: pointer; }
+    .mobile-books-previous { left: 0; }
+    .mobile-books-next { right: 0; }
+    .mobile-books-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; filter: drop-shadow(0 0 1px #352338) drop-shadow(0 1px 1px #352338); stroke-linecap: round; stroke-linejoin: round; }
+    .mobile-books-memory { margin: 2px 20px 0; text-align: center; font-family: Kalam, cursive; font-size: 16px; font-weight: 300; color: light-dark(#8c659f, #c4a1d4); }
+    .mobile-books-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+  @media (max-width: 650px) and (prefers-reduced-motion: reduce) {
+    .mobile-books-book { transition: none; }
+  }
+}

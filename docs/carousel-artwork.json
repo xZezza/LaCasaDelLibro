@@ -1,0 +1,117 @@
+{
+  "created": "2026-11-15",
+  "generator": "built-in image_gen",
+  "reference": "exec-c0a06076-7b43-4621-ab4d-2b7c9ee29730.png",
+  "purpose": "Original illustrated mobile book covers, not publisher cover scans. Every original is preserved; display uses verified lossless variants.",
+  "commonPrompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop.",
+  "assets": [
+    {
+      "asset": "/images/decorations/carousel-covers/night-circus.png",
+      "source": "01a1dcb7-e4c6-7472-ade7-b6d37fcafa78/exec-0a29b7eb-8f7c-4692-a40f-46af4158865c.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/night-circus.png",
+      "title": "The Night Circus",
+      "author": "Erin Morgenstern",
+      "artDirection": "Muted plum cloth, cream circus tents, crescent and fine gold stars.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: The Night Circus. Author: Erin Morgenstern. Muted plum cloth, cream circus tents, crescent and fine gold stars."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/acotar.png",
+      "source": "01a1dcb8-265e-7f00-980a-35f2462eb775/exec-555a45c8-f1f7-4df5-b501-cdfc18018a09.png",
+      "note": "Text-free original sage floral binding; book title and author are real HTML.",
+      "originalFile": "public/images/decorations/carousel-covers/acotar.png",
+      "title": "A Court of Thorns and Roses",
+      "author": "Sarah J. Maas",
+      "artDirection": "Text-free muted sage cloth, gold thorns and dusty roses; title/author are semantic HTML.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: A Court of Thorns and Roses. Author: Sarah J. Maas. Text-free muted sage cloth, gold thorns and dusty roses; title/author are semantic HTML."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/hunger-games.png",
+      "source": "01a1dcb7-e4c6-7472-ade7-b6d37fcafa78/exec-eeb696ba-36b4-4e49-809d-53b1bcac0e4d.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/hunger-games.png",
+      "title": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "artDirection": "Charcoal cloth, original golden songbird on branches, no franchise emblem.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: The Hunger Games. Author: Suzanne Collins. Charcoal cloth, original golden songbird on branches, no franchise emblem."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/fourth-wing.png",
+      "source": "01a1dcb8-5dd8-72a2-99e7-69ddf8a084ce/exec-6cf7cd99-5ade-425a-bf74-0e1768b9d05b.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/fourth-wing.png",
+      "title": "Fourth Wing",
+      "author": "Rebecca Yarros",
+      "artDirection": "Bronze-violet cloth, original gold dragon above a mountain ridge, no franchise emblem.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Fourth Wing. Author: Rebecca Yarros. Bronze-violet cloth, original gold dragon above a mountain ridge, no franchise emblem."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/six-of-crows.png",
+      "source": "01a1dcb7-e4c6-7472-ade7-b6d37fcafa78/exec-0d86e44e-af44-45d2-bd43-2ed32f7b2022.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/six-of-crows.png",
+      "title": "Six of Crows",
+      "author": "Leigh Bardugo",
+      "artDirection": "Aubergine cloth, original black crow over a misty canal city.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Six of Crows. Author: Leigh Bardugo. Aubergine cloth, original black crow over a misty canal city."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/divergent.png",
+      "source": "01a1dcb8-5dd8-72a2-99e7-69ddf8a084ce/exec-82d63b86-6862-4531-8a62-03542409134c.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/divergent.png",
+      "title": "Divergent",
+      "author": "Veronica Roth",
+      "artDirection": "Slate-teal cloth, original city skyline and gold sunrise rays, no faction emblems.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Divergent. Author: Veronica Roth. Slate-teal cloth, original city skyline and gold sunrise rays, no faction emblems."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/cruel-prince.png",
+      "source": "01a1dcb8-265e-7f00-980a-35f2462eb775/exec-87ae31b6-8a1e-4df6-aded-71b327ef070c.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/cruel-prince.png",
+      "title": "The Cruel Prince",
+      "author": "Holly Black",
+      "artDirection": "Forest-green cloth, original delicate gold faerie crown and oak/thorn branches.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: The Cruel Prince. Author: Holly Black. Forest-green cloth, original delicate gold faerie crown and oak/thorn branches."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/throne-of-glass.png",
+      "source": "01a1dcb8-265e-7f00-980a-35f2462eb775/exec-62120c8c-1ec3-4cbc-b89d-f085b9e473b2.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/throne-of-glass.png",
+      "title": "Throne of Glass",
+      "author": "Sarah J. Maas",
+      "artDirection": "Teal-blue cloth, original ivory glass-castle silhouette, stars and a simple sword.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Throne of Glass. Author: Sarah J. Maas. Teal-blue cloth, original ivory glass-castle silhouette, stars and a simple sword."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/red-queen.png",
+      "source": "01a1dcb7-e4c6-7472-ade7-b6d37fcafa78/exec-8590129c-f911-409d-ade7-8f57206b65a3.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/red-queen.png",
+      "title": "Red Queen",
+      "author": "Victoria Aveyard",
+      "artDirection": "Muted oxblood cloth, original silver filigree crown with one small ruby.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Red Queen. Author: Victoria Aveyard. Muted oxblood cloth, original silver filigree crown with one small ruby."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/shadow-bone.png",
+      "source": "01a1dcb8-5dd8-72a2-99e7-69ddf8a084ce/exec-4a06748b-650a-4a1f-ae52-47f5b62162fe.png",
+      "note": "Title and author rendered within the original cover illustration.",
+      "originalFile": "public/images/decorations/carousel-covers/shadow-bone.png",
+      "title": "Shadow and Bone",
+      "author": "Leigh Bardugo",
+      "artDirection": "Midnight-blue cloth, original misty distant castle towers, moon and gold stars.",
+      "prompt": "Flat straight-on rectangular front cover only, portrait 5:7 about 1000 x 1400, edge-to-edge muted cloth texture, fine antique gold foil border, original painterly literary illustration, readable cream literary title above and author below. Match the selected plum Night Circus reference. No official cover artwork, pages, perspective, UI, genre labels, external objects or backdrop. Book title: Shadow and Bone. Author: Leigh Bardugo. Midnight-blue cloth, original misty distant castle towers, moon and gold stars."
+    },
+    {
+      "asset": "/images/decorations/carousel-covers/lilac-sprig.png",
+      "source": "01a1dcb8-5dd8-72a2-99e7-69ddf8a084ce/exec-fda094d6-41f3-437e-99bd-30d24ecc8d7c.png",
+      "note": "Transparent original lilac flowering sprig.",
+      "originalFile": "public/images/decorations/carousel-covers/lilac-sprig.png",
+      "prompt": "Standalone narrow lilac flowering sprig leaning lower-left to upper-right, golden-brown stems, dusty lilac blossoms and small leaves/petals; faithful to the selected mock, full object on transparent alpha; no book/UI/text/background."
+    }
+  ],
+  "responsiveDelivery": "600px-wide lossless WebP copies served through srcset; originals/full-size lossless assets retained and verified."
+}

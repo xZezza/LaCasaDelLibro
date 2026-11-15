@@ -783,6 +783,7 @@ export default class LandingController extends React.Component {
             this.setState({ sheet: j % COVERS.length });
           },
         })),
+      openMobileCover: (index) => { this.setPaused(true); this.setState({ sheet: index }); },
       sheetOpen: this.state.sheet != null,
       sb: COVERS[this.state.sheet ?? 0],
       closeSheet: () => {

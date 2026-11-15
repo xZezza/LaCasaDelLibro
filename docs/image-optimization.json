@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 32,
-    "optimized": 30,
-    "originalBytes": 47262439,
-    "servedBytes": 30588124,
-    "savedBytes": 16674315,
-    "savedPercent": 35.28
+    "images": 43,
+    "optimized": 41,
+    "originalBytes": 82076744,
+    "servedBytes": 53283544,
+    "savedBytes": 28793200,
+    "savedPercent": 35.08
   },
   "images": [
     {
@@ -298,6 +298,219 @@
       "visibleColorDifferences": 0
     },
     {
+      "original": "/images/decorations/carousel-covers/night-circus.png",
+      "originalBytes": 3438136,
+      "originalSha256": "904dd4a3ee124f1e0c95ea954283086b90e795d062c7219f3c76c28ab668c5e3",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/night-circus.webp",
+      "optimizedBytes": 2223948,
+      "optimizedSha256": "12039c4d3031c7ba4df199360b100f8f2bde8c5f3c3890df62efc8bef5583624",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/night-circus-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 715878,
+        "sha256": "4314ff3203b5618609a5f2666fead0acc9f8039e8d0014c2fd16ac25abc0f44c"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/acotar.png",
+      "originalBytes": 3758905,
+      "originalSha256": "ff450cf9ee2d99d386271d3d41b833875a4e3a494343a70daa5a5775f1c527b7",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/acotar.webp",
+      "optimizedBytes": 2245826,
+      "optimizedSha256": "9206f6467ca0ebd6ba6025dfeaeea659513a3ff6a4b2a38d30fb595cfc78d206",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/acotar-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 714644,
+        "sha256": "57fc8e50ab58c5522e14f5fa06a701f114ec4e4cfe90b2eb04b0aa818b3878e0"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/hunger-games.png",
+      "originalBytes": 3092198,
+      "originalSha256": "31390c2a554be666e6b87594d8dcbb38c176aaefbbd143e8044efe0eb3471207",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/hunger-games.webp",
+      "optimizedBytes": 2067342,
+      "optimizedSha256": "4b290b71f890ec631e18764b99f4ebfeceefc8fa8a3099f00a3e83d8b4ee26a6",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/hunger-games-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 687322,
+        "sha256": "1be27701d6bf594512a344d6a16777876d4daede6dd81241783ffd08547a0dc1"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/fourth-wing.png",
+      "originalBytes": 3269276,
+      "originalSha256": "da932c666ee398c1e0ed7f4b4435448d56255ba2add2972864384fbafd2fbf16",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/fourth-wing.webp",
+      "optimizedBytes": 2177778,
+      "optimizedSha256": "b83132c2144d0ee2bce449cb7b1314bd806a5235d7634273505b0104ba448042",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/fourth-wing-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 716486,
+        "sha256": "4afcdff0bcbe634462ca129fd3860a23dd8a49ed511f4570d734e0c73118cbd0"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/six-of-crows.png",
+      "originalBytes": 3167094,
+      "originalSha256": "f79190038b118a41b35611f169c0af4d5ea9f077266eafc0619f2cf5c97f4691",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/six-of-crows.webp",
+      "optimizedBytes": 2084980,
+      "optimizedSha256": "1fc5fc43f0b5b5646af2cb479fcd5457f7130f0c1027bceaa7a4aa07f7b40e34",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/six-of-crows-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 678064,
+        "sha256": "aad3dafd35739ea752c5cdf6747e260bfc2a7ad30d13d20a29f53633686edc2d"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/divergent.png",
+      "originalBytes": 3581065,
+      "originalSha256": "d84e3b972d5b9cdc9a78de42cf852d09720d5d664a22aa3fd94d2ed3f261e05f",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/divergent.webp",
+      "optimizedBytes": 2341428,
+      "optimizedSha256": "415db22f0f6f415b17dc710bc8a9beed951b8ed0605eafa4b9bed1546c6b1814",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/divergent-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 736774,
+        "sha256": "4ff6f56d53b01be039ff34e734547288f2be0df817bc57eb94a00fd585372537"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/cruel-prince.png",
+      "originalBytes": 3302452,
+      "originalSha256": "f72681ff6c8ab3a13d2c0e31c3c12aa1fb2fc2ffd3105edf6e5d8c515e75f9c2",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/cruel-prince.webp",
+      "optimizedBytes": 2163060,
+      "optimizedSha256": "1132cd3c5216d2fd6b623495f09f7a5794ef76904fe1863664448092c00183b6",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/cruel-prince-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 724380,
+        "sha256": "8d16f7280749b72ce05ce05dbe44d0feb6cd767c38edb29f7fe05f08f8194d20"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/throne-of-glass.png",
+      "originalBytes": 3753777,
+      "originalSha256": "217733bef18302de119065108f81b609a5167493b954cbed4df8dba03c51bfa0",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/throne-of-glass.webp",
+      "optimizedBytes": 2434690,
+      "optimizedSha256": "45b2f0fd4d0f6bc1152e12e74d2e50be2fe4934ea303de2ebdc05143b9433c0b",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/throne-of-glass-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 769882,
+        "sha256": "14ebdf48fa499e6e3a59e5f88621a7efb519f7446fe9a7833ea21012c8eaf9e7"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/red-queen.png",
+      "originalBytes": 3291377,
+      "originalSha256": "e041adc457f2da8248693b9cd31cfaa822105f543000957b329a578229c859f4",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/red-queen.webp",
+      "optimizedBytes": 2254444,
+      "optimizedSha256": "8ee1f25078425a1bfc3c4330cc1ad7c3fae030a0061855926816399a662bd6d0",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/red-queen-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 723696,
+        "sha256": "c2697d17f5172ac6820656fc2f59ffd740e713c10cb8710439e83c5ed957ad28"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/shadow-bone.png",
+      "originalBytes": 3380568,
+      "originalSha256": "ebb06bf9e9555e1b2f508fb6d85cab3a9e80ae10342adcfb004cc3f9e08bf0d0",
+      "width": 1060,
+      "height": 1484,
+      "hasAlpha": false,
+      "optimized": "/images/optimized/decorations/carousel-covers/shadow-bone.webp",
+      "optimizedBytes": 2204616,
+      "optimizedSha256": "2a125e2d57c17c46ba85dda745c2f85d4fb8a23f407d943778bdcb14c52802c4",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0,
+      "responsive": {
+        "url": "/images/optimized/decorations/carousel-covers/shadow-bone-mobile.webp",
+        "width": 600,
+        "height": 840,
+        "bytes": 720916,
+        "sha256": "cca6bac5b48075d4655d1c3e737311a17b2177f3f7ea1873968fde64a17131be"
+      }
+    },
+    {
+      "original": "/images/decorations/carousel-covers/lilac-sprig.png",
+      "originalBytes": 779457,
+      "originalSha256": "01d9a6bef6ee62c913d8e846d862233dadccacc11755120cd418a77f896a454c",
+      "width": 1122,
+      "height": 1402,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/carousel-covers/lilac-sprig.webp",
+      "optimizedBytes": 497308,
+      "optimizedSha256": "982eb94338c07f09467f830ddca64dcfccd60b72fc9ab3e4db0c2292aeb4866f",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
       "original": "/images/branding/logo.png",
       "originalBytes": 198108,
       "originalSha256": "5d0c6518e8efca8b29c23e18c5859aa106a7aa8e577416f97876a0a2653eb890",
@@ -423,5 +636,6 @@
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     }
-  ]
+  ],
+  "responsiveNote": "Separate 600px-wide lossless display copies for mobile book covers; originals and full-resolution variants remain unchanged. Totals refer to default image URLs."
 }
