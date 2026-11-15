@@ -319,13 +319,3 @@
   }
 
 }
-
-@layer components {
-  .hero-flower-motion { position: absolute; pointer-events: none; }
-}
-
-@layer responsive {
-  @media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
-    .hero-mobile-illustration[data-flowers-moving="true"] img { filter: url(#hero-flower-sway); }
-  }
-}

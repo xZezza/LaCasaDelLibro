@@ -1,61 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
+import React from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
 import { imageAsset } from "../../../lib/image-assets.js";
 
 export default function Hero() {
-  const illustrationRef = useRef(null);
-  const flowerBendRef = useRef(null);
-  const [flowersMoving, setFlowersMoving] = useState(false);
-  useEffect(() => {
-    const phone = window.matchMedia(MEDIA_QUERIES.phone);
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let visible = false;
-    const update = () => setFlowersMoving(visible && phone.matches && !reduced.matches);
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
-    observer.observe(illustrationRef.current);
-    phone.addEventListener("change", update);
-    reduced.addEventListener("change", update);
-    return () => {
-      observer.disconnect();
-      phone.removeEventListener("change", update);
-      reduced.removeEventListener("change", update);
-    };
-  }, []);
-  useEffect(() => {
-    const bend = flowerBendRef.current;
-    if (!flowersMoving || !bend) return;
-    let frame;
-    const entered = performance.now();
-    function breathe(now) {
-      const t = now / 1000;
-      // Overlapping gusts keep speed and amplitude changing without timed stops.
-      const wind = 26 * Math.sin(t * .92)
-        + 14 * Math.sin(t * Math.SQRT2 + .7)
-        + 8 * Math.sin(t * .31 + 2);
-      const settling = Math.min(1, (now - entered) / 900);
-      const easeIn = settling * settling * (3 - 2 * settling);
-      bend.setAttribute("scale", (wind * easeIn).toFixed(3));
-      frame = requestAnimationFrame(breathe);
-    }
-    frame = requestAnimationFrame(breathe);
-    return () => {
-      cancelAnimationFrame(frame);
-      bend.setAttribute("scale", "0");
-    };
-  }, [flowersMoving]);
   return (
     <>
-      {/* The neutral displacement map only bends the upper bouquet; the original artwork stays intact. */}
-      <svg width="0" height="0" className="hero-flower-motion" aria-hidden="true" focusable="false">
-        <defs>
-          <filter id="hero-flower-sway" x="-2%" y="-2%" width="104%" height="104%" colorInterpolationFilters="sRGB">
-            <feImage href="/images/hero/flower-sway-map.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="sway-map" />
-            <feDisplacementMap ref={flowerBendRef} in="SourceGraphic" in2="sway-map" scale="0" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
       <div className={"salon-s23 salon-hero"}>
         <div className="salon-hero-stage">
           <div className={"salon-s8"}>
@@ -97,7 +47,7 @@ export default function Hero() {
               </p>
             </div>
           </header>
-          <picture ref={illustrationRef} className="hero-mobile-illustration" data-flowers-moving={flowersMoving}>
+          <picture className="hero-mobile-illustration">
             <source media="(max-width: 650px)" srcSet={imageAsset("/images/hero/reading-journal-fantasy.png")} />
             <img
               src="/images/hero/reading-room.jpg"
