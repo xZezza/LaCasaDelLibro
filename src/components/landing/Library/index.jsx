@@ -1,6 +1,7 @@
 import "../shared/actions.css";
 import "../shared/typography.css";
 import React from "react";
+import MobileLibraryPreview from "../MobileLibraryPreview/index.jsx";
 import "./styles.css";
 
 export default function Library(values) {
@@ -26,11 +27,12 @@ export default function Library(values) {
         <div>
           <div className={"salon-s57"}>{"I · The Library"}</div>
           <h2 className={"salon-s58"}>{"Shelves that look like you."}</h2>
-          <p className={"salon-s59"}>
+          <p className="salon-s59 salon-library-desktop-copy">
             {
               "A three-dimensional library you can arrange and personalise. The books you’ve finished and the ones still waiting for you, side by side, in a room that feels like yours."
             }
           </p>
+          <p className="salon-s59 salon-library-mobile-copy">Your books, your little world.<br />Arrange it. Make it yours.</p>
           <div className={"salon-s62"}>
             <button
               onClick={openLib}
@@ -48,6 +50,7 @@ export default function Library(values) {
             )}
           </div>
         </div>
+        <MobileLibraryPreview openLib={openLib} />
         <div className={"salon-s78 library-editorial-card"} data-all-materials={showAllWoods} data-reading-tab={readingTab} data-wood={woods.find((w) => w.selected)?.name || "Walnut"}>
           <div className={"salon-s70"}>
             <div className={"salon-s64"}>

@@ -1,6 +1,7 @@
 import { bookRotation, bookBounds, LIBRARY_PRESENTATION_SCALE } from "../../lib/library-motion.js";
 import { illustratedColour } from "../../data/landing/library-art.js";
 import React from "react";
+import { libraryPreferences } from "../../lib/mobile-library.js";
 import { READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
 import { COVERS } from "../../data/landing/books.js";
 import { serializeLibrary, isValidLibrarySnapshot } from "../../lib/library-storage.js";
@@ -222,8 +223,9 @@ export default class LandingController extends React.Component {
         libraryIds.book = Math.max(libraryIds.book, nextId("n"));
         libraryIds.decoration = Math.max(libraryIds.decoration, nextId("d"));
         this.setState({
-          savedLayoutSignature: serializeLibrary(saved),
-          lib: saved.lib,
+          savedLayoutSignature: serializeLibrary({ ...saved, lib: saved.lib.map(book => book.deco ? book : { ...book, status: book.status ?? book.shelf }) }),
+          lib: saved.lib.map(book => book.deco ? book : { ...book, status: book.status ?? book.shelf }),
+          libraryPreferences: libraryPreferences(saved.libraryPreferences),
           wall: saved.wall,
           caseC: saved.caseC,
           lights: saved.lights,
@@ -357,14 +359,25 @@ export default class LandingController extends React.Component {
         () => this.setState({ saveMessage: "" }),
         3000,
       );
+      return true;
     } catch {
       this.setState({
         saveMessage:
           "Couldn’t save here. Please allow browser storage and try again.",
         saveError: true,
       });
+      return false;
     }
   };
+  updateMobileLibrary = (update) => this.setState(current => {
+    const change = update({ lib: current.lib.map(item => ({ ...item })), preferences: libraryPreferences(current.libraryPreferences), lights: current.lights });
+    return {
+      ...(change.lib ? { lib: change.lib } : {}),
+      ...(change.preferences ? { libraryPreferences: change.preferences } : {}),
+      ...(change.lights ? { lights: change.lights } : {}),
+      sel: null, saveMessage: "", saveError: false,
+    };
+  });
   setLib(fn) {
     this.setState((s) => ({ lib: fn(s.lib.map((b) => ({ ...b }))) }));
   }
@@ -923,6 +936,8 @@ export default class LandingController extends React.Component {
       libraryDirty:
         serializeLibrary(this.state) !== this.state.savedLayoutSignature,
       saveLibrary: this.saveLibrary,
+      mobileLibrary: { lib: this.state.lib, preferences: libraryPreferences(this.state.libraryPreferences), lights: this.state.lights },
+      updateMobileLibrary: this.updateMobileLibrary,
       commitBookMotion: (id, target) => {
         if (target.rotation) {
           this.setLib(lib => lib.map(b => b.id === id && !b.deco ? { ...b, rotation: { ...target.rotation } } : b));
@@ -943,6 +958,7 @@ export default class LandingController extends React.Component {
           return {
             lib: snapshot.lib, wall: snapshot.wall, caseC: snapshot.caseC,
             lights: snapshot.lights, angle: snapshot.angle,
+            libraryPreferences: libraryPreferences(snapshot.libraryPreferences),
             sel: null, toast: "", saveMessage: "", saveError: false,
             q: "", qOpen: false, expanded: {},
           };
@@ -1077,12 +1093,14 @@ export default class LandingController extends React.Component {
                     if (ex >= 0) {
                       const [b] = lib.splice(ex, 1);
                       b.shelf = sh;
+                      b.status = sh;
                       lib.push(b);
                     } else
                       lib.push({
                         id: "n" + libraryIds.book++,
                         t,
                         shelf: sh,
+                        status: sh,
                         h: hh,
                         l: ll,
                         c: 0.15,

@@ -1,0 +1,77 @@
+{
+  "generator": "Built-in image_gen",
+  "styleReference": "/images/decorations/library-editorial/ornament-botanical-v2.png",
+  "assets": [
+    {
+      "original": "/images/decorations/library-mobile/hourglass-original.png",
+      "display": "/images/decorations/library-mobile/hourglass.png",
+      "prompt": "Use case: illustration-story. Asset type: isolated decorative object for a warm literary mobile library. Generate one upright antique brass hourglass, front view with a very slight three-quarter depth, complete object with a flat level bottom aligned near the bottom of the canvas. Delicate warm brass frame, two transparent glass bulbs, fine ivory sand collecting in the lower bulb, restrained engraved botanical details. Warm realistic painterly illustration, softly textured materials, antique gold, ivory and muted brown palette, gentle daylight from upper left, matching a cozy illustrated library with ceramic botanical vases and brass lanterns. Readable silhouette when displayed 40–80 CSS pixels tall. Portrait composition, full object centered, 8 percent transparent padding on all sides. Genuinely transparent background with preserved alpha; no backdrop, no shelf, no floor plane, no opaque cast shadow, no text, no letters, no logos, no watermark, no extra objects.",
+      "originalWidth": 1086,
+      "originalHeight": 1448,
+      "crop": {
+        "left": 221,
+        "top": 33,
+        "width": 642,
+        "height": 1362
+      },
+      "alphaPreserved": true
+    },
+    {
+      "original": "/images/decorations/library-mobile/framed-illustration-original.png",
+      "display": "/images/decorations/library-mobile/framed-illustration.png",
+      "prompt": "Use case: illustration-story. Asset type: isolated shelf decoration for a warm literary mobile library. Generate one small upright antique picture frame holding an original delicate botanical illustration: a sprig of muted sage leaves with tiny lavender blossoms on warm ivory paper. Front view with a very slight three-quarter depth, thin aged brass and walnut frame, restrained engraved leaf details, complete object with its flat bottom aligned near the bottom of the canvas. Warm realistic painterly illustration with softly textured materials, antique gold, walnut, ivory, muted sage and lavender palette, soft daylight from upper left, matching a cozy illustrated library with botanical ceramic vases and brass lanterns. Readable silhouette at 40–80 CSS pixels tall. Portrait composition, full framed object centered with 8 percent transparent padding on all sides. Genuinely transparent background and preserved alpha. No backdrop, no shelf, no floor plane, no opaque cast shadow, no text, letters, logos, watermark, no extra objects.",
+      "originalWidth": 1086,
+      "originalHeight": 1448,
+      "crop": {
+        "left": 74,
+        "top": 105,
+        "width": 941,
+        "height": 1221
+      },
+      "alphaPreserved": true
+    },
+    {
+      "original": "/images/decorations/library-mobile/bookends-original.png",
+      "display": "/images/decorations/library-mobile/bookends.png",
+      "prompt": "Use case: illustration-story. Asset type: isolated pair of decorative bookends for a warm literary mobile library. Generate a matching pair of antique brass L-shaped bookends placed side by side as one complete isolated object asset, front view with a very slight three-quarter depth. Each bookend has a small elegant upright arched botanical filigree panel and a short flat horizontal base pointing inward toward the other bookend; the two bookends have equal height and sit on the same perfectly level bottom baseline, with a narrow clear gap between them. Restrained leaf engraving, realistic aged brass with warm golden highlights and softly textured painterly materials. Match a cozy illustrated library with botanical ceramic vases and brass lanterns. Readable silhouette at 40–80 CSS pixels tall. Landscape composition, pair centered and fully visible with 8 percent transparent padding. Genuinely transparent background and preserved alpha, no backdrop, no shelf, no floor plane, no opaque cast shadow, no books, no text, letters, logos, watermark, no additional objects.",
+      "originalWidth": 1774,
+      "originalHeight": 887,
+      "crop": {
+        "left": 125,
+        "top": 87,
+        "width": 1523,
+        "height": 709
+      },
+      "alphaPreserved": true
+    },
+    {
+      "original": "/images/decorations/library-mobile/sleeping-cat-original.png",
+      "display": "/images/decorations/library-mobile/sleeping-cat.png",
+      "prompt": "Use case: illustration-story. Asset type: isolated sleeping-cat shelf decoration for a warm literary mobile library. Generate one small fluffy ginger cat peacefully asleep, curled into a soft crescent with its tail wrapped around its body, closed eyes and head resting on front paws, all paws and tail visible as a coherent natural resting silhouette. Front view at shelf eye level with very slight three-quarter depth. Warm realistic painterly illustration with fine soft orange-ginger fur, muted cream chest and muzzle, no exaggerated cartoon features, matching a cozy illustrated library with botanical ceramic vases and antique brass lanterns. The cat rests directly on a level invisible baseline, complete body centered and fully visible with 8 percent transparent padding on all sides. Landscape composition and readable silhouette at 40–80 CSS pixels tall. Genuinely transparent background with preserved alpha. No backdrop, no pillow, no shelf, no floor plane, no opaque cast shadow, no collar, no accessories, no text, letters, logos, watermark, no extra objects or animals.",
+      "originalWidth": 1536,
+      "originalHeight": 1024,
+      "crop": {
+        "left": 98,
+        "top": 169,
+        "width": 1354,
+        "height": 691
+      },
+      "alphaPreserved": true
+    },
+    {
+      "original": "/images/decorations/library-mobile/clean-shelf-original.png",
+      "display": "/images/decorations/library-mobile/clean-shelf.png",
+      "prompt": "Use case: precise-object-edit. Edit the attached approved shelf illustration into a clean isolated shelf asset. Keep ONLY the original long thin warm walnut shelf plank and its two carved wooden support brackets/corbels beneath it. Remove ALL books, ivy, leaves, branches, flowers, vase, colored ambient glows and every other object. Reconstruct the left edge of the shelf cleanly where ivy covered the wood. Preserve the existing shelf's painterly walnut grain, polished warm brown coloring, horizontal perspective, and matching ornate leaf-carved corbels at approximately 15 percent and 85 percent of the shelf width. The full visible shelf including both supports must have a very wide low silhouette, approximately 7.5:1 width to total height. Center it horizontally as one complete object; no cropping of edges or supports. Leave the rest of the canvas genuinely transparent with a real alpha channel, including the entire region above and below the shelf. No wall, no backdrop, no floor plane, no opaque shadows, no new decorations, no text, letters, logos or watermark. This isolated shelf will be displayed about 350 by 46 CSS pixels; a clean continuous top edge and fully empty space around it are essential.",
+      "sourceReference": "/images/decorations/library-editorial/approved-cutout.png",
+      "originalWidth": 2172,
+      "originalHeight": 724,
+      "crop": {
+        "left": 47,
+        "top": 267,
+        "width": 2078,
+        "height": 267
+      },
+      "alphaPreserved": true
+    }
+  ]
+}

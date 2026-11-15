@@ -3,12 +3,12 @@
   "encoding": "WebP lossless; no resizing; alpha preserved",
   "note": "Totals compare active image URLs, not a single page load. All original files remain available unchanged.",
   "totals": {
-    "images": 43,
-    "optimized": 41,
-    "originalBytes": 82076744,
-    "servedBytes": 53283544,
-    "savedBytes": 28793200,
-    "savedPercent": 35.08
+    "images": 48,
+    "optimized": 46,
+    "originalBytes": 92281253,
+    "servedBytes": 58337590,
+    "savedBytes": 33943663,
+    "savedPercent": 36.78
   },
   "images": [
     {
@@ -507,6 +507,71 @@
       "optimized": "/images/optimized/decorations/carousel-covers/lilac-sprig.webp",
       "optimizedBytes": 497308,
       "optimizedSha256": "982eb94338c07f09467f830ddca64dcfccd60b72fc9ab3e4db0c2292aeb4866f",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-mobile/hourglass.png",
+      "originalBytes": 1978432,
+      "originalSha256": "e54937afae2f225dc485961e42093ee39a5c994244d10e001b9e3eb6d0559da7",
+      "width": 642,
+      "height": 1362,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-mobile/hourglass.webp",
+      "optimizedBytes": 986002,
+      "optimizedSha256": "2b098d11f3b2df7e6e235f72344c99e29ae445b7e5bf043c4bbbb85f54708787",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-mobile/framed-illustration.png",
+      "originalBytes": 3097588,
+      "originalSha256": "40759a629ec5c51fdd463e7de5f23aeae3600c0077913642530291789f2409cd",
+      "width": 941,
+      "height": 1221,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-mobile/framed-illustration.webp",
+      "optimizedBytes": 1600260,
+      "optimizedSha256": "deb7fbd07be9d9e3f0988f7a3ecddb60afe54aab96682b4a576e4cd66f7de131",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-mobile/bookends.png",
+      "originalBytes": 1604050,
+      "originalSha256": "b2c8d02e03d5fd04d84f1d44e86d7777ef08843a8b8e92b774fed51d5e57c637",
+      "width": 1523,
+      "height": 709,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-mobile/bookends.webp",
+      "optimizedBytes": 904818,
+      "optimizedSha256": "d855e2660fe84b7ae3537b625cdf2b7cc81d1a73b934b6dedd517570fd296d6b",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-mobile/sleeping-cat.png",
+      "originalBytes": 2846881,
+      "originalSha256": "4569ab5ae01a0bcfa4df0b99fde200604eac86d90dea607929eefceb9d509f6d",
+      "width": 1354,
+      "height": 691,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-mobile/sleeping-cat.webp",
+      "optimizedBytes": 1227072,
+      "optimizedSha256": "8f243964e669badedbe75cd9c81714f6418f74c775f5f34c4440cc251e86c9ab",
+      "alphaDifferences": 0,
+      "visibleColorDifferences": 0
+    },
+    {
+      "original": "/images/decorations/library-mobile/clean-shelf.png",
+      "originalBytes": 677558,
+      "originalSha256": "6844f382d927665ecb9891a21b04f456cea4b501f4d495f989eb7b0ffe438ebe",
+      "width": 2078,
+      "height": 267,
+      "hasAlpha": true,
+      "optimized": "/images/optimized/decorations/library-mobile/clean-shelf.webp",
+      "optimizedBytes": 335894,
+      "optimizedSha256": "87de48d157ec81fbeafcda9498f85c907b296a390f03cd4166ef2b20d7f2df57",
       "alphaDifferences": 0,
       "visibleColorDifferences": 0
     },

@@ -2,7 +2,9 @@ import "../shared/actions.css";
 import FairyLights from "../FairyLights";
 import "../shared/dialog.css";
 import "../shared/typography.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import MobileLibraryDialog from "../MobileLibraryDialog";
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import "./styles.css";
 import useLibraryHands from "../../../hooks/useLibraryHands.js";
 import useLibraryFit from "../../../hooks/useLibraryFit.js";
@@ -52,12 +54,21 @@ export default function ModalLibrary(values) {
     wallInk,
     walls,
   } = values;
-  const dialogRef = useLibraryFit(libOpen);
-  useLibraryHands(dialogRef, libOpen, shelves, commitBookMotion);
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const query = matchMedia(MEDIA_QUERIES.phone);
+    const change = () => setPhone(query.matches);
+    change(); query.addEventListener("change", change);
+    return () => query.removeEventListener("change", change);
+  }, []);
+  const desktopOpen = libOpen && !phone;
+  const dialogRef = useLibraryFit(desktopOpen);
+  useLibraryHands(dialogRef, desktopOpen, shelves, commitBookMotion);
   const [showMoreTreasures, setShowMoreTreasures] = useState(false);
   const visibleTreasures = showMoreTreasures ? tray : ["ivy", "lavender", "blossoms", "candle"].map((key) => tray.find((item) => item.key === key)).filter(Boolean);
   const [companionKey, setCompanionKey] = useState("pet-hedwig");
   const companion = companions.find((pet) => pet.key === companionKey) || companions[0];
+  if (phone) return libOpen ? <MobileLibraryDialog {...values} /> : null;
   return (
     <>
       {Boolean(libOpen) && (

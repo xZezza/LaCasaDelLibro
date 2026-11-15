@@ -69,6 +69,7 @@ async function generate() {
     ...guests.map(guest => guest.image),
     ...ILLUSTRATED_COVERS.map(cover => cover.src),
     "/images/decorations/carousel-covers/lilac-sprig.png",
+    ...["hourglass", "framed-illustration", "bookends", "sleeping-cat", "clean-shelf"].map(name => `/images/decorations/library-mobile/${name}.png`),
     '/images/branding/logo.png',
     '/images/hero/reading-room.jpg',
     '/images/hero/reading-journal-fantasy.png',

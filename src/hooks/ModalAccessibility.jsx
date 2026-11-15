@@ -14,7 +14,7 @@ export default function ModalAccessibility({ open }) {
     siblings.forEach((el) => (el.inert = true));
     const focusable = () =>
       [
-        ...dialog.querySelectorAll('button,a[href],input,select,textarea,[contenteditable="true"],[tabindex="0"]'),
+        ...(document.querySelector(".salon-dialog") || dialog).querySelectorAll('button,a[href],input,select,textarea,[contenteditable="true"],[tabindex="0"]'),
       ].filter((el) => !el.disabled && el.getClientRects().length);
     (focusable()[0] || dialog).focus({ preventScroll: true });
     function trap(e) {
@@ -25,7 +25,7 @@ export default function ModalAccessibility({ open }) {
         last = list.at(-1);
       if (!first) {
         e.preventDefault();
-        dialog.focus();
+        (document.querySelector(".salon-dialog") || dialog).focus();
         return;
       }
       if (

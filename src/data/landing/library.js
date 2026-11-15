@@ -189,6 +189,7 @@ const LIB = [
     id: "b" + i,
     t,
     shelf,
+    status: shelf,
     h,
     l,
     c: 0.15,
@@ -220,6 +221,13 @@ Object.keys(DECOS).forEach((k) => {
 for (const key of ["lavender", "teacup", "ivy", "blossoms", "candle", "moon"]) {
   DECOS[key].src = imageAsset("/images/decorations/library-editorial/ornament-botanical-v2.png");
 }
+// Mobile choices extend the existing catalogue without replacing approved artwork.
+Object.assign(DECOS, {
+  hourglass: { name: "Hourglass", w: 45, h: 80, hue: 55, src: imageAsset("/images/decorations/library-mobile/hourglass.png") },
+  frame: { name: "Framed illustration", w: 56, h: 75, hue: 45, src: imageAsset("/images/decorations/library-mobile/framed-illustration.png") },
+  bookends: { name: "Bookends", w: 110, h: 55, hue: 50, src: imageAsset("/images/decorations/library-mobile/bookends.png") },
+  "sleeping-cat": { name: "Sleeping cat", w: 95, h: 45, hue: 35, src: imageAsset("/images/decorations/library-mobile/sleeping-cat.png") },
+});
 // Permanent companions use the approved two-pose art, cropped to the first pose.
 visitors.filter((guest) => guest.kind === "creature").forEach((guest) => {
   const size = ["tairn", "sgaeyl", "abraxos"].includes(guest.id) ? 62 : 46;
