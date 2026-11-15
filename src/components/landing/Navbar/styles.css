@@ -45,8 +45,10 @@
     .salon-nav { flex-wrap: nowrap; gap: 10px; padding: 10px 16px; }
     .salon-nav > a { flex: none; }
     .salon-nav > a > span { width: 52px; }
-    .salon-nav > div { flex: 1; min-width: 0; flex-wrap: nowrap; justify-content: space-between; gap: 6px; }
-    .salon-nav > div > a { font-size: 11px; letter-spacing: 0; padding: 8px 0; }
+    .salon-nav > div { min-width: 0; flex-wrap: nowrap; gap: 12px; }
+    .salon-nav .salon-desktop-link { display: none; }
+    .salon-nav .theme-toggle { width: 44px; height: 44px; }
+    .salon-menu-trigger { display: inline-flex; }
   }
 }
 
@@ -78,4 +80,79 @@
    border-bottom: 0;
    color: oklch(0.92 0.02 85);
  }
+}
+
+@layer components {
+  .salon-menu-trigger, .salon-menu-close, .salon-mobile-menu-theme {
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+  .salon-menu-trigger { display: none; width: 44px; padding: 0; }
+  /* Feather icons (MIT), stored locally; inherit ink in both themes. */
+  .salon-nav-icon { display: block; width: 24px; height: 24px; background: currentColor; mask: var(--nav-icon) center / contain no-repeat; }
+  .salon-nav-icon-menu { --nav-icon: url('/images/icons/menu.svg'); }
+  .salon-nav-icon-close { --nav-icon: url('/images/icons/x.svg'); width: 26px; height: 26px; }
+
+  .salon-mobile-menu {
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
+    max-width: none;
+    max-height: calc(100dvh - 16px);
+    margin: 0;
+    padding: 14px 28px max(22px, env(safe-area-inset-bottom));
+    border: 0;
+    border-radius: 26px 26px 0 0;
+    background: light-dark(oklch(0.965 0.025 65), oklch(0.23 0.025 305));
+    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
+    overscroll-behavior: contain;
+    overflow-y: auto;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 300ms cubic-bezier(.22, .8, .25, 1), opacity 220ms ease, display 300ms allow-discrete, overlay 300ms allow-discrete;
+  }
+  .salon-mobile-menu[open] { transform: translateY(0); opacity: 1; }
+  .salon-mobile-menu::backdrop {
+    background: oklch(0.38 0.065 340 / .45);
+    opacity: 0;
+    transition: opacity 300ms ease, display 300ms allow-discrete, overlay 300ms allow-discrete;
+  }
+  .salon-mobile-menu[open]::backdrop { opacity: 1; }
+  @starting-style {
+    .salon-mobile-menu[open] { transform: translateY(100%); opacity: 0; }
+    .salon-mobile-menu[open]::backdrop { opacity: 0; }
+  }
+  .salon-mobile-menu-handle { width: 40px; height: 5px; margin: 0 auto 3px; border-radius: 99px; background: light-dark(oklch(0.65 0.035 305 / .5), oklch(0.75 0.035 305 / .5)); }
+  .salon-mobile-menu-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0; }
+  .salon-mobile-menu-heading h2 { margin: 0; font-family: 'Jost', system-ui, sans-serif; font-size: 16px; font-weight: 600; line-height: 1.4; }
+  .salon-menu-close { display: inline-flex; width: 44px; margin-right: -10px; padding: 0; }
+  .salon-mobile-menu-links { display: flex; flex-direction: column; }
+  .salon-mobile-menu-links a {
+    display: flex;
+    align-items: center;
+    min-height: 58px;
+    padding: 10px 0;
+    border-bottom: 1px solid light-dark(oklch(0.45 0.035 305 / .12), oklch(0.85 0.02 85 / .14));
+    color: inherit;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 29px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+  .salon-mobile-menu-links a:hover { color: light-dark(oklch(0.5 0.09 300), oklch(0.78 0.09 300)); }
+  .salon-mobile-menu-theme { display: inline-flex; justify-content: flex-start; gap: 14px; margin-top: 14px; padding: 0; font-size: 16px; }
+  .salon-mobile-menu-theme svg { width: 24px; height: 24px; }
+  .salon-mobile-menu :is(a, button):focus-visible { outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    .salon-mobile-menu, .salon-mobile-menu::backdrop, .salon-mobile-menu-links a { transition: none; }
+  }
 }

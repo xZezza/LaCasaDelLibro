@@ -62,6 +62,7 @@ async function generate() {
     ...guests.map(guest => guest.image),
     '/images/branding/logo.png',
     '/images/hero/reading-room.jpg',
+    '/images/hero/reading-journal-fantasy.png',
     '/images/community/reading-circle.jpg',
     '/images/decorations/ivory-paper-texture.png',
     '/images/decorations/book-sheet-starry-landscape.png',

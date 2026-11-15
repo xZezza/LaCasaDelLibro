@@ -13,5 +13,13 @@
     "reference": "Approved starry landscape PNG mockup from this conversation, exec-a5626291-848a-4e95-84e1-2078c8577688.png",
     "prompt": "Extract and recreate only the left-column background illustration of the approved mockup as a portrait artwork: indigo and dusty lavender watercolor sky, fine antique-gold stars and constellation lines at upper left, pale crescent at upper right, layered blue-sage mountains, fine gold botanical sprigs and cream flowers at lower edges. Continue the landscape behind the removed book. No text, book, interface controls, frame or outer backdrop. Center remains quiet for the interactive CSS book.",
     "use": "Separate illustrated background for ModalBookSheet. Book, fields, icons and controls remain real interactive HTML elements."
+  },
+  {
+    "asset": "/images/hero/reading-journal-fantasy.png",
+    "generator": "built-in image_gen",
+    "created": "2026-11-15",
+    "reference": "Approved combined journal/fantasy mobile hero, exec-e5b5f641-74ca-41ef-b174-438c1fcb76f6.png",
+    "prompt": "Extract and faithfully recreate only the approved lower hero illustration as a transparent asset: open personal journal with miniature fantasy valley, tree, castle and river emerging from the left page; handwritten memories, pressed purple flower, lilac ribbon, flowers and two clothbound books. Preserve the approved arrangement, warm ivory/honey light, plum/lilac palette and painterly paper textures. No webpage copy, interface, logo, frame, room or bookshelf. Complete object edges on genuine alpha.",
+    "use": "Mobile hero illustration. Headline and body remain semantic HTML; desktop/tablet reading-room artwork and approved characters remain preserved."
   }
 ]

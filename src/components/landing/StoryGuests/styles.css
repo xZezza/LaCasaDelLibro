@@ -186,10 +186,9 @@
   }
 
   @media (max-width: 650px) {
+    /* Let the journal illustration stand on its own in the mobile opening. */
     .story-guest-hero {
-      --guest-size: 148px;
-      right: 10%;
-      bottom: 48px;
+      display: none;
     }
   }
 

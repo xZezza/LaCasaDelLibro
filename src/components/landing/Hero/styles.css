@@ -169,6 +169,10 @@
   /* Text, room and visitors share one centred scene instead of using the
      full viewport as three different positioning references. */
 
+  .hero-mobile-illustration {
+    display: none;
+  }
+
   .salon-hero-stage {
     --hero-guest-size: clamp(170px, 18vw, 252px);
     position: relative;
@@ -179,12 +183,6 @@
 }
 
 @layer refinements {
-  @media (max-width: 650px) {
-    #top {
-      padding-top: 115px;
-    }
-  }
-
   .salon-hero .salon-s7 {
     transform: translateY(calc(-1 * clamp(40px, 5vw, 72px)));
     -webkit-mask-image: linear-gradient(
@@ -205,77 +203,6 @@
       );
   }
 
-  @media (max-width: 650px) {
-    .salon-hero {
-      min-height: 0;
-      display: block;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero #top {
-      padding-top: 100px;
-      padding-bottom: 300px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s8 {
-      top: auto;
-      bottom: 0;
-      height: 290px;
-      mask-image: linear-gradient(
-        180deg,
-        transparent,
-        #000 24%,
-        #000 75%,
-        transparent
-        );
-      -webkit-mask-image: linear-gradient(
-        180deg,
-        transparent,
-        #000 24%,
-        #000 75%,
-        transparent
-        );
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s7 {
-      transform: none;
-      width: 100%;
-      mask-image: none;
-      -webkit-mask-image: none;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s6 {
-      background-position: right bottom;
-      mask-image: none;
-      -webkit-mask-image: none;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s9 {
-      display: none;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s16 {
-      font-size: 16px;
-      line-height: 1.65;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .salon-hero .salon-s20 {
-      font-size: 16px;
-    }
-  }
 }
 
 /* Desktop 961–1440px; larger screens keep a centred 1440px scene. */
@@ -309,12 +236,51 @@
   }
 
   @media (max-width: 650px) {
+    .salon-hero {
+      background: none;
+    }
+
+    .salon-hero #top {
+      padding: 84px 20px 0;
+    }
+
+    .salon-hero .salon-s8,
+    .salon-hero .salon-s9 {
+      display: none;
+    }
+
+    .hero-mobile-illustration {
+      display: block;
+      width: min(100%, 560px);
+      margin: 12px auto 28px;
+    }
+
+    .hero-mobile-illustration img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .salon-s21 {
       max-width: 100%;
     }
 
     .salon-s15 {
-      font-size: clamp(38px, 9vw, 54px);
+      margin-top: 20px;
+      font-size: clamp(32px, 8.2vw, 42px);
+      line-height: 1.03;
+    }
+
+    .salon-hero .salon-s16 {
+      margin-top: 18px;
+      font-size: clamp(14px, 3.6vw, 16px);
+      line-height: 1.6;
+    }
+
+    .salon-hero .salon-s20 {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.3;
     }
   }
 }
@@ -352,10 +318,14 @@
     }
   }
 
-  @media (max-width: 650px) {
-    html[data-theme="ink"] .salon-hero .salon-s8 {
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 70%, transparent 100%);
-      mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 70%, transparent 100%);
-    }
+}
+
+@layer components {
+  .hero-flower-motion { position: absolute; pointer-events: none; }
+}
+
+@layer responsive {
+  @media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+    .hero-mobile-illustration[data-flowers-moving="true"] img { filter: url(#hero-flower-sway); }
   }
 }
