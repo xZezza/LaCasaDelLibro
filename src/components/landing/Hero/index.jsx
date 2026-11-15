@@ -6,6 +6,7 @@ import { imageAsset } from "../../../lib/image-assets.js";
 
 export default function Hero() {
   const illustrationRef = useRef(null);
+  const flowerBendRef = useRef(null);
   const [flowersMoving, setFlowersMoving] = useState(false);
   useEffect(() => {
     const phone = window.matchMedia(MEDIA_QUERIES.phone);
@@ -22,6 +23,28 @@ export default function Hero() {
       reduced.removeEventListener("change", update);
     };
   }, []);
+  useEffect(() => {
+    const bend = flowerBendRef.current;
+    if (!flowersMoving || !bend) return;
+    let frame;
+    const entered = performance.now();
+    function breathe(now) {
+      const t = now / 1000;
+      // Overlapping gusts keep speed and amplitude changing without timed stops.
+      const wind = 26 * Math.sin(t * .92)
+        + 14 * Math.sin(t * Math.SQRT2 + .7)
+        + 8 * Math.sin(t * .31 + 2);
+      const settling = Math.min(1, (now - entered) / 900);
+      const easeIn = settling * settling * (3 - 2 * settling);
+      bend.setAttribute("scale", (wind * easeIn).toFixed(3));
+      frame = requestAnimationFrame(breathe);
+    }
+    frame = requestAnimationFrame(breathe);
+    return () => {
+      cancelAnimationFrame(frame);
+      bend.setAttribute("scale", "0");
+    };
+  }, [flowersMoving]);
   return (
     <>
       {/* The neutral displacement map only bends the upper bouquet; the original artwork stays intact. */}
@@ -29,9 +52,7 @@ export default function Hero() {
         <defs>
           <filter id="hero-flower-sway" x="-2%" y="-2%" width="104%" height="104%" colorInterpolationFilters="sRGB">
             <feImage href="/images/hero/flower-sway-map.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="sway-map" />
-            <feDisplacementMap in="SourceGraphic" in2="sway-map" scale="0" xChannelSelector="R" yChannelSelector="G">
-              {flowersMoving && <animate attributeName="scale" values="0;16;0;-14;0" keyTimes="0;.25;.5;.75;1" dur="7.6s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1" repeatCount="indefinite" />}
-            </feDisplacementMap>
+            <feDisplacementMap ref={flowerBendRef} in="SourceGraphic" in2="sway-map" scale="0" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
       </svg>
