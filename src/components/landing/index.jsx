@@ -1,7 +1,8 @@
 // @refresh reset
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CharacterSheet from "./CharacterSheet";
 import ModalAccessibility from "../../hooks/ModalAccessibility";
+import { MEDIA_QUERIES } from "../../config/breakpoints.js";
 import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";
@@ -17,6 +18,22 @@ import Footer from "./Footer";
 import ModalLibrary from "./ModalLibrary";
 import ModalBookSheet from "./ModalBookSheet";
 import ModalComingSoon from "./ModalComingSoon";
+
+function CommunityAndQuote({ values }) {
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia(MEDIA_QUERIES.phone);
+    const update = () => setPhone(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  const community = <Community key="community" {...values} />;
+  const quote = <QuoteStars key="star-quote" {...values} />;
+  return phone ? [community, quote] : [quote, community];
+}
+
 export default class Landing extends LandingController {
   render() {
     const v = this.renderVals();
@@ -32,8 +49,7 @@ export default class Landing extends LandingController {
           <QuoteHardDays {...v} />
           <Library {...v} />
           <Journal {...v} />
-          <QuoteStars {...v} />
-          <Community {...v} />
+          <CommunityAndQuote values={v} />
           <Follow {...v} />
         </main>
         <Footer {...v} />

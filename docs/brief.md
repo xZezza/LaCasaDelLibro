@@ -248,3 +248,11 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 23 novembre — La citazione stellata su telefono usa un arco alto e stretto con la luna e una città illuminata in lontananza. L’illustrazione ha il fondo trasparente, la citazione resta testo della pagina e la finestra è più vicina alla chiusura del journal. Le comparse di ACOTAR entrano più piccole sul davanzale e aprono la scheda del personaggio al tocco. La composizione su tablet e desktop resta quella della citazione stellata originale.
 
 23 novembre — Sul journal mobile la scheda Ratings apre sul voto totale con numero e stelle. Uno swipe verso destra o il pulsante View details apre i quattro voti modificabili e i dettagli di lettura. Uno swipe verso sinistra o Back to total torna al voto totale. La scelta dei colori del journal mobile è disponibile in Memories e Characters per il colore del libro.
+
+23 novembre — Nella cartolina Community su telefono scorrono nuvole nel soffitto di Hogwarts, confinate alla volta dell’illustrazione. Allievi, tavolo e cornice restano fermi. Conservata la dissolvenza della cartolina, con replay e rispetto della preferenza per il movimento ridotto.
+
+23 novembre — Rinnovato il Book Forum sotto la cartolina Community su telefono. La conversazione dimostrativa su Harry Potter and the Philosopher’s Stone è a tutta larghezza, con testata indaco, domanda sullo Specchio delle Brame in primo piano, estratto di diario su un riquadro e risposte su un filo verticale. Verificati i temi chiaro e ink e la soglia telefono di 650 px.
+
+23 novembre — Il Book Forum sotto la cartolina mobile parte chiuso. Titolo e avviso spoiler restano visibili, con un velo grafico opaco prima di “Open to discover more”. Il controllo apre la discussione al tocco o da tastiera e cambia in “Hide discussion” per richiuderla.
+
+23 novembre — Sulla landing telefono la sezione Community, con la cartolina di Hogwarts e il Book Forum, segue subito il Reading Journal. La citazione stellata viene dopo Community. Il forum conserva il pannello anti-spoiler e il suo stato al cambio di larghezza.
