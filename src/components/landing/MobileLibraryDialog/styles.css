@@ -24,7 +24,9 @@
   .ml-icon-button { display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; border: 0; padding: 0; background: transparent; }
   .ml-close { position: absolute; top: 3px; right: 11px; }
   .ml-view-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--ml-line); margin-top: 9px; }
-  .ml-view-tabs .salon-marker-control { min-width: 44px; min-height: 44px; }
+  .ml-view-tabs .salon-marker-control { width: 44px; min-width: 44px; min-height: 44px; flex: none; }
+  .ml-view-tabs .salon-marker-control:first-child .ml-view-icon { transform: translateX(7px); }
+  .ml-view-tabs .salon-marker-control:last-child .ml-view-icon { transform: translateX(-7px); }
   .ml-view-tabs .salon-marker-text { display: grid; place-items: center; width: 28px; height: 28px; }
   .ml-view-icon { display: block; width: 22px; height: 22px; background: currentColor; mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
   .ml-search-note { margin: 13px 0 0; color: var(--ml-muted); font-size: 12px; line-height: 1.4; }
@@ -126,6 +128,19 @@
   .ml-display-picker select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
   .ml-display-picker svg { width: 24px; height: 24px; }
   .ml-empty-result { color: var(--ml-muted); margin: 24px 0; }
+  .ml-book-zoom { position: absolute; inset: 0; z-index: 14; display: flex; flex-direction: column; background: var(--ml-surface); color: var(--ml-ink); }
+  .ml-book-zoom-header { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: max(12px, env(safe-area-inset-top)) 20px 0; }
+  .ml-book-zoom-header .ml-eyebrow { padding: 0; }
+  .ml-book-zoom-content { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 20px 24px; text-align: center; }
+  .ml-book-zoom-art { position: relative; width: min(68vw, 240px); aspect-ratio: 5 / 7; margin: 0 auto 24px; box-shadow: 6px 10px 24px #20121e33; border-radius: 3px; animation: ml-book-focus .2s ease-out both; }
+  @keyframes ml-book-focus { from { opacity: .4; transform: scale(.88); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .ml-book-zoom-art { animation: none; } }
+  .ml-book-zoom-art .ml-binding-face > span { font-size: 30px; }
+  .ml-book-zoom-art .ml-live-cover-title { font-size: 26px; }
+  .ml-book-zoom-content h2 { margin: 0 auto; max-width: 18ch; font: 400 34px/1.1 "Cormorant Garamond", serif; overflow-wrap: anywhere; }
+  .ml-book-zoom-content > p { margin: 9px 0 0; color: var(--ml-muted); }
+  .ml-book-zoom-actions { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 24px max(14px, env(safe-area-inset-bottom)); border-top: 1px solid var(--ml-line); }
+  .ml-book-zoom-actions button { min-height: 44px; }
   .ml-selection { position: absolute; z-index: 12; bottom: 0; left: 0; right: 0; max-height: 55dvh; overflow: auto; padding: 17px 24px max(20px, env(safe-area-inset-bottom)); border-top: 1px solid var(--ml-line); border-radius: 18px 18px 0 0; background: var(--ml-paper); box-shadow: 0 -6px 24px #24162222; }
   .ml-selection-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .ml-selection h3 { font: 400 25px/1.1 "Cormorant Garamond", serif; margin: 5px 0 11px; }

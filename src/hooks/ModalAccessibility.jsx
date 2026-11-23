@@ -15,7 +15,7 @@ export default function ModalAccessibility({ open }) {
     const focusable = () =>
       [
         ...(document.querySelector(".salon-dialog") || dialog).querySelectorAll('button,a[href],input,select,textarea,[contenteditable="true"],[tabindex="0"]'),
-      ].filter((el) => !el.disabled && el.getClientRects().length);
+      ].filter((el) => !el.disabled && !el.closest("[inert]") && el.getClientRects().length);
     (focusable()[0] || dialog).focus({ preventScroll: true });
     function trap(e) {
       if (document.querySelector(".character-sheet[open]")) return;

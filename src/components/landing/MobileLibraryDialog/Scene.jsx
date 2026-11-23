@@ -31,7 +31,7 @@ export function MobileDecorationArt({ item }) {
   if (art?.size) return <span className="ml-ornament-image" aria-hidden="true" style={{ backgroundImage: `url("${art.src || botanical}")`, backgroundSize: art.size, backgroundPosition: art.position, clipPath: art.clip, bottom: art.drop ? `${-art.drop * 100}%` : 0 }} />;
   return <span className="ml-ornament-image" aria-hidden="true" style={{ backgroundImage: `url("${d.src}")`, backgroundSize: d.pet ? "200% 100%" : "contain", backgroundPosition: d.pet ? "left center" : "center" }} />;
 }
-export default function MobileLibraryScene({ items, preferences, lights, shelf, onSelect, focusItemId, closeUp = false, filter = "" }) {
+export default function MobileLibraryScene({ items, preferences, lights, shelf, onSelect, onZoom, focusItemId, closeUp = false, filter = "" }) {
   const ref = useRef(null);
   const [width, setWidth] = useState(342);
   const zoom = shelf !== undefined;
@@ -66,7 +66,7 @@ export default function MobileLibraryScene({ items, preferences, lights, shelf, 
           <div className="ml-shelf-items" data-mobile-shelf={row} aria-label={SHELF_LABELS[row]} style={{ minHeight: tallest + 14, minWidth: Math.max(width, total * scale + 28) }}>
             {lights !== "off" && <FairyLights mode={lights} />}
             {content.map((item, i) => <button type="button" key={item.id} data-mobile-item={item.id} data-mobile-activate="true" data-zoom-target={focusItemId === item.id || undefined} className={`ml-item ${item.deco ? "ml-item-deco" : "ml-item-book"}`} data-mode={item.mode} data-shade={filter && !item.t.toLowerCase().includes(filter) ? "dim" : undefined}
-              aria-label={`Arrange ${item.t}`} title={item.t} onClick={event => onSelect(event, item.id)}
+              aria-label={`Arrange ${item.t}`} title={item.t} onClick={event => onSelect(event, item.id)} onDoubleClick={event => onZoom?.(event, item.id)}
               style={{ width: sizes[i].w * scale, height: sizes[i].h * scale, "--spine-font": `${Math.max(8, Math.min(13, 10 * scale * (closeUp ? 1.8 : zoom ? 1.25 : 1)))}px` }}>
               {item.deco ? <MobileDecorationArt item={item} /> : <MobileBookArt book={item} />}
             </button>)}

@@ -691,3 +691,14 @@ Validation: pnpm check passed (87 reachable source files, all 22 visitors retain
 Browser control remains unavailable in this session. No rendered visual comparison, real touch/double-tap check, focus-trap browser check or small-screen layout pass is claimed; these still need a browser/phone check. Changes remain local.
 
 final result: blocked
+
+
+## Mobile library emulator and single-book close-up — 23 November 2026
+
+User clarified that the published site is being inspected in a phone emulator on a computer. Desktop must retain its prior library. Live production assets were fetched and matched local commit d6fa0ad byte-for-byte, so no stale-deployment diagnosis is claimed. The earlier close-up enlarged a shelf; the user expects the selected book itself.
+
+Updated only the phone flow: determine the mobile dialog before paint using the media query and the actual visibility of the phone preview, reacting to its resize. Grid/list icons now have an 8 px visual gap while keeping independent 44 px hit areas. Native dblclick is wired explicitly; zero-detail pointer clicks are distinguished from keyboard activation. Double activation opens a large, centred cover with title/author, Back to library and Arrange on shelf. The latter retains the editable shelf close-up. Overlay siblings are inert while the cover is open, Escape closes it first, focus returns to the source book, and reduced motion disables the brief cover animation. Focus trapping excludes inert controls. Desktop shelf data, geometry, drag/rotation and editor controls are unchanged.
+
+Validation: pnpm check, all 37 tests, pnpm build and git diff --check pass. Ten source-executing UI/activation checks also passed using transformed production JSX and a controlled hook/DOM harness: two mobile rows/all IDs, correct individual cover, return path, explicit Zoom in, correct Arrange on shelf target, no data mutation, unchanged three-row desktop, native/emulated phone routing, zero-detail double pointer taps, native dblclick/keyboard and cleanup. These are programmatic checks, not browser or screenshot tests. Actual rendering and physical/emulated pointer behaviour still require browser review because browser control is unavailable.
+
+final result: blocked

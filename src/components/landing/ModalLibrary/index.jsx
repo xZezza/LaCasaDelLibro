@@ -2,7 +2,7 @@ import "../shared/actions.css";
 import FairyLights from "../FairyLights";
 import "../shared/dialog.css";
 import "../shared/typography.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import MobileLibraryDialog from "../MobileLibraryDialog";
 import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import "./styles.css";
@@ -55,11 +55,15 @@ export default function ModalLibrary(values) {
     walls,
   } = values;
   const [phone, setPhone] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const query = matchMedia(MEDIA_QUERIES.phone);
-    const change = () => setPhone(query.matches);
+    const preview = document.querySelector(".library-mobile-preview");
+    // Follow the visible phone layout as well as the media query in device previews.
+    const change = () => setPhone(query.matches || !!preview?.getClientRects().length);
+    const observer = new ResizeObserver(change);
+    if (preview) observer.observe(preview);
     change(); query.addEventListener("change", change);
-    return () => query.removeEventListener("change", change);
+    return () => { observer.disconnect(); query.removeEventListener("change", change); };
   }, []);
   const desktopOpen = libOpen && !phone;
   const dialogRef = useLibraryFit(desktopOpen);

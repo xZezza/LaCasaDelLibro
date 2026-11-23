@@ -38,29 +38,57 @@ export default function MobileLibraryDialog(values) {
     return { ...compact, ...update({ ...compact, lights: state.lights }) };
   });
   const wall = MOBILE_WALLS.find(value => value.name === p.wall) || MOBILE_WALLS[0];
-  const root = useRef(null), editButton = useRef(null), editTitle = useRef(null), selectionDone = useRef(null);
+  const root = useRef(null), editButton = useRef(null), editTitle = useRef(null), selectionDone = useRef(null), bookZoom = useRef(null), bookZoomTitle = useRef(null);
   const [view, setView] = useState("shelves"), [editing, setEditing] = useState(false), [zoomShelf, setZoomShelf] = useState(0);
   const [filter, setFilter] = useState("all"), [selection, setSelection] = useState(null), [announcement, announce] = useState("");
   const [zoomTarget, setZoomTarget] = useState(null);
+  const [bookZoomId, setBookZoomId] = useState(null);
+  const zoomedBook = items.find(item => item.id === bookZoomId && !item.deco);
   const selected = items.find(item => item.id === selection);
   const bookList = items.filter(item => !item.deco);
   const visible = bookList.filter(item => filter === "all" || bookStatus(item) === filter);
   const patch = change => updateMobileLibrary(({ preferences }) => ({ preferences: { ...preferences, ...change } }));
   const move = (id, shelf, beforeId) => updateMobileLibrary(state => moveLibraryItem(state.lib, state.preferences, id, shelf, beforeId, MOBILE_SHELF_COUNT));
-  const { activate, cancel: cancelActivation } = useMobileLibraryActivation(root, setSelection, openZoom);
+  const { activate, doubleActivate, cancel: cancelActivation } = useMobileLibraryActivation(root, setSelection, openZoom);
   useMobileLibraryDrag(root, move, announce, cancelActivation);
   const focusedShelf = items.find(item => item.id === zoomTarget?.id)?.shelf;
   useEffect(() => { if (editing && focusedShelf !== undefined) setZoomShelf(focusedShelf); }, [editing, focusedShelf, zoomTarget?.id]);
   function openZoom(id) {
     const item = items.find(value => value.id === id);
     if (!item) return;
-    cancelActivation(); setSelection(null); setZoomShelf(item.shelf); setZoomTarget({ id }); setEditing(true);
+    if (item.deco) { openShelfZoom(id); return; }
+    cancelActivation(); setSelection(null); setBookZoomId(id);
+    announce(`Cover close-up of ${item.t}.`);
+  }
+  function openShelfZoom(id) {
+    const item = items.find(value => value.id === id);
+    if (!item) return;
+    cancelActivation(); setBookZoomId(null); setSelection(null); setZoomShelf(item.shelf); setZoomTarget({ id }); setEditing(true);
     requestAnimationFrame(() => editTitle.current?.focus({ preventScroll: true }));
     announce(`Close-up of ${item.t}. Scroll along the shelf or choose an item to arrange it.`);
   }
   useEffect(() => { root.current?.querySelector('[aria-label="Close library"]')?.focus({ preventScroll: true }); }, []);
   useEffect(() => { if (editing) editTitle.current?.focus({ preventScroll: true }); }, [editing]);
   useEffect(() => { if (selected) selectionDone.current?.focus({ preventScroll: true }); }, [selection]);
+  useEffect(() => {
+    if (!zoomedBook) return;
+    const siblings = [...root.current.children].filter(node => node !== bookZoom.current);
+    const previous = siblings.map(node => ({ inert: node.inert, hidden: node.getAttribute("aria-hidden") }));
+    siblings.forEach(node => { node.inert = true; node.setAttribute("aria-hidden", "true"); });
+    bookZoomTitle.current?.focus({ preventScroll: true });
+    return () => siblings.forEach((node, index) => {
+      node.inert = previous[index].inert;
+      if (previous[index].hidden === null) node.removeAttribute("aria-hidden");
+      else node.setAttribute("aria-hidden", previous[index].hidden);
+    });
+  }, [zoomedBook?.id]);
+  function closeBookZoom() {
+    const id = bookZoomId; setBookZoomId(null);
+    requestAnimationFrame(() => {
+      const source = root.current?.querySelector(`[data-mobile-item="${CSS.escape(id)}"], [data-list-book="${CSS.escape(id)}"]`);
+      (source || editTitle.current || editButton.current)?.focus({ preventScroll: true });
+    });
+  }
   function leaveEdit() {
     const id = zoomTarget?.id;
     cancelActivation(); setEditing(false); setSelection(null); setZoomTarget(null);
@@ -102,10 +130,11 @@ export default function MobileLibraryDialog(values) {
   }
   function keydown(event) {
     if (event.key !== "Escape") return;
+    if (zoomedBook) { event.preventDefault(); event.stopPropagation(); closeBookZoom(); return; }
     if (selected || editing) { event.preventDefault(); event.stopPropagation(); if (selected) closeSelection(); else leaveEdit(); }
   }
   return <div className="mobile-library-overlay">
-    <div role="dialog" aria-modal="true" aria-label="Your library" tabIndex={-1} ref={root} className="mobile-library-dialog salon-dialog" data-editing={editing} data-close-up={!!zoomTarget} data-room-light={p.light} style={{ "--ml-wall-tint": wall.colour }} onKeyDownCapture={keydown}>
+    <div role="dialog" aria-modal="true" aria-label="Your library" tabIndex={-1} ref={root} className="mobile-library-dialog salon-dialog" data-library-layout="mobile-two-shelves" data-editing={editing} data-close-up={!!zoomTarget} data-room-light={p.light} style={{ "--ml-wall-tint": wall.colour }} onKeyDownCapture={keydown}>
       <header className="ml-header">
         <span className="ml-eyebrow">{editing ? "Edit · Your library" : "The Library"}</span>
         <button type="button" className="ml-icon-button ml-close" aria-label={editing ? "Back to library" : "Close library"} onClick={editing ? leaveEdit : closeLib}><Icon name="close" /></button>
@@ -125,7 +154,7 @@ export default function MobileLibraryDialog(values) {
       {editing ? <>
         <div className="ml-edit-preview">
           <div className="ml-zoom-controls"><span>{SHELF_LABELS[zoomShelf]} · zoomed</span><div><button type="button" className="ml-icon-button" aria-label="Previous shelf" disabled={zoomShelf === 0} onClick={() => { setZoomShelf(s => s - 1); if (zoomTarget) setZoomTarget({ id: null }); }}><Icon name="left" /></button><button type="button" className="ml-icon-button" aria-label="Next shelf" disabled={zoomShelf === MOBILE_SHELF_COUNT - 1} onClick={() => { setZoomShelf(s => s + 1); if (zoomTarget) setZoomTarget({ id: null }); }}><Icon name="right" /></button></div></div>
-          <MobileLibraryScene items={items} preferences={p} lights={lights} shelf={zoomShelf} onSelect={activate} closeUp={!!zoomTarget} focusItemId={zoomTarget?.id} />
+          <MobileLibraryScene items={items} preferences={p} lights={lights} shelf={zoomShelf} onSelect={activate} onZoom={doubleActivate} closeUp={!!zoomTarget} focusItemId={zoomTarget?.id} />
         </div>
         <div className="ml-settings" aria-label="Library settings">
           <label className="ml-setting"><span>Bookcase name</span><input value={p.name} maxLength={80} placeholder="Your library" onChange={event => patch({ name: event.target.value })} /></label>
@@ -146,7 +175,7 @@ export default function MobileLibraryDialog(values) {
       </> : <div className="ml-content" data-view={view}>
         {view === "shelves" ? <>
           <p className="ml-drag-hint"><span>Try a preview of your future library.</span><span className="ml-handwritten">Double-tap to look closer. Hold and drag to arrange.</span></p>
-          <MobileLibraryScene items={items} preferences={p} lights={lights} onSelect={activate} />
+          <MobileLibraryScene items={items} preferences={p} lights={lights} onSelect={activate} onZoom={doubleActivate} />
           <p className="ml-room-note">A little room, entirely yours.</p>
         </> : <>
           <div className="ml-filters" role="group" aria-label="Reading status">
@@ -157,7 +186,7 @@ export default function MobileLibraryDialog(values) {
           <div className="ml-book-list">{visible.map(book => {
             const info = libraryBookInfo(book), status = bookStatus(book), shown = book.mode === "cover";
             return <div key={book.id} className="ml-list-book" data-on-display={shown}>
-              <button type="button" className="ml-list-cover" data-list-book={book.id} data-mobile-activate="true" aria-label={`Arrange ${book.t}`} onClick={event => activate(event, book.id)}><MobileBookArt book={book} thumbnail /></button>
+              <button type="button" className="ml-list-cover" data-list-book={book.id} data-mobile-activate="true" aria-label={`Arrange ${book.t}`} onClick={event => activate(event, book.id)} onDoubleClick={event => doubleActivate(event, book.id)}><MobileBookArt book={book} thumbnail /></button>
               <div className="ml-list-book-copy"><h3>{book.t}</h3>{info.author && <p>{info.author}</p>}<span className="ml-reading-label" data-status={status}>{STATUS_LABELS[status]}</span></div>
               <label className="ml-display-picker" data-selected={shown}><Icon name="shelf" /><select aria-label={`Display ${book.t}`} value={shown ? String(book.shelf) : ""} onChange={event => chooseDisplay(book, event.target.value)}><option value="">Not on display</option>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
             </div>;
@@ -170,6 +199,21 @@ export default function MobileLibraryDialog(values) {
       {saveMessage && <p className="ml-save-message" data-error={saveError} role="status">{saveMessage}</p>}
       {values.hasToast && <p className="ml-save-message" role="status">{values.toast.replace("✦", "").trim()}</p>}
       <span className="ml-announcement" role="status">{announcement}</span>
+      {zoomedBook && <div ref={bookZoom} className="ml-book-zoom" role="group" aria-labelledby="ml-book-zoom-title">
+        <header className="ml-book-zoom-header">
+          <span className="ml-eyebrow">A closer look</span>
+          <button type="button" className="ml-icon-button" aria-label="Close book zoom" onClick={closeBookZoom}><Icon name="close" /></button>
+        </header>
+        <div className="ml-book-zoom-content">
+          <div className="ml-book-zoom-art" role="img" aria-label={`Cover of ${zoomedBook.t}`}><MobileBookArt book={zoomedBook} thumbnail /></div>
+          <h2 id="ml-book-zoom-title" ref={bookZoomTitle} tabIndex={-1}>{zoomedBook.t}</h2>
+          {libraryBookInfo(zoomedBook).author && <p>{libraryBookInfo(zoomedBook).author}</p>}
+        </div>
+        <footer className="ml-book-zoom-actions">
+          <button type="button" className="salon-marker-action" onClick={closeBookZoom}><span className="salon-marker-text">Back to library</span></button>
+          <button type="button" className="salon-marker-action salon-marker-primary" onClick={() => openShelfZoom(zoomedBook.id)}><span className="salon-marker-text">Arrange on shelf</span></button>
+        </footer>
+      </div>}
       {selected && <div className="ml-selection" role="group" aria-label={`Arrange ${selected.t}`}>
         <div className="ml-selection-header"><h3>{selected.t}</h3><div className="ml-selection-actions"><button type="button" onClick={() => openZoom(selected.id)}>Zoom in</button><button ref={selectionDone} type="button" onClick={closeSelection}>Done</button></div></div>
         {!selected.deco ? <><div className="ml-selection-modes">{[["spine", "Spine"], ["cover", "Cover"], ["lying", "Flat"]].map(([mode, label]) => <Marker key={mode} selected={selected.mode === mode} onClick={() => setMode(mode)}>{label}</Marker>)}</div></> : <button className="ml-remove" type="button" onClick={() => { updateMobileLibrary(state => ({ lib: state.lib.filter(item => item.id !== selection) })); setSelection(null); }}>Remove from shelf</button>}
