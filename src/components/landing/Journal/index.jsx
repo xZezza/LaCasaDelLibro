@@ -5,6 +5,7 @@ import "../shared/typography.css";
 import React from "react";
 import "./styles.css";
 import StoryGuests from "../StoryGuests";
+import MobileReadingJournal from "../MobileReadingJournal";
 
 export default function Journal(values) {
   const {
@@ -33,6 +34,7 @@ export default function Journal(values) {
   return (
     <>
       <section id={"journal"} className={"salon-s161 salon-journal"}>
+        <MobileReadingJournal {...values} />
         <div className={"salon-s85"}>
           <p
             aria-label={

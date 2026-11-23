@@ -203,6 +203,10 @@
   }
 
   @media (max-width: 650px) {
+    .salon-salon > div > .salon-s57 { font-size: 11px; }
+    .salon-salon > div > .salon-s58 { margin-top: 14px; font-size: 32px; line-height: 1.08; }
+    .salon-salon > div > .salon-s59 { margin-top: 16px; font-size: 15px; line-height: 1.6; }
+
     .salon-s188 {
       grid-template-columns: minmax(0, 1fr);
       gap: 28px;

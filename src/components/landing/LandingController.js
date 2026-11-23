@@ -21,7 +21,7 @@ export default class LandingController extends React.Component {
     const g = this.jGridRef.current,
       row = this.linksRef.current,
       box = this.pvBoxRef.current;
-    if (!g || !row || !box) return;
+    if (!g || !row || !box || !g.getClientRects().length) return;
     const link =
       row.querySelectorAll("button")[this.state.pv === "saga" ? 1 : 0];
     if (!link) return;
