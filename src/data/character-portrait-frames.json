@@ -1,0 +1,134 @@
+{
+  "rhysand": {
+    "x": 214,
+    "y": 0,
+    "width": 446,
+    "height": 887
+  },
+  "azriel": {
+    "x": 189,
+    "y": 0,
+    "width": 523,
+    "height": 887
+  },
+  "feyre": {
+    "x": 213,
+    "y": 0,
+    "width": 442,
+    "height": 887
+  },
+  "nesta": {
+    "x": 235,
+    "y": 0,
+    "width": 419,
+    "height": 887
+  },
+  "aelin": {
+    "x": 216,
+    "y": 0,
+    "width": 394,
+    "height": 887
+  },
+  "rowan": {
+    "x": 290,
+    "y": 0,
+    "width": 319,
+    "height": 887
+  },
+  "poppy": {
+    "x": 163,
+    "y": 0,
+    "width": 486,
+    "height": 887
+  },
+  "casteel": {
+    "x": 284,
+    "y": 0,
+    "width": 334,
+    "height": 887
+  },
+  "katniss": {
+    "x": 300,
+    "y": 0,
+    "width": 313,
+    "height": 887
+  },
+  "peeta": {
+    "x": 286,
+    "y": 0,
+    "width": 314,
+    "height": 887
+  },
+  "cassian": {
+    "x": 171,
+    "y": 0,
+    "width": 487,
+    "height": 887
+  },
+  "violet": {
+    "x": 320,
+    "y": 0,
+    "width": 271,
+    "height": 887
+  },
+  "xaden": {
+    "x": 282,
+    "y": 0,
+    "width": 318,
+    "height": 887
+  },
+  "hedwig": {
+    "x": 113,
+    "y": 0,
+    "width": 639,
+    "height": 882
+  },
+  "crookshanks": {
+    "x": 0,
+    "y": 3,
+    "width": 877,
+    "height": 850
+  },
+  "fleetfoot": {
+    "x": 18,
+    "y": 0,
+    "width": 818,
+    "height": 887
+  },
+  "abraxos": {
+    "x": 0,
+    "y": 0,
+    "width": 828,
+    "height": 873
+  },
+  "tairn": {
+    "x": 0,
+    "y": 0,
+    "width": 867,
+    "height": 887
+  },
+  "andarna": {
+    "x": 8,
+    "y": 0,
+    "width": 811,
+    "height": 867
+  },
+  "sgaeyl": {
+    "x": 0,
+    "y": 0,
+    "width": 850,
+    "height": 881
+  },
+  "buttercup": {
+    "x": 14,
+    "y": 37,
+    "width": 820,
+    "height": 819
+  },
+  "ron": {
+    "x": 264,
+    "y": 0,
+    "width": 346,
+    "height": 887
+  }
+}

@@ -3,7 +3,9 @@ import "../shared/dialog.css";
 import "../shared/typography.css";
 import BookCover from "../BookCover";
 import { imageAsset } from "../../../lib/image-assets.js";
-import React, { useId, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
+import MobileBookSheet from "../MobileBookSheet";
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import "./styles.css";
 
 const fields = [
@@ -43,7 +45,7 @@ function BookSheet({ sb, closeSheet, stopSheet, entry, updateEntry }) {
   };
   return (
     <div onClick={closeSheet} className="salon-s295">
-      <div onClick={stopSheet} role="dialog" aria-labelledby={`${tabsId}-title`} aria-modal="true" tabIndex={-1} className="salon-s294 salon-dialog">
+      <div onClick={stopSheet} role="dialog" aria-labelledby={`${tabsId}-title`} aria-modal="true" tabIndex={-1} className="salon-s294 salon-dialog" data-book-sheet-dialog>
         <button onClick={closeSheet} aria-label="Close" type="button" className="book-sheet-close">×</button>
         <div className="book-sheet-art" style={{ "--book-sheet-landscape": `url("${imageAsset("/images/decorations/book-sheet-starry-landscape.png")}")` }}>
           <button type="button" className="book-sheet-icon-button book-sheet-favourite" aria-label={`Favourite ${sb.t}`} aria-pressed={!!entry.favourite} onClick={() => updateEntry({ favourite: !entry.favourite })}>
@@ -145,6 +147,18 @@ function BookSheet({ sb, closeSheet, stopSheet, entry, updateEntry }) {
 
 export default function ModalBookSheet({ closeSheet, sb, sheetOpen, stopSheet }) {
   const [entries, setEntries] = useState({});
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const query = matchMedia(MEDIA_QUERIES.phone);
+    const change = () => setPhone(query.matches);
+    change();
+    query.addEventListener("change", change);
+    return () => query.removeEventListener("change", change);
+  }, []);
+  useEffect(() => {
+    if (sheetOpen) document.querySelector("[data-book-sheet-dialog] button")?.focus({ preventScroll: true });
+  }, [phone, sheetOpen]);
+  const Sheet = phone ? MobileBookSheet : BookSheet;
   if (!sheetOpen) return null;
-  return <BookSheet key={sb.t} sb={sb} closeSheet={closeSheet} stopSheet={stopSheet} entry={entries[sb.t] || {}} updateEntry={patch => setEntries(current => ({ ...current, [sb.t]: { ...current[sb.t], ...patch } }))} />;
+  return <Sheet key={sb.t} sb={sb} closeSheet={closeSheet} stopSheet={stopSheet} entry={entries[sb.t] || {}} updateEntry={patch => setEntries(current => ({ ...current, [sb.t]: { ...current[sb.t], ...patch } }))} />;
 }
