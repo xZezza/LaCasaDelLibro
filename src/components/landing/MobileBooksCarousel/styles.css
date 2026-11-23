@@ -24,6 +24,8 @@
       overscroll-behavior-x: contain;
       -webkit-overflow-scrolling: touch;
     }
+    .mobile-books-track[data-auto-moving="true"] { scroll-snap-type: none; }
+    .mobile-books-autoplay { display: block; min-height: 44px; margin: 0 auto; padding: 0 10px; border: 0; background: transparent; color: light-dark(#765a91, #c4aedb); font: inherit; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
     .mobile-books-track::-webkit-scrollbar { display: none; }
     .mobile-books-slide { flex: 0 0 var(--mobile-cover-width); scroll-snap-align: center; min-width: 0; perspective: 1000px; }
     .mobile-books-book {
@@ -65,5 +67,6 @@
   }
   @media (max-width: 650px) and (prefers-reduced-motion: reduce) {
     .mobile-books-book { transition: none; }
+    .mobile-books-autoplay { display: none; }
   }
 }

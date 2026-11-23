@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import { imageAsset } from "../../../lib/image-assets.js";
 import { ILLUSTRATED_COVERS } from "../../../data/landing/illustrated-covers.js";
+import useMobileBooksAutoplay from "../../../hooks/useMobileBooksAutoplay.js";
 import "./styles.css";
 
 export default function MobileBooksCarousel({ books, onOpen }) {
@@ -13,13 +14,16 @@ export default function MobileBooksCarousel({ books, onOpen }) {
   const pointerRef = useRef(null);
   const blockClickRef = useRef(0);
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
   const count = books.length;
+  const autoplay = useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent: setCurrent, paused });
   const slides = [books.at(-1), ...books, books[0]];
   const step = () => {
     const track = viewportRef.current;
     return track && track.children.length > 1 ? track.children[1].offsetLeft - track.children[0].offsetLeft : 0;
   };
   const move = (direction, focusBook = false) => {
+    autoplay.pause();
     const track = viewportRef.current, distance = step();
     if (!track || !distance) return;
     const from = targetRef.current ?? currentRef.current;
@@ -55,6 +59,7 @@ export default function MobileBooksCarousel({ books, onOpen }) {
     const phone = matchMedia(MEDIA_QUERIES.phone);
     let frame;
     const align = () => {
+      autoplay.pause();
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         if (phone.matches && track.clientWidth) {
@@ -72,14 +77,17 @@ export default function MobileBooksCarousel({ books, onOpen }) {
     return () => { observer.disconnect(); phone.removeEventListener("change", align); cancelAnimationFrame(frame); clearTimeout(settleRef.current); };
   }, [count]);
   return (
-    <div className="mobile-books" role="region" aria-roledescription="carousel" aria-label="Featured books">
+    <div className="mobile-books" role="region" aria-roledescription="carousel" aria-label="Featured books"
+      onFocusCapture={autoplay.pause}
+      onPointerEnter={event => { if (event.pointerType === "mouse") { autoplay.hoverRef.current = true; autoplay.pause(); } }}
+      onPointerLeave={event => { if (event.pointerType === "mouse") autoplay.hoverRef.current = false; }}>
       <div className="mobile-books-stage">
-        <div ref={viewportRef} className="mobile-books-track" onScroll={onScroll}
+        <div ref={viewportRef} className="mobile-books-track" onScroll={onScroll} onWheel={autoplay.pause}
           onKeyDown={(event) => {
             if (event.altKey || event.ctrlKey || event.metaKey) return;
             if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1, true); }
           }}
-          onPointerDown={(event) => { targetRef.current = null; pointerRef.current = { x: event.clientX, y: event.clientY }; }}
+          onPointerDown={(event) => { autoplay.pause(); targetRef.current = null; pointerRef.current = { x: event.clientX, y: event.clientY }; }}
           onPointerUp={(event) => {
             const start = pointerRef.current;
             if (start && Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8) blockClickRef.current = performance.now() + 300;
@@ -107,7 +115,8 @@ export default function MobileBooksCarousel({ books, onOpen }) {
         <button type="button" className="mobile-books-arrow mobile-books-next" aria-label="Next book" onClick={() => move(1)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg></button>
       </div>
       <p className="mobile-books-memory">The ending I still think about.</p>
-      <span className="mobile-books-status" aria-live="polite" aria-atomic="true">{current + 1} of {count}: {books[current].t}</span>
+      <button type="button" className="mobile-books-autoplay" aria-label={paused ? "Resume automatic book carousel" : "Pause automatic book carousel"} aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? "Play" : "Pause"}</button>
+      <span className="mobile-books-status" aria-live={autoplay.moving ? "off" : "polite"} aria-atomic="true">{current + 1} of {count}: {books[current].t}</span>
     </div>
   );
 }

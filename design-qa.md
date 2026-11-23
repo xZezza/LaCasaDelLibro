@@ -415,3 +415,203 @@ Physical touch-device and complete screen-reader/text-zoom testing were not perf
 - [x] Existing checks and build pass; local preview left open.
 
 final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: Book Forum + General Rooms
+
+Source visual truth: `/Users/gaiaghezzi/.codex/generated_images/01a1e00a-c9a4-7881-ba55-83561cd4f64b/exec-86249acb-793d-4845-8cb5-adcf79eba0f5.png` (first displayed proposal, selected by Gaia). Subsequent direction: two visible cards, selectable details, General Rooms illustrated by reading recommendations; reduce Journal → Community whitespace.
+
+Implementation: `http://localhost:4175/#salon`, light theme, Book Forum selected, discussion closed. Evidence root: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-cards-2026-11-23/`.
+
+### Evidence and normalization
+
+- Source: 1407 × 1118 px. Card crop: x66/y94, 1276 × 840 px, normalized to 375 × 247 px.
+- Browser: 415 × 740 CSS px, screenshot `final-cards.jpg` 415 × 740 pixels (effective density 1). Actual card: 375 × 281 CSS px, cropped to `implementation-card.png`.
+- Combined full-component comparison opened and inspected: `comparison.png`. Focused warning/action comparison opened and inspected: `comparison-controls.png`. Both compare the same selected-book / closed-spoiler state at identical component width.
+- Additional browser-rendered screenshots: `320-book.jpg`, `390-book-closed.jpg`, `390-general-detail.jpg`, `390-general-dark.jpg`, `journal-community-gap.jpg`.
+
+### Findings and five fidelity surfaces
+
+No actionable P0/P1/P2 findings after the visual comparison.
+
+- Typography: retained product Cormorant Garamond and Jost; same serif title, uppercase category and bold action hierarchy. Book title wraps to two lines at 375 px; smaller choice cards wrap naturally at 320 px. Implementation intentionally retains the product's readable 15 px warning copy rather than the approximately 12 px mock text after normalization. This and the 44+ px control areas make the component 34 px taller than the normalized raster; accepted accessibility adaptation, with no content clipping.
+- Spacing/layout: same continuous header → warning → divider → text-action structure. Two selection cards are the user's subsequent requested addition, not source drift. One detail occupies the full width below; both cards remain available. Journal caption → Community eyebrow measured 42 px versus 78 px before, verified in browser.
+- Colors/tokens: deep indigo header, ivory body, plum ink, lavender border and gold action underline. General Rooms has a related muted plum header. Dark theme uses existing light-dark tokens. Divider is slightly more muted than the mock (P3 only).
+- Assets: real Feather MIT eye-off, book-open, message-circle and existing chevron SVG files; no invented illustration, placeholder veil, rasterized interface or character changes. Existing Hogwarts postcard and approved characters retained.
+- Copy/content: exact selected warning and Reveal discussion labels; real existing demo discussion retained. General Rooms example explicitly labelled as an illustrative conversation with fictional readers; no fabricated service activity or live posting controls. Updated intro now mentions both types of conversation.
+
+### Interaction and responsive checks
+
+- Initial state: both cards collapsed; details absent from accessibility tree.
+- Book opens the selected spoiler-safe detail; Enter reveals discussion and the question/diary/two replies become accessible. Pointer closes it again.
+- General Rooms opens its recommendations example and hides the Book Forum detail. Returning to the book preserves native disclosure state. Enter and Space toggle the cards; second activation closes the chosen detail.
+- 320/390/415/650 px checked for horizontal overflow: none. Minimum-width cards and their text fit without clipping.
+- 651/1440 px: mobile cards hidden, existing wide conversation visible; no horizontal overflow. Reset browser viewport override afterwards.
+- Light/dark mobile states inspected. Browser console errors checked: none.
+- Structure check passed, 24 tests passed, image verification passed (46 lossless variants unchanged), production build passed, git whitespace check passed.
+
+### Comparison history and limits
+
+First implemented comparison found no actionable P0/P1/P2 issues and required no visual fixes. No further iteration was necessary. Physical touch hardware, full screen-reader narration and text zoom were not tested. P3 follow-up: optionally tune the divider hue closer to the generated reference.
+
+### Implementation checklist
+
+- [x] First selected Book Forum proposal implemented with explicit spoiler warning.
+- [x] Two visible cards, exclusive selectable details, working close action.
+- [x] General Rooms recommendations example implemented.
+- [x] Journal-to-Community blank space reduced on phone only.
+- [x] Browser screenshots, combined full/focused comparisons and required checks completed.
+- [x] Preview left open; changes local, no commit/push/deploy.
+
+final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: two-card fan correction
+
+Source visual truth: `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_I48mM3/Screenshot 2026-11-23 alle 19.21.49.png`. User explicitly requests the playing-card arrangement adapted to two cards, with the selected card in front and selection reversible. This replaces the earlier side-by-side arrangement; the reference is compositional, not a request to copy card suits, red/black palette or hand-drawn artwork.
+
+Implementation screenshots in `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-cards-2026-11-23/`: `fan-book-front-final.jpg`, `fan-rooms-front.jpg`. Viewport and screenshots: 415 × 740 CSS/pixel dimensions, effective density 1. Source 466 × 316 pixels; normalized to 400 px wide. Implementation fan region cropped from each screenshot and normalized to the same 400 px width. Combined comparison `fan-comparison.png` opened and inspected with source plus both selected states together. No separate magnified comparison needed: the comparison shows the complete two-card component at almost native size, and the labels, icons, overlap, border and text are readable.
+
+Findings: no actionable P0/P1/P2 issues after implementation. The earlier flat two-column layout was a P1 interpretation mismatch, now corrected with overlapping cards rotated −9/+9 degrees. The selected card lifts 10 px, rotates to −6/+6 degrees and has foreground stacking; the other remains exposed and clickable. Keyboard focus receives higher stacking than selection so it cannot disappear behind the selected card. Native buttons, labels, controlled detail visibility and spoiler protection retained.
+
+Fidelity surfaces checked:
+- Fonts: product Cormorant Garamond titles and Jost labels/descriptions; no font change or rasterized text.
+- Layout: portrait card proportions, contrasting rotations, deliberate overlap, rounded corners and soft elevation now convey the supplied fan reference. Two cards rather than four, with a gentler angle to retain readable product text. Underlying card text being partially covered is the requested behavior, not a clipping defect. Both category corners and exposed click areas remain visible.
+- Colors: The Salon ivory, plum and lilac retained as requested; active card lightly tinted.
+- Assets: existing Feather book/message icons reused; no new artwork or replacements. Literal suits and sketch marks intentionally excluded because the user asked for The Salon cards in this arrangement.
+- Content: existing Book Forum and General Rooms content unchanged; selected detail matches the foreground card.
+
+Browser validation: pointer on the exposed right card brought General Rooms in front (z3 versus Book Forum z1), and changed the detail. Enter on Book Forum returned it to the foreground (z3, or z4 while keyboard focused) and restored the book detail. At 320 and 650 px neither page nor card text overflowed horizontally. Final viewport override reset. Console errors: none. Motion transitions are disabled under prefers-reduced-motion. Journal-to-Community spacing and wide layout remain unchanged.
+
+Validation: structure check, 24 tests, production build and git diff whitespace check passed. No additional test cases for this reversible presentation change. Existing Follow edits and untracked TheSalon directory preserved. Changes remain local.
+
+Comparison history: P1 interpretation mismatch corrected before this comparison; post-fix evidence covers each foreground selection. No P0/P1/P2 findings remain. Limits: no physical touchscreen or full screen-reader narration test. No further P3 polish required for this iteration.
+
+final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: content inside the actual fan cards
+
+Source visual truth: `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_B55p8A/Screenshot 2026-11-23 alle 19.28.31.png` (752 × 562 px). Combined with the user's prior two-card fan reference, this explicitly replaces the miniature card selectors plus separate detail panel.
+
+Implementation evidence root: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-content-cards-2026-11-23/`.
+- Full viewport evidence: `final-cards.jpg`, 415 × 740 CSS/pixel dimensions, effective density 1, light theme, Book Forum foreground and spoiler discussion closed.
+- Both foreground states and content states: `book-closed.jpg`, `rooms-closed.jpg`, `book-open.jpg`.
+- Focused component comparison: `comparison.png`, source plus current implementation in one image, opened and inspected. Source scaled to 337 px wide. Actual card is 337 × 281 CSS px; screenshot crop deskewed +2 degrees only for internal comparison and cropped back to its logical size. Original screenshot is preserved. Component comparison is readable at nearly native size, including the warning, divider, icon and reveal control.
+
+### Findings, fixes, comparison history
+
+[P1, fixed] The preceding implementation treated the fan as two miniature selector cards and placed the actual forum in a separate lower panel. Both selectors and separate panel wrappers are now removed. The two full article cards themselves overlap; headers, warning/invitation and disclosures are children of those cards. Post-fix evidence: `final-cards.jpg`, `rooms-closed.jpg`, `book-open.jpg` and `comparison.png`.
+
+[P2, fixed during browser inspection] The rear card's ordinary header label was covered by the front card. Added an aria-hidden visual category label along each exposed header edge; the native header button remains the keyboard selection control. Rear card now identifies itself as General Rooms or Book Forum before selection. Post-fix evidence: both closed-state screenshots.
+
+No actionable P0/P1/P2 findings remain in the final source/component comparison.
+
+### Required fidelity surfaces
+
+- Typography: same Cormorant Garamond title and Jost interface text; full book title, uppercase category and book number retained. The screenshot source is narrower after normalization than its likely original CSS presentation; actual card retains the product's mobile 27–29 px title and 15 px explanation for readability. This is an intentional responsive adaptation, resulting in a slightly taller card rather than shrinking copy.
+- Layout: reference header, warning, thin divider and text-only reveal action are directly inside the foreground card. Small rotation and exposed second card retain the requested fan. Whole-page screenshot checked alongside the focused component comparison; no duplicate detail below. Expansion grows the selected card and the surrounding layout naturally.
+- Tokens: indigo header, ivory body, plum text, lavender rules and gold underline retained. General Rooms uses the related plum header. Soft shadow distinguishes overlapping sheets without introducing nested card shells.
+- Assets: existing Feather eye-off and chevron SVG files reused. No new raster images, illustrations or custom icon drawings. Header/body are live product UI, not rasterized screenshot content.
+- Copy: exact selected Book Forum title, spoiler warning and Reveal discussion; General Rooms contains its reading-recommendations title and invitation. Existing demo replies and illustrative-content note retained.
+
+### Browser behavior and responsive validation
+
+Pointer on the exposed rear edge swaps the selected/front card in both directions. Header button Enter brings that card forward. Enter/Space on the native summary reveals/hides discussion within the same article. Switching cards collapses the rear article's body while preserving its disclosure preference for return; verified with General Rooms open → Book Forum → General Rooms, where the room reopens. Book spoilers are absent from accessibility tree initially and appear only on reveal.
+
+320 px checked with a long open discussion: no horizontal page overflow, no internal text clipping, both rotated card bounds within viewport. At 650 px, no page overflow. At 651 px, mobile cards hidden and existing wide conversation visible. Temporary viewport reset to normal 415 × 740 afterwards. Final book selection and closed spoiler state verified; browser console errors: none. Reduced-motion CSS disables card transitions.
+
+Structure check, all 24 tests, production build and git whitespace check passed. No changes to protected character assets, Journal spacing or wide composition. No commit/push/deploy.
+
+Limits: no physical touch-device or complete screen-reader narration test; slight text-scale and height differences from the normalized screenshot are accepted responsive adaptations. No remaining P3 polish required for this iteration.
+
+final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: taller, narrower cards
+
+Source visual: previously verified integrated-card composition, `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-content-cards-2026-11-23/final-cards.jpg`, plus Gaia's explicit instruction to make both cards more vertical and expose more of the rear card. Implementation: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-portrait-2026-11-23/final.jpg`. Both captures 415 × 740 CSS/pixels, effective density 1, light theme, Book Forum foreground and disclosure closed. Combined full-view comparison `output/forum-portrait-2026-11-23/comparison.png` opened and inspected. This narrow two-column comparison shows the component text, borders, exposed card edge and actions clearly; no further focused magnification needed.
+
+At 415 px the card changes from 337 × 281 px to 270 × 370 px. The unrotated lateral exposure increases from 38 to 105 px, while the existing opposing rotations and selection behavior stay intact. At wider phone widths the card width caps at 300 px. Closed-card action aligns at the bottom; actual discussion can grow the card naturally.
+
+Findings/history: [P2, fixed] The initial 320 px run clipped the long word recommendations after narrowing the card. Fixed the inner grid to minmax(0,1fr), with overflow-wrap:anywhere and language-aware hyphenation on the title. Post-fix `320-rooms.jpg` shows all text and the action in bounds. Browser measurements confirm neither card nor summary has horizontal internal overflow at 320 px. No remaining P0/P1/P2 findings in the final comparison.
+
+Fidelity surfaces: product fonts/weights retained, with expected extra title wrapping; intentional portrait proportions and larger exposed rear area satisfy the requested layout change. Existing ivory/indigo/plum/gold tokens, borders and icons retained; no image or asset changes. Copy unchanged. Card content remains live and interactive. Both selection directions and opening/closing the room were verified; Book Forum Reveal discussion and Hide discussion were each clicked and state confirmed. Open card also fits page width. 320/650 px checked for page overflow; viewport reset afterwards. No browser console errors. Native controls and reduced-motion behavior retained.
+
+Structure check, 24 tests, final build and whitespace check passed. No new tests for this reversible CSS-only layout adjustment. No commit/push/deploy. Physical-device and full screen-reader checks remain outside this iteration.
+
+final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: horizontal labels and selection demonstration
+
+Source grounding: the previously verified forum cards and Gaia's explicit changes: horizontal General Rooms label above, stronger fan angles, introductory alternation to explain selection. Same-state source capture: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-content-cards-2026-11-23/rooms-closed.jpg` (earlier General Rooms foreground / closed). Latest browser capture: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-motion-2026-11-23/automatic-rooms.jpg` (General Rooms foreground / closed during the actual automatic demonstration). Both 415 × 740 CSS/pixel captures, effective density 1. The earlier capture predates the intentional portrait adjustment; portrait proportions, stronger rotation and greater exposure are requested changes, not fidelity drift.
+
+Combined full-view comparison `output/forum-motion-2026-11-23/comparison.png` opened and inspected with source/current together. Labels, text, borders and controls are readable at nearly native size, so no additional magnified comparison needed.
+
+Findings/history: [P2, fixed during browser inspection] The first horizontal General Rooms label was partly covered by the front card. Lifted that card by 26 px while offsetting Book Forum downward by 26 px. Subsequent browser screenshot showed the whole horizontal label above the front book card. No actionable P0/P1/P2 findings remain in the final comparison.
+
+Changes: inactive cards tilt ±9°, foreground cards ±6°, versus ±5°/±2° before. Open discussions straighten for reading. Extra side clearance accommodates the fan. Vertical edge labels are replaced by horizontal labels in the upper header; the ordinary header label remains when active. No new graphic assets or fonts.
+
+Required surfaces: existing Cormorant Garamond and Jost retained; requested rotation and vertical arrangement now clearer; ivory/indigo/plum/gold tokens retained; existing raster artwork and Feather icons unchanged; all forum copy unchanged. Both whole-card selection and internal disclosure remain real controls.
+
+Browser verification before app-update interruption: observed General Rooms become active automatically at the first scheduled phase, then Book Forum active at the second phase; no input was used between phases. After reload, a manual keyboard choice selected General Rooms. The final delayed manual-cancellation browser observation was interrupted by the Codex Desktop update, after which browser-control tools were unavailable. No claim is made that this final observation completed in browser.
+
+Completed behavior validation using the actual effect/choice-handler source with a virtual clock and IntersectionObserver/matchMedia harness (report: `output/forum-motion-2026-11-23/behavior-checks.json`): automatic rooms → book sequence, manual choice blocks later automatic selection, reduced motion prevents demonstration, wide layout prevents demonstration, leaving view cancels pending changes, unmount cancels pending changes. Six checks passed. The animation starts once per mount when 40% of the hand is visible, switches at 1.8/3.6 seconds, and stops affecting selection on pointer/focus interaction.
+
+Required structure check, 24 existing tests, production build and whitespace check passed. Latest preview responds HTTP 200. Protected assets and unrelated Follow/quote changes preserved. No commit/push/deploy.
+
+Limits: final browser cancellation check and a fresh 320/650/reduced-motion browser matrix could not be repeated after the desktop update; cancellation/reduced-motion/timer behavior is covered by the source-executing harness. Earlier portrait mobile matrix is documented above. No additional code changes were made after the captured build.
+
+final result: passed
+
+
+---
+
+## Community mobile — 23 November 2026: full-width reading and bottom close controls
+
+Requested change: Hide discussion must follow the conversation, and an explicitly chosen card should expand for reading. Implemented native close buttons after each final prompt, full-width/non-rotated selected-card state, hidden rear card while expanded, and Back to cards above the reader. Keyboard focus alone promotes a card without expanding; Enter or pointer selection expands it. Introductory automatic alternation still only changes the foreground. Opening discussion focuses its question; closing returns focus to Reveal/Open discussion; returning to the fan restores title-button focus without reopening expanded mode.
+
+Required check, 24 existing tests and production build passed. Five additional source-executing behavior/order checks passed: focus versus explicit selection, expansion cancels automatic changes, Back restores fan/focus, each close collapses the correct disclosure and restores focus, both close actions follow their conversation prompts with no Hide action in the opening summaries. Evidence: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-reading-mode-2026-11-23/behavior-checks.json`. Git whitespace check passed. No commit/push/deploy.
+
+Visual verification is pending: after the Codex Desktop update, no browser-control tool is available in this session. A fresh rendered capture/full-width comparison and native focus/scroll validation could not be performed. Earlier screenshots represent the preceding layout, not this change, and are not used as proof of the current implementation. No browser fidelity pass is claimed for this iteration.
+
+final result: blocked
+
+
+---
+
+## Community mobile — 23 November 2026: Hide returns to the opposite card
+
+Hide discussion now collapses both conversation states, leaves expanded reading mode and brings the other card forward. The event stops bubbling so the closing click cannot trigger the parent card's choose/expand handler. Focus returns to the other card's title; its focus handler promotes without expanding, leaving the two-card fan visible. Manual-interaction flag prevents the introductory sequence overriding this choice.
+
+Executed both close paths from the actual handler source, including the focus-capture handler after the scheduled focus restore. Verified: Book Forum → General Rooms, General Rooms → Book Forum, expanded=false, both discussions closed, event propagation stopped, correct header focus, introductory sequence disabled. Evidence: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/forum-reading-mode-2026-11-23/hide-return-checks.json`. Structure check, 24 tests, build and whitespace check passed.
+
+Browser controls remain unavailable after the desktop update. Native click/focus/scroll and final rendered comparison still await browser verification; no fresh visual pass is claimed. No commit/push/deploy.
+
+final result: blocked
+
+
+---
+
+## Community spacing and mobile carousel autoplay — 23 November 2026
+
+Additional user requests before commit/push: reduce blank space around the illustrative-conversation note, and move the mobile illustrated-book carousel automatically and slowly. Community phone-only bottom padding reduced 90 → 28 px; hand bottom padding 56 → 24 px. Existing portrait/fan and full-width states retained.
+
+Mobile carousel advances once per six seconds with a custom 1.8-second eased scroll, reusing the existing seamless first/last clones. Scroll snapping is disabled only during that glide and restored afterwards. Existing swipe/arrows remain. Pointer, mouse hover, keyboard focus, modal book sheet, hidden document and reduced-motion states pause/prevent automatic movement. Resize alignment cancels a glide before repositioning. Small Pause/Play control added; automatic changes suppress live announcements while moving. Desktop/tablet carousel untouched.
+
+Twelve behavior checks executed against the actual hook and carousel onScroll source, with virtual animation frames, geometry and interaction guards. Verified half-distance at 900 ms, exact target at 1800 ms, wrap via the first-cover clone and normalization, cancellation and snapping restoration, reduced motion, wide layout, background document, modal dialog, keyboard focus, held pointer, paused state, mouse hover and cleanup. Report: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/carousel-autoplay-2026-11-23/behavior-checks.json`. Required check, 24 tests, image verification (46 unchanged lossless variants), build and whitespace check passed.
+
+Browser-control tools remain unavailable after the desktop update. No new screenshot or visual verification is claimed for these final changes; native touch/snap timing and the final spacing await a browser pass. User explicitly requested commit and push of the changes. Nested untracked TheSalon directory remains excluded; unused draft book/message icons removed before staging, retained Feather eye-off asset is used by the warning.
+
+final result: blocked
