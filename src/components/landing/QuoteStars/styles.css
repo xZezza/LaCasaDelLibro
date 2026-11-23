@@ -98,10 +98,10 @@
 
 @layer responsive {
   @media (max-width: 650px) {
-    .salon-s166 { padding-top: 12px; }
+    .salon-s166 { padding-top: 12px; padding-bottom: 36px; }
 
     .quote-guest-stars {
-      --scene-guest-size: clamp(70px, 20vw, 86px);
+      --scene-guest-size: clamp(80px, 23vw, 99px);
       gap: 0;
       min-height: 0;
       padding: 0;

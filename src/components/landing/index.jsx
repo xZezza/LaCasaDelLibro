@@ -19,7 +19,7 @@ import ModalLibrary from "./ModalLibrary";
 import ModalBookSheet from "./ModalBookSheet";
 import ModalComingSoon from "./ModalComingSoon";
 
-function CommunityAndQuote({ values }) {
+function ReadingSections({ values }) {
   const [phone, setPhone] = useState(false);
   useEffect(() => {
     const query = window.matchMedia(MEDIA_QUERIES.phone);
@@ -29,9 +29,10 @@ function CommunityAndQuote({ values }) {
     return () => query.removeEventListener("change", update);
   }, []);
 
+  const journal = <Journal key="journal" {...values} />;
   const community = <Community key="community" {...values} />;
   const quote = <QuoteStars key="star-quote" {...values} />;
-  return phone ? [community, quote] : [quote, community];
+  return phone ? [quote, journal, community] : [journal, quote, community];
 }
 
 export default class Landing extends LandingController {
@@ -48,8 +49,7 @@ export default class Landing extends LandingController {
           <BooksCarousel {...v} />
           <QuoteHardDays {...v} />
           <Library {...v} />
-          <Journal {...v} />
-          <CommunityAndQuote values={v} />
+          <ReadingSections values={v} />
           <Follow {...v} />
         </main>
         <Footer {...v} />
