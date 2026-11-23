@@ -920,15 +920,15 @@ export default class LandingController extends React.Component {
         },
       ],
       socials: [
-        { name: "Instagram", href: "https://www.instagram.com/therealbooksalon/" },
-        ...["TikTok", "Threads"].map((name) => ({
-          name,
+        { name: "Instagram", href: "https://www.instagram.com/therealbooksalon/", primary: true },
+        {
+          name: "Threads",
           href: "#",
-          open: (e) => {
-            e.preventDefault();
-            this.setState({ soon: name });
+          open: (event) => {
+            event.preventDefault();
+            this.setState({ soon: "Threads" });
           },
-        })),
+        },
       ],
       soonOpen: !!this.state.soon,
       soonName: this.state.soon || "",

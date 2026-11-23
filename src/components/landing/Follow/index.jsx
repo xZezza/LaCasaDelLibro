@@ -157,27 +157,20 @@ export default function Follow(values) {
               <span className={"salon-s28"}>{"Throne of Glass"}</span>
             </figcaption>
           </figure>
-          <div className={"salon-s57"}>{"The doors are still being built"}</div>
           <h2 className={"salon-s195"}>{"Be there from the first chapter."}</h2>
           <p className={"salon-s196"}>
-            {
-              "The Salon is in development. Follow along on social to watch it take shape, share what you’d love to find inside, and be the first to know when the doors open."
-            }
+            The Salon is in development. Follow along for a first look.
           </p>
           <div className={"salon-s198"}>
-            {socials.map((s, index18) => (
-              <React.Fragment key={index18}>
-                <a
-                  href={s.href}
-                  onClick={s.open}
-                  className={"salon-s197 salon-marker-action salon-marker-secondary"}
-                >
-                  <span className="salon-marker-text">
-                  {s.name}
-                  {"\n        "}
-                </span>
-                </a>
-              </React.Fragment>
+            {socials.map(({ name, href, open, primary }) => (
+              <a
+                key={name}
+                href={href}
+                onClick={open}
+                className={`salon-s197 salon-marker-action ${primary ? "salon-marker-primary" : "salon-marker-secondary"}`}
+              >
+                <span className="salon-marker-text">{name}</span>
+              </a>
             ))}
           </div>
           {Boolean(showNotes) && (

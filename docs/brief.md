@@ -255,4 +255,6 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 
 23 novembre — Il Book Forum sotto la cartolina mobile parte chiuso. Titolo e avviso spoiler restano visibili, con un velo grafico opaco prima di “Open to discover more”. Il controllo apre la discussione al tocco o da tastiera e cambia in “Hide discussion” per richiuderla.
 
+23 novembre — La chiusura della landing usa un invito più breve a seguire The Salon. Su telefono titolo, testo, spazi e fiore sono più piccoli; Instagram ha la pennellata gialla e si affianca a Threads. TikTok è rimosso per il momento. Instagram apre il profilo ufficiale e Threads apre l’avviso di anteprima.
+
 23 novembre — Sulla landing telefono la sezione Community, con la cartolina di Hogwarts e il Book Forum, segue subito il Reading Journal. La citazione stellata viene dopo Community. Il forum conserva il pannello anti-spoiler e il suo stato al cambio di larghezza.
