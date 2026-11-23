@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MEDIA_QUERIES } from "../config/breakpoints.js";
 
-export default function useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent, paused }) {
+export default function useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent }) {
   const frameRef = useRef(0);
   const untilRef = useRef(0);
   const hoverRef = useRef(false);
@@ -24,7 +24,7 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
 
   useEffect(() => {
     const track = viewportRef.current;
-    if (!track || count < 2 || paused) { pause(); return; }
+    if (!track || count < 2) { pause(); return; }
     const root = track.closest(".mobile-books");
     const phone = matchMedia(MEDIA_QUERIES.phone);
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
@@ -76,6 +76,6 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
       reduced.removeEventListener("change", pause);
       document.removeEventListener("visibilitychange", pause);
     };
-  }, [count, paused, pause]);
+  }, [count, pause]);
   return { pause, moving, hoverRef };
 }

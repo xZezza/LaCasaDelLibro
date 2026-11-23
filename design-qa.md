@@ -615,3 +615,28 @@ Twelve behavior checks executed against the actual hook and carousel onScroll so
 Browser-control tools remain unavailable after the desktop update. No new screenshot or visual verification is claimed for these final changes; native touch/snap timing and the final spacing await a browser pass. User explicitly requested commit and push of the changes. Nested untracked TheSalon directory remains excluded; unused draft book/message icons removed before staging, retained Feather eye-off asset is used by the warning.
 
 final result: blocked
+
+
+---
+
+## Community mobile — 23 November 2026: feathered illustration trial
+
+User supplied the current Hogwarts postcard screenshot and asked to try the scene as a simple illustration fading into the section edges. Existing artwork retained. Phone CSS removes paper background/padding, shadow, rotation, tape, caption and replay; a two-axis alpha mask feathers all scene layers into the actual page background, preserving light/dark compatibility and the existing sky animation. Mask uses standard intersect plus WebKit source-in fallback. Tablet/desktop unchanged.
+
+Source reference: `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_6w4b2i/Screenshot 2026-11-23 alle 20.04.28.png`. Browser controls remain unavailable, so no current rendered capture or visual comparison is claimed. This trial follows the completed ee8c17a push and remains local for review.
+
+final result: blocked
+
+
+---
+
+## Community illustration — 23 November 2026: asymmetric edge-fade trial
+
+User approved the proposed refinement after supplying `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_h4PD8B/Screenshot 2026-11-23 alle 20.22.54.png`: reduce the uniform pale halo along top/sides and broaden the bottom fade. Updated the existing phone-only alpha masks: opaque by 3% from top and 4% from sides; center stays opaque through 70% height and 95% opaque at 82%, then fades in gradual stops to the lower edge. No image blur, replacement, cropping or resolution change. Existing sky motion and dark/light background compatibility retained.
+
+Browser tools remain unavailable; this is a local CSS trial without a fresh rendered comparison. Visual acceptance remains pending. No new commit or push.
+
+final result: blocked
+
+
+23 November 2026 — pre-commit validation: corrected the alpha stops to valid eight-digit CSS hex colors (black plus b3/f2/c2/a6/40 alpha), preserving the intended fade strengths. Checked every mask color format, project structure, all 24 tests, build and whitespace. User approved the local trial and requested commit/push. Browser verification remains unavailable.

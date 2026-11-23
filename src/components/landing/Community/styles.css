@@ -246,10 +246,16 @@
 }
 @layer responsive {
   @media (max-width: 650px) {
-    .community-postcard-stage { padding: 24px 8px 14px; }
+    .community-postcard-stage { padding: 12px 0 0; margin-top: 12px; }
+    .community-postcard-stage :is(.salon-s167, .salon-s170, .community-postcard-replay) { display: none; }
     .community-postcard-stage .salon-s171 {
+      width: 100%;
       max-width: 100%;
       margin-inline: auto;
+      padding: 0;
+      background: transparent;
+      transform: none;
+      box-shadow: none;
       animation: none;
     }
     .community-postcard-stage .salon-s169 {
@@ -257,6 +263,12 @@
       overflow: hidden;
       isolation: isolate;
       aspect-ratio: 4/3;
+      --community-fade-sides: linear-gradient(90deg, transparent, #000000b3 1%, #000000f2 2%, #000 4%, #000 96%, #000000f2 98%, #000000b3 99%, transparent);
+      --community-fade-bottom: linear-gradient(180deg, transparent, #000000c2 1%, #000 3%, #000 70%, #000000f2 82%, #000000a6 90%, #00000040 96%, transparent);
+      -webkit-mask-image: var(--community-fade-sides), var(--community-fade-bottom);
+      mask-image: var(--community-fade-sides), var(--community-fade-bottom);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
       background:
         radial-gradient(circle, #fff4d2 0 0.8px, transparent 1.8px) 12px 23px / 89px 97px,
         radial-gradient(circle, #aabaff 0 0.65px, transparent 1.5px) 48px 0 / 67px 79px,

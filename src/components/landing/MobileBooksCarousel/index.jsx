@@ -14,9 +14,8 @@ export default function MobileBooksCarousel({ books, onOpen }) {
   const pointerRef = useRef(null);
   const blockClickRef = useRef(0);
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
   const count = books.length;
-  const autoplay = useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent: setCurrent, paused });
+  const autoplay = useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent: setCurrent });
   const slides = [books.at(-1), ...books, books[0]];
   const step = () => {
     const track = viewportRef.current;
@@ -115,7 +114,6 @@ export default function MobileBooksCarousel({ books, onOpen }) {
         <button type="button" className="mobile-books-arrow mobile-books-next" aria-label="Next book" onClick={() => move(1)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg></button>
       </div>
       <p className="mobile-books-memory">The ending I still think about.</p>
-      <button type="button" className="mobile-books-autoplay" aria-label={paused ? "Resume automatic book carousel" : "Pause automatic book carousel"} aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? "Play" : "Pause"}</button>
       <span className="mobile-books-status" aria-live={autoplay.moving ? "off" : "polite"} aria-atomic="true">{current + 1} of {count}: {books[current].t}</span>
     </div>
   );
