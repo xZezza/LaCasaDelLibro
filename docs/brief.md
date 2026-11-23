@@ -270,3 +270,5 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 23 novembre — Su richiesta di Gaia, personaggi nella finestra stellata mobile ingranditi di circa il 15%: dimensione da 70–86 px a 80–99 px, mantenendo l’appoggio al davanzale. Aggiunti 36 px sotto la citazione stellata per separare l’attribuzione dal riquadro finale e dal suo segnalibro. Modifiche limitate al telefono, originali e composizione tablet/desktop conservati. Prova locale.
 
 23 novembre — Gaia sposta la finestra stellata su telefono prima del Reading Journal. Ordine mobile: Library → finestra stellata → Journal → Community → Follow. Dimensioni maggiorate dei personaggi e spaziatura della finestra conservate. Su tablet/desktop resta Library → Journal → citazione stellata → Community → Follow. Le sezioni condividono lo stesso contenitore con chiavi stabili per conservare lo stato durante il cambio di larghezza. Modifica locale.
+
+23 novembre — Su telefono il segnalibro della citazione finale è più corto e sta nel margine sinistro. La comparsa di Throne of Glass è centrata subito sotto l’attribuzione, con spazio per il nome e l’ingrandimento al puntatore.

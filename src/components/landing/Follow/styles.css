@@ -128,14 +128,33 @@
       padding-bottom: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
     }
   }
-
-  @media (max-width: 650px) {
-    .quote-guest-throne { --scene-guest-size: 116px; }
-  }
 }
 
 @layer responsive {
   @media (max-width: 650px) {
+    .salon-s189 {
+      top: -4px;
+      left: 8px;
+      width: 10px;
+      height: 44px;
+    }
+
+    .quote-guest-throne {
+      --scene-guest-size: 116px;
+      min-height: 0;
+      margin-bottom: 16px;
+      padding-bottom: 0;
+    }
+
+    .quote-guest-throne .story-guest-throne {
+      position: relative;
+      inset: auto;
+      order: 1;
+      margin-bottom: 18px;
+    }
+
+    .quote-guest-throne .visitor-name { top: calc(100% + 4px); }
+
     .salon-s195 {
       margin-top: 4px;
       font-size: clamp(26px, 7vw, 30px);
@@ -156,5 +175,13 @@
     .salon-s197.salon-marker-primary .salon-marker-text::before { transform: rotate(-1.5deg) scaleX(1); }
     .salon-s199 { margin-top: 8px; font-size: 16px; }
     .salon-s190 { bottom: -20px; width: 82px; height: 82px; pointer-events: none; }
+  }
+
+  @media (max-width: 650px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .quote-guest-throne .story-guest-throne { margin-top: calc(var(--guest-size) * (var(--visitor-hover-scale) - 1) - 8px); }
+  }
+
+  @media (max-width: 650px) and (prefers-reduced-motion: reduce) {
+    .quote-guest-throne .story-guest-throne { display: none; }
   }
 }
