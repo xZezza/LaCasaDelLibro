@@ -242,3 +242,9 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 15 novembre — su richiesta di Gaia rimosso dal reading journal mobile l’intero blocco “Explore the book & saga”, con i due pulsanti e tutte le anteprime Book/Saga contenute. La sezione termina con il riepilogo privacy e “A little of you, between the pages.”. Flusso Memories / Characters / Ratings e journal tablet/desktop conservati. Modifica locale.
 
 15 novembre — Gaia richiede testi introduttivi Community più piccoli su telefono: titolo da 38 a 32 px, descrizione da 17 a 15 px con interlinea 1.6, etichetta sezione da 15 a 11 px. Spazi testo ridotti in proporzione; contenuti e composizione delle altre sezioni invariati. Tablet/desktop conservati. Solo locale.
+
+23 novembre — Su telefono Memories, Characters e Ratings restano schede del reading journal con navigazione a frecce. Sono apribili i singoli ricordi, le note dei personaggi e i dettagli di lettura. Ricordi e note partono aperti, i dettagli di lettura partono chiusi. I tasti di condivisione e valutazione restano accessibili. Apertura e chiusura animate rispettano la preferenza per il movimento ridotto.
+
+23 novembre — La citazione stellata su telefono usa un arco alto e stretto con la luna e una città illuminata in lontananza. L’illustrazione ha il fondo trasparente, la citazione resta testo della pagina e la finestra è più vicina alla chiusura del journal. Le comparse di ACOTAR entrano più piccole sul davanzale e aprono la scheda del personaggio al tocco. La composizione su tablet e desktop resta quella della citazione stellata originale.
+
+23 novembre — Sul journal mobile la scheda Ratings apre sul voto totale con numero e stelle. Uno swipe verso destra o il pulsante View details apre i quattro voti modificabili e i dettagli di lettura. Uno swipe verso sinistra o Back to total torna al voto totale. La scelta dei colori del journal mobile è disponibile in Memories e Characters per il colore del libro.

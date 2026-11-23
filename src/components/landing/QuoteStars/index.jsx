@@ -11,12 +11,14 @@ export default function QuoteStars(values) {
   } = values;
   return (
     <>
-      <div className={"salon-s166"}>
+      <div id="star-quote" className={"salon-s166"}>
         <figure
           ref={quote4Ref}
           className="salon-s165 quote-with-guest quote-guest-stars quote-reveal" data-visible={q4Visible}
         >
-          <StoryGuests group="acotar" placement="stars" />
+          <div className="quote-window-stage">
+            <StoryGuests group="acotar" placement="stars" />
+          </div>
           {"\n    "}
           <StarField />
           {"\n    "}

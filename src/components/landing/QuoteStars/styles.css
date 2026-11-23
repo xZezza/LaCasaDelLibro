@@ -59,6 +59,13 @@
     max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
     padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 48px) 0;
+    scroll-margin-top: 96px;
+  }
+
+  .quote-window-stage {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
   .quote-guest-stars {
@@ -77,10 +84,6 @@
     }
   }
 
-  @media (max-width: 650px) {
-    .quote-guest-stars { --scene-guest-size: 130px; }
-  }
-
   @keyframes drift {
     0%,
     100% {
@@ -89,6 +92,67 @@
 
     50% {
       transform: translateY(-6px);
+    }
+  }
+}
+
+@layer responsive {
+  @media (max-width: 650px) {
+    .salon-s166 { padding-top: 12px; }
+
+    .quote-guest-stars {
+      --scene-guest-size: clamp(70px, 20vw, 86px);
+      gap: 0;
+      min-height: 0;
+      padding: 0;
+      overflow: visible;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+    }
+
+    .quote-guest-stars > :is(.quote-sky, .salon-s162) { display: none; }
+
+    .quote-window-stage {
+      position: relative;
+      inset: auto;
+      width: clamp(178px, 55vw, 220px);
+      aspect-ratio: 610 / 865;
+      background: url("/images/decorations/velaris-window.webp") center / contain no-repeat;
+    }
+
+    .quote-window-stage .story-guest-stars {
+      right: 15%;
+      bottom: 5%;
+    }
+
+    .quote-window-stage .visitor-name {
+      top: calc(100% + 16px);
+      color: light-dark(#422647, #f3e9f8);
+      text-shadow: none;
+    }
+
+    .quote-guest-stars .salon-s163 {
+      margin-top: 28px;
+      color: light-dark(#422647, #f3e9f8);
+      font-size: clamp(24px, 6.4vw, 29px);
+      text-shadow: none;
+    }
+
+    .quote-guest-stars .salon-s164 {
+      margin-top: 12px;
+      color: light-dark(#5d4560, #d9c3e2);
+      letter-spacing: .1em;
+    }
+
+    .quote-guest-stars .salon-s28 { font: italic 500 15px "Cormorant Garamond", serif; }
+
+    .quote-guest-stars .quote-word,
+    .quote-guest-stars > figcaption {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      transition: none;
     }
   }
 }
