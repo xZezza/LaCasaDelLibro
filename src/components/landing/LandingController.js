@@ -731,7 +731,7 @@ export default class LandingController extends React.Component {
     const shelves = [0, 1, 2].map((s) => {
       const segs = [];
       this.state.lib
-        .filter((b) => b.shelf === s)
+        .filter((b) => b.shelf === s && b.onShelf !== false)
         .forEach((b) => {
           const v = this.bookVals(b),
             last = segs[segs.length - 1];
@@ -1094,6 +1094,7 @@ export default class LandingController extends React.Component {
                       const [b] = lib.splice(ex, 1);
                       b.shelf = sh;
                       b.status = sh;
+                      if (b.onShelf === false) b.onShelf = true;
                       lib.push(b);
                     } else
                       lib.push({

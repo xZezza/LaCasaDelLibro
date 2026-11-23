@@ -53,7 +53,7 @@ export default function MobileLibraryScene({ items, preferences, lights, shelf, 
   const rows = zoom ? [shelf] : SHELF_LABELS.map((_, row) => row);
   return <div ref={ref} className={`ml-room ${zoom ? "ml-room-zoom" : ""}`} data-light={preferences.light} style={{ "--shelf-filter": wood.filter }}>
     {rows.map(row => {
-      const content = items.filter(item => item.shelf === row);
+      const content = items.filter(item => item.shelf === row && item.onShelf !== false);
       const sizes = content.map(item => mobileItemDimensions(item, closeUp ? 2 : zoom));
       const total = sizes.reduce((sum, d) => sum + d.w, 0) + Math.max(0, content.length - 1) * 5;
       const scale = zoom ? 1 : Math.max(.82, Math.min(1, (width - 28) / Math.max(1, total)));

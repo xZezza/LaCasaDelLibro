@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { mkDeco } from "../../../data/landing/library.js";
 import { MOBILE_WOODS, MOBILE_WALLS, MOBILE_GROUPS, MOBILE_ORDERS, MOBILE_DECORATIONS, STATUS_LABELS, SHELF_LABELS, MOBILE_SHELF_COUNT, libraryBookInfo } from "../../../data/landing/mobile-library.js";
-import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, moveLibraryItem, twoShelfLibrary } from "../../../lib/mobile-library.js";
+import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, moveLibraryItem, placeLibraryBook, twoShelfLibrary } from "../../../lib/mobile-library.js";
 import useMobileLibraryActivation from "../../../hooks/useMobileLibraryActivation.js";
 import useMobileLibraryDrag from "../../../hooks/useMobileLibraryDrag.js";
 import MobileLibraryScene, { MobileBookArt } from "./Scene.jsx";
@@ -63,6 +63,7 @@ export default function MobileLibraryDialog(values) {
   function openShelfZoom(id) {
     const item = items.find(value => value.id === id);
     if (!item) return;
+    if (item.onShelf === false) updateMobileLibrary(state => placeLibraryBook(state.lib, state.preferences, id, String(item.shelf), MOBILE_SHELF_COUNT));
     cancelActivation(); setBookZoomId(null); setSelection(null); setZoomShelf(item.shelf); setZoomTarget({ id }); setEditing(true);
     requestAnimationFrame(() => editTitle.current?.focus({ preventScroll: true }));
     announce(`Close-up of ${item.t}. Scroll along the shelf or choose an item to arrange it.`);
@@ -104,13 +105,9 @@ export default function MobileLibraryDialog(values) {
     const id = selection; setSelection(null);
     requestAnimationFrame(() => root.current?.querySelector(`[data-mobile-item="${CSS.escape(id)}"], [data-list-book="${CSS.escape(id)}"]`)?.focus({ preventScroll: true }));
   }
-  function chooseDisplay(book, destination) {
-    updateMobileLibrary(state => {
-      if (destination === "") return { lib: state.lib.map(item => item.id === book.id ? { ...item, mode: "spine", rotation: undefined } : item) };
-      const moved = moveLibraryItem(state.lib, state.preferences, book.id, Number(destination), null, MOBILE_SHELF_COUNT);
-      return { ...moved, lib: chooseShelfCover(moved.lib, Number(destination), book.id) };
-    });
-    announce(destination === "" ? "Cover removed from display." : `${book.t} is on display on the ${SHELF_LABELS[Number(destination)].toLowerCase()}.`);
+  function choosePlacement(book, destination) {
+    updateMobileLibrary(state => placeLibraryBook(state.lib, state.preferences, book.id, destination, MOBILE_SHELF_COUNT));
+    announce(destination === "" ? `${book.t} is off the shelves and still in your book list.` : `${book.t} is on the ${SHELF_LABELS[Number(destination)].toLowerCase()}.`);
   }
   function toggleDecoration(key) {
     if (key === "lights") { updateMobileLibrary(state => ({ lights: state.lights === "off" ? "warm" : "off" })); return; }
@@ -120,10 +117,10 @@ export default function MobileLibraryDialog(values) {
     announce(exists ? "Removed from your shelves." : `Added to the ${SHELF_LABELS[zoomShelf].toLowerCase()}.`);
   }
   function setMode(mode) {
-    updateMobileLibrary(state => ({ lib: mode === "cover" ? chooseShelfCover(state.lib, selected.shelf, selected.id) : state.lib.map(item => item.id === selection ? { ...item, mode, rotation: undefined } : item) }));
+    updateMobileLibrary(state => ({ lib: mode === "cover" && selected.onShelf !== false ? chooseShelfCover(state.lib, selected.shelf, selected.id) : state.lib.map(item => item.id === selection ? { ...item, mode, rotation: undefined } : item) }));
   }
   function nudge(direction) {
-    const row = items.filter(item => item.shelf === selected.shelf);
+    const row = items.filter(item => item.shelf === selected.shelf && item.onShelf !== false);
     const index = row.findIndex(item => item.id === selection);
     if (direction < 0 && index > 0) move(selection, selected.shelf, row[index - 1].id);
     if (direction > 0 && index < row.length - 1) move(selection, selected.shelf, row[index + 2]?.id || null);
@@ -164,7 +161,7 @@ export default function MobileLibraryDialog(values) {
           <fieldset className="ml-setting"><legend>Shelves</legend><div className="ml-option-row">{MOBILE_GROUPS.map(([key, label]) => <Marker key={key} selected={p.grouping === key} onClick={() => updateMobileLibrary(state => groupLibrary(state.lib, state.preferences, key, MOBILE_SHELF_COUNT))}>{label}</Marker>)}</div></fieldset>
           <fieldset className="ml-setting"><legend>Arrange books by</legend><div className="ml-option-row ml-order-row">{MOBILE_ORDERS.map(([key, label]) => <Marker key={key} selected={p.arrange === key} onClick={() => updateMobileLibrary(state => arrangeLibrary(state.lib, state.preferences, key, MOBILE_SHELF_COUNT))}>{label}</Marker>)}</div><p className="ml-handwritten">Hold and drag books to reorder them.</p></fieldset>
           <fieldset className="ml-setting"><legend>Cover facing out</legend><div className="ml-cover-options">{SHELF_LABELS.map((label, shelf) => {
-            const row = items.filter(item => !item.deco && item.shelf === shelf);
+            const row = items.filter(item => !item.deco && item.onShelf !== false && item.shelf === shelf);
             return <label key={shelf}><span>{label}</span><select aria-label={`${label} cover facing out`} value={row.find(item => item.mode === "cover")?.id || ""} disabled={!row.length} onChange={event => updateMobileLibrary(state => ({ lib: chooseShelfCover(state.lib, shelf, event.target.value) }))}><option value="">None</option>{row.map(book => <option value={book.id} key={book.id}>{book.t}</option>)}</select></label>;
           })}</div></fieldset>
           <fieldset className="ml-setting"><legend>On the shelves</legend><div className="ml-decoration-options">{MOBILE_DECORATIONS.map(d => {
@@ -182,13 +179,13 @@ export default function MobileLibraryDialog(values) {
             <Marker selected={filter === "all"} onClick={() => setFilter("all")}>All <small>{bookList.length}</small></Marker>
             {[2, 1, 0].map(status => <Marker key={status} data-status={status} selected={filter === status} onClick={() => setFilter(status)}>{STATUS_LABELS[status]} <small>{bookList.filter(book => bookStatus(book) === status).length}</small></Marker>)}
           </div>
-          <p className="ml-list-hint">Choose what goes on display.</p>
+          <p className="ml-list-hint">Choose which books go on your shelves.</p>
           <div className="ml-book-list">{visible.map(book => {
-            const info = libraryBookInfo(book), status = bookStatus(book), shown = book.mode === "cover";
-            return <div key={book.id} className="ml-list-book" data-on-display={shown}>
+            const info = libraryBookInfo(book), status = bookStatus(book), shown = book.onShelf !== false;
+            return <div key={book.id} className="ml-list-book">
               <button type="button" className="ml-list-cover" data-list-book={book.id} data-mobile-activate="true" aria-label={`Arrange ${book.t}`} onClick={event => activate(event, book.id)} onDoubleClick={event => doubleActivate(event, book.id)}><MobileBookArt book={book} thumbnail /></button>
               <div className="ml-list-book-copy"><h3>{book.t}</h3>{info.author && <p>{info.author}</p>}<span className="ml-reading-label" data-status={status}>{STATUS_LABELS[status]}</span></div>
-              <label className="ml-display-picker" data-selected={shown}><Icon name="shelf" /><select aria-label={`Display ${book.t}`} value={shown ? String(book.shelf) : ""} onChange={event => chooseDisplay(book, event.target.value)}><option value="">Not on display</option>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
+              <label className="ml-display-picker" data-selected={shown} title={shown ? `On the ${SHELF_LABELS[book.shelf].toLowerCase()}` : "Not on shelves"}><Icon name="shelf" /><select aria-label={`Shelf for ${book.t}`} value={shown ? String(book.shelf) : ""} onChange={event => choosePlacement(book, event.target.value)}><option value="">Not on shelves</option>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
             </div>;
           })}</div>
           {!visible.length && <p className="ml-empty-result">No books match this reading status.</p>}
@@ -217,8 +214,8 @@ export default function MobileLibraryDialog(values) {
       {selected && <div className="ml-selection" role="group" aria-label={`Arrange ${selected.t}`}>
         <div className="ml-selection-header"><h3>{selected.t}</h3><div className="ml-selection-actions"><button type="button" onClick={() => openZoom(selected.id)}>Zoom in</button><button ref={selectionDone} type="button" onClick={closeSelection}>Done</button></div></div>
         {!selected.deco ? <><div className="ml-selection-modes">{[["spine", "Spine"], ["cover", "Cover"], ["lying", "Flat"]].map(([mode, label]) => <Marker key={mode} selected={selected.mode === mode} onClick={() => setMode(mode)}>{label}</Marker>)}</div></> : <button className="ml-remove" type="button" onClick={() => { updateMobileLibrary(state => ({ lib: state.lib.filter(item => item.id !== selection) })); setSelection(null); }}>Remove from shelf</button>}
-        <label className="ml-selection-destination">Move to <select value={selected.shelf} onChange={event => move(selection, Number(event.target.value))}>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
-        <div className="ml-selection-position"><button type="button" disabled={items.filter(item => item.shelf === selected.shelf)[0]?.id === selected.id} onClick={() => nudge(-1)}><Icon name="left" />Left</button><button type="button" disabled={items.filter(item => item.shelf === selected.shelf).at(-1)?.id === selected.id} onClick={() => nudge(1)}>Right<Icon name="right" /></button></div>
+        <label className="ml-selection-destination">Move to <select value={selected.onShelf === false ? "" : selected.shelf} onChange={event => selected.deco ? move(selection, Number(event.target.value)) : choosePlacement(selected, event.target.value)}>{!selected.deco && <option value="">Not on shelves</option>}{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
+        <div className="ml-selection-position"><button type="button" disabled={selected.onShelf === false || items.filter(item => item.shelf === selected.shelf && item.onShelf !== false)[0]?.id === selected.id} onClick={() => nudge(-1)}><Icon name="left" />Left</button><button type="button" disabled={selected.onShelf === false || items.filter(item => item.shelf === selected.shelf && item.onShelf !== false).at(-1)?.id === selected.id} onClick={() => nudge(1)}>Right<Icon name="right" /></button></div>
       </div>}
     </div>
   </div>;

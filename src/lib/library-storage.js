@@ -12,6 +12,7 @@ export function isValidLibrarySnapshot(saved, { decorations, walls, cases, light
     if (!book || typeof book.id !== "string" || ids.has(book.id) ||
         typeof book.t !== "string" || book.t.length > 240 || ![0, 1, 2].includes(book.shelf)) return false;
     ids.add(book.id);
+    if (book.onShelf !== undefined && typeof book.onShelf !== "boolean") return false;
     if (book.status !== undefined && ![0, 1, 2].includes(book.status)) return false;
     if (book.deco) return isValidBookRotation(book.rotation) && Object.hasOwn(decorations, book.deco);
     return isValidBookRotation(book.rotation) && ["spine", "cover", "lying"].includes(book.mode) &&

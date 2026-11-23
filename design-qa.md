@@ -702,3 +702,12 @@ Updated only the phone flow: determine the mobile dialog before paint using the 
 Validation: pnpm check, all 37 tests, pnpm build and git diff --check pass. Ten source-executing UI/activation checks also passed using transformed production JSX and a controlled hook/DOM harness: two mobile rows/all IDs, correct individual cover, return path, explicit Zoom in, correct Arrange on shelf target, no data mutation, unchanged three-row desktop, native/emulated phone routing, zero-detail double pointer taps, native dblclick/keyboard and cleanup. These are programmatic checks, not browser or screenshot tests. Actual rendering and physical/emulated pointer behaviour still require browser review because browser control is unavailable.
 
 final result: blocked
+
+
+## Mobile book list: uniform rows and shelf presence — 23 November 2026
+
+Removed the tinted list-row background. The right-hand books glyph now represents physical shelf membership, including spine-out and flat books, instead of cover-facing orientation. A diagonal stroke appears when the book is off the shelves. The native picker selects Top shelf, Bottom shelf or Not on shelves. Removed books stay in the list, retain mode/rotation/reading status and can be restored without duplicates. Shelf scenes and cover-facing options exclude them; sorting/grouping do not restore them implicitly. Arrange on shelf restores an unshelved book explicitly. Shared browser snapshots serialize the optional boolean onShelf, validate its type and accept older snapshots without it. Desktop presentation remains intact and omits explicitly unshelved books from the shared data.
+
+Validation: pnpm check passed; all 43 tests passed, including six new regressions for removal, restoration, sorting/grouping, snapshot validation, shared desktop rendering and Save/Discard. pnpm build and git diff --check passed. Thirteen source-executing UI/hook checks passed, including actual list picker handlers, unbarred state for all orientations, list retention plus removal from the actual shelf scene, and restoration without duplicates. No browser/screenshot pass is claimed: browser control remains unavailable. Changes are local and the existing nested TheSalon directory is untouched.
+
+final result: blocked

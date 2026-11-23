@@ -94,6 +94,7 @@ export function moveLibraryItem(lib, preferences, id, shelf, beforeId = null, sh
   if (index < 0) return { lib, preferences };
   const [item] = next.splice(index, 1);
   item.shelf = shelf;
+  if (item.onShelf === false) item.onShelf = true;
   let at = beforeId ? next.findIndex(book => book.id === beforeId && book.shelf === shelf) : -1;
   if (at < 0) {
     at = next.reduce((last, book, i) => book.shelf === shelf ? i + 1 : last, next.length);
@@ -101,8 +102,19 @@ export function moveLibraryItem(lib, preferences, id, shelf, beforeId = null, sh
   next.splice(at, 0, item);
   return { lib: next, preferences: { ...libraryPreferences(preferences), arrange: "manual", grouping: "all", manualOrder: rememberLayout(next) } };
 }
+// Shelf presence is independent of reading status and cover/spine orientation.
+export function placeLibraryBook(lib, preferences, id, destination, shelfCount = 2) {
+  const book = lib.find(item => item.id === id && !item.deco);
+  if (!book) return { lib, preferences };
+  if (destination === "") return {
+    lib: lib.map(item => item.id === id ? { ...item, onShelf: false } : item), preferences,
+  };
+  const shelf = Number(destination);
+  if (!Number.isInteger(shelf) || shelf < 0 || shelf >= shelfCount) return { lib, preferences };
+  return moveLibraryItem(lib, preferences, id, shelf, null, shelfCount);
+}
 export function chooseShelfCover(lib, shelf, id) {
-  return lib.map(item => !item.deco && item.shelf === shelf ? {
+  return lib.map(item => !item.deco && item.onShelf !== false && item.shelf === shelf ? {
     ...item, mode: item.id === id ? "cover" : item.mode === "cover" ? "spine" : item.mode,
     rotation: undefined,
   } : item);
