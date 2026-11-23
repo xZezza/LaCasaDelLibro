@@ -102,7 +102,7 @@
     to { transform: scaleX(1); }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @media (max-width: 650px), (prefers-reduced-motion: reduce) {
     .salon-opening-quote[data-reveal="true"] :is(.quote-word, .salon-s24, .salon-s25, figcaption) {
       animation: none;
       opacity: 1;
@@ -119,6 +119,18 @@
 
     .quote-reveal .salon-s24, .quote-reveal .salon-s25 {
       transform: none;
+    }
+  }
+
+  @media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+    .salon-opening-quote[data-reveal="true"] > :is(.salon-quote-text, figcaption),
+    .quote-guest-throne[data-visible="true"] > :is(.salon-quote-text, figcaption) {
+      animation: mobile-quote-rise 300ms ease-out;
+    }
+
+    @keyframes mobile-quote-rise {
+      from { transform: translateY(4px); }
+      to { transform: translateY(0); }
     }
   }
 }

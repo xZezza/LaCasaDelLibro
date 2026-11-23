@@ -272,3 +272,5 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 23 novembre — Gaia sposta la finestra stellata su telefono prima del Reading Journal. Ordine mobile: Library → finestra stellata → Journal → Community → Follow. Dimensioni maggiorate dei personaggi e spaziatura della finestra conservate. Su tablet/desktop resta Library → Journal → citazione stellata → Community → Follow. Le sezioni condividono lo stesso contenitore con chiavi stabili per conservare lo stato durante il cambio di larghezza. Modifica locale.
 
 23 novembre — Su telefono il segnalibro della citazione finale è più corto e sta nel margine sinistro. La comparsa di Throne of Glass è centrata subito sotto l’attribuzione, con spazio per il nome e l’ingrandimento al puntatore.
+
+23 novembre — Su telefono il carosello passa direttamente alla libreria. Le tre citazioni rimaste e le attribuzioni sono leggibili da subito e senza sfocatura. All’ingresso, testo e attribuzione delle citazioni di apertura e chiusura salgono di 4 px in 300 ms. Il movimento si disattiva con la relativa preferenza di sistema. La comparsa di Throne of Glass nel finale passa da 116 a 100 px.
