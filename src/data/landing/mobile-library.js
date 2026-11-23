@@ -15,7 +15,8 @@ export const MOBILE_WALLS = [
 export const MOBILE_GROUPS = [["all", "All together"], ["status", "By reading status"], ["saga", "By saga"]];
 export const MOBILE_ORDERS = [["saga", "Saga"], ["colour", "Colour"], ["height", "Height"], ["author", "Author"], ["manual", "My order"]];
 export const STATUS_LABELS = ["Read", "Reading", "To read"];
-export const SHELF_LABELS = ["Top shelf", "Middle shelf", "Bottom shelf"];
+export const SHELF_LABELS = ["Top shelf", "Bottom shelf"];
+export const MOBILE_SHELF_COUNT = SHELF_LABELS.length;
 export const MOBILE_DECORATIONS = [
   { key: "candle", label: "Candle", icon: "candle" },
   { key: "lights", label: "Fairy lights", icon: "lights" },

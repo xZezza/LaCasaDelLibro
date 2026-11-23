@@ -1,5 +1,5 @@
 import "../shared/typography.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import "./styles.css";
 
@@ -30,7 +30,10 @@ function CommunityForums() {
   const [roomOpen, setRoomOpen] = useState(false);
   const hand = useRef(null);
   const interacted = useRef(false);
+  const fanScroll = useRef(null);
+  const pendingReturn = useRef(null);
   const chooseForum = id => {
+    if (!expanded) fanScroll.current = window.scrollY;
     interacted.current = true;
     setSelected(id);
     setExpanded(true);
@@ -39,20 +42,27 @@ function CommunityForums() {
     interacted.current = true;
     setSelected(id);
   };
-  const closeDiscussion = (id, event) => {
-    event.stopPropagation();
-    interacted.current = true;
-    const next = id === "book" ? "rooms" : "book";
+  const returnToFan = id => {
+    pendingReturn.current = id;
     setBookOpen(false);
     setRoomOpen(false);
     setExpanded(false);
-    setSelected(next);
-    window.requestAnimationFrame(() => hand.current?.querySelector(`.community-forum-sheet-${next} .community-forum-select`)?.focus());
+    setSelected(id);
   };
-  const backToCards = () => {
-    setExpanded(false);
-    window.requestAnimationFrame(() => hand.current?.querySelector(".community-forum-sheet[data-active='true'] .community-forum-select")?.focus({ preventScroll: true }));
+  const closeDiscussion = (id, event) => {
+    event.stopPropagation();
+    interacted.current = true;
+    returnToFan(id === "book" ? "rooms" : "book");
   };
+  const backToCards = () => returnToFan(selected);
+  useLayoutEffect(() => {
+    if (expanded || !pendingReturn.current) return;
+    const id = pendingReturn.current;
+    pendingReturn.current = null;
+    window.scrollTo({ top: fanScroll.current ?? window.scrollY, behavior: "instant" });
+    hand.current?.querySelector(`.community-forum-sheet-${id} .community-forum-select`)?.focus({ preventScroll: true });
+    fanScroll.current = null;
+  }, [expanded, selected]);
   useEffect(() => {
     const open = selected === "book" ? bookOpen : roomOpen;
     if (expanded && open) hand.current?.querySelector(".community-forum-sheet[data-active='true'] .community-forum-question")?.focus({ preventScroll: true });
@@ -86,8 +96,8 @@ function CommunityForums() {
     };
   }, []);
   return <div className="community-forum-phone" data-expanded={expanded}>
-    {expanded && <button type="button" className="community-forum-back" onClick={backToCards}><span className="community-forum-chevron" aria-hidden="true" />Back to cards</button>}
     <div ref={hand} className="community-forum-hand" role="group" aria-label="Explore the conversations" onPointerDownCapture={() => { interacted.current = true; }}>
+      {expanded && <button type="button" className="community-forum-back" onClick={backToCards}><span className="community-forum-chevron" aria-hidden="true" />Back to cards</button>}
       <article className="community-forum-card community-forum-sheet community-forum-sheet-book" data-active={selected === "book"} hidden={expanded && selected !== "book"} onClick={() => chooseForum("book")} onFocusCapture={() => focusForum("book")} aria-labelledby="hogwarts-forum-title">
         <span className="community-forum-edge" aria-hidden="true">Book Forum</span>
         <header className="community-forum-header">
@@ -186,7 +196,7 @@ export default function Community() {
       <div>
         <div className="salon-s57">III · The Salon</div>
         <h2 className="salon-s58">Find the people who felt it too.</h2>
-        <p className="salon-s59">A forum for every book, and open rooms for everything in between. Talk about the stories that stay with you, or find your next read together.</p>
+        <p className="salon-s59"><span className="community-copy-wide">A forum for every book, and open rooms for everything in between. Talk about the stories that stay with you, or find your next read together.</span><span className="community-copy-phone">Talk about a book you love, or find your next read together.</span></p>
         <div className="community-postcard-stage">
           <div ref={postcard} className="salon-s171" onMouseEnter={() => {
             if (!window.matchMedia(MEDIA_QUERIES.phone).matches) replayPostcard();

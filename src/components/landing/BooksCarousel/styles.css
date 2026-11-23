@@ -1,4 +1,5 @@
 @layer components {
+  .books-copy-phone { display: none; }
   .salon-s27 {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
@@ -258,7 +259,10 @@
 
 @layer responsive {
   @media (max-width: 650px) {
-    .salon-carousel-wrap { display: none; }
+    .salon-carousel-wrap, .books-copy-wide { display: none; }
+    .books-copy-phone { display: inline; }
+    .salon-s52 { padding-top: var(--mobile-section-gap); padding-bottom: var(--mobile-content-gap); }
+    .salon-s30 { margin-top: -28px; margin-bottom: var(--mobile-section-gap); padding-block: var(--mobile-copy-gap); }
     .salon-s31 { font-size: clamp(30px, 8.2vw, 38px); scroll-margin-top: 28px; }
     .salon-s32 { font-size: 15px; line-height: 1.6; max-width: 36ch; margin-top: 14px; }
   }

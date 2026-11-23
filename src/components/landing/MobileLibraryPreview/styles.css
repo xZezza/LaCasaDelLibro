@@ -5,15 +5,15 @@
 @layer responsive {
   @media (max-width: 650px) {
     .salon-s79.salon-library {
-      padding: 54px 28px 48px;
-      gap: 30px;
+      padding: var(--mobile-section-gap) var(--mobile-page-gutter);
+      gap: var(--mobile-content-gap);
       scroll-margin-top: 20px;
     }
     .salon-library::before {
       content: "";
       position: absolute;
       top: 0;
-      inset-inline: 28px;
+      inset-inline: var(--mobile-page-gutter);
       border-top: 1px solid light-dark(#d8cbbb, #796776);
     }
     .salon-library .salon-s57 { font-size: 11px; font-weight: 400; letter-spacing: .18em; }

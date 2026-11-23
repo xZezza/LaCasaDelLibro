@@ -132,6 +132,7 @@
 
 @layer responsive {
   @media (max-width: 650px) {
+    .salon-follow { padding-bottom: var(--mobile-section-gap); }
     .salon-s189 {
       top: -4px;
       left: 8px;

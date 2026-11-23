@@ -19,9 +19,22 @@ export function validLibraryPreferences(value) {
       p.manualOrder.every(item => typeof item?.id === "string" && [0, 1, 2].includes(item.shelf)));
 }
 export function bookStatus(book) { return book.status ?? book.shelf; }
+// Project legacy three-row layouts without changing their saved data on open.
+export function twoShelfLibrary(lib, preferences) {
+  const p = libraryPreferences(preferences);
+  return {
+    lib: lib.map(item => ({
+      ...item,
+      ...(!item.deco ? { status: bookStatus(item) } : {}),
+      shelf: Math.min(item.shelf, 1),
+    })),
+    preferences: { ...p, manualOrder: p.manualOrder?.map(item => ({ ...item, shelf: Math.min(item.shelf, 1) })) ?? null },
+  };
+}
 export function rememberLayout(lib) { return lib.map(({ id, shelf }) => ({ id, shelf })); }
 function replaceBooks(lib, sorted) { let i = 0; return lib.map(item => item.deco ? item : sorted[i++]); }
-export function arrangeLibrary(lib, preferences, order) {
+export function arrangeLibrary(lib, preferences, order, shelfCount = 3) {
+  if (shelfCount === 2) ({ lib, preferences } = twoShelfLibrary(lib, preferences));
   const p = libraryPreferences(preferences);
   if (order === "manual") {
     const remembered = p.manualOrder || rememberLayout(lib);
@@ -40,16 +53,23 @@ export function arrangeLibrary(lib, preferences, order) {
     }
     return first.saga.localeCompare(second.saga) || first.order - second.order || a.t.localeCompare(b.t);
   };
-  const next = [0, 1, 2].flatMap(shelf => {
+  const next = Array.from({ length: shelfCount }, (_, shelf) => shelf).flatMap(shelf => {
     const items = lib.filter(item => item.shelf === shelf);
     return replaceBooks(items, items.filter(item => !item.deco).sort(compare));
   });
   return { lib: next, preferences: { ...p, arrange: order, manualOrder: p.manualOrder || rememberLayout(lib) } };
 }
-export function groupLibrary(lib, preferences, grouping) {
+export function groupLibrary(lib, preferences, grouping, shelfCount = 3) {
+  if (shelfCount === 2) ({ lib, preferences } = twoShelfLibrary(lib, preferences));
   const p = libraryPreferences(preferences);
   let next = lib.map(item => ({ ...item, ...(!item.deco ? { status: bookStatus(item) } : {}) }));
-  if (grouping === "status") next = next.map(item => item.deco ? item : { ...item, shelf: item.status });
+  if (grouping === "status") {
+    next = next.map(item => item.deco ? item : { ...item, shelf: Math.min(item.status, shelfCount - 1) });
+    next = Array.from({ length: shelfCount }, (_, shelf) => {
+      const row = next.filter(item => item.shelf === shelf);
+      return replaceBooks(row, row.filter(item => !item.deco).sort((a, b) => a.status - b.status));
+    }).flat();
+  }
   if (grouping === "saga") {
     const families = new Map();
     for (const item of next.filter(item => !item.deco)) {
@@ -57,7 +77,7 @@ export function groupLibrary(lib, preferences, grouping) {
       if (!families.has(saga)) families.set(saga, []);
       families.get(saga).push(item);
     }
-    const rows = [[], [], []];
+    const rows = Array.from({ length: shelfCount }, () => []);
     for (const family of families.values()) {
       const shelf = rows.reduce((best, row, i) => row.length < rows[best].length ? i : best, 0);
       rows[shelf].push(...family.sort((a, b) => libraryBookInfo(a).order - libraryBookInfo(b).order));
@@ -66,8 +86,9 @@ export function groupLibrary(lib, preferences, grouping) {
   }
   return { lib: next, preferences: { ...p, grouping, arrange: grouping === "saga" ? "saga" : p.arrange, manualOrder: p.manualOrder || rememberLayout(lib) } };
 }
-export function moveLibraryItem(lib, preferences, id, shelf, beforeId = null) {
-  if (id === beforeId || ![0, 1, 2].includes(shelf)) return { lib, preferences };
+export function moveLibraryItem(lib, preferences, id, shelf, beforeId = null, shelfCount = 3) {
+  if (id === beforeId || !Number.isInteger(shelf) || shelf < 0 || shelf >= shelfCount) return { lib, preferences };
+  if (shelfCount === 2) ({ lib, preferences } = twoShelfLibrary(lib, preferences));
   const next = lib.map(item => ({ ...item, ...(!item.deco ? { status: bookStatus(item) } : {}) }));
   const index = next.findIndex(item => item.id === id);
   if (index < 0) return { lib, preferences };

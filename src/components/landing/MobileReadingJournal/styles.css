@@ -11,12 +11,12 @@
       --mj-muted: light-dark(#6d6274, #c7b8ca);
       --mj-line: light-dark(#ded3c3, #65526a);
       --mj-purple: light-dark(#8562a3, #d4b5ed);
-      display: block; max-width: 438px; margin: 0 auto; padding: 22px 20px 22px;
+      display: block; max-width: 438px; margin: 0 auto; padding: 20px var(--mobile-page-gutter);
       color: var(--mj-ink); font: 400 14px/1.45 "Jost", sans-serif;
     }
     .mobile-reading-journal button { font: inherit; color: inherit; cursor: pointer; }
     .mobile-reading-journal [hidden] { display: none; }
-    .mj-intro { border-top: 1px solid var(--mj-line); padding: 30px 4px 0; margin-bottom: 29px; }
+    .mj-intro { border-top: 1px solid var(--mj-line); padding: var(--mobile-content-gap) 4px 0; margin-bottom: var(--mobile-content-gap); }
     .mj-eyebrow { color: var(--mj-muted); font-size: 10px; line-height: 1.5; letter-spacing: .16em; text-transform: uppercase; }
     .mj-intro h2 { margin: 16px 0 16px; font: 400 36px/1.06 "Cormorant Garamond", serif; }
     .mj-intro p { margin: 0; color: var(--mj-muted); font-size: 15px; }

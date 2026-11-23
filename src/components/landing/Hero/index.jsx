@@ -35,9 +35,8 @@ export default function Hero() {
                 </em>
               </h1>
               <p className={"salon-s16"}>
-                {
-                  "The Salon is a home for your books and the feelings they leave behind. Arrange your shelves, keep a private journal for every story, and find people who want to talk about it as much as you do."
-                }
+                <span className="hero-copy-wide">The Salon is a home for your books and the feelings they leave behind. Arrange your shelves, keep a private journal for every story, and find people who want to talk about it as much as you do.</span>
+                <span className="hero-copy-phone">Your books. Your memories. Your people. Arrange your shelves and keep a journal for every story.</span>
               </p>
 
               <p className={"salon-s20"}>

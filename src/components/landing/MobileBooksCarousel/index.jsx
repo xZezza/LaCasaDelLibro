@@ -5,7 +5,7 @@ import { ILLUSTRATED_COVERS } from "../../../data/landing/illustrated-covers.js"
 import useMobileBooksAutoplay from "../../../hooks/useMobileBooksAutoplay.js";
 import "./styles.css";
 
-export default function MobileBooksCarousel({ books, onOpen }) {
+export default function MobileBooksCarousel({ books, onOpen, dialogOpen }) {
   const viewportRef = useRef(null);
   const currentRef = useRef(0);
   const targetRef = useRef(null);
@@ -15,7 +15,7 @@ export default function MobileBooksCarousel({ books, onOpen }) {
   const blockClickRef = useRef(0);
   const [current, setCurrent] = useState(0);
   const count = books.length;
-  const autoplay = useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent: setCurrent });
+  const autoplay = useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent: setCurrent, dialogOpen });
   const slides = [books.at(-1), ...books, books[0]];
   const step = () => {
     const track = viewportRef.current;

@@ -15,6 +15,7 @@ export default function BooksCarousel(values) {
     prevCovers,
     nextCovers,
     openMobileCover,
+    sheetOpen,
     openingQuoteRevealed,
     quoteRef,
     resumeCovers,
@@ -39,12 +40,11 @@ export default function BooksCarousel(values) {
           </figure>
           <h2 id="stories-title" className={"salon-s31"}>{"The stories you carry with you."}</h2>
           <p className={"salon-s32"}>
-            {
-              "The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them."
-            }
+            <span className="books-copy-wide">The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them.</span>
+            <span className="books-copy-phone">The books you love, with your memories beside them.</span>
           </p>
         </div>
-        <MobileBooksCarousel books={covers.filter(book => !book.duplicate)} onOpen={openMobileCover} />
+        <MobileBooksCarousel books={covers.filter(book => !book.duplicate)} onOpen={openMobileCover} dialogOpen={sheetOpen} />
         <div className="salon-s51 salon-carousel-wrap">
           <button
             type="button"

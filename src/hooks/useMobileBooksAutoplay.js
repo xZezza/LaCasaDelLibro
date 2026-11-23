@@ -1,13 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MEDIA_QUERIES } from "../config/breakpoints.js";
 
-export default function useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent }) {
+export default function useMobileBooksAutoplay({ viewportRef, currentRef, targetRef, pointerRef, settleRef, count, onCurrent, dialogOpen = false }) {
   const frameRef = useRef(0);
   const untilRef = useRef(0);
   const hoverRef = useRef(false);
+  const wasDialogOpen = useRef(Boolean(dialogOpen));
+  const restoredFocusRef = useRef(null);
+  const resumeTimerRef = useRef(0);
+  const resumeFrameRef = useRef(0);
+  const advanceRef = useRef(null);
   const [moving, setMoving] = useState(false);
   const pause = useCallback(() => {
     untilRef.current = performance.now() + 6000;
+    restoredFocusRef.current = null;
+    clearTimeout(resumeTimerRef.current);
     const track = viewportRef.current;
     setMoving(false);
     if (!frameRef.current || !track) return;
@@ -29,7 +36,7 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
     const phone = matchMedia(MEDIA_QUERIES.phone);
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
-    const blocked = () => !visible || !phone.matches || reduced.matches || document.hidden || pointerRef.current || hoverRef.current || root.contains(document.activeElement) || document.querySelector('[role="dialog"][aria-modal="true"], dialog[open]') || performance.now() < untilRef.current;
+    const blocked = () => !visible || !phone.matches || reduced.matches || document.hidden || pointerRef.current || hoverRef.current || (root.contains(document.activeElement) && document.activeElement !== restoredFocusRef.current) || wasDialogOpen.current || document.querySelector('[role="dialog"][aria-modal="true"], dialog[open]') || performance.now() < untilRef.current;
     const advance = () => {
       if (blocked() || frameRef.current || targetRef.current !== null) return;
       const distance = track.children[1].offsetLeft - track.children[0].offsetLeft;
@@ -59,6 +66,7 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
       };
       frameRef.current = requestAnimationFrame(glide);
     };
+    advanceRef.current = advance;
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
       if (!visible) pause();
@@ -70,6 +78,7 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
     document.addEventListener("visibilitychange", pause);
     return () => {
       clearInterval(interval);
+      advanceRef.current = null;
       pause();
       observer.disconnect();
       phone.removeEventListener("change", pause);
@@ -77,5 +86,25 @@ export default function useMobileBooksAutoplay({ viewportRef, currentRef, target
       document.removeEventListener("visibilitychange", pause);
     };
   }, [count, pause]);
+  useEffect(() => {
+    const previous = wasDialogOpen.current;
+    wasDialogOpen.current = Boolean(dialogOpen);
+    if (dialogOpen) pause();
+    else if (previous) {
+      // The dialog restores focus to its cover. That restoration should not
+      // count as a fresh interaction that pauses the carousel indefinitely.
+      resumeFrameRef.current = requestAnimationFrame(() => {
+        const root = viewportRef.current?.closest(".mobile-books");
+        const focused = document.activeElement;
+        restoredFocusRef.current = root?.contains(focused) && focused?.matches?.(".mobile-books-book") ? focused : null;
+        untilRef.current = performance.now() + 3200;
+        resumeTimerRef.current = setTimeout(() => advanceRef.current?.(), 3200);
+      });
+    }
+    return () => {
+      cancelAnimationFrame(resumeFrameRef.current);
+      clearTimeout(resumeTimerRef.current);
+    };
+  }, [dialogOpen, pause]);
   return { pause, moving, hoverRef };
 }

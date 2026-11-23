@@ -640,3 +640,54 @@ final result: blocked
 
 
 23 November 2026 — pre-commit validation: corrected the alpha stops to valid eight-digit CSS hex colors (black plus b3/f2/c2/a6/40 alpha), preserving the intended fade strengths. Checked every mask color format, project structure, all 24 tests, build and whitespace. User approved the local trial and requested commit/push. Browser verification remains unavailable.
+
+
+---
+
+## Mobile refinements — 23 November 2026: all four approved changes
+
+Implemented the user's four approved follow-ups within the existing mobile design:
+
+1. Shared phone spacing tokens: 20 px gutter, 32 px section rhythm and 24/16 px content/copy gaps. Library top/bottom changed 54/48 → 32/32 px, journal intro 30/29 → 24/24 px, hero illustration bottom 28 → 16 px, Follow bottom 70 → 32 px; other section boundaries aligned to those tokens. Phone breakpoint remains 650 px.
+2. Cards animate width, horizontal position, top margin and rotation over 360 ms; hand padding/margin transition with them. Absolute Back toolbar avoids adding a new flow row. Before expansion, save window scroll position; returning via Hide/Back restores it before paint with preventScroll focus. Hide still selects the opposite card. Back and Hide both restore closed fan previews. Reduced motion disables these transitions.
+3. Pass book-sheet open state from BooksCarousel through MobileBooksCarousel to autoplay hook. Closing waits 3.2 seconds, then can resume despite focus restored to that cover. Fresh interaction cancels pending resume; ordinary focus remains a pause. Dialog, offscreen, visibility, pointer/hover and reduced-motion guards remain. Cleanup cancels delayed work. Slow 1.8-second glide and seamless clones preserved.
+4. Shorter phone-only hero, featured-books and Community introductions. Wide copy remains unchanged, with only the appropriate span displayed. Play/Pause remains removed. No new graphics or modifications to protected artwork.
+
+Verification: project check passed (84 reachable sources, assets, 22 visitors and responsive boundaries), 24 existing tests passed, production build passed, whitespace check passed. Built HTML contains all three short mobile introductions and no removed autoplay control. Nine source-executing behavioral checks passed, including hook re-renders/open-close lifecycle, a 3.2-second delayed resume with restored cover focus, cancellation on fresh interaction, ordinary focus pause, reduced-motion and wide guards, cleanup, and return to the original scroll position from each forum. Report: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/mobile-polish-2026-11-23/behavior-checks.json`.
+
+Browser-control tools remain unavailable in this session. No current rendered capture or visual comparison is claimed. Physical/native transition smoothness, scroll anchoring, text wrapping at each viewport, and keyboard restoration need a browser pass. Prior screenshots are context only and do not verify this implementation. All changes local; no commit/push/deploy.
+
+final result: blocked
+
+
+---
+
+## Mobile library — 23 November 2026: two shelves, natural proportions and coherent dark surface
+
+User source screenshots: `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_AGb3Kp/Screenshot 2026-11-23 alle 22.57.39.png`, `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_Lv9tgB/Screenshot 2026-11-23 alle 22.58.31.png`, `/var/folders/m4/5ngjhm853w5b1g3jpg0qcl280000gn/T/TemporaryItems/NSIRD_screencaptureui_SfeiUx/Screenshot 2026-11-23 alle 23.00.11.png`.
+
+Implemented the requested limited visual simplification while retaining controls:
+- Two mobile shelves instead of three, with non-mutating projection of legacy data on initial open. All 24 initial items remain (16 books, eight decorations). Explicit reading statuses are preserved before shelf 2 is mapped to shelf 1; manual-order references also map. Two-row sorting, grouping, cover choice and move controls work across both rows; legacy three-row helper/storage behavior remains supported. By status uses Read above and Reading/To read below.
+- Cover ratio fixed at 5:7 with background-size contain; lower book height and balanced spine width; uniform zoom/scaling, removing independent 24px clamps that distorted item proportions. Original art, modes and decorations retained.
+- Grid/list Feather SVG assets replace visible Shelves/List labels, preserving 44px controls and accessible names/pressed state. Intro explains this is a preview and how to hold/drag.
+- Scene background is transparent. Selected wall subtly tints the entire dialog; Daylight/Evening adapt in both color schemes, avoiding the isolated light rectangle. Calculated secondary-copy contrast across all wall/theme/light combinations has a 4.57:1 minimum; this is a color check, not full accessibility certification.
+- Touch hold of 200ms activates drag; quick movements scroll vertically or horizontally without accidentally selecting. Mouse drag starts after movement threshold. Frame-coalesced lifted ghost, source placeholder, target indication, horizontal/vertical edge scroll, 170ms landing, and cleanup prevent duplicate/stranded book visuals. Reduced motion skips cosmetic lift/landing while retaining movement. Existing keyboard Move to and Left/Right controls retained.
+
+Verification: six new model/geometry tests plus 24 existing tests passed (30 total). Tests cover legacy snapshot immutability/idempotence, independent statuses, item preservation, saga/status grouping, manual-order restoration, invalid third-row moves, storage validity and uniform aspect ratios/zoom. Eight source-executing gesture checks passed: tap, quick vertical/horizontal pan, touch hold/drop/landing, reduced motion, mouse cancel, Escape, unmount. Evidence: `/Users/gaiaghezzi/Documents/ChatGPT/LaCasaDelLibro/output/mobile-library-two-shelves-2026-11-23/drag-checks.json`. Project check passed (85 reachable sources), 46 unchanged lossless image variants verified, production build and whitespace check passed.
+
+Browser-control tools remain unavailable after the desktop update; no current rendering, native touch test, or normalized screenshot comparison is claimed. Final portrait proportions, full dark surfaces, scroll inertia, overlay hit targets and gesture feel still require a browser/phone pass. Changes remain local; nested TheSalon directory and earlier approved artwork untouched.
+
+final result: blocked
+
+
+## Mobile library close-up — 23 November 2026
+
+Request: bring the Shelves/List icons closer together and add a double-tap/click close-up of a library book or shelf.
+
+Implemented: zero additional gap between the two 44 px view controls. A double pointer tap opens the selected shelf at 2× uniform scale, horizontally centred on the chosen book or ornament and with a lilac outline. Existing edit settings remain available below; shelf arrows, Save/Discard and return to the prior shelves/list view are preserved. Zoom is transient UI state and does not mutate library data. A single pointer tap waits 350 ms before opening the arrangement controls; keyboard activation remains immediate, with an explicit Zoom in button. Gesture pickup, quick panning, cancellation, scroll, Escape, blur and unmount clear pending selection. Focus moves to the close-up heading and returns to the book or Edit control on exit.
+
+Validation: pnpm check passed (87 reachable source files, all 22 visitors retained), pnpm test passed (37 tests, including seven new activation/zoom regressions), pnpm build passed and git diff --check passed. Executed the current drag hook in a controlled DOM harness: 10 gesture checks passed, including cancellation of pending activation during quick panning and hold-to-drag. Preview HTTP response at localhost:4175 is 200. No artwork changed.
+
+Browser control remains unavailable in this session. No rendered visual comparison, real touch/double-tap check, focus-trap browser check or small-screen layout pass is claimed; these still need a browser/phone check. Changes remain local.
+
+final result: blocked

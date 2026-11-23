@@ -2,8 +2,9 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { DECOS } from "../../../data/landing/library.js";
 import { illustratedBinding } from "../../../data/landing/library-art.js";
 import { ILLUSTRATED_COVERS } from "../../../data/landing/illustrated-covers.js";
-import { MOBILE_ORNAMENT_ART, MOBILE_WALLS, MOBILE_WOODS, SHELF_LABELS, STATUS_LABELS, libraryBookInfo } from "../../../data/landing/mobile-library.js";
+import { MOBILE_ORNAMENT_ART, MOBILE_WOODS, SHELF_LABELS, STATUS_LABELS, libraryBookInfo } from "../../../data/landing/mobile-library.js";
 import { imageAsset } from "../../../lib/image-assets.js";
+import { mobileItemDimensions } from "../../../lib/mobile-library-layout.js";
 import FairyLights from "../FairyLights";
 
 const atlas = imageAsset("/images/decorations/library-editorial/binding-atlas.png");
@@ -30,16 +31,7 @@ export function MobileDecorationArt({ item }) {
   if (art?.size) return <span className="ml-ornament-image" aria-hidden="true" style={{ backgroundImage: `url("${art.src || botanical}")`, backgroundSize: art.size, backgroundPosition: art.position, clipPath: art.clip, bottom: art.drop ? `${-art.drop * 100}%` : 0 }} />;
   return <span className="ml-ornament-image" aria-hidden="true" style={{ backgroundImage: `url("${d.src}")`, backgroundSize: d.pet ? "200% 100%" : "contain", backgroundPosition: d.pet ? "left center" : "center" }} />;
 }
-function dimensions(item, zoom) {
-  const factor = zoom ? 1.3 : 1;
-  if (item.deco) {
-    const size = MOBILE_ORNAMENT_ART[item.deco] || { w: 39, h: 39 };
-    return { w: size.w * factor, h: size.h * factor };
-  }
-  const h = Math.max(86, item.H * .94) * factor;
-  return { w: (item.mode === "cover" ? h * .65 : item.mode === "lying" ? h * .87 : Math.max(22, item.T * .95) * factor), h: item.mode === "lying" ? Math.max(19, item.T * .85) * factor : h };
-}
-export default function MobileLibraryScene({ items, preferences, lights, shelf, onSelect, filter = "" }) {
+export default function MobileLibraryScene({ items, preferences, lights, shelf, onSelect, focusItemId, closeUp = false, filter = "" }) {
   const ref = useRef(null);
   const [width, setWidth] = useState(342);
   const zoom = shelf !== undefined;
@@ -49,26 +41,33 @@ export default function MobileLibraryScene({ items, preferences, lights, shelf, 
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-  const wall = MOBILE_WALLS.find(w => w.name === preferences.wall) || MOBILE_WALLS[0];
+  useLayoutEffect(() => {
+    if (!focusItemId) return;
+    const item = ref.current?.querySelector(`[data-mobile-item="${CSS.escape(focusItemId)}"]`);
+    const scroll = item?.closest(".ml-shelf-scroll");
+    if (!scroll) return;
+    const box = item.getBoundingClientRect(), viewport = scroll.getBoundingClientRect();
+    scroll.scrollLeft += box.left - viewport.left - (scroll.clientWidth - box.width) / 2;
+  }, [focusItemId, shelf, width, closeUp]);
   const wood = MOBILE_WOODS.find(w => w.name === preferences.bookcase) || MOBILE_WOODS[0];
-  const rows = zoom ? [shelf] : [0, 1, 2];
-  return <div ref={ref} className={`ml-room ${zoom ? "ml-room-zoom" : ""}`} data-light={preferences.light} style={{ "--room-wall": wall.colour, "--room-ink": wall.ink, "--shelf-filter": wood.filter }}>
+  const rows = zoom ? [shelf] : SHELF_LABELS.map((_, row) => row);
+  return <div ref={ref} className={`ml-room ${zoom ? "ml-room-zoom" : ""}`} data-light={preferences.light} style={{ "--shelf-filter": wood.filter }}>
     {rows.map(row => {
       const content = items.filter(item => item.shelf === row);
-      const sizes = content.map(item => dimensions(item, zoom));
+      const sizes = content.map(item => mobileItemDimensions(item, closeUp ? 2 : zoom));
       const total = sizes.reduce((sum, d) => sum + d.w, 0) + Math.max(0, content.length - 1) * 5;
-      const scale = zoom ? 1 : Math.max(.68, Math.min(1, (width - 28) / Math.max(1, total)));
-      const tallest = Math.max(zoom ? 142 : 105, ...sizes.map(d => d.h * scale));
+      const scale = zoom ? 1 : Math.max(.82, Math.min(1, (width - 28) / Math.max(1, total)));
+      const tallest = Math.max(zoom ? 126 : 96, ...sizes.map(d => d.h * scale));
       const sagaNames = [...new Set(content.filter(item => !item.deco).map(item => libraryBookInfo(item).saga))];
-      const label = preferences.grouping === "status" ? STATUS_LABELS[row] : SHELF_LABELS[row];
+      const label = preferences.grouping === "status" ? (row === SHELF_LABELS.length - 1 ? STATUS_LABELS.slice(row).join(" · ") : STATUS_LABELS[row]) : SHELF_LABELS[row];
       return <div className="ml-shelf" key={row}>
         {!zoom && <h3>{label}</h3>}
         <div className="ml-shelf-scroll">
           <div className="ml-shelf-items" data-mobile-shelf={row} aria-label={SHELF_LABELS[row]} style={{ minHeight: tallest + 14, minWidth: Math.max(width, total * scale + 28) }}>
             {lights !== "off" && <FairyLights mode={lights} />}
-            {content.map((item, i) => <button type="button" key={item.id} data-mobile-item={item.id} className={`ml-item ${item.deco ? "ml-item-deco" : "ml-item-book"}`} data-mode={item.mode} data-shade={filter && !item.t.toLowerCase().includes(filter) ? "dim" : undefined}
-              aria-label={`Arrange ${item.t}`} title={item.t} onClick={() => onSelect(item.id)}
-              style={{ width: Math.max(24, sizes[i].w * scale), height: Math.max(24, sizes[i].h * scale), "--spine-font": `${Math.max(8, Math.min(13, 10 * scale * (zoom ? 1.25 : 1)))}px` }}>
+            {content.map((item, i) => <button type="button" key={item.id} data-mobile-item={item.id} data-mobile-activate="true" data-zoom-target={focusItemId === item.id || undefined} className={`ml-item ${item.deco ? "ml-item-deco" : "ml-item-book"}`} data-mode={item.mode} data-shade={filter && !item.t.toLowerCase().includes(filter) ? "dim" : undefined}
+              aria-label={`Arrange ${item.t}`} title={item.t} onClick={event => onSelect(event, item.id)}
+              style={{ width: sizes[i].w * scale, height: sizes[i].h * scale, "--spine-font": `${Math.max(8, Math.min(13, 10 * scale * (closeUp ? 1.8 : zoom ? 1.25 : 1)))}px` }}>
               {item.deco ? <MobileDecorationArt item={item} /> : <MobileBookArt book={item} />}
             </button>)}
             {!content.length && <p className="ml-empty-shelf">Drop a book here.</p>}

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { mkDeco } from "../../../data/landing/library.js";
-import { MOBILE_WOODS, MOBILE_WALLS, MOBILE_GROUPS, MOBILE_ORDERS, MOBILE_DECORATIONS, STATUS_LABELS, SHELF_LABELS, libraryBookInfo } from "../../../data/landing/mobile-library.js";
-import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, moveLibraryItem } from "../../../lib/mobile-library.js";
+import { MOBILE_WOODS, MOBILE_WALLS, MOBILE_GROUPS, MOBILE_ORDERS, MOBILE_DECORATIONS, STATUS_LABELS, SHELF_LABELS, MOBILE_SHELF_COUNT, libraryBookInfo } from "../../../data/landing/mobile-library.js";
+import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, moveLibraryItem, twoShelfLibrary } from "../../../lib/mobile-library.js";
+import useMobileLibraryActivation from "../../../hooks/useMobileLibraryActivation.js";
 import useMobileLibraryDrag from "../../../hooks/useMobileLibraryDrag.js";
 import MobileLibraryScene, { MobileBookArt } from "./Scene.jsx";
 import "../shared/actions.css";
@@ -29,31 +30,56 @@ function Icon({ name }) { return <svg viewBox="0 0 24 24" width="20" height="20"
 function Marker({ children, selected, onClick, ...props }) { return <button type="button" className="salon-marker-control" aria-pressed={selected} onClick={onClick} {...props}><span className="salon-marker-text">{children}</span></button>; }
 
 export default function MobileLibraryDialog(values) {
-  const { mobileLibrary, updateMobileLibrary, closeLib, discardLibrary, saveLibrary, libraryDirty, saveMessage, saveError } = values;
-  const { lib: items, preferences: p, lights } = mobileLibrary;
+  const { mobileLibrary, updateMobileLibrary: commitMobileLibrary, closeLib, discardLibrary, saveLibrary, libraryDirty, saveMessage, saveError } = values;
+  const { lib: items, preferences: p } = useMemo(() => twoShelfLibrary(mobileLibrary.lib, mobileLibrary.preferences), [mobileLibrary.lib, mobileLibrary.preferences]);
+  const { lights } = mobileLibrary;
+  const updateMobileLibrary = update => commitMobileLibrary(state => {
+    const compact = twoShelfLibrary(state.lib, state.preferences);
+    return { ...compact, ...update({ ...compact, lights: state.lights }) };
+  });
+  const wall = MOBILE_WALLS.find(value => value.name === p.wall) || MOBILE_WALLS[0];
   const root = useRef(null), editButton = useRef(null), editTitle = useRef(null), selectionDone = useRef(null);
   const [view, setView] = useState("shelves"), [editing, setEditing] = useState(false), [zoomShelf, setZoomShelf] = useState(0);
   const [filter, setFilter] = useState("all"), [selection, setSelection] = useState(null), [announcement, announce] = useState("");
+  const [zoomTarget, setZoomTarget] = useState(null);
   const selected = items.find(item => item.id === selection);
   const bookList = items.filter(item => !item.deco);
   const visible = bookList.filter(item => filter === "all" || bookStatus(item) === filter);
   const patch = change => updateMobileLibrary(({ preferences }) => ({ preferences: { ...preferences, ...change } }));
-  const move = (id, shelf, beforeId) => updateMobileLibrary(state => moveLibraryItem(state.lib, state.preferences, id, shelf, beforeId));
-  useMobileLibraryDrag(root, move, announce);
+  const move = (id, shelf, beforeId) => updateMobileLibrary(state => moveLibraryItem(state.lib, state.preferences, id, shelf, beforeId, MOBILE_SHELF_COUNT));
+  const { activate, cancel: cancelActivation } = useMobileLibraryActivation(root, setSelection, openZoom);
+  useMobileLibraryDrag(root, move, announce, cancelActivation);
+  const focusedShelf = items.find(item => item.id === zoomTarget?.id)?.shelf;
+  useEffect(() => { if (editing && focusedShelf !== undefined) setZoomShelf(focusedShelf); }, [editing, focusedShelf, zoomTarget?.id]);
+  function openZoom(id) {
+    const item = items.find(value => value.id === id);
+    if (!item) return;
+    cancelActivation(); setSelection(null); setZoomShelf(item.shelf); setZoomTarget({ id }); setEditing(true);
+    requestAnimationFrame(() => editTitle.current?.focus({ preventScroll: true }));
+    announce(`Close-up of ${item.t}. Scroll along the shelf or choose an item to arrange it.`);
+  }
   useEffect(() => { root.current?.querySelector('[aria-label="Close library"]')?.focus({ preventScroll: true }); }, []);
   useEffect(() => { if (editing) editTitle.current?.focus({ preventScroll: true }); }, [editing]);
   useEffect(() => { if (selected) selectionDone.current?.focus({ preventScroll: true }); }, [selection]);
-  function leaveEdit() { setEditing(false); setSelection(null); requestAnimationFrame(() => editButton.current?.focus({ preventScroll: true })); }
+  function leaveEdit() {
+    const id = zoomTarget?.id;
+    cancelActivation(); setEditing(false); setSelection(null); setZoomTarget(null);
+    requestAnimationFrame(() => {
+      const book = id && root.current?.querySelector(`[data-mobile-item="${CSS.escape(id)}"], [data-list-book="${CSS.escape(id)}"]`);
+      (book || editButton.current)?.focus({ preventScroll: true });
+      book?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
+    });
+  }
   function save() { if (saveLibrary()) { setView("shelves"); if (editing) leaveEdit(); announce("Your library has been saved in this browser."); } }
   function discard() { discardLibrary(); setSelection(null); announce("Restored your last saved library."); }
   function closeSelection() {
     const id = selection; setSelection(null);
-    requestAnimationFrame(() => root.current?.querySelector(`[data-mobile-item="${CSS.escape(id)}"]`)?.focus({ preventScroll: true }));
+    requestAnimationFrame(() => root.current?.querySelector(`[data-mobile-item="${CSS.escape(id)}"], [data-list-book="${CSS.escape(id)}"]`)?.focus({ preventScroll: true }));
   }
   function chooseDisplay(book, destination) {
     updateMobileLibrary(state => {
       if (destination === "") return { lib: state.lib.map(item => item.id === book.id ? { ...item, mode: "spine", rotation: undefined } : item) };
-      const moved = moveLibraryItem(state.lib, state.preferences, book.id, Number(destination));
+      const moved = moveLibraryItem(state.lib, state.preferences, book.id, Number(destination), null, MOBILE_SHELF_COUNT);
       return { ...moved, lib: chooseShelfCover(moved.lib, Number(destination), book.id) };
     });
     announce(destination === "" ? "Cover removed from display." : `${book.t} is on display on the ${SHELF_LABELS[Number(destination)].toLowerCase()}.`);
@@ -79,18 +105,18 @@ export default function MobileLibraryDialog(values) {
     if (selected || editing) { event.preventDefault(); event.stopPropagation(); if (selected) closeSelection(); else leaveEdit(); }
   }
   return <div className="mobile-library-overlay">
-    <div role="dialog" aria-modal="true" aria-label="Your library" tabIndex={-1} ref={root} className="mobile-library-dialog salon-dialog" data-editing={editing} onKeyDownCapture={keydown}>
+    <div role="dialog" aria-modal="true" aria-label="Your library" tabIndex={-1} ref={root} className="mobile-library-dialog salon-dialog" data-editing={editing} data-close-up={!!zoomTarget} data-room-light={p.light} style={{ "--ml-wall-tint": wall.colour }} onKeyDownCapture={keydown}>
       <header className="ml-header">
         <span className="ml-eyebrow">{editing ? "Edit · Your library" : "The Library"}</span>
         <button type="button" className="ml-icon-button ml-close" aria-label={editing ? "Back to library" : "Close library"} onClick={editing ? leaveEdit : closeLib}><Icon name="close" /></button>
         {editing ? <>
-          <h2 ref={editTitle} tabIndex={-1}>Make it yours</h2>
-          <p className="ml-handwritten">Changes show on the shelves right away.</p>
+          <h2 ref={editTitle} tabIndex={-1}>{zoomTarget ? "A closer look" : "Make it yours"}</h2>
+          <p className="ml-handwritten">{zoomTarget ? "Scroll along the shelf. Make room for your favourites." : "Changes show on the shelves right away."}</p>
         </> : <>
-          <div className="ml-title-row"><h2>{p.name.trim() || "Your library"}</h2><button type="button" ref={editButton} className="ml-edit salon-marker-action" onClick={() => { setSelection(null); setEditing(true); }}><span className="salon-marker-text">Edit</span></button></div>
+          <div className="ml-title-row"><h2>{p.name.trim() || "Your library"}</h2><button type="button" ref={editButton} className="ml-edit salon-marker-action" onClick={() => { cancelActivation(); setSelection(null); setZoomTarget(null); setEditing(true); }}><span className="salon-marker-text">Edit</span></button></div>
           <div className="ml-view-tabs" role="group" aria-label="Library view">
-            <Marker selected={view === "shelves"} onClick={() => setView("shelves")}>Shelves</Marker>
-            <Marker selected={view === "list"} onClick={() => setView("list")}>List</Marker>
+            <Marker selected={view === "shelves"} onClick={() => setView("shelves")} aria-label="Show shelves" title="Shelves"><span className="ml-view-icon" aria-hidden="true" style={{ maskImage: "url(/images/icons/grid.svg)" }} /></Marker>
+            <Marker selected={view === "list"} onClick={() => setView("list")} aria-label="Show book list" title="Book list"><span className="ml-view-icon" aria-hidden="true" style={{ maskImage: "url(/images/icons/list.svg)" }} /></Marker>
           </div>
           <p id="ml-search-note" className="ml-search-note">Book search is coming in the app</p>
         </>}
@@ -98,16 +124,16 @@ export default function MobileLibraryDialog(values) {
 
       {editing ? <>
         <div className="ml-edit-preview">
-          <div className="ml-zoom-controls"><span>{SHELF_LABELS[zoomShelf]} · zoomed</span><div><button type="button" className="ml-icon-button" aria-label="Previous shelf" disabled={zoomShelf === 0} onClick={() => setZoomShelf(s => s - 1)}><Icon name="left" /></button><button type="button" className="ml-icon-button" aria-label="Next shelf" disabled={zoomShelf === 2} onClick={() => setZoomShelf(s => s + 1)}><Icon name="right" /></button></div></div>
-          <MobileLibraryScene items={items} preferences={p} lights={lights} shelf={zoomShelf} onSelect={setSelection} />
+          <div className="ml-zoom-controls"><span>{SHELF_LABELS[zoomShelf]} · zoomed</span><div><button type="button" className="ml-icon-button" aria-label="Previous shelf" disabled={zoomShelf === 0} onClick={() => { setZoomShelf(s => s - 1); if (zoomTarget) setZoomTarget({ id: null }); }}><Icon name="left" /></button><button type="button" className="ml-icon-button" aria-label="Next shelf" disabled={zoomShelf === MOBILE_SHELF_COUNT - 1} onClick={() => { setZoomShelf(s => s + 1); if (zoomTarget) setZoomTarget({ id: null }); }}><Icon name="right" /></button></div></div>
+          <MobileLibraryScene items={items} preferences={p} lights={lights} shelf={zoomShelf} onSelect={activate} closeUp={!!zoomTarget} focusItemId={zoomTarget?.id} />
         </div>
         <div className="ml-settings" aria-label="Library settings">
           <label className="ml-setting"><span>Bookcase name</span><input value={p.name} maxLength={80} placeholder="Your library" onChange={event => patch({ name: event.target.value })} /></label>
           <fieldset className="ml-setting"><legend>Bookcase</legend><div className="ml-swatches">{MOBILE_WOODS.map(w => <button type="button" key={w.name} aria-label={`${w.name} bookcase`} aria-pressed={p.bookcase === w.name} title={w.name} onClick={() => patch({ bookcase: w.name })}><span style={{ background: w.colour }} /></button>)}</div></fieldset>
           <fieldset className="ml-setting"><legend>Wall</legend><div className="ml-swatches">{MOBILE_WALLS.map(w => <button type="button" key={w.name} aria-label={`${w.name} wall`} aria-pressed={p.wall === w.name} title={w.name} onClick={() => patch({ wall: w.name })}><span style={{ background: w.colour }} /></button>)}</div></fieldset>
           <fieldset className="ml-setting"><legend>Light</legend><div className="ml-option-row">{["Daylight", "Evening"].map(light => <Marker key={light} selected={p.light === light} onClick={() => patch({ light })}><Icon name={light === "Daylight" ? "sun" : "moon"} />{light}</Marker>)}</div></fieldset>
-          <fieldset className="ml-setting"><legend>Shelves</legend><div className="ml-option-row">{MOBILE_GROUPS.map(([key, label]) => <Marker key={key} selected={p.grouping === key} onClick={() => updateMobileLibrary(state => groupLibrary(state.lib, state.preferences, key))}>{label}</Marker>)}</div></fieldset>
-          <fieldset className="ml-setting"><legend>Arrange books by</legend><div className="ml-option-row ml-order-row">{MOBILE_ORDERS.map(([key, label]) => <Marker key={key} selected={p.arrange === key} onClick={() => updateMobileLibrary(state => arrangeLibrary(state.lib, state.preferences, key))}>{label}</Marker>)}</div><p className="ml-handwritten">Drag the spines on the shelves to reorder them.</p></fieldset>
+          <fieldset className="ml-setting"><legend>Shelves</legend><div className="ml-option-row">{MOBILE_GROUPS.map(([key, label]) => <Marker key={key} selected={p.grouping === key} onClick={() => updateMobileLibrary(state => groupLibrary(state.lib, state.preferences, key, MOBILE_SHELF_COUNT))}>{label}</Marker>)}</div></fieldset>
+          <fieldset className="ml-setting"><legend>Arrange books by</legend><div className="ml-option-row ml-order-row">{MOBILE_ORDERS.map(([key, label]) => <Marker key={key} selected={p.arrange === key} onClick={() => updateMobileLibrary(state => arrangeLibrary(state.lib, state.preferences, key, MOBILE_SHELF_COUNT))}>{label}</Marker>)}</div><p className="ml-handwritten">Hold and drag books to reorder them.</p></fieldset>
           <fieldset className="ml-setting"><legend>Cover facing out</legend><div className="ml-cover-options">{SHELF_LABELS.map((label, shelf) => {
             const row = items.filter(item => !item.deco && item.shelf === shelf);
             return <label key={shelf}><span>{label}</span><select aria-label={`${label} cover facing out`} value={row.find(item => item.mode === "cover")?.id || ""} disabled={!row.length} onChange={event => updateMobileLibrary(state => ({ lib: chooseShelfCover(state.lib, shelf, event.target.value) }))}><option value="">None</option>{row.map(book => <option value={book.id} key={book.id}>{book.t}</option>)}</select></label>;
@@ -119,8 +145,8 @@ export default function MobileLibraryDialog(values) {
         </div>
       </> : <div className="ml-content" data-view={view}>
         {view === "shelves" ? <>
-          <p className="ml-handwritten ml-drag-hint">Drag the spines to make it yours.</p>
-          <MobileLibraryScene items={items} preferences={p} lights={lights} onSelect={setSelection} />
+          <p className="ml-drag-hint"><span>Try a preview of your future library.</span><span className="ml-handwritten">Double-tap to look closer. Hold and drag to arrange.</span></p>
+          <MobileLibraryScene items={items} preferences={p} lights={lights} onSelect={activate} />
           <p className="ml-room-note">A little room, entirely yours.</p>
         </> : <>
           <div className="ml-filters" role="group" aria-label="Reading status">
@@ -131,7 +157,7 @@ export default function MobileLibraryDialog(values) {
           <div className="ml-book-list">{visible.map(book => {
             const info = libraryBookInfo(book), status = bookStatus(book), shown = book.mode === "cover";
             return <div key={book.id} className="ml-list-book" data-on-display={shown}>
-              <button type="button" className="ml-list-cover" aria-label={`Arrange ${book.t}`} onClick={() => setSelection(book.id)}><MobileBookArt book={book} thumbnail /></button>
+              <button type="button" className="ml-list-cover" data-list-book={book.id} data-mobile-activate="true" aria-label={`Arrange ${book.t}`} onClick={event => activate(event, book.id)}><MobileBookArt book={book} thumbnail /></button>
               <div className="ml-list-book-copy"><h3>{book.t}</h3>{info.author && <p>{info.author}</p>}<span className="ml-reading-label" data-status={status}>{STATUS_LABELS[status]}</span></div>
               <label className="ml-display-picker" data-selected={shown}><Icon name="shelf" /><select aria-label={`Display ${book.t}`} value={shown ? String(book.shelf) : ""} onChange={event => chooseDisplay(book, event.target.value)}><option value="">Not on display</option>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
             </div>;
@@ -145,7 +171,7 @@ export default function MobileLibraryDialog(values) {
       {values.hasToast && <p className="ml-save-message" role="status">{values.toast.replace("✦", "").trim()}</p>}
       <span className="ml-announcement" role="status">{announcement}</span>
       {selected && <div className="ml-selection" role="group" aria-label={`Arrange ${selected.t}`}>
-        <div className="ml-selection-header"><h3>{selected.t}</h3><button ref={selectionDone} type="button" onClick={closeSelection}>Done</button></div>
+        <div className="ml-selection-header"><h3>{selected.t}</h3><div className="ml-selection-actions"><button type="button" onClick={() => openZoom(selected.id)}>Zoom in</button><button ref={selectionDone} type="button" onClick={closeSelection}>Done</button></div></div>
         {!selected.deco ? <><div className="ml-selection-modes">{[["spine", "Spine"], ["cover", "Cover"], ["lying", "Flat"]].map(([mode, label]) => <Marker key={mode} selected={selected.mode === mode} onClick={() => setMode(mode)}>{label}</Marker>)}</div></> : <button className="ml-remove" type="button" onClick={() => { updateMobileLibrary(state => ({ lib: state.lib.filter(item => item.id !== selection) })); setSelection(null); }}>Remove from shelf</button>}
         <label className="ml-selection-destination">Move to <select value={selected.shelf} onChange={event => move(selection, Number(event.target.value))}>{SHELF_LABELS.map((label, i) => <option key={i} value={i}>{label}</option>)}</select></label>
         <div className="ml-selection-position"><button type="button" disabled={items.filter(item => item.shelf === selected.shelf)[0]?.id === selected.id} onClick={() => nudge(-1)}><Icon name="left" />Left</button><button type="button" disabled={items.filter(item => item.shelf === selected.shelf).at(-1)?.id === selected.id} onClick={() => nudge(1)}>Right<Icon name="right" /></button></div>
