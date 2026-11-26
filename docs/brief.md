@@ -337,3 +337,7 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 26 novembre — Lo stesso separatore con le stelline viola apre le tre sezioni numerate della landing, The Library, The Journal e The Salon, anche su telefono.
 
 26 novembre — Gaia semplifica Ratings su telefono eliminando le palette dei voti. Le valutazioni restano modificabili, con gli inchiostri già assegnati, e il colore della copertina resta selezionabile in Memories e Characters. Nella vista telefono la sfogliata del quaderno funziona anche trascinando con il mouse.
+
+26 novembre — The Salon segue le tavole Figma con cartolina e due carte forum sfalsate su desktop, in sequenza e a ventaglio su telefono. Book Forum e General Rooms condividono una sola composizione React, con protezione spoiler, ritorno alle carte e ripristino di scroll e focus. Astro rende la sezione, l’introduzione, il separatore e le immagini della cartolina. Cartolina e forum hanno stili locali e isole distinte. Breakpoint, illustrazioni approvate, ingresso della cartolina e replay mobile conservati.
+
+26 novembre — Nelle carte di The Salon le righe usano subito la larghezza di destinazione mentre la carta cambia dimensione. Titolo e discussione entrano con un breve movimento d’insieme, disattivato quando è richiesto il movimento ridotto.

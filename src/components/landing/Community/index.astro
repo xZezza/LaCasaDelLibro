@@ -1,0 +1,30 @@
+---
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
+import SectionDivider from "../shared/SectionDivider.astro";
+import ForumCards from "./ForumCards.jsx";
+import Postcard from "./Postcard.jsx";
+import "../shared/typography.css";
+import "./styles.css";
+---
+
+<section id="salon" class="salon-community" aria-labelledby="salon-title">
+  <SectionDivider />
+  <div class="community-intro">
+    <p class="salon-s57 community-label">III · The Salon</p>
+    <h2 id="salon-title" class="salon-s58">Find the people who felt it too.</h2>
+    <p class="salon-s59">
+      <span class="community-copy-wide">A forum for every book, and open rooms for everything in between. Talk about the stories that stay with you, or find your next read together.</span>
+      <span class="community-copy-phone">Talk about a book you love, or find your next read together.</span>
+    </p>
+    <Postcard client:load>
+      <picture>
+        <source media={MEDIA_QUERIES.phone} srcset="/images/community/hogwarts-banquet.webp" width="1200" height="900" />
+        <img src="/images/community/reading-circle.jpg" alt="Readers gathered around a table, discussing an open book." loading="lazy" />
+      </picture>
+    </Postcard>
+  </div>
+  <div class="community-forums">
+    <ForumCards client:load />
+    <p class="community-forum-caption">Illustrative conversations with fictional readers.</p>
+  </div>
+</section>

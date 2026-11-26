@@ -1,0 +1,196 @@
+@layer components {
+  .community-postcard-tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -45px;
+    width: 90px;
+    height: 26px;
+    background: oklch(0.86 0.08 78 / 0.7);
+    transform: rotate(3deg);
+    z-index: 2;
+  }
+
+  .community-postcard-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .community-postcard-art {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .community-postcard-art picture {
+    display: block;
+    height: 100%;
+  }
+
+  .community-postcard-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    font-size: 17px;
+    color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
+  }
+
+  .community-postcard {
+    position: relative;
+    margin: 0;
+    width: min(100%, 448px);
+    border-radius: 4px;
+    background: light-dark(oklch(0.985 0.008 82), oklch(0.144 0.028 15));
+    padding: 12px 12px 46px;
+    box-shadow: 0 24px 50px -24px light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45));
+  }
+
+  .community-postcard-stage { position: relative; padding: 28px 24px 48px; margin-top: 8px; }
+  .community-postcard-stage .community-postcard { max-width: calc(100% / 1.12); transform-origin: left top; }
+  .community-postcard-lift { animation: community-postcard-forward 1.6s cubic-bezier(.45,0,.25,1) both; }
+  @keyframes community-postcard-forward {
+    0%, 100% { transform: none; box-shadow: 0 24px 50px -24px light-dark(oklch(0.25 0.035 305 / .45), oklch(0.92 0.02 85 / .45)); }
+    48% { transform: rotate(-1deg) scale(1.12); box-shadow: 0 42px 60px -12px light-dark(oklch(0.25 0.035 305 / .4), oklch(0.92 0.02 85 / .4)); }
+  }
+  .community-postcard-stage:has(.community-postcard-lift) { z-index: 3; }
+  .community-postcard-replay { display: none; }
+}
+
+@layer responsive {
+  @media (max-width: 650px) {
+    .community-postcard-stage { padding: 12px 0 0; margin-top: 12px; }
+    .community-postcard-stage :is(.community-postcard-tape, .community-postcard-replay) { display: none; }
+    .community-postcard-stage .community-postcard {
+      width: 100%;
+      max-width: 100%;
+      margin-inline: auto;
+      padding: 8px 8px 34px;
+      border-radius: 4px;
+      background: light-dark(#faf7ef, #332638);
+      transform: none;
+      box-shadow: 0 10px 26px -19px light-dark(#6e4e5280, #170e1c);
+      animation: none;
+    }
+    .community-postcard-stage .community-postcard-caption {
+      position: absolute;
+      inset: auto 44px 7px;
+      margin: 0;
+      font-size: 16px;
+      text-align: center;
+    }
+    .community-postcard-stage .community-postcard-art {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      aspect-ratio: 8 / 5;
+      border-radius: 2px;
+      background:
+        radial-gradient(circle, #fff4d2 0 0.8px, transparent 1.8px) 12px 23px / 89px 97px,
+        radial-gradient(circle, #aabaff 0 0.65px, transparent 1.5px) 48px 0 / 67px 79px,
+        radial-gradient(ellipse at 72% 10%, #3d3e70, transparent 66%),
+        linear-gradient(160deg, #192541, #0d1427 75%);
+    }
+
+  }
+
+  @media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+    .community-postcard-replay {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      right: 6px;
+      bottom: -5px;
+      inline-size: 44px;
+      block-size: 44px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: none;
+      color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
+      font: 22px/1 system-ui;
+      cursor: pointer;
+    }
+    .community-postcard-replay:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: -5px;
+    }
+    .community-postcard-lift .community-postcard-art img {
+      animation: community-banquet-dissolve 4.8s ease-in-out;
+    }
+    .community-postcard-lift .community-ceiling {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      /* Follow the opening between the two main arches in the mobile artwork. */
+      clip-path: polygon(
+        58.7% 0, 74% 0, 78.4% 4.5%, 81.6% 9%, 83.7% 13.5%, 85.2% 18%,
+        82.6% 16.8%, 78% 16.2%, 74.5% 15.4%, 73.1% 13.9%, 69.6% 11.1%,
+        65.7% 8.7%, 61.8% 7.5%, 59.8% 7.4%, 55.9% 8.5%, 52.1% 10.5%,
+        48.4% 13%, 44.2% 16.8%, 42.8% 18.6%, 45.5% 13.5%, 49.8% 8%, 54% 3.7%
+      );
+      animation: community-ceiling-visibility 4.8s ease-in-out both;
+    }
+    .community-postcard-lift .community-ceiling::before {
+      content: "";
+      position: absolute;
+      inset: -5% 10% auto 24%;
+      height: 27%;
+      background:
+        radial-gradient(ellipse 16% 18% at 17% 37%, #bfc9feb3, transparent 95%),
+        radial-gradient(ellipse 20% 15% at 24% 45%, #899ce1ba, transparent 97%),
+        radial-gradient(ellipse 14% 18% at 31% 48%, #97a9ea94, transparent 95%),
+        radial-gradient(ellipse 17% 16% at 57% 39%, #b9c9ffa3, transparent 96%),
+        radial-gradient(ellipse 21% 13% at 63% 47%, #708cd8c4, transparent 96%),
+        radial-gradient(ellipse 14% 12% at 74% 50%, #a5b3f08c, transparent 96%),
+        radial-gradient(ellipse 27% 13% at 50% 58%, #7182c07d, transparent 96%);
+      filter: blur(1px);
+      animation: community-cloud-drift 4.8s linear both;
+    }
+    .community-postcard-lift .community-postcard-art::after {
+      content: "";
+      position: absolute;
+      inset: -12%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 30%, #fff4c2 0 1px, #efb86d80 2px, transparent 7px),
+        radial-gradient(circle at 44% 20%, #fff4c2 0 1px, #efb86d80 2px, transparent 8px),
+        radial-gradient(circle at 62% 28%, #fff9d9 0 1px, #efb86d80 3px, transparent 10px),
+        radial-gradient(circle at 76% 39%, #fff4c2 0 1px, #efb86d80 2px, transparent 8px),
+        radial-gradient(circle at 32% 67%, #dce4ff 0 1px, #819ff980 2px, transparent 7px),
+        radial-gradient(ellipse 28% 10% at 43% 24%, #7c91d691, transparent 95%),
+        radial-gradient(ellipse 20% 12% at 54% 20%, #b6c4f075, transparent 98%),
+        radial-gradient(ellipse 32% 13% at 69% 31%, #7c97d380, transparent 96%),
+        radial-gradient(ellipse at 58% 0%, #8495e75c, transparent 58%);
+      animation: community-enchanted-ceiling 4.8s ease-in-out both;
+    }
+    @keyframes community-banquet-dissolve {
+      0%, 30%, 83%, 100% { opacity: 1; }
+      53%, 58% { opacity: 0; }
+    }
+    @keyframes community-ceiling-visibility {
+      0%, 100% { opacity: 0; }
+      12%, 34%, 79%, 91% { opacity: 0.95; }
+      54%, 58% { opacity: 0; }
+    }
+    @keyframes community-cloud-drift {
+      from { transform: translate(-27%, -5%); }
+      to { transform: translate(32%, 7%); }
+    }
+    @keyframes community-enchanted-ceiling {
+      0% { opacity: 0; transform: translate(-3%, 5%); }
+      27%, 84% { opacity: 0; }
+      48%, 67% { opacity: 1; }
+      100% { opacity: 0; transform: translate(4%, -7%); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .community-postcard-lift { animation: none; }
+  }
+}

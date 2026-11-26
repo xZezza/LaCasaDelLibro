@@ -7,7 +7,6 @@ import "./styles.css";
 import Navbar from "./Navbar";
 import QuoteHardDays from "./QuoteHardDays";
 import QuoteStars from "./QuoteStars";
-import Community from "./Community";
 import Follow from "./Follow";
 import Footer from "./Footer";
 import ModalComingSoon from "./ModalComingSoon";
@@ -28,7 +27,7 @@ export default class Landing extends LandingController {
           {this.props.library}
           {this.props.journal}
           <QuoteStars {...v} />
-          <Community divider={this.props.salonDivider} />
+          {this.props.salon}
           <Follow {...v} />
         </main>
         <Footer {...v} />
