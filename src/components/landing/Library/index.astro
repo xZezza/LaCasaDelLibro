@@ -1,11 +1,13 @@
 ---
 import Library from "./index.jsx";
+import SectionDivider from "../shared/SectionDivider.astro";
 import "../shared/actions.css";
 import "../shared/typography.css";
 import "./styles.css";
 ---
 
 <section id="library" class="salon-s79 salon-library">
+  <SectionDivider />
   <Library client:load>
     <Fragment slot="intro">
       <div class="salon-s57">I · The Library</div>

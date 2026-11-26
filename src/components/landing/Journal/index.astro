@@ -1,0 +1,36 @@
+---
+import Journal from "./index.jsx";
+import SectionDivider from "../shared/SectionDivider.astro";
+import "../shared/actions.css";
+import "../shared/typography.css";
+import "./styles.css";
+
+const name = "The Journal";
+const label = `II · ${name}`;
+---
+
+<section id="journal" class="salon-journal" aria-label={name}>
+  <SectionDivider />
+  <header class="journal-header">
+    <p class="salon-s57 journal-label">{label}</p>
+    <div class="journal-phone-intro">
+      <h2>A private diary<br />for every book.</h2>
+      <p>Keep the story. Keep how it felt.</p>
+    </div>
+  </header>
+
+  <Journal client:load>
+    <p slot="label" class="salon-s57 journal-label journal-desktop-label">{label}</p>
+    <div slot="editorial" class="journal-editorial">
+      <div class="journal-handwriting">
+        <p>Keep the memory of every story.</p>
+        <p>Find your own words again, months or years later.</p>
+        <p>Share the feelings with people who understand.</p>
+      </div>
+      <h2 class="salon-s58">A private diary for every book.</h2>
+      <p class="salon-s59">Collect your thoughts, favourite characters, quotes, impressions and ratings. Everything stays private until you decide otherwise, and you share only the thoughts you choose.</p>
+      <p class="journal-share-hint">tap “Private” in the journal to share just that one</p>
+    </div>
+    <p slot="caption" class="mj-caption">A little of you, between the pages.</p>
+  </Journal>
+</section>

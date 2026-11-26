@@ -158,7 +158,7 @@ function CommunityForums() {
   </div>;
 }
 
-export default function Community() {
+export default function Community({ divider }) {
   const postcard = useRef(null);
   const photograph = useRef(null);
   const replayPostcard = () => {
@@ -193,6 +193,7 @@ export default function Community() {
   }, []);
   return (
     <section id="salon" className="salon-s188 salon-salon">
+      {divider}
       <div>
         <div className="salon-s57">III · The Salon</div>
         <h2 className="salon-s58">Find the people who felt it too.</h2>

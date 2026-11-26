@@ -6,7 +6,6 @@ import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";
 import QuoteHardDays from "./QuoteHardDays";
-import Journal from "./Journal";
 import QuoteStars from "./QuoteStars";
 import Community from "./Community";
 import Follow from "./Follow";
@@ -27,9 +26,9 @@ export default class Landing extends LandingController {
           {this.props.carousel}
           <QuoteHardDays {...v} />
           {this.props.library}
-          <Journal {...v} />
+          {this.props.journal}
           <QuoteStars {...v} />
-          <Community {...v} />
+          <Community divider={this.props.salonDivider} />
           <Follow {...v} />
         </main>
         <Footer {...v} />

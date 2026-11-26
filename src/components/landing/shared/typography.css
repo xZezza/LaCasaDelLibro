@@ -26,14 +26,6 @@
     text-wrap: pretty;
   }
 
-  .salon-s83 {
-    width: 7px;
-    height: 7px;
-    transform: rotate(45deg);
-    background: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
-    display: block;
-  }
-
   .salon-s86 {
     display: block;
     overflow: visible;

@@ -329,3 +329,11 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 26 novembre — Nella libreria completa il desktop usa lo stesso avviso del telefono per la ricerca futura. I libri sdraiati usano i punti di contatto della proiezione 3D per appoggiarsi tra loro; una lieve ombra appoggia i gruppi al ripiano.
 
 26 novembre — Gaia sceglie di tenere i libri in piedi su desktop e telefono. Restano le viste dorso e copertina e il trascinamento per riordinare. Il punto di vista desktop è fisso. I salvataggi precedenti conservano libri, ripiani, stato di lettura e materiali; i libri sdraiati si aprono di dorso e le rotazioni manuali vengono ignorate.
+
+26 novembre — Refactoring limitato al Journal. Astro rende la sezione, l’intestazione comune e i testi editoriali. L’isola React locale condivide colori, voti e condivisione tra il diario a due colonne e il quaderno a schede. Il separatore con le stelline viola raccorda Library e Journal. Su desktop il titoletto apre la colonna accanto al diario, seguito da citazione, testo manoscritto, descrizione e anteprima Book/Saga. Su telefono Memories, Characters e Ratings si sfogliano con uno swipe o con i controlli esistenti. L’animazione di pagina rispetta la preferenza di movimento ridotto; l’area dei voti conserva il gesto dedicato per mostrare i dettagli.
+
+26 novembre — Su telefono Characters riprende le tre schede pastello del diario desktop, con note richiudibili. Ratings apre direttamente sui voti e sulle palette di ogni categoria, con il totale come ultima riga e i dettagli di lettura ancora apribili. Sui quaderni più stretti le schede si dispongono su due righe e le palette scendono sotto le icone. Lo swipe sulla pagina Ratings sfoglia il quaderno.
+
+26 novembre — Lo stesso separatore con le stelline viola apre le tre sezioni numerate della landing, The Library, The Journal e The Salon, anche su telefono.
+
+26 novembre — Gaia semplifica Ratings su telefono eliminando le palette dei voti. Le valutazioni restano modificabili, con gli inchiostri già assegnati, e il colore della copertina resta selezionabile in Memories e Characters. Nella vista telefono la sfogliata del quaderno funziona anche trascinando con il mouse.

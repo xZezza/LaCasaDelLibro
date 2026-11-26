@@ -1,510 +1,58 @@
-import "../shared/actions.css";
-import ReadingThread from "../ReadingThread";
+import React, { useEffect, useRef, useState } from "react";
 import QuoteText from "../QuoteText";
-import "../shared/typography.css";
-import React from "react";
-import "./styles.css";
 import StoryGuests from "../StoryGuests";
-import MobileReadingJournal from "../MobileReadingJournal";
+import BookPreview from "./BookPreview";
+import DesktopNotebook from "./DesktopNotebook";
+import MobileNotebook from "./MobileNotebook";
+import ReadingThread from "./ReadingThread";
+import { useJournal } from "./useJournal.js";
 
-export default function Journal(values) {
-  const {
-    bookColor,
-    bookColors,
-    chars,
-    jGridRef,
-    jSummary,
-    linksRef,
-    pvAbout,
-    pvBoxRef,
-    pvChars,
-    pvCovers,
-    pvKind,
-    pvLinks,
-    pvMeta,
-    pvThread,
-    pvTitle,
-    q6Visible,
-    quote6Ref,
-    ratings,
-    sh,
-    showNotes,
-    threadGeometry,
-  } = values;
+function JournalQuote({ label }) {
+  const quote = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!window.IntersectionObserver) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+      threshold: [0, 0.15],
+    });
+    observer.observe(quote.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <figure ref={quote} className="journal-quote quote-with-guest quote-guest-potter quote-reveal" data-visible={visible}>
+      {label}
+      <StoryGuests group="potter" placement="potter" />
+      <QuoteText text="I solemnly swear that I am up to no good." className="journal-quote-text" />
+      <figcaption className="journal-quote-credit">
+        J.K. Rowling · <cite className="salon-s28">Harry Potter and the Prisoner of Azkaban</cite>
+      </figcaption>
+    </figure>
+  );
+}
+
+export default function Journal({ label, editorial, caption }) {
+  const { preview, previewLinks, activePreview, ...notebook } = useJournal();
+  const grid = useRef(null);
+  const links = useRef(null);
+  const previewBox = useRef(null);
+
   return (
     <>
-      <section id={"journal"} className={"salon-s161 salon-journal"}>
-        <MobileReadingJournal {...values} />
-        <div className={"salon-s85"}>
-          <p
-            aria-label={
-              "Keep the memory of every story. Find your own words again, months or years later. Share the feelings with people who understand."
-            }
-            className={"salon-s81"}
-          >
-            <span className={"salon-s80"}>
-              {"Keep the memory of every story."}
-            </span>
-            <span className={"salon-s80"}>
-              {"Find your own words again, months or years later."}
-            </span>
-            <span className={"salon-s80"}>
-              {"Share the feelings with people who understand."}
-            </span>
-          </p>
-          <div className={"salon-s84"}>
-            <span className={"salon-s82"}></span>
-            <span className={"salon-s83"}></span>
-            <span className={"salon-s82"}></span>
-          </div>
+      <MobileNotebook {...notebook} caption={caption} />
+      <div ref={grid} className="journal-grid">
+        <DesktopNotebook {...notebook} linksRef={links} previewLinks={previewLinks} />
+        <div className="journal-story">
+          <JournalQuote label={label} />
+          {editorial}
+          <BookPreview preview={preview} previewRef={previewBox} />
         </div>
-        <div ref={jGridRef} className={"salon-s160"}>
-          {"\n    "}
-          <ReadingThread geometry={threadGeometry} />
-          {"\n    "}
-          <div className={"salon-s132"}>
-            <div className={"salon-s87"}>
-              <svg
-                viewBox={"0 0 120 120"}
-                width={"100%"}
-                height={"100%"}
-                className={"salon-s86"}
-              >
-                <path
-                  d={"M60 64 C 58 84, 50 98, 38 114"}
-                  fill={"none"}
-                  stroke={"light-dark(oklch(0.55 0.07 130), oklch(0.73 0.07 130.0))"}
-                  strokeWidth={"2.2"}
-                  strokeLinecap={"round"}
-                ></path>
-                <path
-                  d={"M50 92 C 36 88, 28 94, 22 102 C 34 104, 44 100, 50 92 Z"}
-                  fill={"light-dark(oklch(0.66 0.07 135), oklch(0.84 0.07 135.0))"}
-                  opacity={".85"}
-                ></path>
-                <path
-                  d={"M56 80 C 68 72, 80 74, 88 80 C 78 88, 66 88, 56 80 Z"}
-                  fill={"light-dark(oklch(0.62 0.07 135), oklch(0.8 0.07 135.0))"}
-                  opacity={".8"}
-                ></path>
-                <ellipse
-                  cx={"60"}
-                  cy={"38"}
-                  rx={"11"}
-                  ry={"22"}
-                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
-                  opacity={".88"}
-                  transform={"rotate(0 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"38"}
-                  rx={"11"}
-                  ry={"22"}
-                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
-                  opacity={".88"}
-                  transform={"rotate(72 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"38"}
-                  rx={"11"}
-                  ry={"22"}
-                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
-                  opacity={".88"}
-                  transform={"rotate(144 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"38"}
-                  rx={"11"}
-                  ry={"22"}
-                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
-                  opacity={".88"}
-                  transform={"rotate(216 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"38"}
-                  rx={"11"}
-                  ry={"22"}
-                  fill={"light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))"}
-                  opacity={".88"}
-                  transform={"rotate(288 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"44"}
-                  rx={"6"}
-                  ry={"13"}
-                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
-                  opacity={".6"}
-                  transform={"rotate(36 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"44"}
-                  rx={"6"}
-                  ry={"13"}
-                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
-                  opacity={".6"}
-                  transform={"rotate(108 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"44"}
-                  rx={"6"}
-                  ry={"13"}
-                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
-                  opacity={".6"}
-                  transform={"rotate(180 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"44"}
-                  rx={"6"}
-                  ry={"13"}
-                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
-                  opacity={".6"}
-                  transform={"rotate(252 60 60)"}
-                ></ellipse>
-                <ellipse
-                  cx={"60"}
-                  cy={"44"}
-                  rx={"6"}
-                  ry={"13"}
-                  fill={"light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))"}
-                  opacity={".6"}
-                  transform={"rotate(324 60 60)"}
-                ></ellipse>
-                <circle
-                  cx={"60"}
-                  cy={"60"}
-                  r={"8"}
-                  fill={"light-dark(oklch(0.72 0.12 80), oklch(0.86 0.12 80.0))"}
-                ></circle>
-                <circle
-                  cx={"57"}
-                  cy={"57"}
-                  r={"2"}
-                  fill={"light-dark(oklch(0.95 0.06 90), oklch(0.23 0.042 90))"}
-                  opacity={".8"}
-                ></circle>
-              </svg>
-            </div>
-            <div className={"salon-s131"}>
-              <div className={"salon-s88"}></div>
-              <div className={"salon-s89"}></div>
-              <div className={"salon-s130"}>
-                <div
-                  className={"salon-s90"}
-                  style={{ background: bookColor }}
-                ></div>
-                <div className={"salon-s97"}>
-                  <div
-                    className={"salon-s91"}
-                    style={{
-                      background:
-                        "linear-gradient(90deg, rgba(0,0,0,.25), transparent 12%), " +
-                        bookColor,
-                    }}
-                  ></div>
-                  <div className={"salon-s96"}>
-                    <div className={"salon-s92"}>{"The Ember Crown"}</div>
-                    <div className={"salon-s94"}>
-                      {"M. Hale · 512 pages · Romantasy"}
-                      <br />
-                      {"Book 1 of "}
-                      <span className={"salon-s93"}>{"The Ashborn Saga"}</span>
-                    </div>
-                    <div className={"salon-s95"}>
-                      {"Filled in automatically"}
-                    </div>
-                  </div>
-                </div>
-                <div className={"salon-s98"}></div>
-                <div className={"salon-s106"}>
-                  <div>
-                    <div className={"salon-s99"}>{"My colour for it"}</div>
-                    <div className={"salon-s101"}>
-                      {bookColors.map((c, index6) => (
-                        <React.Fragment key={index6}>
-                          <button
-                            onClick={c.pick}
-                            aria-label={c.name}
-                            title={c.name}
-                            type="button"
-                            className={"salon-s100"}
-                            aria-pressed={c.selected} style={{background:c.v}}
-                          ></button>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className={"salon-s99"}>{"Its song"}</div>
-                    <div className={"salon-s104"}>
-                      <span
-                        className={"salon-s102"}
-                        style={{
-                          background:
-                            "radial-gradient(circle, " +
-                            bookColor +
-                            " 0 5px, light-dark(oklch(0.2 0.02 305), oklch(0.94 0.02 85)) 5.5px 8px, light-dark(oklch(0.3 0.02 305), oklch(0.87 0.02 85)) 8.5px 9.5px, light-dark(oklch(0.2 0.02 305), oklch(0.94 0.02 85)) 10px)",
-                        }}
-                      ></span>
-                      <span className={"salon-s103"}>
-                        {"Ashes of Us · Wildwood"}
-                      </span>
-                    </div>
-                  </div>
-                  <div>
-                    <div className={"salon-s99"}>{"Reading time"}</div>
-                    <div className={"salon-s105"}>
-                      {"11 days, mostly at night"}
-                    </div>
-                  </div>
-                  <div>
-                    <div className={"salon-s99"}>{"Read in"}</div>
-                    <div className={"salon-s105"}>{"English"}</div>
-                  </div>
-                </div>
-                <div className={"salon-s110"}>
-                  {chars.map((c, index7) => (
-                    <React.Fragment key={index7}>
-                      <div
-                        className={"salon-s109"}
-                        style={{ background: c.bg }}
-                      >
-                        <div className={"salon-s99"}>{c.label}</div>
-                        <div className={"salon-s107"}>{c.name}</div>
-                        <div className={"salon-s108"}>{c.note}</div>
-                      </div>
-                    </React.Fragment>
-                  ))}
-                </div>
-                <div className={"salon-s115"}>
-                  <div className={"salon-s113"}>
-                    <div>
-                      <div className={"salon-s99"}>
-                        {"The part to remember"}
-                      </div>
-                      <div className={"salon-s111"}>
-                        {
-                          "The bridge scene. Corin turning back for her when the whole city was burning."
-                        }
-                      </div>
-                    </div>
-                    <button
-                      onClick={sh.best.toggle}
-                      type="button"
-                      className={"salon-s112 salon-marker-control"}
-                      aria-pressed={sh.best.selected}
-                    >
-                      <span className="salon-marker-text">
-                      {sh.best.state}
-                    </span>
-                    </button>
-                  </div>
-                  <div className={"salon-s113"}>
-                    <div>
-                      <div className={"salon-s99"}>{"My review"}</div>
-                      <div className={"salon-s114"}>
-                        {
-                          "Slow start, then I couldn’t put it down. The magic system finally makes sense in part three, and the ending broke me a little. Already planning a reread."
-                        }
-                      </div>
-                    </div>
-                    <button
-                      onClick={sh.review.toggle}
-                      type="button"
-                      className={"salon-s112 salon-marker-control"}
-                      aria-pressed={sh.review.selected}
-                    >
-                      <span className="salon-marker-text">
-                      {sh.review.state}
-                    </span>
-                    </button>
-                  </div>
-                </div>
-                <div className={"salon-s98"}></div>
-                <div>
-                  <div className={"salon-s118"}>
-                    <div className={"salon-s116"}>{"Rating"}</div>
-                    <div className={"salon-s117"}>
-                      {"tap to fill, pick your colour"}
-                    </div>
-                  </div>
-                  <div className={"salon-s126"}>
-                    {ratings.map((r, index10) => (
-                      <React.Fragment key={index10}>
-                        <div className={"salon-s125"} data-filled={r.filled} style={{"--rating-color":r.color}}>
-                          <div
-                            className={"salon-s119"}
-                            data-total={r.total}
-                          >
-                            {r.name}
-                          </div>
-                          <div className={"salon-s122"}>
-                            {r.icons.map((i, index8) => (
-                              <React.Fragment key={index8}>
-                                <button
-                                  onClick={i.set}
-                                  aria-label={i.label}
-                                  type="button"
-                                  className={"salon-s121 salon-hover133"}
-                                 aria-pressed={i.selected}>
-                                  <svg
-                                    viewBox={"0 0 24 24"}
-                                    width={"24"}
-                                    height={"24"}
-                                    className={"salon-s120"}
-                                  >
-                                    <path
-                                      d={r.path}
-
-
-                                      strokeWidth={r.sw}
-                                      strokeLinecap={"round"}
-                                      strokeLinejoin={"round"}
-                                    ></path>
-                                  </svg>
-                                </button>
-                              </React.Fragment>
-                            ))}
-                          </div>
-                          <div className={"salon-s124"}>
-                            {r.colors.map((c, index9) => (
-                              <React.Fragment key={index9}>
-                                <button
-                                  onClick={c.pick}
-                                  aria-label={"Colour"}
-                                  type="button"
-                                  className={"salon-s123"}
-                                  aria-pressed={c.selected} style={{background:c.v}}
-                                ></button>
-                              </React.Fragment>
-                            ))}
-                          </div>
-                        </div>
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
-                <p className={"salon-s127"}>{jSummary}</p>
-                <div ref={linksRef} className={"salon-s129"}>
-                  {pvLinks.map((l, index11) => (
-                    <React.Fragment key={index11}>
-                      <button
-                        onClick={l.pick}
-                        type="button"
-                        className={"salon-s128 salon-marker-action salon-marker-link"}
-                        style={{
-                          color: l.fg,
-                        }}
-                      >
-                        <span className="salon-marker-text">
-                        {l.name}
-                        {" →"}
-                      </span>
-                      </button>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={"salon-s159"}>
-            <figure
-              ref={quote6Ref}
-              className="salon-s136 quote-with-guest quote-guest-potter quote-reveal" data-visible={q6Visible}
-            >
-              <StoryGuests group="potter" placement="potter" />
-              <QuoteText text={"I solemnly swear that I am up to no good."} className="salon-s134" />
-              <figcaption className={"salon-s135"} >
-                {"J.K. Rowling · "}
-                <span className={"salon-s28"}>
-                  {"Harry Potter and the Prisoner of Azkaban"}
-                </span>
-              </figcaption>
-            </figure>
-            <div className={"salon-s57"}>{"II · The Journal"}</div>
-            <h2 className={"salon-s58"}>{"A private diary for every book."}</h2>
-            <p className={"salon-s59"}>
-              {
-                "Collect your thoughts, favourite characters, quotes, impressions and ratings. Everything stays private until you decide otherwise, and you share only the thoughts you choose."
-              }
-            </p>
-            {Boolean(showNotes) && (
-              <>
-                <p className={"salon-s137"}>
-                  {"tap “Private” in the journal to share just that one"}
-                </p>
-              </>
-            )}
-            <div className={"salon-s158"}>
-              <div ref={pvBoxRef} className={"salon-s157"}>
-                <div className={"salon-s143"}>
-                  <div className={"salon-s139"}>
-                    {pvCovers.map((c, index13) => (
-                      <React.Fragment key={index13}>
-                        <div
-                          className={"salon-s138"}
-                          style={{
-                            width: c.w + "px",
-                            height: c.h + "px",
-                            background:
-                              "linear-gradient(90deg, rgba(0,0,0,.25), transparent 14%), " +
-                              c.bg,
-                          }}
-                        ></div>
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <div className={"salon-s96"}>
-                    <div className={"salon-s140"}>{pvKind}</div>
-                    <div className={"salon-s141"}>{pvTitle}</div>
-                    <div className={"salon-s142"}>{pvMeta}</div>
-                  </div>
-                </div>
-                <div className={"salon-s146"}>
-                  <span className={"salon-s144"}>{"About"}</span>
-                  <span className={"salon-s145"}>{"Characters"}</span>
-                  <span className={"salon-s145"}>{"Forum"}</span>
-                  <span className={"salon-s145"}>{"Thoughts"}</span>
-                </div>
-                <p className={"salon-s147"}>{pvAbout}</p>
-                <div className={"salon-s156"}>
-                  <div className={"salon-s152"}>
-                    <div className={"salon-s148"}>{"Characters"}</div>
-                    <div className={"salon-s150"}>
-                      {pvChars.map((c, index14) => (
-                        <React.Fragment key={index14}>
-                          <span className={"salon-s149"}>{c}</span>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                    <span className={"salon-s151"}>
-                      {"Open the fan wiki ↗"}
-                    </span>
-                  </div>
-                  <div className={"salon-s152"}>
-                    <div className={"salon-s148"}>{"Forum"}</div>
-                    <div className={"salon-s153"}>{pvThread}</div>
-                    <span className={"salon-s154"}>{"Start a discussion"}</span>
-                  </div>
-                  <div className={"salon-s152"}>
-                    <div className={"salon-s148"}>{"Leave a thought"}</div>
-                    <div className={"salon-s155"}>
-                      {"Write something about this book…"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <ReadingThread grid={grid} links={links} preview={previewBox} activePreview={activePreview} />
+      </div>
     </>
   );
 }

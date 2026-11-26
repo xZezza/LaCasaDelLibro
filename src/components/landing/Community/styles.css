@@ -185,7 +185,7 @@
     z-index: 1;
     max-width: var(--page-max-width, 1200px);
     margin: 0 auto;
-    padding: clamp(56px, 7vw, 90px) clamp(20px, 4vw, 48px)
+    padding: clamp(20px, 3vw, 38px) clamp(20px, 4vw, 48px)
       clamp(90px, 11vw, 140px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
@@ -200,6 +200,7 @@
   @media (width > 960px) {
     .salon-s188 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: clamp(26px, 3.5vw, 48px);
     }
   }
 
@@ -220,7 +221,7 @@
     .salon-s188 {
       grid-template-columns: minmax(0, 1fr);
       gap: 28px;
-      padding-top: 20px;
+      padding-top: 12px;
       padding-bottom: var(--mobile-section-gap);
     }
 
