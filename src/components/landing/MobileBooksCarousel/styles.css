@@ -4,8 +4,8 @@
 @layer responsive {
   @media (max-width: 650px) {
     .mobile-books {
-      --mobile-cover-width: clamp(110px, 34vw, 170px);
-      --mobile-cover-gap: 20px;
+      --mobile-cover-width: clamp(94px, 31.5vw, 156px);
+      --mobile-cover-gap: clamp(10px, 3.5vw, 16px);
       display: block;
       position: relative;
       margin-top: 20px;
@@ -35,7 +35,7 @@
       border: 0;
       background: none;
       cursor: pointer;
-      transform: scale(.78) translateY(8px);
+      transform: scale(.78);
       transform-origin: center;
       transition: transform 350ms ease;
       -webkit-tap-highlight-color: transparent;
@@ -48,10 +48,10 @@
       width: 100%;
       height: 100%;
       background: var(--binding-color);
-      border-radius: 4px 7px 7px 4px;
+      border-radius: 4px;
       transform: none;
       transform-style: preserve-3d;
-      box-shadow: 8px 0 0 #e4d9bf, 11px 1px 0 var(--binding-color), 8px 16px 22px -11px #32203566;
+      box-shadow: 0 12px 18px -12px #32203575;
     }
     .mobile-books-binding > img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
     .mobile-books-cover-lettering { position: absolute; inset: 25% 12% 12%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: #fae6b4; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(14px, 3.9vw, 19px); line-height: 1.04; text-wrap: balance; }

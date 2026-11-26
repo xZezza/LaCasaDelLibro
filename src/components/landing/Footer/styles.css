@@ -24,3 +24,17 @@
 }
 
 @layer components { :root[data-theme="ink"] .salon-s202 { filter: brightness(0) invert(.92) sepia(.25); } }
+
+@layer responsive {
+  @media (max-width: 650px) {
+    .salon-s203 {
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 20px;
+      padding: 18px var(--mobile-page-gutter) 26px;
+    }
+
+    .salon-s202 { flex: 0 0 clamp(64px, 19vw, 84px); }
+    .salon-s203 > :last-child { min-width: 0; max-width: 26ch; text-align: end; }
+  }
+}

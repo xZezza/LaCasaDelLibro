@@ -9,7 +9,6 @@ import { serializeLibrary, isValidLibrarySnapshot } from "../../lib/library-stor
 export default class LandingController extends React.Component {
   trackRef = React.createRef();
   woodRef = React.createRef();
-  quoteRef = React.createRef();
   quote2Ref = React.createRef();
   quote4Ref = React.createRef();
   quote5Ref = React.createRef();
@@ -288,20 +287,6 @@ export default class LandingController extends React.Component {
       );
       this._qio2.observe(this.quote2Ref.current);
     } else this.setState({ quote2In: true });
-    if (window.IntersectionObserver && this.quoteRef.current) {
-      this._qio = new IntersectionObserver(
-        (entries) => {
-          const entry = entries[entries.length - 1];
-          if (entry.intersectionRatio >= 0.3) {
-            this.setState({ openingQuoteRevealed: true });
-          } else if (entry.intersectionRatio === 0) {
-            this.setState({ openingQuoteRevealed: false });
-          }
-        },
-        { threshold: [0, 0.3], rootMargin: "0px 0px -48px 0px" },
-      );
-      this._qio.observe(this.quoteRef.current);
-    } else this.setState({ openingQuoteRevealed: true });
     this._onResize = () => this.measureThread();
     window.addEventListener("resize", this._onResize);
     if (window.ResizeObserver && this.jGridRef.current) {
@@ -339,7 +324,6 @@ export default class LandingController extends React.Component {
     this._qio5 && this._qio5.disconnect();
     this._qio4 && this._qio4.disconnect();
     this._qio2 && this._qio2.disconnect();
-    this._qio && this._qio.disconnect();
     window.removeEventListener("resize", this._onResize);
     this._ro && this._ro.disconnect();
     cancelAnimationFrame(this._nudge);
@@ -705,8 +689,6 @@ export default class LandingController extends React.Component {
           pvThread: "Was the bridge scene a betrayal or a rescue?",
         };
     const quoteVals = {
-      openingQuoteRevealed: !!this.state.openingQuoteRevealed,
-      quoteRef: this.quoteRef,
       quote2Ref: this.quote2Ref, q2Visible: !!this.state.quote2In,
       quote4Ref: this.quote4Ref, q4Visible: !!this.state.quote4In,
       quote5Ref: this.quote5Ref, q5Visible: !!this.state.quote5In,

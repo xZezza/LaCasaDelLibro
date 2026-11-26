@@ -1,0 +1,37 @@
+---
+import QuoteText from "../QuoteText/index.jsx";
+---
+
+<div class="hero-opening-quote">
+  <div class="hero-opening-quote-inner">
+    <figure class="salon-opening-quote quote-reveal" data-visible="true" data-reveal="false">
+      <span class="salon-s24" aria-hidden="true"></span>
+      <span class="salon-s25" aria-hidden="true"></span>
+      <QuoteText text="One must always be careful of books… and what is inside them, for words have the power to change us." className="hero-opening-quote-text" />
+      <figcaption class="hero-opening-quote-credit">
+        Cassandra Clare · <cite class="salon-s28">Clockwork Angel</cite>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<script>
+  const quote = document.querySelector<HTMLElement>(".salon-opening-quote");
+
+  if (quote && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries.at(-1);
+      if (!entry) return;
+
+      if (entry.intersectionRatio >= 0.3) {
+        quote.dataset.reveal = "true";
+      } else if (entry.intersectionRatio === 0) {
+        quote.dataset.reveal = "false";
+      }
+    }, { threshold: [0, 0.3], rootMargin: "0px 0px -48px 0px" });
+
+    observer.observe(quote);
+  } else if (quote) {
+    quote.dataset.reveal = "true";
+  }
+</script>

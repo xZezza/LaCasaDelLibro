@@ -4,7 +4,7 @@ import { imageAsset } from "../../../lib/image-assets.js";
 import "./styles.css";
 export default function BookCover({book,titleClass}){
   const illustrated = ILLUSTRATED_COVERS.find(cover => cover.title === book.t);
-  return <div className="salon-s44 book-cover-face" style={{'--cover-bg':book.bg,'--cover-ink':book.ink,'--cover-accent':book.accent}}>
+  return <div className="salon-s44 book-cover-face" data-illustrated={!!illustrated} style={{'--cover-bg':book.bg,'--cover-ink':book.ink,'--cover-accent':book.accent}}>
     {illustrated && <span className="book-cover-mobile-art" aria-hidden="true">
       <img src={illustrated.responsiveSrc} srcSet={`${illustrated.responsiveSrc} 600w, ${imageAsset(illustrated.src)} 1060w`} sizes="(max-width: 650px) 220px, 110px" alt="" width="1000" height="1400" loading="lazy" decoding="async" />
       {illustrated.liveTitle && <span className="book-cover-mobile-lettering"><span>{book.t}</span><small>{book.a}</small></span>}

@@ -1,4 +1,3 @@
-import QuoteText from "../QuoteText";
 import BookCover from "../BookCover";
 import MobileBooksCarousel from "../MobileBooksCarousel";
 import React from "react";
@@ -16,8 +15,6 @@ export default function BooksCarousel(values) {
     nextCovers,
     openMobileCover,
     sheetOpen,
-    openingQuoteRevealed,
-    quoteRef,
     resumeCovers,
     trackRef,
   } = values;
@@ -25,19 +22,6 @@ export default function BooksCarousel(values) {
     <>
       <section className={"salon-s52"}>
         <div className={"salon-s33"}>
-          <figure
-            ref={quoteRef}
-            className="salon-s30 salon-opening-quote quote-reveal" data-visible={true}
-            data-reveal={openingQuoteRevealed}
-          >
-            <span className={"salon-s24"} ></span>
-            <span className={"salon-s25"} ></span>
-            <QuoteText text={"One must always be careful of books… and what is inside them, for words have the power to change us."} className="salon-s27" />
-            <figcaption className={"salon-s29"} >
-              {"Cassandra Clare · "}
-              <span className={"salon-s28"}>{"Clockwork Angel"}</span>
-            </figcaption>
-          </figure>
           <h2 id="stories-title" className={"salon-s31"}>{"The stories you carry with you."}</h2>
           <p className={"salon-s32"}>
             <span className="books-copy-wide">The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them.</span>

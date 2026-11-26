@@ -102,7 +102,7 @@ export default function MobileBooksCarousel({ books, onOpen, dialogOpen }) {
               <Cover type={clone ? undefined : "button"} className="mobile-books-book" aria-label={clone ? undefined : `Open ${book.t}`} tabIndex={clone ? undefined : 0}
                 onClick={() => { if (performance.now() >= blockClickRef.current) onOpen(index); }}>
                 <span className="mobile-books-binding" style={{ "--binding-color": art.binding }}>
-                  <img src={art.responsiveSrc} srcSet={`${art.responsiveSrc} 600w, ${imageAsset(art.src)} 1060w`} sizes="(max-width: 650px) 34vw, 170px" width="1000" height="1400" alt="" loading="lazy" decoding="async" draggable="false" />
+                  <img src={art.responsiveSrc} srcSet={`${art.responsiveSrc} 600w, ${imageAsset(art.src)} 1060w`} sizes="(max-width: 650px) 31.5vw, 156px" width="1000" height="1400" alt="" loading="lazy" decoding="async" draggable="false" />
                   {art.liveTitle && <span className="mobile-books-cover-lettering"><span>{book.t}</span><small>{book.a}</small></span>}
                 </span>
               </Cover>

@@ -134,7 +134,10 @@ export default function StoryGuests({
       },
       { threshold: [0, 0.15] },
     );
-    observer.observe(host.parentElement);
+    const parent = host.parentElement;
+    // A standalone Astro island uses a display: contents wrapper around its host.
+    const scene = parent?.matches("astro-island") ? parent.parentElement : parent;
+    observer.observe(scene ?? host);
     const onVisibility = () => {
       if (document.hidden) clearVisit();
       else if (repeat) void start();
