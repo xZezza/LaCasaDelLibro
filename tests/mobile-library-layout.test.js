@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import LandingController from "../src/components/landing/LandingController.js";
+import LibraryController from "../src/components/landing/Library/LibraryController.js";
 import { DECOS, WALLS, CASES, LIGHTS } from "../src/data/landing/library.js";
 import { SHELF_LABELS, libraryBookInfo } from "../src/data/landing/mobile-library.js";
 import { arrangeLibrary, bookStatus, groupLibrary, moveLibraryItem, rememberLayout, twoShelfLibrary } from "../src/lib/mobile-library.js";
@@ -11,7 +11,7 @@ const ids = items => items.map(item => item.id).sort();
 const config = { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS };
 
 test("two-shelf view preserves legacy saved items and independent reading statuses without mutating the snapshot", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   const legacy = page.state.lib.map(item => { const copy = { ...item }; delete copy.status; return copy; });
   const preferences = { manualOrder: rememberLayout(legacy) };
   const before = JSON.stringify({ legacy, preferences });
@@ -26,7 +26,7 @@ test("two-shelf view preserves legacy saved items and independent reading status
 });
 
 test("two-shelf status and saga grouping preserve every item and all three reading statuses", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   const view = twoShelfLibrary(page.state.lib);
   const status = new Map(view.lib.filter(item => !item.deco).map(item => [item.id, item.status]));
   for (const group of ["status", "saga", "all"]) {
@@ -48,7 +48,7 @@ test("two-shelf status and saga grouping preserve every item and all three readi
 });
 
 test("two-shelf moves and sorting retain a manual order, modes and all decorations", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   const view = twoShelfLibrary(page.state.lib);
   const book = view.lib.find(item => !item.deco && item.shelf === 0);
   const moved = moveLibraryItem(view.lib, view.preferences, book.id, 1, null, 2);
@@ -65,7 +65,7 @@ test("two-shelf moves and sorting retain a manual order, modes and all decoratio
 });
 
 test("both legacy three-row and new two-row snapshots remain valid and serializable", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   const before = serializeLibrary(page.state);
   const view = twoShelfLibrary(page.state.lib, page.state.libraryPreferences);
   assert.equal(serializeLibrary(page.state), before);
@@ -76,7 +76,7 @@ test("both legacy three-row and new two-row snapshots remain valid and serializa
 });
 
 test("mobile book covers keep their artwork ratio, and zoom scales both axes together", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   for (const book of page.state.lib.filter(item => !item.deco)) {
     for (const mode of ["cover", "spine", "lying"]) {
       const size = mobileItemDimensions({ ...book, mode });
@@ -92,7 +92,7 @@ test("mobile book covers keep their artwork ratio, and zoom scales both axes tog
 });
 
 test("decoration proportions survive uniform zoom and narrow shelf scaling", () => {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   for (const item of page.state.lib.filter(item => item.deco)) {
     const size = mobileItemDimensions(item), zoom = mobileItemDimensions(item, true);
     assert.ok(Math.abs(size.w / size.h - zoom.w / zoom.h) < 1e-10);

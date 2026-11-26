@@ -1,12 +1,12 @@
 import { illustratedColour } from "../src/data/landing/library-art.js";
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import LandingController from '../src/components/landing/LandingController.js';
+import LibraryController from '../src/components/landing/Library/LibraryController.js';
 import { DECOS, WALLS, CASES, LIGHTS } from '../src/data/landing/library.js';
 import { serializeLibrary, isValidLibrarySnapshot } from '../src/lib/library-storage.js';
 
 function controller() {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   page.setState = function (update) {
     this.state = { ...this.state, ...(typeof update === 'function' ? update(this.state) : update) };
   };

@@ -1,18 +1,6 @@
 import { imageAsset } from "../../lib/image-assets.js";
 import visitors from "../library-visitors.json" with { type: "json" };
 
-const SPINES = [
-  [305, 0.4],
-  [20, 0.38],
-  [160, 0.32],
-  [260, 0.36],
-  [50, 0.42],
-  [340, 0.34],
-  [200, 0.34],
-  [80, 0.4],
-  [0, 0.3],
-  [280, 0.3],
-];
 const READ = [
   "A Court of Thorns and Roses",
   "Fourth Wing",
@@ -23,16 +11,6 @@ const READ = [
   "Throne of Glass",
   "Shadow and Bone",
 ];
-const TOREAD = [
-  "Iron Flame",
-  "Red Queen",
-  "Legendborn",
-  "Serpent & Dove",
-  "The Night Circus",
-  "Shatter Me",
-];
-const shade = (h, l, c = 0.09) =>
-  `linear-gradient(90deg, rgba(0,0,0,.3), transparent 18%, rgba(255,255,255,.14) 45%, transparent 75%, rgba(0,0,0,.32)), oklch(${l} ${c} ${h})`;
 const BRIGHT = [
   [25, 0.6],
   [190, 0.55],
@@ -45,16 +23,6 @@ const BRIGHT = [
   [205, 0.56],
   [5, 0.56],
 ];
-function book(t, i, lean) {
-  const [h, l] = SPINES[(i * 3 + t.length) % SPINES.length];
-  return {
-    t,
-    w: 30 + ((t.length * 7 + i * 5) % 22),
-    h: 150 + ((t.length * 13 + i * 17) % 70),
-    bg: shade(h, l),
-    tf: lean ? "rotate(9deg) translateX(10px)" : "none",
-  };
-}
 const WOODS = [
   ["Oak", 0.6, 0.08, 65],
   ["Walnut", 0.42, 0.06, 45],
@@ -75,7 +43,6 @@ const WOODS = [
 ].map(([name, l, c, hh]) => ({
   name,
   top: `oklch(${l} ${c} ${hh})`,
-  grad: `linear-gradient(180deg, oklch(${l} ${c} ${hh}), oklch(${Math.max(l - 0.14, 0.16)} ${c} ${hh}))`,
 }));
 const LIGHT =
   "radial-gradient(ellipse 55% 50% at 80% 12%, oklch(0.99 0.03 85 / 0.75), transparent 70%), ";
@@ -295,4 +262,4 @@ const CASES = [
 }));
 const LIGHTS = { warm: true, pastel: true };
 
-export { shade, READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds };
+export { READ, BRIGHT, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds };

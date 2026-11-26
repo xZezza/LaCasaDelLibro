@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import LandingController from "../src/components/landing/LandingController.js";
+import LibraryController from "../src/components/landing/Library/LibraryController.js";
 import { DECOS, WALLS, CASES, LIGHTS } from "../src/data/landing/library.js";
 import { libraryBookInfo } from "../src/data/landing/mobile-library.js";
 import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, libraryPreferences, moveLibraryItem, rememberLayout } from "../src/lib/mobile-library.js";
 import { isValidLibrarySnapshot, serializeLibrary } from "../src/lib/library-storage.js";
 
 function controller() {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   page.setState = function (update) { this.state = { ...this.state, ...(typeof update === "function" ? update(this.state) : update) }; };
   return page;
 }

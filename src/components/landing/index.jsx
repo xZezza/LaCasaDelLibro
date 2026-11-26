@@ -6,13 +6,11 @@ import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";
 import QuoteHardDays from "./QuoteHardDays";
-import Library from "./Library";
 import Journal from "./Journal";
 import QuoteStars from "./QuoteStars";
 import Community from "./Community";
 import Follow from "./Follow";
 import Footer from "./Footer";
-import ModalLibrary from "./ModalLibrary";
 import ModalComingSoon from "./ModalComingSoon";
 
 export default class Landing extends LandingController {
@@ -28,18 +26,17 @@ export default class Landing extends LandingController {
           {this.props.hero}
           {this.props.carousel}
           <QuoteHardDays {...v} />
-          <Library {...v} />
+          {this.props.library}
           <Journal {...v} />
           <QuoteStars {...v} />
           <Community {...v} />
           <Follow {...v} />
         </main>
         <Footer {...v} />
-        <ModalLibrary {...v} />
         <ModalComingSoon {...v} />
         <CharacterSheet />
         <ModalAccessibility
-          open={v.libOpen ? "library" : v.soonOpen ? "soon" : null}
+          open={v.soonOpen ? "soon" : null}
         />
       </div>
     );

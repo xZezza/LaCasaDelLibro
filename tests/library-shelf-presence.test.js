@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import LandingController from "../src/components/landing/LandingController.js";
+import LibraryController from "../src/components/landing/Library/LibraryController.js";
 import { DECOS, WALLS, CASES, LIGHTS } from "../src/data/landing/library.js";
 import { arrangeLibrary, bookStatus, chooseShelfCover, groupLibrary, placeLibraryBook, twoShelfLibrary } from "../src/lib/mobile-library.js";
 import { isValidLibrarySnapshot, serializeLibrary } from "../src/lib/library-storage.js";
 
 const config = { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS };
 function controller() {
-  const page = new LandingController({});
+  const page = new LibraryController({});
   page.setState = update => { page.state = { ...page.state, ...(typeof update === "function" ? update(page.state) : update) }; };
   return page;
 }
