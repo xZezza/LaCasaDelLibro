@@ -1,7 +1,7 @@
 import { isValidBookRotation } from "./library-motion.js";
 import { libraryPreferences, validLibraryPreferences } from "./mobile-library.js";
-export function serializeLibrary({ lib, wall, caseC, lights, angle, libraryPreferences: preferences }) {
-  return JSON.stringify({ version: 1, lib, wall, caseC, lights, angle, libraryPreferences: libraryPreferences(preferences) });
+export function serializeLibrary({ lib, wall, caseC, lights, libraryPreferences: preferences }) {
+  return JSON.stringify({ version: 1, lib, wall, caseC, lights, libraryPreferences: libraryPreferences(preferences) });
 }
 
 // Validate browser data before it enters the live preview state.
@@ -24,5 +24,5 @@ export function isValidLibrarySnapshot(saved, { decorations, walls, cases, light
   return booksValid && Number.isInteger(saved.wall) && !!walls[saved.wall] &&
     Number.isInteger(saved.caseC) && !!cases[saved.caseC] &&
     (saved.lights === "off" || Object.hasOwn(lights, saved.lights)) &&
-    Number.isFinite(saved.angle) && Math.abs(saved.angle) <= 40;
+    (saved.angle === undefined || (Number.isFinite(saved.angle) && Math.abs(saved.angle) <= 40));
 }

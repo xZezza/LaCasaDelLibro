@@ -35,6 +35,15 @@ test('crowded, short and scrolled shelves suppress a visit rather than overlap b
   assert.equal(shelfGuestPosition([], {maxScale}),null);
 });
 
+test('large shelf visitors fit a narrow clear stretch with room for the label and arrival',()=>{
+  const gap = { left: 300, right: 585, occupiedRight: 300, top: 40, bottom: 275 };
+  const position = shelfGuestPosition([gap], { size: 152, maxScale });
+  assert.ok(position && position.size > 100 && position.size < 152);
+  const overhang = position.size * 1.2 / 2;
+  assert.ok(position.left - overhang - 12 >= gap.left + 12 - 1e-6);
+  assert.ok(position.left + position.size + overhang + 12 <= gap.right - 12 + 1e-6);
+});
+
 test('visits choose a safe shelf and return to a safe position after rearranging items',()=>{
   const rows=[row,{...row,top:190,bottom:318,occupiedRight:600}];
   const first=shelfGuestPosition(rows,{maxScale});

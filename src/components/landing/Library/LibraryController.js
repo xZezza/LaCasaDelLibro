@@ -1,32 +1,33 @@
 import React from "react";
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import { illustratedColour } from "../../../data/landing/library-art.js";
-import { BRIGHT, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../../data/landing/library.js";
-import { bookRotation, bookBounds, LIBRARY_PRESENTATION_SCALE } from "../../../lib/library-motion.js";
+import { WALLS, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../../data/landing/library.js";
+import { SHELF_LABELS } from "../../../data/landing/mobile-library.js";
+import { bookFacing, bookBounds, LIBRARY_BOOK_PERSPECTIVE, LIBRARY_PRESENTATION_SCALE } from "../../../lib/library-motion.js";
 import { serializeLibrary, isValidLibrarySnapshot } from "../../../lib/library-storage.js";
-import { libraryPreferences } from "../../../lib/mobile-library.js";
+import { libraryPreferences, twoShelfLibrary } from "../../../lib/mobile-library.js";
 
 const STORAGE_KEY = "the-salon-library-layout-v1";
+const DEFAULT_LIBRARY = twoShelfLibrary(LIB).lib;
+const SHELF_HEIGHT = 213;
 
 export default class LibraryController extends React.Component {
   state = {
     savedLayoutSignature: serializeLibrary({
-      lib: LIB,
+      lib: DEFAULT_LIBRARY,
       wall: 0,
       caseC: 0,
       lights: "warm",
-      angle: -10,
     }),
     libOpen: false,
-    q: "",
-    qOpen: false,
     toast: "",
     expanded: {},
-    lib: LIB,
+    lib: DEFAULT_LIBRARY,
     wall: 0,
     caseC: 0,
     lights: "warm",
     sel: null,
-    angle: -10,
+    shelfHeight: SHELF_HEIGHT,
   };
 
   componentDidMount() {
@@ -47,28 +48,39 @@ export default class LibraryController extends React.Component {
           ) + 1;
         libraryIds.book = Math.max(libraryIds.book, nextId("n"));
         libraryIds.decoration = Math.max(libraryIds.decoration, nextId("d"));
-        const lib = saved.lib.map(book => book.deco ? book : { ...book, status: book.status ?? book.shelf });
+        const { lib: savedItems, preferences } = twoShelfLibrary(saved.lib, saved.libraryPreferences);
+        // Former flat and hand-rotated books open upright without rewriting the saved snapshot.
+        const lib = savedItems.map(({ rotation, ...item }) => item.mode === "lying" ? { ...item, mode: "spine" } : item);
         this.setState({
-          savedLayoutSignature: serializeLibrary({ ...saved, lib }),
+          savedLayoutSignature: serializeLibrary({ ...saved, lib, libraryPreferences: preferences }),
           lib,
-          libraryPreferences: libraryPreferences(saved.libraryPreferences),
+          libraryPreferences: preferences,
           wall: saved.wall,
           caseC: saved.caseC,
           lights: saved.lights,
-          angle: saved.angle,
         });
       }
     } catch {
       /* A disabled store or older snapshot leaves the demo usable. */
     }
+    this.fitShelves();
+    window.addEventListener("resize", this.fitShelves);
     window.addEventListener("keydown", this.handleEscape);
   }
 
   componentWillUnmount() {
     clearTimeout(this._saveConfirmationTimer);
-    clearTimeout(this._toastT);
+    window.removeEventListener("resize", this.fitShelves);
     window.removeEventListener("keydown", this.handleEscape);
   }
+
+  fitShelves = () => {
+    // Keep headers and room controls at reading size. Only the shelf scene adapts to the viewport height.
+    const shelfHeight = window.matchMedia(MEDIA_QUERIES.phone).matches
+      ? SHELF_HEIGHT
+      : Math.max(144, Math.min(SHELF_HEIGHT, Math.floor((window.innerHeight - 336) / 2)));
+    this.setState(current => current.shelfHeight === shelfHeight ? null : { shelfHeight });
+  };
 
   handleEscape = (event) => {
     if (event.key !== "Escape" || event.defaultPrevented || !this.state.libOpen || document.querySelector(".character-sheet[open]")) return;
@@ -119,8 +131,8 @@ export default class LibraryController extends React.Component {
       return;
     }
     if (shelf == null) {
-      const cnt = [0, 1, 2].map(
-        (s) => this.state.lib.filter((b) => b.shelf === s).length,
+      const cnt = SHELF_LABELS.map(
+        (_, s) => this.state.lib.filter((b) => b.shelf === s && b.onShelf !== false).length,
       );
       shelf = cnt.indexOf(Math.min(...cnt));
     }
@@ -139,6 +151,7 @@ export default class LibraryController extends React.Component {
     });
   }
   move(id, shelf, beforeId) {
+    if (!Number.isInteger(shelf) || shelf < 0 || shelf >= SHELF_LABELS.length) return;
     if (this._newType) {
       const t = this._newType;
       this._newType = null;
@@ -168,7 +181,7 @@ export default class LibraryController extends React.Component {
       if (i < 0) return lib;
       const sh = lib[i].shelf;
       let j = i + dir;
-      while (j >= 0 && j < lib.length && lib[j].shelf !== sh) j += dir;
+      while (j >= 0 && j < lib.length && (lib[j].shelf !== sh || lib[j].onShelf === false)) j += dir;
       if (j >= 0 && j < lib.length) [lib[i], lib[j]] = [lib[j], lib[i]];
       return lib;
     });
@@ -177,25 +190,25 @@ export default class LibraryController extends React.Component {
     const b = this.state.lib.find((x) => x.id === this.state.sel);
     if (!b) return;
     const s = b.shelf + dir;
-    if (s < 0 || s > 2) return;
+    if (s < 0 || s >= SHELF_LABELS.length) return;
     this.move(b.id, s, null);
   }
   sortBy(fn) {
     this.setLib((lib) =>
-      [0, 1, 2].flatMap((s) => lib.filter((b) => b.shelf === s).sort(fn)),
+      SHELF_LABELS.flatMap((_, s) => lib.filter((b) => b.shelf === s).sort(fn)),
     );
   }
   bookVals(b) {
+    const presentationScale = LIBRARY_PRESENTATION_SCALE * this.state.shelfHeight / SHELF_HEIGHT;
     if (b.deco) {
       const d = DECOS[b.deco],
-        displayW = d.w * LIBRARY_PRESENTATION_SCALE, displayH = d.h * LIBRARY_PRESENTATION_SCALE,
+        scale = presentationScale * (d.pet || b.deco === "dragon" ? 1.24 : 0.68),
+        displayW = d.w * scale, displayH = d.h * scale,
         sel = this.state.sel === b.id;
       return {
         ...b,
         isBook: false,
         isDeco: true,
-        objectW: displayW, objectH: displayH,
-        rotation: { x: 0, y: 0, z: 0 },
         fw: displayW,
         fh: displayH,
         bgImg: `url("${d.src}")`,
@@ -223,14 +236,10 @@ export default class LibraryController extends React.Component {
         },
       };
     }
-    const { mode } = b,
-      T = b.T * 1.92 * LIBRARY_PRESENTATION_SCALE, H = b.H * 1.28 * LIBRARY_PRESENTATION_SCALE, D = b.D * 1.4 * LIBRARY_PRESENTATION_SCALE,
-      a = this.state.angle,
+    const T = b.T * 1.92 * presentationScale, H = b.H * 1.28 * presentationScale, D = b.D * 1.4 * presentationScale,
       sel = this.state.sel === b.id;
-    const rotation = bookRotation(b);
-    const bounds = b.rotation ? bookBounds(T, H, D, rotation, a, 700) : null;
-    const fw = bounds ? bounds.width : mode === "spine" ? T : mode === "cover" ? D : H;
-    const fh = bounds ? bounds.height : mode === "lying" ? T : H;
+    const facing = bookFacing(b.mode);
+    const bounds = bookBounds(T, H, D, facing, LIBRARY_BOOK_PERSPECTIVE);
     const drag = (e) => {
       this._newType = null;
       this._drag = b.id;
@@ -243,12 +252,11 @@ export default class LibraryController extends React.Component {
       ...b,
       isBook: true,
       isDeco: false,
-      T, H, D, rotation,
-      offsetX: bounds?.offsetX || 0, offsetY: bounds?.offsetY || 0,
-      fw,
-      fh,
+      T, H, D, facing,
+      offsetX: bounds.offsetX,
+      fw: bounds.width,
+      fh: bounds.height,
       selected: sel,
-      angle: a,
       dragStart: drag,
       over: (e) => e.preventDefault(),
       drop: (e) => {
@@ -265,33 +273,23 @@ export default class LibraryController extends React.Component {
   }
   renderVals() {
     const libraryDirty = serializeLibrary(this.state) !== this.state.savedLayoutSignature;
-    const shelves = [0, 1, 2].map((s) => {
-      const segs = [];
-      this.state.lib
-        .filter((b) => b.shelf === s && b.onShelf !== false)
-        .forEach((b) => {
-          const v = this.bookVals(b),
-            last = segs[segs.length - 1];
-          if (b.mode === "lying" && last && last.lying) last.books.unshift(v);
-          else segs.push({ lying: b.mode === "lying", books: [v] });
-        });
-      const CAP = 9,
-        exp = !!this.state.expanded[s],
-        over = segs.length > CAP;
-      const hidden = over && !exp ? segs.length - (CAP - 1) : 0;
-      const shown = hidden ? segs.slice(0, CAP - 1) : segs;
+    const shelves = SHELF_LABELS.map((label, s) => {
+      const items = this.state.lib.filter(book => book.shelf === s && book.onShelf !== false);
+      const cap = 9;
+      const expanded = !!this.state.expanded[s];
+      const canFold = items.length > cap;
+      const shown = (canFold && !expanded ? items.slice(0, cap - 1) : items).map(book => this.bookVals(book));
       const toggle = () =>
         this.setState((st) => ({
           expanded: { ...st.expanded, [s]: !st.expanded[s] },
         }));
       return {
-        label: SHELVES[s],
-        segs: shown,
-        hasMore: hidden > 0,
-        more: segs.slice(CAP - 1).reduce((a, g) => a + g.books.length, 0),
-        stubH: 96,
-        canFold: over,
-        toggleLabel: exp ? "fold away" : "show all",
+        label,
+        height: Math.max(this.state.shelfHeight, ...shown.map(book => book.fh + 8)),
+        items: shown,
+        more: items.length - (cap - 1),
+        canFold,
+        expanded,
         toggle,
         lightsMode: this.state.lights,
         over: (e) => e.preventDefault(),
@@ -303,16 +301,17 @@ export default class LibraryController extends React.Component {
       };
     });
     const selB = this.state.lib.find((b) => b.id === this.state.sel);
+    const selectedRow = selB ? this.state.lib.filter(book => book.shelf === selB.shelf && book.onShelf !== false) : [];
+    const selectedIndex = selectedRow.indexOf(selB);
     const setMode = (mode) => () =>
       this.setLib((lib) =>
-        lib.map((b) => (b.id === this.state.sel ? { ...b, mode, rotation: undefined } : b)),
+        lib.map((b) => (b.id === this.state.sel ? { ...b, mode } : b)),
       );
     const modes = [
       ["spine", "Spine out"],
       ["cover", "Cover out"],
-      ["lying", "Lay flat"],
     ].map(([k, name]) => {
-      const on = selB && !selB.rotation && selB.mode === k;
+      const on = selB?.mode === k;
       return {
         name,
         run: setMode(k),
@@ -324,27 +323,22 @@ export default class LibraryController extends React.Component {
       saveLibrary: this.saveLibrary,
       mobileLibrary: { lib: this.state.lib, preferences: libraryPreferences(this.state.libraryPreferences), lights: this.state.lights },
       updateMobileLibrary: this.updateMobileLibrary,
-      commitBookMotion: (id, target) => {
-        if (target.rotation) {
-          this.setLib(lib => lib.map(b => b.id === id && !b.deco ? { ...b, rotation: { ...target.rotation } } : b));
-        } else {
-          this.move(id, target.shelf, target.beforeId);
-        }
+      dropLibraryItem: (id, target) => {
+        this.move(id, target.shelf, target.beforeId);
         this.setState({ sel: id });
       },
       discardLibrary: () => {
         clearTimeout(this._saveConfirmationTimer);
-        clearTimeout(this._toastT);
-        this._drag = null;
+            this._drag = null;
         this._newType = null;
         this.setState((current) => {
           const snapshot = JSON.parse(current.savedLayoutSignature);
           return {
             lib: snapshot.lib, wall: snapshot.wall, caseC: snapshot.caseC,
-            lights: snapshot.lights, angle: snapshot.angle,
+            lights: snapshot.lights,
             libraryPreferences: libraryPreferences(snapshot.libraryPreferences),
             sel: null, toast: "", saveMessage: "", saveError: false,
-            q: "", qOpen: false, expanded: {},
+            expanded: {},
           };
         });
       },
@@ -356,8 +350,6 @@ export default class LibraryController extends React.Component {
         e.stopPropagation();
         if (e.target === e.currentTarget) this.setState({ sel: null });
       },
-      angle: this.state.angle,
-      setAngle: (e) => this.setState({ angle: +e.target.value }),
       sorts: [
         {
           name: "Colour",
@@ -427,98 +419,17 @@ export default class LibraryController extends React.Component {
           sel: null,
         })),
       deselect: () => this.setState({ sel: null }),
-      q: this.state.q,
-      hasQ: !!this.state.q,
-      setQ: (e) => this.setState({ q: e.target.value, qOpen: true }),
-      focusQ: () => this.setState({ qOpen: true }),
-      clearQ: () => this.setState({ q: "", qOpen: false }),
-      ...(() => {
-        const q = this.state.q.trim().toLowerCase();
-        if (!q || !this.state.qOpen)
-          return { showResults: false, results: [], noResults: false };
-        const pool = [
-          ...CATALOG,
-          ...LIB.filter((b) => !b.deco).map((b) => [b.t, ""]),
-        ].filter((x, i, arr) => arr.findIndex((y) => y[0] === x[0]) === i);
-        const found = pool
-          .filter(
-            ([t, a]) =>
-              t.toLowerCase().includes(q) || a.toLowerCase().includes(q),
-          )
-          .slice(0, 5);
-        return {
-          showResults: true,
-          noResults: !found.length,
-          results: found.map(([t, a], i) => {
-            const [hh, ll] = BRIGHT[(t.length * 3 + i) % BRIGHT.length];
-            const owned = this.state.lib.find((b) => b.t === t);
-            return {
-              t,
-              a: a || "In your library",
-              inLib: owned && a ? " · on your shelf" : "",
-              bg: `oklch(${ll} 0.15 ${hh})`,
-              adds: [
-                [0, "Read", "finished"],
-                [1, "Reading", "reading now"],
-                [2, "To read", "still waiting for me"],
-              ].map(([sh, name, label]) => ({
-                name,
-                label,
-                run: () => {
-                  clearTimeout(this._toastT);
-                  this.setState((st) => {
-                    let lib = st.lib.map((b) => ({ ...b }));
-                    const ex = lib.findIndex((b) => b.t === t);
-                    if (ex >= 0) {
-                      const [b] = lib.splice(ex, 1);
-                      b.shelf = sh;
-                      b.status = sh;
-                      if (b.onShelf === false) b.onShelf = true;
-                      lib.push(b);
-                    } else
-                      lib.push({
-                        id: "n" + libraryIds.book++,
-                        t,
-                        shelf: sh,
-                        status: sh,
-                        h: hh,
-                        l: ll,
-                        c: 0.15,
-                        T: 18 + ((t.length * 5) % 10),
-                        H: 92 + ((t.length * 11) % 28),
-                        D: 66,
-                        mode: "spine",
-                      });
-                    return {
-                      lib,
-                      q: "",
-                      qOpen: false,
-                      toast: `“${t}” added to ${label} ✦`,
-                      expanded: { ...st.expanded, [sh]: true },
-                    };
-                  });
-                  this._toastT = setTimeout(
-                    () => this.setState({ toast: "" }),
-                    3200,
-                  );
-                },
-              })),
-            };
-          }),
-        };
-      })(),
       toast: this.state.toast,
       hasToast: !!this.state.toast,
       shelves,
       hasSel: !!selB,
-      noSel: !selB,
       selTitle: selB ? selB.t : "",
       modes,
       moves: [
-        { icon: "←", label: "Move left", run: () => this.nudge(-1) },
-        { icon: "→", label: "Move right", run: () => this.nudge(1) },
-        { icon: "↑", label: "Shelf above", run: () => this.shelfJump(-1) },
-        { icon: "↓", label: "Shelf below", run: () => this.shelfJump(1) },
+        { icon: "←", label: "Move left", disabled: selectedIndex <= 0, run: () => this.nudge(-1) },
+        { icon: "→", label: "Move right", disabled: selectedIndex < 0 || selectedIndex === selectedRow.length - 1, run: () => this.nudge(1) },
+        { icon: "↑", label: "Shelf above", disabled: !selB || selB.shelf === 0, run: () => this.shelfJump(-1) },
+        { icon: "↓", label: "Shelf below", disabled: !selB || selB.shelf === SHELF_LABELS.length - 1, run: () => this.shelfJump(1) },
       ],
     };
   }

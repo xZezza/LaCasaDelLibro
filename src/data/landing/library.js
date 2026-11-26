@@ -92,7 +92,6 @@ const WALLS = [
     bg: "radial-gradient(circle, oklch(0.97 0.05 90) 0 1px, transparent 1.7px) 0 0 / 36px 36px, radial-gradient(circle, oklch(0.9 0.1 80) 0 1.3px, transparent 2.2px) 18px 23px / 52px 52px, radial-gradient(ellipse 50% 45% at 82% 15%, oklch(0.75 0.1 80 / 0.35), transparent 70%), linear-gradient(180deg, oklch(0.45 0.1 270), oklch(0.34 0.09 290))",
   },
 ];
-const SHELVES = ["finished", "reading now", "still waiting for me"];
 const CATALOG = [
   ["A Court of Mist and Fury", "Sarah J. Maas"],
   ["A Court of Wings and Ruin", "Sarah J. Maas"],
@@ -164,7 +163,7 @@ const LIB = [
     H: 92 + ((t.length * 11 + i * 13) % 28),
     D: 66,
     mode:
-      i >= 6 && i <= 8 || i === 11 ? "cover" : i === 13 || i === 14 ? "lying" : "spine",
+      i >= 6 && i <= 8 || i === 11 ? "cover" : "spine",
   };
 });
 
@@ -262,4 +261,6 @@ const CASES = [
 }));
 const LIGHTS = { warm: true, pastel: true };
 
-export { READ, BRIGHT, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds };
+export const BOOK_SEARCH_NOTE = "Book search is coming in the app";
+
+export { READ, WOODS, WALLS, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds };

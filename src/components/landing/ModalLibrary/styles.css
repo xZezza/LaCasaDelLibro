@@ -18,136 +18,10 @@
     background: light-dark(oklch(0.25 0.035 305 / 0.08), oklch(0.92 0.02 85 / 0.08));
   }
 
-  .salon-s205 {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
-  }
-
   .salon-s206 {
     font-family: "Cormorant Garamond", serif;
     font-size: clamp(28px, 3vw, 36px);
     line-height: 1;
-  }
-
-  .salon-s207 {
-    font-family: "Kalam", cursive;
-    font-weight: 300;
-    font-size: 15px;
-    color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
-  }
-
-  .salon-s208 {
-    margin-top: 4px;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .salon-s209 {
-    flex: none;
-  }
-
-  .salon-s210 {
-    flex: 1;
-    min-width: 0;
-    border: 0;
-    outline: none;
-    background: transparent;
-    font: 400 14px "Jost",
-      sans-serif;
-    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
-  }
-
-  .salon-s211 {
-    flex: none;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
-    font-size: 16px;
-    padding: 4px;
-  }
-
-  .salon-s212 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 14px;
-    height: 44px;
-    border-radius: 999px;
-    background: light-dark(oklch(0.99 0.006 85), oklch(0.139 0.028 15));
-    box-shadow: inset 0 0 0 1px light-dark(oklch(0.25 0.035 305 / 0.14), oklch(0.92 0.02 85 / 0.14)),
-      0 6px 16px -10px light-dark(oklch(0.25 0.035 305 / 0.3), oklch(0.92 0.02 85 / 0.3));
-  }
-
-  .salon-s213 {
-    width: 22px;
-    height: 32px;
-    border-radius: 2px 3px 3px 2px;
-  }
-
-  .salon-s214 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    line-height: 1.1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .salon-s215 {
-    font-size: 12px;
-    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
-  }
-
-  .salon-s216 {
-    cursor: pointer;
-    font: 500 11px "Jost",
-      sans-serif;
-    white-space: nowrap;
-  }
-
-  .salon-s217 {
-    display: flex;
-    gap: 4px;
-  }
-
-  .salon-s218 {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 12px;
-    align-items: center;
-    padding: 8px 10px;
-    border-radius: 10px;
-  }
-
-  .salon-hover236:hover {
-    background: light-dark(oklch(0.25 0.035 305 / 0.04), oklch(0.92 0.02 85 / 0.04));
-  }
-
-  .salon-s219 {
-    padding: 12px;
-    font-size: 13px;
-    color: light-dark(oklch(0.42 0.03 305), oklch(0.75 0.02 85));
-  }
-
-  .salon-s220 {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50px;
-    z-index: 20;
-    padding: 6px;
-    border-radius: 16px;
-    background: light-dark(oklch(0.99 0.006 85), oklch(0.139 0.028 15));
-    box-shadow: 0 24px 50px -18px light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45)),
-      inset 0 0 0 1px light-dark(oklch(0.25 0.035 305 / 0.08), oklch(0.92 0.02 85 / 0.08));
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
   }
 
   .salon-s221 {
@@ -156,12 +30,6 @@
     font-weight: 300;
     font-size: 15px;
     color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
-  }
-
-  .salon-s222 {
-    position: relative;
-    margin-top: 14px;
-    max-width: 460px;
   }
 
   .salon-s223 {
@@ -190,14 +58,6 @@
     align-items: center;
     justify-content: center;
     backface-visibility: hidden;
-  }
-
-  .salon-s226 {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: light-dark(oklch(0.82 0.11 78), oklch(0.86 0.11 78.0));
-    display: block;
   }
 
   .salon-s227 {
@@ -244,6 +104,7 @@
   .salon-s231 {
     position: absolute;
     left: 0;
+    backface-visibility: hidden;
     background: repeating-linear-gradient(
       0deg,
       light-dark(oklch(0.9 0.02 85), oklch(0.274 0.028 15)) 0 2px,
@@ -253,8 +114,8 @@
 
   .salon-s232 {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: calc(50% - var(--book-offset-x));
+    bottom: 0;
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     pointer-events: none;
@@ -263,7 +124,8 @@
   .salon-s233 {
     position: relative;
     flex: none;
-    perspective: 700px;
+    perspective: var(--book-perspective);
+    perspective-origin: calc(50% - var(--book-offset-x)) 100%;
     cursor: grab;
     transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
       height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -289,63 +151,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-  }
-
-  .salon-s237 {
-    position: absolute;
-    left: 8px;
-    bottom: 0;
-    width: 30px;
-    height: 100%;
-    border-radius: 2px;
-    background: oklch(0.55 0.04 300 / 0.35);
-    transform: rotate(6deg);
-    transform-origin: bottom left;
-  }
-
-  .salon-s238 {
-    position: absolute;
-    left: 4px;
-    bottom: 0;
-    width: 30px;
-    height: 100%;
-    border-radius: 2px;
-    background: oklch(0.6 0.05 300 / 0.5);
-    transform: rotate(3deg);
-    transform-origin: bottom left;
-  }
-
-  .salon-s239 {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 30px;
-    height: 100%;
-    border-radius: 2px;
-    background: light-dark(oklch(0.97 0.012 85), oklch(0.157 0.028 15));
-    box-shadow: inset 0 0 0 1px light-dark(oklch(0.25 0.035 305 / 0.2), oklch(0.92 0.02 85 / 0.2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: 600 12px "Jost",
-      sans-serif;
-    color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
-  }
-
-  .salon-s240 {
-    flex: none;
-    align-self: flex-end;
-    margin-left: 6px;
-    cursor: pointer;
-    width: 46px;
-    border: 0;
-    padding: 0;
-    position: relative;
-    background: transparent;
-  }
-
-  .salon-hover259:hover {
-    transform: translateY(-3px);
   }
 
   .salon-s241 {
@@ -549,11 +354,6 @@
       sans-serif;
   }
 
-  .salon-s264 {
-    width: 100%;
-    accent-color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
-  }
-
   .salon-s265 {
     flex: 1 1 270px;
     max-width: 100%;
@@ -636,14 +436,6 @@
     }
   }
 
-  @media (width > 960px) {
-    .salon-library-dialog {
-      width: 1140px;
-      max-width: none;
-      max-height: none;
-      zoom: var(--library-scale, 0.8);
-    }
-  }
 
   .salon-s235[data-companion="true"] {
     position: relative;
@@ -797,11 +589,6 @@
       border-top: 1px solid light-dark(oklch(0.25 0.035 305 / 0.08), oklch(0.92 0.02 85 / 0.08));
     }
 
-    .salon-s208 {
-      flex-wrap: wrap;
-      gap: 4px 12px;
-    }
-
     .salon-s255 {
       justify-content: flex-start;
     }
@@ -814,22 +601,10 @@
 
 @layer components {
   .salon-s233 {
-    width: var(--book-width);
-    height: var(--book-height);
     --book-paint: oklch(var(--book-lightness) var(--book-chroma) var(--book-hue));
   }
 
-  .salon-s233[data-mode="cover"] {
-    width: var(--book-depth);
-  }
-
-  .salon-s233[data-mode="lying"] {
-    width: var(--book-height);
-    height: var(--book-width);
-  }
-
   .salon-s233[data-selected="true"] {
-    transform: translateY(-10px);
     box-shadow: 0 14px 0 -11px light-dark(oklch(.82 .11 78), oklch(0.86 0.11 78.0));
   }
 
@@ -837,16 +612,6 @@
     width: var(--book-width);
     height: var(--book-height);
     margin-left: calc(var(--book-width)/-2);
-    margin-top: calc(var(--book-height)/-2);
-    transform: rotateX(-7deg) rotateY(var(--book-angle));
-  }
-
-  [data-mode="cover"] > .salon-s232 {
-    transform: rotateX(-7deg) rotateY(calc(var(--book-angle) - 90deg));
-  }
-
-  [data-mode="lying"] > .salon-s232 {
-    transform: rotateX(-7deg) rotateY(var(--book-angle)) rotateZ(90deg);
   }
 
   .salon-s225,.salon-s230 {
@@ -925,7 +690,6 @@
 .salon-s224 {writing-mode:horizontal-tb;transform:none;white-space:normal;text-align:center;line-height:1.1;letter-spacing:0;font-size:10px;padding:0 3px;max-height:66%;}
 .salon-s227 {font-size:14px;line-height:1.15;}
 .salon-s228 {gap:12px;}
-.salon-s226 {background:transparent;border:1px solid #d9b76a;width:16px;height:16px;box-shadow:inset 0 0 0 3px #d9b76a30;}
 }
 
 /* Illustrated bindings: face decoration follows existing 3D planes, never the draggable wrapper. */
@@ -934,7 +698,6 @@
 .salon-s228::after {background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20300%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d8b96f%22%20stroke-width%3D%221.3%22%3E%3Crect%20x%3D%229%22%20y%3D%229%22%20width%3D%22182%22%20height%3D%22282%22%20rx%3D%223%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2215%22%20width%3D%22170%22%20height%3D%22270%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M30%20118Q5%2040%2065%2027M170%20118Q195%2040%20135%2027M30%20182Q5%20260%2065%20273M170%20182Q195%20260%20135%20273%22%2F%3E%3Cpath%20d%3D%22M28%2065l-10%20-9%202%2015%208%20-6%204%20-16%206%2011%20-10%205M40%2043l-3%20-12%2012%206%20-9%206M172%2065l10%20-9%20-2%2015%20-8%20-6%20-4%20-16%20-6%2011%2010%205M160%2043l3%20-12%20-12%206%209%206M28%20235l-10%209%202%20-15%208%206%204%2016%206%20-11%20-10%20-5M172%20235l10%209%20-2%20-15%20-8%206%20-4%2016%20-6%20-11%2010%20-5%22%2F%3E%3Cpath%20d%3D%22M100%2028v20m-10%20-10h20M100%20252v20m-10%20-10h20%22%2F%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%2266%22%20r%3D%2213%22%2F%3E%3Cpath%20d%3D%22M107%2055a13%2013%200%201%200%200%2022%2015%2015%200%200%201%200%20-22Z%22%20fill%3D%22%23d8b96f%22%2F%3E%3Cpath%20d%3D%22M50%20266l28%20-35%2022%2024%2021%20-30%2031%2041Z%22%2F%3E%3Cpath%20d%3D%22M78%20231l-3%2015%208%20-3%2017%2012M121%20225l-5%2018%208%20-5%209%208%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");opacity:.85;}
 .salon-s228 {padding:18px 11px;gap:8px;}
 .salon-s227 {max-width:100%;font-size:13px;line-height:1.08;text-wrap:balance;}
-.salon-s226 {margin-bottom:14px;opacity:0;}
 .salon-s228::before,.salon-s225::before {opacity:.8;}
 .salon-s231 {background:repeating-linear-gradient(0deg,#e9dcc3 0 1px,#b6a78d 1px 1.5px,#e1d1b3 1.5px 3px);}
 .salon-s230 {background:repeating-linear-gradient(90deg,#e9dcc3 0 1px,#b6a78d 1px 1.5px,#e1d1b3 1.5px 3px);}
@@ -945,39 +708,7 @@
 .salon-s243 {font-style:italic;}
 }
 
-@layer refinements {.salon-s233[data-edition="0"] {--book-paint:#782e3d;}}
-@layer refinements {.salon-s233[data-edition="1"] {--book-paint:#394536;}}
-@layer refinements {.salon-s233[data-edition="2"] {--book-paint:#a57727;}}
-@layer refinements {.salon-s233[data-edition="3"] {--book-paint:#2b3c50;}}
-@layer refinements {.salon-s233[data-edition="4"] {--book-paint:#d5c6a5;}}
-@layer refinements {.salon-s233[data-edition="5"] {--book-paint:#54314e;}}
-@layer refinements {.salon-s233[data-edition="6"] {--book-paint:#8c7197;}}
 @layer refinements {
-.salon-s233[data-edition="0"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:903.5294% 243.8095%;background-position:13.9092% 51.3245%;opacity:1;}
-.salon-s233[data-edition="0"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-.salon-s233[data-edition="1"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:1113.0435% 246.7470%;background-position:26.4664% 52.2167%;opacity:1;}
-.salon-s233[data-edition="1"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-.salon-s233[data-edition="2"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:1146.2687% 246.7470%;background-position:36.8759% 52.2167%;opacity:1;}
-.salon-s233[data-edition="2"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-.salon-s233[data-edition="3"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:1190.6977% 247.3430%;background-position:46.9083% 52.2951%;opacity:1;}
-.salon-s233[data-edition="3"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-.salon-s233[data-edition="4"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:1219.0476% 247.3430%;background-position:56.5957% 52.2951%;opacity:1;}
-.salon-s233[data-edition="4"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-.salon-s233[data-edition="5"] .salon-s225::after {background-image:url('/images/decorations/library-editorial/approved-reference.png');background-size:1097.1429% 250.3667%;background-position:66.9054% 52.6829%;opacity:1;}
-.salon-s233[data-edition="5"] .salon-s224 {color:transparent;text-shadow:none;}
-}
-@layer refinements {
-  .salon-s233[data-edition="-1"] {--book-paint:oklch(clamp(.32,var(--book-lightness),.55) calc(var(--book-chroma)*.55) var(--book-hue));}
   .salon-s242::after {background-size:192% 2560%;background-position:47.55% 75.81%;}
 }
 
@@ -1003,7 +734,6 @@
 .salon-library-dialog .salon-s225::before {opacity:.55;}
 .salon-library-dialog .salon-s225::after {background-size:100% 100%;}
 .salon-library-dialog .salon-s228 {justify-content:flex-start;padding:21px 12px 10px;gap:0;background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-blend-mode:normal;box-shadow:inset 2px 0 4px #0008,inset -1px 0 1px #fff5;}
-.salon-library-dialog .salon-s228::before,.salon-library-dialog .salon-s228::after,.salon-library-dialog .salon-s226 {display:none;}
 .salon-library-dialog .salon-s227 {font-family:"Cormorant Garamond",serif;font-size:18px;line-height:1.05;color:#f5dfa7;text-shadow:0 1px 2px #261711c0;max-height:42%;overflow:hidden;}
 .salon-library-dialog .salon-s229 {background:var(--book-paint);box-shadow:inset 0 0 0 3px #d7ba7333;}
 .salon-library-dialog .salon-s235[data-deco] > .salon-s234,.salon-library-dialog .salon-s261[data-deco] > .salon-s234 {background-repeat:no-repeat;}
@@ -1011,33 +741,21 @@
 
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="0"] {--book-paint:#71313b;}
-.salon-library-dialog .salon-s233[data-binding="0"] .salon-s228 {background-position:0% 0%;}
-.salon-library-dialog .salon-s233[data-binding="0"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:0% 0%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="1"] {--book-paint:#3d4b36;}
-.salon-library-dialog .salon-s233[data-binding="1"] .salon-s228 {background-position:50% 0%;}
-.salon-library-dialog .salon-s233[data-binding="1"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:50% 0%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="2"] {--book-paint:#996b24;}
-.salon-library-dialog .salon-s233[data-binding="2"] .salon-s228 {background-position:100% 0%;}
-.salon-library-dialog .salon-s233[data-binding="2"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:100% 0%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="3"] {--book-paint:#28394e;}
-.salon-library-dialog .salon-s233[data-binding="3"] .salon-s228 {background-position:0% 100%;}
-.salon-library-dialog .salon-s233[data-binding="3"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:0% 100%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="4"] {--book-paint:#e0cba7;}
-.salon-library-dialog .salon-s233[data-binding="4"] .salon-s228 {background-position:50% 100%;}
-.salon-library-dialog .salon-s233[data-binding="4"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:50% 100%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="5"] {--book-paint:#754f77;}
-.salon-library-dialog .salon-s233[data-binding="5"] .salon-s228 {background-position:100% 100%;}
-.salon-library-dialog .salon-s233[data-binding="5"] .salon-s225::after {background-image:url('/images/optimized/decorations/library-editorial/binding-atlas.webp');background-size:300% 200%;background-position:100% 100%;opacity:.65;}
 }
 @layer refinements {
 .salon-library-dialog .salon-s233[data-binding="4"] .salon-s224,.salon-library-dialog .salon-s233[data-binding="4"] .salon-s227 {color:#624032;text-shadow:0 1px 1px #fff6;}
@@ -1093,10 +811,6 @@
 }
 
 @layer refinements {
-.salon-library-dialog [data-shelf="0"] .salon-s236:last-child:has(> .salon-s235[data-deco]),
-.salon-library-dialog [data-shelf="1"] .salon-s236:last-child:has(> .salon-s235[data-deco]) {margin-left:auto;}
-
-
 }
 
 @layer refinements {
@@ -1113,8 +827,7 @@
 /* Readable text, brush markers for text actions, and a clean filled save action. */
 @layer refinements {
 .salon-library-dialog {--library-ink:light-dark(oklch(.25 .035 305),oklch(.92 .02 85));--library-muted:light-dark(#736279,#c5b8cd);color:var(--library-ink);}
-.salon-library-dialog .salon-s205,.salon-library-dialog .salon-s207,.salon-library-dialog .salon-s127,.salon-library-dialog .library-companion-hint {color:var(--library-muted);}
-.salon-library-dialog .salon-s210::placeholder {color:var(--library-muted);opacity:1;}
+.salon-library-dialog .salon-s127,.salon-library-dialog .library-companion-hint {color:var(--library-muted);}
 .salon-library-dialog .library-more-treasures {border-bottom:0;min-height:32px;color:var(--library-ink);}
 .salon-library-dialog .library-save-button .salon-marker-text::before {display:none;}
 .salon-library-dialog .library-save-button:hover:not(:disabled) {filter:brightness(1.12);}
@@ -1171,8 +884,6 @@
     font-size: 14px;
   }
 
-  .salon-library-dialog .salon-s215,
-  .salon-library-dialog .salon-s219,
   .salon-library-dialog .library-save-status,
   .salon-library-dialog .library-companion-hint {
     color: var(--library-muted);
@@ -1218,16 +929,14 @@
 
   .salon-library-dialog .library-discard-button {color: var(--library-ink);}
   .salon-library-dialog .library-save-status[data-error="true"] {color: light-dark(#913a39, #ffb5ac);}
-  .salon-library-dialog .salon-s264 {accent-color: light-dark(#634472, #d1afdf);}
 }
 
 /* Direct hand gestures: all books share the same grip and physical face geometry. */
 @layer refinements {
   .salon-library-dialog [data-book-id] {touch-action:none;user-select:none;-webkit-user-select:none;}
   .salon-library-dialog [data-book-id] > .salon-s232 {
-    transform:rotateX(var(--hand-x,-7deg)) rotateY(var(--hand-y)) rotateZ(var(--hand-z,0deg));
+    transform: rotateY(var(--book-facing));
   }
-  .salon-library-dialog [data-book-id][data-selected="true"] {transform:none;}
   .salon-library-dialog [data-in-hand] {cursor:grabbing;}
   .salon-library-dialog [data-hand-target="true"] {outline:2px dashed light-dark(#785284,#d3b2df);outline-offset:4px;}
   .library-book-bottom {position:absolute;left:0;top:calc((var(--book-height) - var(--book-depth))/2);width:var(--book-width);height:var(--book-depth);backface-visibility:hidden;transform:rotateX(-90deg) translateZ(calc(var(--book-height)/2));background:repeating-linear-gradient(90deg,#e9dcc3 0 1px,#b6a78d 1px 1.5px,#e1d1b3 1.5px 3px);box-shadow:inset 0 0 0 2px var(--book-paint);}
@@ -1240,14 +949,9 @@
 @layer refinements {
   .salon-library-dialog [data-hand-id] {touch-action:none;user-select:none;-webkit-user-select:none;}
   .salon-library-dialog [data-hand-id].salon-s235 {position:relative;transform:none;}
-  .salon-library-dialog [data-hand-id].salon-s235 > .salon-s234 {position:absolute;left:50%;bottom:0;width:var(--object-width);height:var(--object-height);transform:translateX(-50%) rotate(var(--object-z,0deg));transform-origin:center;}
-  .salon-library-dialog [data-hand-id].salon-s235[data-companion="true"]:hover > .salon-s234 {transform:translateX(-50%) rotate(var(--object-z,0deg)) scale(var(--visitor-hover-scale,1));transform-origin:center bottom;}
+  .salon-library-dialog [data-hand-id].salon-s235 > .salon-s234 {position:absolute;left:50%;bottom:0;width:var(--companion-width);height:var(--companion-height);transform:translateX(-50%);transform-origin:center;}
+  .salon-library-dialog [data-hand-id].salon-s235[data-companion="true"]:hover > .salon-s234 {transform:translateX(-50%) scale(var(--visitor-hover-scale,1));transform-origin:center bottom;}
   .library-hand-preview .salon-s235 {transition:none!important;filter:drop-shadow(5px 16px 9px #21122045);}
-}
-
-@layer refinements {
-  .salon-library-dialog [data-book-id] > .salon-s232 {left:calc(50% - var(--book-offset-x,0px));top:calc(50% - var(--book-offset-y,0px));}
-  .salon-library-dialog [data-hand-id].salon-s235 > .salon-s234 {bottom:calc((var(--object-bound-height) - var(--object-height))/2);}
 }
 
 /* Approved botanical objects, compact shelves and titles printed directly on cloth. */
@@ -1271,74 +975,339 @@
   .salon-library-dialog .salon-s227 {font-size:16px;overflow-wrap:anywhere;text-wrap:balance;}
 }
 
-/* A room-sized view, following the reference: never shrink the whole scene to fit. */
-@layer responsive {
-  @media (width > 960px) {
-    .salon-library-overlay {padding:16px;align-items:stretch;}
-    .salon-library-dialog {width:100%;max-width:1440px;max-height:calc(100dvh - 32px);zoom:1;overflow:auto;grid-template-columns:minmax(0,1fr) 280px;}
-    .salon-library-dialog .salon-s241 {height:260px;}
-  }
-}
-@layer refinements {
-}
-
-@layer responsive {
-  .salon-library-dialog.library-hand-preview {display:block;max-height:none;overflow:visible;}
-}
-
-/* A shared 30% enlargement fills the existing shelves without stretching the room. */
-@layer refinements {
-  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {font-size:18px;}
-  .salon-library-dialog .salon-s227 {font-size:20px;}
-}
-@layer responsive {
-  @media(max-width:960px) {.salon-library-dialog .salon-s241 {height:260px;}}
-}
-
-@layer refinements {
-  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {font-size:clamp(11px,calc(var(--book-width)*.20),18px);letter-spacing:.01em;overflow-wrap:normal;word-break:normal;}
-}
-
-/* Clear foil lettering on the cloth, with no printed backplate. */
-@layer refinements {
-  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {
-    writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;
-    font-size:20px;font-weight:600;line-height:1.1;letter-spacing:.015em;
-    max-height:84%;max-width:100%;overflow:hidden;background:none;padding:0;
-    color:#fff0c9;text-shadow:0 1px 2px #211309,0 0 2px #211309;
-  }
-  .salon-library-dialog .salon-s233[data-binding="4"] .salon-s224 {color:#44281e;text-shadow:0 1px 1px #fff8;}
-}
-@layer responsive {
-  @media(width > 960px) {
-    .salon-library-overlay {align-items:center;}
-    .salon-library-dialog {width:1440px;max-height:none;zoom:var(--library-scale,1);overflow:visible;}
-    .salon-library-dialog .salon-s256 {padding:16px 22px;gap:8px;}
-    .salon-library-dialog .salon-s223 {display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:24px;padding-right:0;}
-    .salon-library-dialog .salon-s205 {grid-column:1/-1;}
-    .salon-library-dialog .salon-s208 {gap:8px;}
-    .salon-library-dialog .salon-s206 {font-size:42px;}
-    .salon-library-dialog .salon-s207 {display:none;}
-    .salon-library-dialog .salon-s222 {margin-top:0;max-width:460px;}
-    .salon-library-dialog .salon-s247 {padding-top:4px;}
-    .salon-library-dialog .salon-s241 {height:244px;}
-    .salon-library-dialog .salon-s245 {min-height:24px;padding:0 6px;}
-    .salon-library-dialog .salon-s265 {gap:10px;padding:34px 22px 16px;}
-    .salon-library-dialog .salon-s258 {gap:5px;}
-    .salon-library-dialog .salon-s99 {font-size:20px;}
-    .salon-library-dialog .library-customize-title {padding-bottom:8px;font-size:28px;}
-    .salon-library-dialog .salon-s257 {width:28px;height:28px;}
-    .salon-library-dialog.library-hand-preview {width:auto;zoom:1;overflow:visible;}
-  }
-}
-
-@layer responsive {
-  @media(width > 960px) {.salon-library-dialog .salon-s265 {border-radius:0 22px 22px 0;}}
-}
-
 /* Plants rest on the pot base; trailing ivy is allowed to hang below the shelf. */
 @layer refinements {
-  .salon-library-dialog [data-hand-id][data-deco="ivy"] > .salon-s234 {bottom:calc(var(--object-height)*-.27);}
-  .salon-library-dialog [data-hand-id][data-deco="plant"] > .salon-s234 {bottom:calc(var(--object-height)*-.021);}
-  .salon-library-dialog [data-hand-id][data-deco="lavender"] > .salon-s234 {bottom:calc(var(--object-height)*-.012);}
+  .salon-library-dialog [data-hand-id][data-deco="ivy"] > .salon-s234 {bottom:-27%;}
+  .salon-library-dialog [data-hand-id][data-deco="plant"] > .salon-s234 {bottom:-2.1%;}
+  .salon-library-dialog [data-hand-id][data-deco="lavender"] > .salon-s234 {bottom:-1.2%;}
+}
+
+/* The room and the editing controls keep their reading size on short screens. */
+@layer refinements {
+  .salon-library-dialog[role="dialog"] {
+    --library-paper: light-dark(#faf3e7, #292331);
+    --library-panel: light-dark(#f6ecdf, #312838);
+    --library-rule: light-dark(#a0867960, #bf9bc247);
+    --library-ink: light-dark(#32243a, #f1e5f1);
+    --library-muted: light-dark(#5e4a65, #d4c0d7);
+    color: var(--library-ink);
+    background: var(--library-paper);
+    overflow-x: hidden;
+  }
+
+  .library-room {
+    padding: 0 18px 18px;
+    gap: 10px;
+  }
+
+  .library-room-header {
+    position: relative;
+    z-index: 3;
+    padding: 12px 0 10px;
+    border-bottom: 1px solid var(--library-rule);
+    background: var(--library-paper);
+  }
+
+  .library-room .salon-s223 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0 16px;
+    padding-right: 0;
+  }
+
+
+  .library-search-note {
+    margin: 0;
+    text-align: end;
+    color: var(--library-muted);
+    font-size: 14px;
+  }
+
+  .library-room .salon-s206 {
+    margin: 0;
+    font-size: clamp(32px, 3.2vw, 41px);
+    font-weight: 500;
+  }
+
+  .library-room .salon-s255 button,
+  .library-room .salon-s127 {
+    font-size: 15px;
+  }
+
+  .library-room-title .salon-s127 { margin: 3px 0 0; color: var(--library-muted); font-size: 14px; }
+
+  .library-room .salon-s255 {
+    flex: none;
+    min-height: 44px;
+    margin-top: 8px;
+  }
+
+  .library-room .salon-s249 {
+    font-size: 24px;
+    white-space: normal;
+  }
+
+  .library-room .salon-s251,
+  .library-room .salon-s252 {
+    padding-inline: 10px;
+    min-height: 36px;
+    border: 1px solid var(--library-rule);
+    border-radius: 7px;
+  }
+
+  .library-room .salon-s253:disabled { opacity: .45; cursor: default; }
+
+  .library-room .salon-s247 { padding: 8px 9px 27px; }
+  .library-room .salon-s246 { margin-bottom: 30px; }
+  .library-room .salon-s246:last-child { margin-bottom: 0; }
+
+  .library-room .salon-s245 {
+    justify-content: space-between;
+    min-height: 37px;
+    padding: 0 4px 4px;
+  }
+
+  .library-room .salon-s243 {
+    margin: 0;
+    font: 500 21px/1.2 "Cormorant Garamond", serif;
+  }
+
+  .library-room .salon-s244 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 4px 10px 4px 12px;
+    border: 1px solid var(--library-rule);
+    border-radius: 8px;
+    background: var(--library-paper);
+    color: var(--library-ink);
+    font: 500 14px/1.2 "Jost", sans-serif;
+    letter-spacing: 0;
+    opacity: 1;
+  }
+
+  .library-room .salon-s244:hover { border-color: currentColor; }
+  .library-room .salon-s244 span { font-size: 18px; }
+  .library-room .salon-s246 > .fairy-lights { top: 41px; opacity: .78; }
+
+  .library-room .salon-s241 {
+    gap: 4px;
+    padding: 10px 12px 0;
+    scrollbar-width: thin;
+  }
+
+  .library-room .salon-s236:has(> [data-book-id]) {
+    position: relative;
+  }
+
+  .library-room .salon-s236:has(> [data-book-id])::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    height: 9px;
+    background: radial-gradient(ellipse at 53% 100%, #3c231867, transparent 72%);
+    pointer-events: none;
+  }
+
+  .library-room .salon-s242 {
+    height: 18px;
+    box-shadow: inset 0 3px 0 #f5d49b66, inset 0 -5px 4px #24130888, 0 9px 12px -5px #301e18aa;
+  }
+  .library-room .library-shelf-support { width: 33px; height: 36px; }
+
+  .salon-library-dialog .salon-s225 {
+    background: linear-gradient(90deg, #180d0a85, transparent 16%, #fff2 28%, transparent 58%, #0005), var(--book-paint);
+    box-shadow: inset 2px 0 3px #fff3, inset -3px 0 5px #0007, 1px 2px 3px #21160f66;
+  }
+
+  .salon-library-dialog .salon-s233 .salon-s225::after {
+    inset: 8px 3px;
+    height: auto;
+    border-block: 2px double #e1bc7790;
+    background: none;
+  }
+
+  .salon-library-dialog .salon-s233[data-binding] .salon-s224 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: normal;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    max-width: calc(100% - 8px);
+    max-height: calc(100% - 28px);
+    padding: 0;
+    background: none;
+    color: #fff2ce;
+    font: 600 clamp(14px, calc(var(--book-width) * .29), 19px)/1.1 "Cormorant Garamond", serif;
+    letter-spacing: .02em;
+    text-shadow: 0 1px 2px #140c08;
+  }
+
+  .salon-library-dialog .salon-s233[data-binding="4"] .salon-s224 {
+    color: #392018;
+    text-shadow: 0 1px 1px #fff8;
+  }
+
+  .salon-library-dialog .salon-s233[data-binding] .salon-s228 {
+    position: absolute;
+    justify-content: center;
+    padding: 10px;
+    background: linear-gradient(120deg, #fff2, transparent 45%, #0003), var(--book-paint);
+    box-shadow: inset 0 0 0 4px var(--book-paint), inset 0 0 0 6px #d8b26e9c, inset 0 0 12px #0005;
+    overflow: hidden;
+  }
+
+  .salon-library-dialog .salon-s233[data-binding] .salon-s227 {
+    z-index: 1;
+    max-height: none;
+    max-width: 100%;
+    padding: 4px 2px;
+    background: none;
+    color: #fff6d8;
+    font: 600 clamp(17px, calc(var(--book-depth) * .2), 23px)/1.05 "Cormorant Garamond", serif;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    text-shadow: 0 1px 3px #160e0b;
+  }
+
+  .salon-library-dialog .salon-s233[data-binding="4"] .salon-s228:not([data-illustrated-cover]) .salon-s227 {
+    color: #392018;
+    text-shadow: none;
+  }
+
+  .library-book-cover-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  .salon-library-dialog .salon-s228::before,
+  .salon-library-dialog .salon-s228::after { content: none; }
+
+  .salon-library-dialog .salon-s228[data-illustrated-cover] .salon-s227 {
+    position: absolute;
+    top: 21%;
+    inset-inline: 11%;
+    font-size: clamp(14px, calc(var(--book-depth) * .15), 18px);
+    text-shadow: 0 1px 3px #1c1119, 0 0 4px #1c1119;
+  }
+
+  .salon-library-dialog .salon-s231,
+  .salon-library-dialog .salon-s230,
+  .salon-library-dialog .library-book-bottom {
+    box-shadow: inset 0 0 1px 2px var(--book-paint), inset 0 -4px 5px #73543575;
+  }
+
+  .salon-library-dialog .library-customize {
+    gap: 0;
+    padding: 15px 15px 12px;
+    background: var(--library-panel);
+  }
+
+  .library-customize-title {
+    margin: 0;
+    padding: 4px 42px 10px 0;
+    text-align: start;
+    font-size: 28px;
+  }
+
+  .library-customize-fields { display: grid; }
+
+  .library-customize-fields > .salon-s258 {
+    gap: 6px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--library-rule);
+  }
+
+  .library-option-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4px 12px;
+  }
+
+  .library-current-option,
+  .library-customize .library-companion-hint,
+  .library-customize .library-save-status {
+    font: 400 14px/1.35 "Jost", sans-serif;
+    color: var(--library-muted);
+  }
+
+  .library-customize-fields .salon-s99 { font-size: 21px; }
+  .library-customize-fields .salon-s254 { gap: 9px; }
+  .library-customize-fields .library-swatch-row { padding: 4px 8px; }
+  .library-customize-fields .salon-s257 { width: 26px; height: 26px; }
+
+  .library-customize-fields :is(.salon-s259, .salon-s263, .library-more-treasures, .salon-companion-add) {
+    min-height: 36px;
+    font-size: 14px;
+  }
+
+  .library-customize-fields .library-more-treasures { align-self: flex-start; }
+
+  .library-customize-fields .salon-s263 {
+    padding: 4px 10px;
+    border: 1px solid var(--library-rule);
+    border-radius: 6px;
+  }
+  .library-customize-fields .salon-s261 { border-color: var(--library-rule); }
+  .library-customize-fields .library-companion-picker select { font-size: 15px; min-height: 38px; }
+  .library-customize .library-save { padding-top: 12px; }
+  .library-customize .library-save-actions { flex-direction: row; }
+  .library-customize .library-save-actions :is(.library-discard-button, .library-save-button) { font: 500 15px/1.25 "Jost", sans-serif; }
+  .library-customize .library-discard-button:disabled { visibility: visible; opacity: .45; cursor: default; }
+}
+
+@layer responsive {
+  @media (width > 960px) {
+    .salon-library-overlay { padding: 16px; }
+
+    .salon-library-dialog[role="dialog"] {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(272px, 24vw, 312px);
+      grid-template-rows: minmax(0, 1fr);
+      width: 100%;
+      height: calc(100dvh - 32px);
+      max-width: 1280px;
+      max-height: 840px;
+      overflow: hidden;
+    }
+
+    .library-room {
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+      scroll-padding-block-start: 96px;
+      scrollbar-width: thin;
+    }
+
+    .library-room-header { position: sticky; top: 0; }
+    .library-room .salon-s247 { flex: none; }
+
+    .library-room:has(.salon-s255) { scroll-padding-block-start: 142px; }
+    .library-customize { display: flex; min-height: 0; }
+    .library-customize-title, .library-customize .library-save { flex: none; }
+
+    .library-customize-fields {
+      min-height: 0;
+      overflow: auto;
+      overscroll-behavior-y: contain;
+      scrollbar-width: thin;
+      padding-inline-end: 7px;
+    }
+  }
+
+  @media (min-width: 651px) and (max-width: 960px) {
+    .library-room .salon-s223 { padding-inline-end: 46px; }
+    .library-customize { display: flex; }
+    .library-customize-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+  }
 }

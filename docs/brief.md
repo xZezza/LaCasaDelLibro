@@ -319,3 +319,13 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 26 novembre — Gaia approva il profilo bombato del carosello desktop dalla proposta Figma. Sopra 960 px, le copertine passano gradualmente da circa il 103% al centro al 79% ai bordi. La scala segue la posizione durante lo scorrimento, con il centro delle copertine allineato in verticale.
 
 26 novembre — Refactoring limitato alla Library. Astro rende la sezione e il testo; un’unica isola React gestisce le anteprime, i dialoghi e il salvataggio condiviso. Gli stili delle anteprime sono nel foglio locale, mentre i dialoghi mantengono i propri fogli. Il confronto con Figma conserva la composizione e i controlli della versione attuale, compresi gli scaffali desktop a tre ripiani e quelli mobile a due.
+
+26 novembre — Rifinitura della libreria completa su desktop e tablet. Nel desktop scaffali e pannello di modifica scorrono a dimensioni naturali, con salvataggio accessibile in fondo al pannello. Ogni ripiano ha un solo controllo di espansione. Copertine illustrate già approvate, dorsi a contrasto, maggiore profondità dei libri e proporzioni riviste per decorazioni e comparse. Lo spostamento dei libri segue lo scorrimento dei ripiani. La libreria completa su telefono conserva la presentazione approvata.
+
+26 novembre — Gaia chiede una libreria completa più compatta su desktop e telefono. Ridotte altezza delle intestazioni e spazi dei controlli, con le aree di tocco mobile mantenute a 44 px. Sistemato il margine per l’anello dei campioni selezionati. Le decorazioni nella libreria desktop seguono l’ordine del ripiano, senza allineamento forzato all’estremità destra.
+
+26 novembre — Gaia chiede due ripiani anche nella libreria desktop, per vederli insieme. L’altezza dei ripiani desktop si adatta allo spazio della finestra mantenendo leggibili i controlli. I salvataggi precedenti confluiscono nel ripiano inferiore per gli elementi del terzo, conservando ordine, stato di lettura, decorazioni e orientamento.
+
+26 novembre — Nella libreria completa il desktop usa lo stesso avviso del telefono per la ricerca futura. I libri sdraiati usano i punti di contatto della proiezione 3D per appoggiarsi tra loro; una lieve ombra appoggia i gruppi al ripiano.
+
+26 novembre — Gaia sceglie di tenere i libri in piedi su desktop e telefono. Restano le viste dorso e copertina e il trascinamento per riordinare. Il punto di vista desktop è fisso. I salvataggi precedenti conservano libri, ripiani, stato di lettura e materiali; i libri sdraiati si aprono di dorso e le rotazioni manuali vengono ignorate.

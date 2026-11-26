@@ -78,8 +78,8 @@ test("desktop shelves omit explicitly unshelved books while the shared mobile li
   const book = page.state.lib.find(item => !item.deco);
   page.updateMobileLibrary(state => placeLibraryBook(state.lib, state.preferences, book.id, ""));
   const values = page.renderVals();
-  assert.equal(values.shelves.length, 3);
-  assert.equal(values.shelves.flatMap(shelf => shelf.segs.flatMap(segment => segment.books)).some(item => item.id === book.id), false);
+  assert.equal(values.shelves.length, 2);
+  assert.equal(values.shelves.flatMap(shelf => shelf.items).some(item => item.id === book.id), false);
   assert.equal(values.mobileLibrary.lib.some(item => item.id === book.id && item.onShelf === false), true);
 });
 

@@ -68,7 +68,7 @@ test("cancelling pending taps prevents callbacks after exit or unmount", () => {
 
 test("close-up doubles books and ornaments uniformly without altering saved dimensions", () => {
   for (const item of [
-    ...["cover", "spine", "lying"].map(mode => ({ H: 110, T: 23, mode })),
+    ...["cover", "spine"].map(mode => ({ H: 110, T: 23, mode })),
     { deco: "plant" },
   ]) {
     const before = JSON.stringify(item);

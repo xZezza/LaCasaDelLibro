@@ -15,28 +15,30 @@
   .mobile-library-dialog button, .mobile-library-dialog input, .mobile-library-dialog select { font: inherit; color: inherit; }
   .mobile-library-dialog button { cursor: pointer; }
   .mobile-library-dialog button:disabled { cursor: default; opacity: .4; }
-  .ml-header { position: relative; flex: none; padding: max(20px, env(safe-area-inset-top)) 24px 0; }
+  .ml-header { position: relative; flex: none; padding: max(12px, env(safe-area-inset-top)) 18px 0; }
   .ml-eyebrow { display: block; padding-right: 40px; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ml-muted); }
-  .ml-header h2 { margin: 9px 0 0; padding: 0; font: 400 clamp(28px, 8.2vw, 36px)/1.08 "Cormorant Garamond", serif; overflow-wrap: anywhere; }
-  .ml-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .ml-header h2 { margin: 0; padding: 0; font: 400 clamp(27px, 7.6vw, 34px)/1.08 "Cormorant Garamond", serif; overflow-wrap: anywhere; }
+  .mobile-library-dialog[data-editing="true"] .ml-header h2 { display: flex; align-items: center; min-height: 44px; padding-inline-end: 50px; }
+  .ml-header h2[tabindex="-1"]:focus { outline: none; }
+  .ml-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-inline-end: 46px; }
   .ml-title-row h2 { min-width: 0; }
-  .ml-edit { flex: none; min-width: 44px; margin-top: 8px; }
+  .ml-edit { flex: none; min-width: 44px; }
   .ml-icon-button { display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; border: 0; padding: 0; background: transparent; }
-  .ml-close { position: absolute; top: 3px; right: 11px; }
-  .ml-view-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--ml-line); margin-top: 9px; }
+  .ml-close { position: absolute; top: max(12px, env(safe-area-inset-top)); right: 8px; }
+  .ml-view-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--ml-line); }
+  .ml-view-tabs { display: flex; flex: none; gap: 0; }
   .ml-view-tabs .salon-marker-control { width: 44px; min-width: 44px; min-height: 44px; flex: none; }
   .ml-view-tabs .salon-marker-control:first-child .ml-view-icon { transform: translateX(7px); }
   .ml-view-tabs .salon-marker-control:last-child .ml-view-icon { transform: translateX(-7px); }
   .ml-view-tabs .salon-marker-text { display: grid; place-items: center; width: 28px; height: 28px; }
   .ml-view-icon { display: block; width: 22px; height: 22px; background: currentColor; mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
-  .ml-search-note { margin: 13px 0 0; color: var(--ml-muted); font-size: 12px; line-height: 1.4; }
+  .ml-search-note { margin: 0; text-align: end; color: var(--ml-muted); font-size: 12px; line-height: 1.35; }
   .ml-handwritten { margin: 9px 0 0; color: var(--ml-lilac); font: 300 14px/1.45 "Kalam", cursive; }
-  .ml-content { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 0 24px 18px; scrollbar-width: thin; }
-  .ml-drag-hint { display: grid; gap: 3px; margin: 16px 0 10px; color: var(--ml-muted); font-size: 12px; line-height: 1.45; }
-  .ml-drag-hint .ml-handwritten { margin: 0; }
+  .ml-content { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 0 18px 16px; scrollbar-width: thin; }
+  .ml-drag-hint { margin: 10px 0 6px; color: var(--ml-muted); font-size: 12px; line-height: 1.45; }
   .ml-room-note { margin: 1px 0 0; text-align: center; color: var(--ml-muted); font: italic 400 16px "Cormorant Garamond", serif; }
-  .ml-room { background: transparent; color: inherit; padding: 8px 0 0; }
-  .ml-shelf { position: relative; margin: 0 0 15px; }
+  .ml-room { background: transparent; color: inherit; padding: 6px 0 0; }
+  .ml-shelf { position: relative; margin: 0 0 10px; }
   .ml-shelf h3 { margin: 0 0 4px; padding: 0 3px; font: 400 9px/1.4 "Jost", sans-serif; text-transform: uppercase; letter-spacing: .13em; color: inherit; opacity: .8; }
   .ml-shelf-scroll { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; overscroll-behavior-x: contain; padding: 0 0 58px; }
   .ml-shelf-items { position: relative; display: flex; align-items: flex-end; gap: 5px; padding: 13px 14px 0; width: max-content; }
@@ -53,7 +55,6 @@
   .ml-binding-face > span { writing-mode: horizontal-tb; transform: none; text-align: center; white-space: normal; padding: 0 5px; font-size: 13px; max-height: 55%; }
   .ml-cover-image { background-size: contain; background-position: center; }
   .ml-live-cover-title { position: absolute; inset: 19% 6% auto; text-align: center; color: #f8edcf; font: 500 10px/1.03 "Cormorant Garamond", serif; text-shadow: 0 1px 2px #18392e; }
-  [data-mode="lying"] .ml-binding > span { writing-mode: horizontal-tb; transform: none; max-width: calc(100% - 8px); max-height: none; }
   .ml-ornament-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; background-repeat: no-repeat; pointer-events: none; }
   .ml-ornament-image[style*="bottom"] { top: auto; }
   .ml-shelf-wood { position: relative; width: 100%; aspect-ratio: 2078 / 267; margin-top: -61px; z-index: 0; background-repeat: no-repeat; background-size: 100% 100%; background-position: center; filter: var(--shelf-filter); pointer-events: none; }
@@ -64,7 +65,7 @@
   .mobile-library-dialog[data-dragging="true"] { user-select: none; }
   .ml-item[data-mobile-drop="true"] { outline-style: solid; outline-color: var(--ml-lilac); }
   @media (prefers-reduced-motion: reduce) { .ml-drag-ghost { filter: drop-shadow(2px 3px 3px #27162735); } }
-  .ml-edit-preview { flex: none; padding: 0 20px; margin-top: 5px; max-height: 34dvh; overflow-y: auto; }
+  .ml-edit-preview { flex: none; padding: 0 18px; margin-top: 4px; max-height: 34dvh; overflow-y: auto; }
   .mobile-library-dialog[data-close-up="true"] .ml-edit-preview { max-height: 46dvh; }
   .ml-zoom-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; }
   .ml-zoom-controls > span { font-size: 9px; letter-spacing: .13em; text-transform: uppercase; color: var(--ml-muted); }
@@ -74,14 +75,14 @@
   .mobile-library-dialog[data-close-up="true"] .ml-live-cover-title { font-size: 18px; }
   .ml-room-zoom .ml-shelf { margin-bottom: 0; }
   .ml-room-zoom .ml-shelf-scroll { padding-bottom: 58px; }
-  .ml-settings { flex: 1; min-height: 75px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 18px 24px 24px; border-top: 1px solid var(--ml-line); margin-top: 7px; }
-  .ml-setting { display: block; margin: 0 0 17px; border: 0; padding: 0; min-width: 0; }
-  .ml-setting > span, .ml-setting legend { display: block; margin: 0 0 8px; padding: 0; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: var(--ml-muted); }
+  .ml-settings { flex: 1; min-height: 75px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 12px 18px 20px; border-top: 1px solid var(--ml-line); margin-top: 5px; }
+  .ml-setting { display: block; margin: 0 0 13px; border: 0; padding: 0; min-width: 0; }
+  .ml-setting > span, .ml-setting legend { display: block; margin: 0 0 5px; padding: 0; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: var(--ml-muted); }
   .ml-setting input, .ml-setting select, .ml-selection select {
     width: 100%; min-width: 0; min-height: 44px; border: 1px solid var(--ml-line); border-radius: 10px; background: light-dark(#fffaf3, #2e202b); padding: 8px 12px;
   }
   .ml-setting input { font: italic 400 22px "Cormorant Garamond", serif; }
-  .ml-swatches { display: flex; flex-wrap: wrap; gap: 7px; }
+  .ml-swatches { display: flex; flex-wrap: wrap; gap: 4px; }
   .ml-swatches button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; }
   .ml-swatches button > span { display: block; width: 26px; height: 26px; border-radius: 50%; border: 1px solid #34253920; }
   .ml-swatches button[aria-pressed="true"] > span { outline: 1.4px solid var(--ml-ink); outline-offset: 4px; }
@@ -115,10 +116,10 @@
   [data-status="1"] { color: light-dark(#a8753c, #e9bb83); }
   [data-status="2"] { color: light-dark(#8b689e, #d4b5e3); }
   .ml-list-hint { margin: 10px 0 14px; color: var(--ml-muted); font: italic 400 16px "Cormorant Garamond", serif; }
-  .ml-list-book { display: grid; grid-template-columns: 46px minmax(0,1fr) 44px; gap: 13px; align-items: center; padding: 13px 5px; min-height: 102px; border-bottom: 1px solid var(--ml-line); }
+  .ml-list-book { display: grid; grid-template-columns: 46px minmax(0,1fr) 44px; gap: 11px; align-items: center; padding: 10px 5px; min-height: 86px; border-bottom: 1px solid var(--ml-line); }
   .ml-list-cover { touch-action: manipulation; position: relative; width: 43px; height: 61px; padding: 0; border: 0; background: transparent; box-shadow: 1px 3px 4px #20121e20; }
   .ml-list-book-copy { min-width: 0; }
-  .ml-list-book-copy h3 { margin: 0; font: 400 23px/1.05 "Cormorant Garamond", serif; overflow-wrap: anywhere; }
+  .ml-list-book-copy h3 { margin: 0; font: 400 21px/1.1 "Cormorant Garamond", serif; overflow-wrap: anywhere; }
   .ml-list-book-copy p { margin: 5px 0; font-size: 12px; color: var(--ml-muted); }
   .ml-reading-label { display: block; margin-top: 7px; font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
   .ml-display-picker { position: relative; width: 44px; height: 44px; display: grid; place-items: center; color: var(--ml-muted); }

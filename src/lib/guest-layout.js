@@ -17,25 +17,21 @@ export function shelfGuestPosition(rows, {
   if (![size, minSize, maxScale, hoverScale, clearance, labelHeight, arrivalDistance]
     .every(Number.isFinite) || size <= 0 || minSize <= 0 || maxScale <= 0 || hoverScale < 1) return null;
   const spots = [];
+  // Reserve space for the largest pose and the name as the guest enters or is hovered.
+  const overhangRatio = Math.max(hoverScale / 2, maxScale * (1 + hoverScale) / 2 - 1,
+    maxScale / 2 + hoverScale / 2 - 1);
   for (const row of rows) {
     if (![row.left, row.right, row.top, row.bottom, row.occupiedRight].every(Number.isFinite)) continue;
     const availableHeight = row.bottom - row.top - clearance;
-    const fittedSize = Math.min(size, (availableHeight / hoverScale - labelHeight) / maxScale);
+    const start = Math.max(row.left, row.occupiedRight);
+    const free = row.right - start;
+    const widthLimit = (free - 2 * (clearance + arrivalDistance)) / (1 + 2 * overhangRatio);
+    const fittedSize = Math.min(size, (availableHeight / hoverScale - labelHeight) / maxScale, widthLimit);
     if (fittedSize < minSize) continue;
-    // The name can be wider than a small cat. Reserve half a zoomed label on
-    // either side, so small creatures receive the same protection as dragons.
-    const largestArt = fittedSize * maxScale;
-    const overhang = Math.max(fittedSize * hoverScale / 2,
-      largestArt * (1 + hoverScale) / 2 - fittedSize,
-      largestArt / 2 + fittedSize * hoverScale / 2 - fittedSize);
-    const leftEdge = Math.max(row.left, row.occupiedRight) + clearance + arrivalDistance;
-    const left = leftEdge + overhang;
-    const rightEdge = left + fittedSize + overhang + arrivalDistance;
-    if (rightEdge > row.right - clearance) continue;
-    spots.push({ left, top: row.bottom - fittedSize, size: fittedSize,
-      free: row.right - row.occupiedRight });
+    const left = start + clearance + arrivalDistance + fittedSize * overhangRatio;
+    spots.push({ left, top: row.bottom - fittedSize, size: fittedSize, free });
   }
-  spots.sort((a, b) => b.free - a.free);
+  spots.sort((a, b) => b.size - a.size || b.free - a.free);
   if (!spots.length) return null;
   const {left, top, size: fittedSize} = spots[0];
   return {left, top, size: fittedSize};

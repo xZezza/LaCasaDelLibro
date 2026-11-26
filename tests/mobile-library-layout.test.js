@@ -78,7 +78,7 @@ test("both legacy three-row and new two-row snapshots remain valid and serializa
 test("mobile book covers keep their artwork ratio, and zoom scales both axes together", () => {
   const page = new LibraryController({});
   for (const book of page.state.lib.filter(item => !item.deco)) {
-    for (const mode of ["cover", "spine", "lying"]) {
+    for (const mode of ["cover", "spine"]) {
       const size = mobileItemDimensions({ ...book, mode });
       const zoom = mobileItemDimensions({ ...book, mode }, true);
       assert.ok(size.w > 0 && size.h > 0);
@@ -86,7 +86,6 @@ test("mobile book covers keep their artwork ratio, and zoom scales both axes tog
       assert.ok(Math.abs(zoom.h / size.h - 1.3) < 1e-10);
       if (mode === "cover") assert.ok(Math.abs(size.w / size.h - MOBILE_COVER_RATIO) < 1e-10);
       if (mode === "spine") assert.ok(size.h / size.w <= 4.8);
-      if (mode === "lying") assert.ok(size.w > size.h);
     }
   }
 });

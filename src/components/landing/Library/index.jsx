@@ -29,7 +29,7 @@ export default class Library extends LibraryController {
             <button type="button" className="salon-s60 salon-marker-action salon-marker-primary" onClick={this.openLibrary} aria-haspopup="dialog">
               <span className="salon-marker-text">Open the full library</span>
             </button>
-            <span className="salon-s61">drag, turn, stack them</span>
+            <span className="salon-s61">drag to arrange</span>
           </div>
         </div>
         <MobileLibraryPreview openLibrary={this.openLibrary} />

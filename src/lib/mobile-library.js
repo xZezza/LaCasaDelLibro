@@ -116,6 +116,5 @@ export function placeLibraryBook(lib, preferences, id, destination, shelfCount =
 export function chooseShelfCover(lib, shelf, id) {
   return lib.map(item => !item.deco && item.onShelf !== false && item.shelf === shelf ? {
     ...item, mode: item.id === id ? "cover" : item.mode === "cover" ? "spine" : item.mode,
-    rotation: undefined,
   } : item);
 }

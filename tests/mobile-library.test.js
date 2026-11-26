@@ -15,8 +15,8 @@ const config = { decorations: DECOS, walls: WALLS, cases: CASES, lights: LIGHTS 
 
 test("mobile moves preserve reading status and restore a stable custom layout after sorting", () => {
   const page = controller(), first = page.state.lib.find(item => !item.deco);
-  page.updateMobileLibrary(state => moveLibraryItem(state.lib, state.preferences, first.id, 2));
-  assert.equal(page.state.lib.find(item => item.id === first.id).shelf, 2);
+  page.updateMobileLibrary(state => moveLibraryItem(state.lib, state.preferences, first.id, 1, null, 2));
+  assert.equal(page.state.lib.find(item => item.id === first.id).shelf, 1);
   assert.equal(bookStatus(page.state.lib.find(item => item.id === first.id)), 0);
   const manual = rememberLayout(page.state.lib);
   for (const order of ["saga", "author", "height", "colour"]) page.updateMobileLibrary(state => arrangeLibrary(state.lib, state.preferences, order));

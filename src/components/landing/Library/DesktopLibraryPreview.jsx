@@ -82,7 +82,7 @@ export default function DesktopLibraryPreview({ openLibrary }) {
         data-reading-tab="read"
         data-wood={wood.name}
       >
-        <span className="library-editorial-hint" aria-hidden="true">drag, turn, stack them <span>⤵</span></span>
+        <span className="library-editorial-hint" aria-hidden="true">drag to arrange <span>⤵</span></span>
         <span className="library-editorial-prop library-editorial-ivy" aria-hidden="true" />
         <span className="library-editorial-prop library-editorial-vase" aria-hidden="true" />
         <span className="salon-s75">
