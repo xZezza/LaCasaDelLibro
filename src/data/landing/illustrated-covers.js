@@ -10,3 +10,7 @@ export const ILLUSTRATED_COVERS = [
   { title: "Red Queen", src: "/images/decorations/carousel-covers/red-queen.png", responsiveSrc: "/images/optimized/decorations/carousel-covers/red-queen-mobile.webp", binding: "#722d37" },
   { title: "Shadow and Bone", src: "/images/decorations/carousel-covers/shadow-bone.png", responsiveSrc: "/images/optimized/decorations/carousel-covers/shadow-bone-mobile.webp", binding: "#242d48" },
 ];
+
+export function illustratedCoverFor(title) {
+  return ILLUSTRATED_COVERS.find(cover => cover.title === title);
+}

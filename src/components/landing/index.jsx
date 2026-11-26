@@ -5,7 +5,6 @@ import ModalAccessibility from "../../hooks/ModalAccessibility";
 import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";
-import BooksCarousel from "./BooksCarousel";
 import QuoteHardDays from "./QuoteHardDays";
 import Library from "./Library";
 import Journal from "./Journal";
@@ -14,7 +13,6 @@ import Community from "./Community";
 import Follow from "./Follow";
 import Footer from "./Footer";
 import ModalLibrary from "./ModalLibrary";
-import ModalBookSheet from "./ModalBookSheet";
 import ModalComingSoon from "./ModalComingSoon";
 
 export default class Landing extends LandingController {
@@ -28,7 +26,7 @@ export default class Landing extends LandingController {
         <Navbar {...v} />
         <main id="main">
           {this.props.hero}
-          <BooksCarousel {...v} />
+          {this.props.carousel}
           <QuoteHardDays {...v} />
           <Library {...v} />
           <Journal {...v} />
@@ -38,19 +36,10 @@ export default class Landing extends LandingController {
         </main>
         <Footer {...v} />
         <ModalLibrary {...v} />
-        <ModalBookSheet {...v} />
         <ModalComingSoon {...v} />
         <CharacterSheet />
         <ModalAccessibility
-          open={
-            v.libOpen
-              ? "library"
-              : v.sheetOpen
-                ? "sheet"
-                : v.soonOpen
-                  ? "soon"
-                  : null
-          }
+          open={v.libOpen ? "library" : v.soonOpen ? "soon" : null}
         />
       </div>
     );

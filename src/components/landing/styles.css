@@ -34,14 +34,6 @@
       transition: none !important;
     }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .salon-landing [data-salon-carousel] {
-      overflow-x: auto;
-      touch-action: auto;
-      scrollbar-width: thin;
-    }
-  }
 }
 
 @layer refinements { html[data-theme="ink"] .salon-landing { background: oklch(0.171 0.028 15); } }

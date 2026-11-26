@@ -3,11 +3,9 @@ import { illustratedColour } from "../../data/landing/library-art.js";
 import React from "react";
 import { libraryPreferences } from "../../lib/mobile-library.js";
 import { READ, TOREAD, BRIGHT, book, WOODS, WALLS, SHELVES, CATALOG, LIB, DECOS, mkDeco, CASES, LIGHTS, libraryIds } from "../../data/landing/library.js";
-import { COVERS } from "../../data/landing/books.js";
 import { serializeLibrary, isValidLibrarySnapshot } from "../../lib/library-storage.js";
 
 export default class LandingController extends React.Component {
-  trackRef = React.createRef();
   woodRef = React.createRef();
   quote2Ref = React.createRef();
   quote4Ref = React.createRef();
@@ -56,8 +54,7 @@ export default class LandingController extends React.Component {
     if (!a) return;
     const delta = (px / (el.scrollWidth / 2)) * dur,
       from = a.currentTime || 0,
-      t0 = performance.now(),
-      hov = ref === this.woodRef ? () => this._woodHover : () => this._hover;
+      t0 = performance.now();
     a.pause();
     cancelAnimationFrame(ref._n);
     const step = (now) => {
@@ -65,113 +62,9 @@ export default class LandingController extends React.Component {
         e = 1 - Math.pow(1 - k, 3);
       a.currentTime = (((from + delta * e) % dur) + dur) % dur;
       if (k < 1) ref._n = requestAnimationFrame(step);
-      else if (!hov()) a.play();
+      else if (!this._woodHover) a.play();
     };
     ref._n = requestAnimationFrame(step);
-  }
-  scrubCovers(px) {
-    const a = this.anim(),
-      el = this.trackRef.current;
-    if (!a || !el) return;
-    const dur = 70000,
-      half = el.scrollWidth / 4;
-    // Direct input takes over from an arrow animation immediately.
-    cancelAnimationFrame(this._nudge);
-    this._nudging = false;
-    a.pause();
-    a.currentTime =
-      ((((a.currentTime || 0) + (px / half) * dur) % dur) + dur) % dur;
-    clearTimeout(this._scrubT);
-    this._scrubT = setTimeout(() => {
-      this._scrubT = null;
-      if (!this._hover && !this._drag2 && !this._coverWheelFrame) a.play();
-    }, 1200);
-  }
-  flushCoverWheel() {
-    cancelAnimationFrame(this._coverWheelFrame);
-    this._coverWheelFrame = null;
-    const remaining = this._coverWheelPixels || 0;
-    this._coverWheelPixels = 0;
-    if (remaining) this.scrubCovers(remaining);
-  }
-  wheelCovers = (event) => {
-    // Keep vertical page scrolling and trackpad pinch-to-zoom native.
-    if (event.ctrlKey || event.metaKey || !this.anim()) return;
-    const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
-    const delta = horizontal ? event.deltaX : event.shiftKey ? event.deltaY : 0;
-    if (!delta) return;
-    // A native non-passive listener is needed: React's wheel listener is passive.
-    if (event.cancelable) event.preventDefault();
-    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? this._coversViewport.clientWidth : 1;
-    const pixels = delta * unit;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      this.scrubCovers(pixels);
-      return;
-    }
-    this._coverWheelPixels = (this._coverWheelPixels || 0) + pixels;
-    this.anim().pause();
-    cancelAnimationFrame(this._nudge);
-    this._nudging = false;
-    if (this._coverWheelFrame) return;
-    let previous = performance.now();
-    const step = (now) => {
-      const elapsed = Math.min(now - previous, 64);
-      previous = now;
-      const pending = this._coverWheelPixels;
-      // Short, time-based smoothing preserves the trackpad's own momentum.
-      const delta = Math.abs(pending) < 0.1 ? pending : pending * (1 - Math.exp(-elapsed / 32));
-      this._coverWheelPixels -= delta;
-      this.scrubCovers(delta);
-      if (Math.abs(this._coverWheelPixels) >= 0.1) {
-        this._coverWheelFrame = requestAnimationFrame(step);
-      } else {
-        this.scrubCovers(this._coverWheelPixels);
-        this._coverWheelPixels = 0;
-        this._coverWheelFrame = null;
-      }
-    };
-    this._coverWheelFrame = requestAnimationFrame(step);
-  };
-  anim() {
-    const el = this.trackRef.current;
-    return el && el.getAnimations ? el.getAnimations()[0] : null;
-  }
-  setPaused(p) {
-    this._hover = p;
-    const a = this.anim();
-    if (a && !this._nudging) {
-      if (p || this._coverWheelFrame || this._scrubT || this._drag2) a.pause();
-      else a.play();
-    }
-  }
-  scrollCovers(d) {
-    this.flushCoverWheel();
-    const a = this.anim(),
-      el = this.trackRef.current;
-    if (!el) return;
-    if (!a) {
-      el.parentElement.scrollBy({ left: d * 260, behavior: "auto" });
-      return;
-    }
-    const dur = 70000,
-      half = el.scrollWidth / 4,
-      delta = ((d * 260) / half) * dur;
-    const from = a.currentTime || 0,
-      t0 = performance.now();
-    this._nudging = true;
-    a.pause();
-    cancelAnimationFrame(this._nudge);
-    const step = (now) => {
-      const k = Math.min((now - t0) / 500, 1),
-        e = 1 - Math.pow(1 - k, 3);
-      a.currentTime = (((from + delta * e) % dur) + dur) % dur;
-      if (k < 1) this._nudge = requestAnimationFrame(step);
-      else {
-        this._nudging = false;
-        if (!this._hover) a.play();
-      }
-    };
-    this._nudge = requestAnimationFrame(step);
   }
   state = {
     savedLayoutSignature: serializeLibrary({
@@ -193,7 +86,6 @@ export default class LandingController extends React.Component {
     qOpen: false,
     toast: "",
     expanded: {},
-    sheet: null,
     lib: LIB,
     wall: 0,
     caseC: 0,
@@ -202,8 +94,6 @@ export default class LandingController extends React.Component {
     angle: -10,
   };
   componentDidMount() {
-    this._coversViewport = this.trackRef.current?.parentElement;
-    this._coversViewport?.addEventListener("wheel", this.wheelCovers, { passive: false });
     try {
       const saved = JSON.parse(
         localStorage.getItem("the-salon-library-layout-v1") || "null",
@@ -301,32 +191,23 @@ export default class LandingController extends React.Component {
         this.setState({ soon: null });
         return;
       }
-      if (e.key === "Escape" && this.state.sheet != null) {
-        this.setState({ sheet: null });
-        return;
-      }
       if (e.key === "Escape" && this.state.libOpen)
         this.setState((s) => (s.sel ? { sel: null } : { libOpen: false }));
     };
     window.addEventListener("keydown", this._key);
   }
   componentWillUnmount() {
-    this._coversViewport?.removeEventListener("wheel", this.wheelCovers);
-    cancelAnimationFrame(this._coverWheelFrame);
     clearTimeout(this._saveConfirmationTimer);
     clearTimeout(this._measureTimer);
     clearTimeout(this._toastT);
-    clearTimeout(this._scrubT);
     cancelAnimationFrame(this._mt);
     cancelAnimationFrame(this.woodRef._n);
-    cancelAnimationFrame(this.trackRef._n);
     this._qio6 && this._qio6.disconnect();
     this._qio5 && this._qio5.disconnect();
     this._qio4 && this._qio4.disconnect();
     this._qio2 && this._qio2.disconnect();
     window.removeEventListener("resize", this._onResize);
     this._ro && this._ro.disconnect();
-    cancelAnimationFrame(this._nudge);
     window.removeEventListener("keydown", this._key);
   }
   saveLibrary = () => {
@@ -767,68 +648,6 @@ export default class LandingController extends React.Component {
     return {
 
       shelfBooks,
-      covers: Array.from({ length: 4 }, () => COVERS)
-        .flat()
-        .map((c, j) => ({
-          duplicate: j < COVERS.length || j >= COVERS.length * 2,
-          ...c,
-          open: () => {
-            if (this._dragMoved > 6) return;
-            this.setPaused(true);
-            this.setState({ sheet: j % COVERS.length });
-          },
-        })),
-      openMobileCover: (index) => { this.setPaused(true); this.setState({ sheet: index }); },
-      sheetOpen: this.state.sheet != null,
-      sb: COVERS[this.state.sheet ?? 0],
-      closeSheet: () => {
-        this.setState({ sheet: null });
-        this.setPaused(false);
-      },
-      stopSheet: (e) => e.stopPropagation(),
-      trackRef: this.trackRef,
-      dragStartCovers: (e) => {
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        this.flushCoverWheel();
-        this._dragMoved = 0;
-        if (e.pointerType === "mouse" && e.button !== 0) return;
-        this._drag2 = {
-          x: e.clientX,
-          moved: 0,
-          el: e.currentTarget,
-          id: e.pointerId,
-          cap: false,
-        };
-      },
-      dragMoveCovers: (e) => {
-        const d = this._drag2;
-        if (!d) return;
-        const dx = e.clientX - d.x;
-        d.x = e.clientX;
-        d.moved += Math.abs(dx);
-        if (!d.cap && d.moved > 6) {
-          d.cap = true;
-          try {
-            d.el.setPointerCapture(d.id);
-          } catch (_) {}
-          this.setState({ coverDrag: true });
-        }
-        if (d.cap) this.scrubCovers(-dx);
-      },
-      dragEndCovers: () => {
-        const d = this._drag2;
-        this._dragMoved = d ? d.moved : 0;
-        this._drag2 = null;
-        if (d && d.cap) {
-          this.setState({ coverDrag: false });
-          this.scrubCovers(0);
-        }
-      },
-      coverDragging: !!this.state.coverDrag,
-      pauseCovers: () => this.setPaused(true),
-      resumeCovers: () => this.setPaused(false),
-      prevCovers: () => this.scrollCovers(-1),
-      nextCovers: () => this.scrollCovers(1),
       showNotes: this.props.notes ?? true,
       showRead: () => this.setState({ tab: "read" }),
       showToRead: () => this.setState({ tab: "toread" }),

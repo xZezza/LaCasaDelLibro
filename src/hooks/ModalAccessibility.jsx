@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-export default function ModalAccessibility({ open }) {
+export default function ModalAccessibility({ open, returnFocus }) {
   useEffect(() => {
     if (!open) return;
     const dialog = document.querySelector(".salon-dialog");
     if (!dialog) return;
-    const before = document.activeElement;
+    const before = returnFocus?.current ?? document.activeElement;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const siblings = [
@@ -46,6 +46,6 @@ export default function ModalAccessibility({ open }) {
       document.removeEventListener("keydown", trap);
       if (before?.isConnected) before.focus?.({ preventScroll: true });
     };
-  }, [open]);
+  }, [open, returnFocus]);
   return null;
 }
