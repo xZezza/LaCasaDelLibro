@@ -6,6 +6,8 @@ import Carousel from '../components/landing/BooksCarousel/index.astro';
 import Library from '../components/landing/Library/index.astro';
 import Journal from '../components/landing/Journal/index.astro';
 import Community from '../components/landing/Community/index.astro';
+import Follow from '../components/landing/Follow/index.astro';
+import Footer from '../components/landing/Footer/index.astro';
 import { BREAKPOINTS } from '../config/breakpoints.js';
 const title='The Salon | Your Books, Your Journal, Your Reading Community';
 const description='A home for your books and the feelings they leave behind. Explore a personal bookshelf, a private reading journal and a community for fantasy, romantasy and dystopian readers.';
@@ -39,6 +41,8 @@ const description='A home for your books and the feelings they leave behind. Exp
       <Library slot="library" />
       <Journal slot="journal" />
       <Community slot="salon" />
+      <Follow slot="follow" />
+      <Footer slot="footer" />
     </Landing>
   </body>
 </html>

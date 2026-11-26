@@ -1,5 +1,5 @@
 @layer components {
-  .salon-s189 {
+  .follow-bookmark {
     position: absolute;
     top: -8px;
     left: clamp(30px, 8vw, 90px);
@@ -9,16 +9,17 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
   }
 
-  .salon-s190 {
+  .follow-flower {
     position: absolute;
     bottom: -30px;
     right: clamp(10px, 5vw, 60px);
     width: 130px;
     height: 130px;
     transform: rotate(12deg);
+    pointer-events: none;
   }
 
-  .salon-s192 {
+  .follow-quote-text {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
@@ -29,7 +30,7 @@
     column-gap: 0;
   }
 
-  .salon-s193 {
+  .follow-quote-credit {
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -37,7 +38,7 @@
     transition: opacity 0.8s ease 0.8s;
   }
 
-  .salon-s194 {
+  .follow-quote {
     margin: 0 auto 30px;
     display: flex;
     flex-direction: column;
@@ -47,7 +48,7 @@
     text-align: center;
   }
 
-  .salon-s195 {
+  .follow-title {
     margin: 18px 0 0;
     font-family: "Cormorant Garamond", serif;
     font-weight: 400;
@@ -57,7 +58,7 @@
     text-wrap: balance;
   }
 
-  .salon-s196 {
+  .follow-description {
     margin: 22px 0 0;
     max-width: 520px;
     font-size: 16px;
@@ -67,15 +68,16 @@
     text-wrap: pretty;
   }
 
-  .salon-s197 {
+  .follow-social {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 14px 24px;
+    font-family: inherit;
     font-size: 15px;
   }
 
-  .salon-s198 {
+  .follow-socials {
     margin-top: 22px;
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +86,7 @@
     row-gap: 12px;
   }
 
-  .salon-s199 {
+  .follow-signoff {
     margin: 26px 0 0;
     font-family: "Kalam", cursive;
     font-weight: 300;
@@ -92,7 +94,7 @@
     color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
   }
 
-  .salon-s200 {
+  .follow-panel {
     position: relative;
     border-radius: 6px;
     padding: clamp(28px, 4vw, 48px) clamp(24px, 5vw, 72px);
@@ -105,7 +107,7 @@
     align-items: center;
   }
 
-  .salon-s201 {
+  .salon-follow {
     position: relative;
     z-index: 1;
     max-width: var(--page-max-width, 1200px);
@@ -113,7 +115,7 @@
     padding: 0 clamp(20px, 4vw, 48px) clamp(70px, 9vw, 110px);
   }
 
-  .quote-guest-throne {
+  .follow-quote.quote-guest-throne {
     --scene-guest-size: 164px;
     width: 100%;
     max-width: 1000px;
@@ -123,7 +125,7 @@
   }
 
   @media (max-width: 960px) {
-    .quote-guest-throne {
+    .follow-quote.quote-guest-throne {
       padding-inline: 0;
       padding-bottom: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
     }
@@ -131,16 +133,44 @@
 }
 
 @layer responsive {
+  @media (width > 960px) {
+    .salon-follow { padding-bottom: clamp(28px, 3vw, 42px); }
+    .follow-panel { padding-block: 24px 28px; }
+    .follow-bookmark { width: 24px; height: 104px; }
+    .follow-flower { bottom: -18px; width: 100px; height: 100px; }
+    .follow-quote.quote-guest-throne {
+      --scene-guest-size: clamp(138px, 10.5vw, 152px);
+      --scene-guest-floor: 20px;
+      --scene-guest-clearance: 12px;
+      max-width: 900px;
+      margin-bottom: 12px;
+    }
+    .follow-title { margin-top: 0; }
+    .follow-description { margin-top: 14px; }
+    .follow-socials { margin-top: 12px; }
+    .follow-social { padding-block: 4px; }
+    .follow-signoff { margin-top: 12px; }
+  }
+
+  @media (width > 960px) and (prefers-reduced-motion: reduce) {
+    .follow-quote.quote-guest-throne {
+      min-height: 0;
+      max-width: 44ch;
+      padding-inline: 0;
+      margin-bottom: 24px;
+    }
+  }
+
   @media (max-width: 650px) {
     .salon-follow { padding-bottom: var(--mobile-section-gap); }
-    .salon-s189 {
+    .follow-bookmark {
       top: -4px;
       left: 8px;
       width: 10px;
       height: 44px;
     }
 
-    .quote-guest-throne {
+    .follow-quote.quote-guest-throne {
       --scene-guest-size: 100px;
       min-height: 0;
       margin-bottom: 16px;
@@ -156,13 +186,13 @@
 
     .quote-guest-throne .visitor-name { top: calc(100% + 4px); }
 
-    .salon-s195 {
+    .follow-title {
       margin-top: 4px;
       font-size: clamp(28px, 8vw, 34px);
       line-height: 1.08;
     }
 
-    .salon-s196 {
+    .follow-description {
       max-width: 29ch;
       margin-top: 10px;
       font-size: 14px;
@@ -171,11 +201,11 @@
       text-wrap: balance;
     }
 
-    .salon-s198 { margin-top: 12px; gap: 4px 20px; }
-    .salon-s197 { padding: 0 6px; font-size: 14px; }
-    .salon-s197.salon-marker-primary .salon-marker-text::before { transform: rotate(-1.5deg) scaleX(1); }
-    .salon-s199 { margin-top: 12px; font-size: 17px; }
-    .salon-s190 { bottom: -20px; width: 82px; height: 82px; pointer-events: none; }
+    .follow-socials { margin-top: 12px; gap: 4px 20px; }
+    .follow-social { padding: 0 6px; font-size: 14px; }
+    .follow-social.salon-marker-primary .salon-marker-text::before { transform: rotate(-1.5deg) scaleX(1); }
+    .follow-signoff { margin-top: 12px; font-size: 17px; }
+    .follow-flower { bottom: -20px; width: 82px; height: 82px; }
   }
 
   @media (max-width: 650px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {

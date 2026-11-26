@@ -1,13 +1,15 @@
 @layer components {
-  .salon-s202 {
+  .footer-logo {
     display: block;
     width: 84px;
-    aspect-ratio: 716/469;
-    background: url("/images/optimized/branding/logo.webp") center / contain
-      no-repeat;
+    height: auto;
+    aspect-ratio: 716 / 469;
+    object-fit: contain;
   }
 
-  .salon-s203 {
+  .footer-tagline { margin: 0; }
+
+  .salon-footer {
     position: relative;
     z-index: 1;
     max-width: var(--page-max-width, 1200px);
@@ -23,18 +25,25 @@
   }
 }
 
-@layer components { :root[data-theme="ink"] .salon-s202 { filter: brightness(0) invert(.92) sepia(.25); } }
+@layer components { :root[data-theme="ink"] .footer-logo { filter: brightness(0) invert(.92) sepia(.25); } }
 
 @layer responsive {
+  @media (width > 960px) {
+    .salon-footer {
+      align-items: center;
+      padding-block: 16px 20px;
+    }
+  }
+
   @media (max-width: 650px) {
-    .salon-s203 {
+    .salon-footer {
       align-items: center;
       flex-wrap: nowrap;
       gap: 20px;
       padding: 18px var(--mobile-page-gutter) 26px;
     }
 
-    .salon-s202 { flex: 0 0 clamp(64px, 19vw, 84px); }
-    .salon-s203 > :last-child { min-width: 0; max-width: 26ch; text-align: end; }
+    .footer-logo { width: clamp(64px, 19vw, 84px); flex: none; }
+    .footer-tagline { min-width: 0; max-width: 26ch; text-align: end; }
   }
 }

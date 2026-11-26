@@ -1,15 +1,11 @@
 // @refresh reset
 import React from "react";
 import CharacterSheet from "./CharacterSheet";
-import ModalAccessibility from "../../hooks/ModalAccessibility";
 import LandingController from "./LandingController.js";
 import "./styles.css";
 import Navbar from "./Navbar";
 import QuoteHardDays from "./QuoteHardDays";
 import QuoteStars from "./QuoteStars";
-import Follow from "./Follow";
-import Footer from "./Footer";
-import ModalComingSoon from "./ModalComingSoon";
 
 export default class Landing extends LandingController {
   render() {
@@ -28,14 +24,10 @@ export default class Landing extends LandingController {
           {this.props.journal}
           <QuoteStars {...v} />
           {this.props.salon}
-          <Follow {...v} />
+          {this.props.follow}
         </main>
-        <Footer {...v} />
-        <ModalComingSoon {...v} />
+        {this.props.footer}
         <CharacterSheet />
-        <ModalAccessibility
-          open={v.soonOpen ? "soon" : null}
-        />
       </div>
     );
   }
