@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import { COVERS } from "../../../data/landing/books.js";
 import ModalAccessibility from "../../../hooks/ModalAccessibility.jsx";
 import MobileBooksCarousel from "../MobileBooksCarousel/index.jsx";
@@ -20,7 +21,7 @@ export default function BooksCarousel() {
     if (!dialogOpen) return;
 
     function onEscape(event) {
-      if (event.key === "Escape" && !document.querySelector(".character-sheet[open]")) {
+      if (event.key === "Escape" && !matchMedia(MEDIA_QUERIES.phone).matches && !document.querySelector(".character-sheet[open]")) {
         setSelectedBook(null);
       }
     }
@@ -44,7 +45,6 @@ export default function BooksCarousel() {
             sb={selectedBook}
             sheetOpen={dialogOpen}
             closeSheet={() => setSelectedBook(null)}
-            stopSheet={event => event.stopPropagation()}
           />
           <ModalAccessibility open={dialogOpen} returnFocus={opener} />
         </>,

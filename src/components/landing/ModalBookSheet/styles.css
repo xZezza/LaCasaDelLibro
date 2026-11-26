@@ -6,13 +6,12 @@
     display: grid;
     place-items: center;
     padding: clamp(12px, 3vh, 36px) clamp(12px, 3vw, 40px);
-    background: light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.92 0.02 85 / 0.45));
+    background: light-dark(oklch(0.25 0.035 305 / 0.45), oklch(0.10 0.025 15 / 0.72));
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
 
   .salon-s294 {
-    color-scheme: light;
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 0.43fr) minmax(0, 0.57fr);
@@ -21,11 +20,13 @@
     overflow: auto;
     overscroll-behavior: contain;
     border-radius: 24px;
-    background: light-dark(oklch(0.975 0.012 84), oklch(0.153 0.028 15));
+    background: light-dark(oklch(0.975 0.012 84), oklch(0.20 0.028 15));
     color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
-    box-shadow: 0 40px 90px -25px light-dark(oklch(0.25 0.035 305 / 0.5), oklch(0.92 0.02 85 / 0.5));
+    box-shadow: 0 40px 90px -25px light-dark(oklch(0.25 0.035 305 / 0.5), oklch(0.1 0.02 15 / 0.62));
     animation: pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
+
+  .book-sheet-body { display: contents; }
 
   .book-sheet-close {
     position: absolute;
@@ -53,7 +54,9 @@
     gap: 30px;
     min-height: clamp(540px, 82vh, 740px);
     padding: clamp(72px, calc(18vh - 35px), 130px) 32px clamp(34px, calc(12vh - 30px), 78px);
-    background: var(--book-sheet-landscape) center / cover no-repeat, oklch(0.55 0.065 265);
+    --book-sheet-art-shade: light-dark(transparent, oklch(0.13 0.03 280 / 0.50));
+    background: linear-gradient(var(--book-sheet-art-shade), var(--book-sheet-art-shade)),
+      var(--book-sheet-landscape) center / cover no-repeat, oklch(0.55 0.065 265);
     color: oklch(0.94 0.04 85);
   }
 
@@ -132,9 +135,9 @@
     flex-direction: column;
     gap: 14px;
     padding: clamp(14px, calc(3vh - 5px), 22px) 22px clamp(12px, 2vh, 18px) 32px;
-    border: 1px solid oklch(0.85 0.035 80 / 0.5);
+    border: 1px solid light-dark(oklch(0.85 0.035 80 / 0.5), oklch(0.54 0.055 310 / 0.55));
     border-radius: 17px 20px 19px 16px;
-    background: linear-gradient(90deg, transparent 20px, oklch(0.7 0.09 50 / 0.3) 20px 21px, transparent 21px 23px, oklch(0.7 0.09 50 / 0.18) 23px 24px, transparent 24px), repeating-linear-gradient(180deg, transparent 0 31px, oklch(0.6 0.04 250 / 0.17) 31px 32px), linear-gradient(light-dark(oklch(0.98 0.028 85 / 0.82), oklch(0.157 0.028 15 / 0.82)), light-dark(oklch(0.96 0.028 85 / 0.82), oklch(0.157 0.028 15 / 0.82))), var(--book-sheet-paper) center / cover;
+    background: linear-gradient(90deg, transparent 20px, oklch(0.7 0.09 50 / 0.3) 20px 21px, transparent 21px 23px, oklch(0.7 0.09 50 / 0.18) 23px 24px, transparent 24px), repeating-linear-gradient(180deg, transparent 0 31px, light-dark(oklch(0.6 0.04 250 / 0.17), oklch(0.64 0.04 300 / 0.25)) 31px 32px), linear-gradient(light-dark(oklch(0.98 0.028 85 / 0.82), oklch(0.24 0.032 15 / 0.93)), light-dark(oklch(0.96 0.028 85 / 0.82), oklch(0.21 0.028 15 / 0.93))), var(--book-sheet-paper) center / cover;
     box-shadow: 0 7px 9px -5px oklch(0.45 0.065 70 / 0.32), 0 2px 3px oklch(0.6 0.06 70 / 0.12), inset 0 1px 1px light-dark(oklch(0.99 0.02 85), oklch(0.139 0.028 15));
     transform-origin: left center;
     animation: book-sheet-page-turn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -155,9 +158,15 @@
   .book-sheet-field-icons { display: inline-flex; flex-shrink: 0; gap: 4px; color: light-dark(oklch(0.5 0.04 305), oklch(0.67 0.02 85)); }
   .book-sheet-field-icons svg { width: 16px; height: 16px; }
   .book-sheet-field-icons svg:last-child { width: 14px; opacity: 0.65; }
-  .book-sheet-field input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; font: 300 19px "Kalam", cursive; color: light-dark(oklch(0.39 0.065 260), oklch(0.85 0.036 260)); }
-  .book-sheet-field input::placeholder { color: light-dark(oklch(0.52 0.045 260), oklch(0.75 0.036 260)); opacity: 1; }
+  .book-sheet-field :is(input, textarea) { display: block; width: 100%; min-width: 0; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; font: 300 19px "Kalam", cursive; color: light-dark(oklch(0.39 0.065 260), oklch(0.85 0.036 260)); }
+  .book-sheet-field :is(input, textarea)::placeholder { color: light-dark(oklch(0.52 0.045 260), oklch(0.75 0.036 260)); opacity: 1; }
   .book-sheet-field:focus-within .book-sheet-field-heading { color: light-dark(oklch(0.38 0.035 305), oklch(0.79 0.02 85)); }
+  .book-sheet-field textarea {
+    padding-block: 7px 5px;
+    line-height: 1.6;
+    resize: vertical;
+  }
+
   .book-sheet-stars { display: flex; margin-top: 2px; }
   .book-sheet-stars button { display: grid; place-items: center; width: 32px; height: 44px; padding: 0; border: 0; background: transparent; color: oklch(0.7 0.025 65); cursor: pointer; }
   .book-sheet-stars svg { width: 25px; height: 25px; fill: transparent; transition: fill 0.15s, color 0.15s; }
@@ -192,13 +201,13 @@
     outline: none;
   }
 
-  .book-sheet-field input:focus-visible {
+  .book-sheet-field :is(input, textarea):focus-visible {
     outline: none;
     box-shadow: 0 2px 0 oklch(0.72 0.11 78);
   }
 
   .book-sheet-field:focus-within .book-sheet-field-heading > span:first-child {
-    background: linear-gradient(transparent 55%, oklch(0.86 0.1 78 / 0.65) 55% 90%, transparent 90%);
+    background: linear-gradient(transparent 55%, light-dark(oklch(0.86 0.1 78 / 0.65), oklch(0.41 0.08 305 / 0.8)) 55% 90%, transparent 90%);
   }
 
   .book-sheet-close:focus-visible,
@@ -224,6 +233,12 @@
 }
 
 @layer responsive {
+  @media (width > 650px) {
+    .book-sheet-pages { order: 1; }
+    .book-sheet-tabs { order: 2; }
+    .book-sheet-footnote { order: 3; }
+  }
+
   @media (max-width: 960px) and (min-width: 651px) {
     .salon-s294 { grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr); }
     .book-sheet-content { padding-inline: 24px; }
@@ -233,26 +248,43 @@
     .book-sheet-field-heading { letter-spacing: 0.08em; }
     .book-sheet-field-icons { gap: 2px; }
     .book-sheet-field-icons svg { width: 13px; }
-    .book-sheet-field input { font-size: 17px; }
+    .book-sheet-field :is(input, textarea) { font-size: 17px; }
   }
   @media (max-width: 650px) {
-    .salon-s295 { padding: 10px; }
-    .salon-s294 { grid-template-columns: minmax(0, 1fr); }
-    .book-sheet-art { min-height: 350px; padding: 64px 24px 22px; gap: 20px; background-position: center 40%; }
-    .book-sheet-book-scene { width: 135px; }
+    .book-sheet-body { display: block; }
+
+    .book-sheet-art {
+      min-height: 0;
+      padding: 20px 12px;
+      background-position: center 40%;
+    }
+
+    .book-sheet-book-scene {
+      width: clamp(100px, 29vw, 134px);
+      --illustrated-cover-title-size: clamp(12px, 3.4vw, 17px);
+    }
+
+    .book-sheet-favourite, .book-sheet-view-controls { display: none; }
     .salon-s272 { font-size: 20px; }
     .book-sheet-art .book-cover-motif { scale: 0.9; }
     .book-sheet-art .salon-s39, .book-sheet-art .salon-s42 { font-size: 9px; }
-    .book-sheet-favourite { top: 18px; left: 18px; right: auto; }
-    .book-sheet-content { gap: 24px; padding: 26px 20px; }
-    .book-sheet-title { font-size: 36px; }
-    .book-sheet-genre, .book-sheet-title { padding-right: 0; }
+
+    .book-sheet-content {
+      gap: 16px;
+      padding: 20px max(18px, env(safe-area-inset-right)) 24px max(18px, env(safe-area-inset-left));
+    }
+
+    .book-sheet-title { font-size: clamp(29px, 9vw, 40px); overflow-wrap: anywhere; }
+    .book-sheet-heading, .book-sheet-genre, .book-sheet-title { padding-right: 0; }
     .book-sheet-author { font-size: 16px; }
-    .book-sheet-synopsis { margin-top: 18px; }
+    .book-sheet-synopsis { margin-top: 14px; }
+    .book-sheet-status-controls { gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+    .book-sheet-tabs { border-top: 1px solid light-dark(oklch(0.25 0.035 305 / 0.12), oklch(0.92 0.02 85 / 0.16)); gap: 8px 24px; }
     .book-sheet-page { padding: 22px 14px 18px 28px; }
     .book-sheet-journal-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .book-sheet-field-heading { font-size: 11px; }
-    .book-sheet-field input { font-size: 21px; }
+    .book-sheet-field :is(input, textarea) { font-size: 19px; }
+    .book-sheet-field textarea { min-height: 60px; }
     .book-sheet-stars button { width: 44px; }
     .book-sheet-ribbon { right: 18px; }
   }

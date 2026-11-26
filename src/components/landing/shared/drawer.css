@@ -1,0 +1,84 @@
+@layer components {
+  .salon-drawer-header { display: contents; }
+  .salon-drawer-handle { display: none; }
+}
+
+@layer responsive {
+  @media (max-width: 650px) {
+    .salon-drawer-backdrop { padding: 0; }
+
+    .salon-drawer {
+      position: fixed;
+      inset: auto 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      width: 100%;
+      max-width: none;
+      max-height: min(90dvh, calc(100dvh - env(safe-area-inset-top) - 16px));
+      margin: 0;
+      border-radius: 24px 24px 0 0;
+      overflow: hidden;
+      transform-origin: bottom center;
+      animation: none;
+    }
+
+    dialog.salon-drawer:not([open]) { display: none; }
+
+    .salon-drawer-header {
+      display: grid;
+      place-items: center;
+    }
+
+    .salon-drawer-header > button:not(.salon-drawer-handle) { display: none; }
+
+    .salon-drawer-handle {
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .salon-drawer-handle::before {
+      content: "";
+      width: 36px;
+      height: 4px;
+      border-radius: 4px;
+      background: currentColor;
+      opacity: .38;
+    }
+
+    .salon-drawer-handle:focus-visible { outline: none; }
+    .salon-drawer-handle:focus-visible::before { outline: 2px solid light-dark(#a17a4e, oklch(0.81 0.10 80)); outline-offset: 4px; opacity: 1; }
+    .salon-drawer[data-drawer-state="dragging"] { user-select: none; }
+    .salon-drawer[data-drawer-state="dragging"] .salon-drawer-handle { cursor: grabbing; }
+    .salon-drawer[data-drawer-state="closing"] { pointer-events: none; }
+
+    .salon-drawer-body {
+      min-height: 0;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scroll-padding-block: 12px;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  @media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+    .salon-drawer { animation: salon-drawer-enter .46s cubic-bezier(.22, .65, .36, 1) both; }
+  }
+
+  @keyframes salon-drawer-enter {
+    from { transform: translateY(100%); }
+    72% { transform: scaleY(1.015); }
+    88% { transform: scaleY(.995); }
+    to { transform: none; }
+  }
+}

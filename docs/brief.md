@@ -343,3 +343,13 @@ Hero: ridotta la velatura sul lato del testo. La maschera sinistra raggiunge la 
 26 novembre — Nelle carte di The Salon le righe usano subito la larghezza di destinazione mentre la carta cambia dimensione. Titolo e discussione entrano con un breve movimento d’insieme, disattivato quando è richiesto il movimento ridotto.
 
 26 novembre — Follow along e footer sono composti in Astro, con stili locali e due isole React per la citazione con comparsa e per l’avviso Threads. Su desktop sono ridotti gli spazi fra citazione, invito e social, il margine prima del footer e la sua altezza. Ridotto anche il raccordo verticale fra The Salon e Follow along. Su telefono si mantiene la composizione Figma con la comparsa sotto la citazione e la pennellata di Instagram. Le illustrazioni e i breakpoint esistenti sono conservati.
+
+26 novembre — Su telefono le schede libro e personaggio si aprono dal basso con sfondo oscurato, chiusura sempre visibile e contenuto scorrevole. La scheda libro condivide con il desktop copertina rotante, preferiti, stato di lettura, diario a schede, voto e forum. La scheda personaggio riusa il ritratto ad arco e mostra personalità, punti di forza e fragilità come su desktop. Il cambio di larghezza conserva lo stato della scheda aperta. Il movimento rispetta la preferenza di sistema.
+
+26 novembre — Su telefono i drawer di libri e personaggi entrano con un leggero rimbalzo. Si chiudono tirando verso il basso solo quando il contenuto è già all'inizio. Un trascinamento breve riporta il pannello in posizione. La maniglia mantiene l'accesso da tastiera; su telefono la X e la chiusura toccando lo sfondo sono rimosse. La preferenza di movimento ridotto disattiva le animazioni.
+
+26 novembre — Le schede libro e personaggio ora seguono il tema della landing anche quando sono aperte. In ink, pannelli, diario, forum e sfondo dei ritratti adottano la palette scura con testi avorio. Le illustrazioni di copertine e personaggi conservano i loro colori. La decisione sostituisce la precedente impostazione sempre chiara delle due schede.
+
+26 novembre — I drawer mobile di libro e personaggio si lasciano tirare leggermente verso l'alto dalla maniglia, con resistenza progressiva e un breve rimbalzo al rilascio. Il bordo inferiore resta ancorato. Il gesto all'interno del contenuto continua a scorrere la scheda.
+
+26 novembre — Su telefono la testata della scheda libro mostra la copertina centrata. Rimossi i tre pulsanti laterali (preferiti, vista copertina, rotazione). Toccando la copertina si può ancora farla ruotare.
