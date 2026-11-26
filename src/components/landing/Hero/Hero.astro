@@ -1,0 +1,385 @@
+---
+import ResponsiveCopy from "../shared/ResponsiveCopy.astro";
+import StoryGuests from "../StoryGuests/index.jsx";
+import OpeningQuote from "./OpeningQuote.astro";
+import { BREAKPOINTS, MEDIA_QUERIES } from "../../../config/breakpoints.js";
+import { imageAsset } from "../../../lib/image-assets.js";
+
+const roomMedia = `(width > ${BREAKPOINTS.phoneMax}px)`;
+const journalImage = imageAsset("/images/hero/reading-journal-fantasy.png");
+---
+
+<div class="salon-s23 salon-hero">
+  <div class="salon-hero-stage">
+    <div class="salon-s8">
+      <div class="salon-s7">
+        <div class="salon-s6" role="img" aria-label="A cozy reading room with a bookcase decorated with flowers and fairy lights"></div>
+      </div>
+    </div>
+    <div class="salon-s9"></div>
+    <header id="top" class="salon-s22">
+      <div class="salon-s21">
+        <div class="salon-s11">
+          <span class="salon-s10"></span>
+          Now in development
+        </div>
+        <h1 class="salon-s15">
+          A story doesn’t end when you close <em class="salon-s14">the last page.<span aria-hidden="true" class="salon-s12"></span><span aria-hidden="true" class="salon-s13"></span></em>
+        </h1>
+        <p class="salon-s16">
+          <ResponsiveCopy
+            wide="The Salon is a home for your books and the feelings they leave behind. Arrange your shelves, keep a private journal for every story, and find people who want to talk about it as much as you do."
+            phone="Your books. Your memories. Your people. Arrange your shelves and keep a journal for every story."
+          />
+        </p>
+        <p class="salon-s20">made for fantasy, romantasy &amp; dystopian worlds · 15+<br />open to every story you love</p>
+      </div>
+    </header>
+    <picture class="hero-mobile-illustration">
+      <source media={MEDIA_QUERIES.phone} srcset={journalImage} />
+      <img
+        src="/images/hero/reading-room.jpg"
+        width="1355"
+        height="1161"
+        alt="An open reading journal with handwritten memories, a pressed flower and a tiny fantasy world rising from its pages"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <StoryGuests client:media={roomMedia} group="all" placement="hero" />
+  </div>
+</div>
+<OpeningQuote />
+
+<style>
+  @layer components {
+    .salon-s6 {
+      position: absolute;
+      inset: 0;
+      background: url("/images/hero/reading-room.jpg") right center / cover
+        no-repeat;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000 80%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000 80%, transparent 100%);
+    }
+
+    .salon-s7 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: min(100%, max(56%, 500px));
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 18%,
+        #000 42%
+        );
+      mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 18%,
+        #000 42%
+        );
+    }
+
+    .salon-s8 {
+      position: absolute;
+      inset: 0;
+      -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+      mask-image: linear-gradient(
+        180deg,
+        #000 45%,
+        rgba(0, 0, 0, 0.6) 70%,
+        transparent 100%
+        );
+    }
+
+    .salon-s9 {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+      background: linear-gradient(
+        90deg,
+        light-dark(oklch(0.955 0.018 82 / 0.97), oklch(0.171 0.028 15 / 0.97)) 0%,
+        light-dark(oklch(0.955 0.018 82 / 0.9), oklch(0.171 0.028 15 / 0.9)) 30%,
+        light-dark(oklch(0.955 0.018 82 / 0.28), oklch(0.171 0.028 15 / 0.28)) 44%,
+        light-dark(oklch(0.955 0.018 82 / 0), oklch(0.171 0.028 15 / 0)) 58%
+        );
+    }
+
+    .salon-s10 {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
+      display: block;
+    }
+
+    .salon-s11 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
+    }
+
+    .salon-s12 {
+      position: absolute;
+      left: -6px;
+      right: -10px;
+      bottom: 0.08em;
+      height: 0.36em;
+      z-index: -1;
+      background: linear-gradient(
+        90deg,
+        light-dark(oklch(0.86 0.1 78 / 0.55), oklch(0.42 0.085 305 / 0.55)),
+        light-dark(oklch(0.86 0.1 78 / 0.85), oklch(0.42 0.085 305 / 0.85)) 12%,
+        light-dark(oklch(0.86 0.1 78 / 0.7), oklch(0.42 0.085 305 / 0.7)) 60%,
+        light-dark(oklch(0.86 0.1 78 / 0.9), oklch(0.42 0.085 305 / 0.9)) 92%,
+        light-dark(oklch(0.86 0.1 78 / 0.4), oklch(0.42 0.085 305 / 0.4))
+        );
+      border-radius: 40% 12% 55% 18% / 60% 30% 70% 40%;
+      transform: rotate(-1.6deg) skewX(-8deg);
+    }
+
+    .salon-s13 {
+      position: absolute;
+      left: 8%;
+      right: -2px;
+      bottom: 0.22em;
+      height: 0.16em;
+      z-index: -1;
+      background: light-dark(oklch(0.86 0.1 78 / 0.5), oklch(0.42 0.085 305 / 0.5));
+      border-radius: 50% 20% 60% 30%;
+      transform: rotate(0.8deg);
+    }
+
+    .salon-s14 {
+      position: relative;
+      display: inline-block;
+      padding: 0 4px;
+      z-index: 0;
+    }
+
+    .salon-s15 {
+      margin: 26px 0 0;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(38px, 5.25vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .salon-s16 {
+      margin: 26px 0 0;
+      max-width: 520px;
+      font-size: clamp(17px, 1.6vw, 19px);
+      line-height: 1.65;
+      font-weight: 300;
+      color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
+      text-wrap: pretty;
+    }
+
+    .salon-s20 {
+      margin: 22px 0 0;
+      font-family: "Kalam", cursive;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.1;
+      color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
+    }
+
+    .salon-s21 {
+      max-width: 620px;
+      animation: rise 1s ease both;
+    }
+
+    .salon-s22 {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--page-max-width, 1440px);
+      margin: 0 auto;
+      padding: clamp(110px, 10vw, 130px) clamp(20px, 4vw, 48px)
+        clamp(60px, 7vw, 90px);
+      pointer-events: none;
+    }
+
+    .salon-s23 {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      min-height: 0;
+      isolation: isolate;
+      background: radial-gradient(ellipse 65% 85% at 70% 30%, light-dark(oklch(.88 .065 72 / .45), oklch(.171 .028 15 / 0)), transparent 82%);
+    }
+
+    /* Text, room and visitors share one centred scene instead of using the
+       full viewport as three different positioning references. */
+
+    .hero-mobile-illustration {
+      display: none;
+    }
+
+    .salon-hero-stage {
+      --hero-guest-size: clamp(170px, 18vw, 252px);
+      position: relative;
+      width: 100%;
+      max-width: var(--page-max-width, 1440px);
+      margin-inline: auto;
+    }
+  }
+
+  @layer refinements {
+    .salon-hero .salon-s7 {
+      transform: translateY(calc(-1 * clamp(40px, 5vw, 72px)));
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 18%,
+        #000 42%,
+        #000 70%,
+        transparent 100%
+        );
+      mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 18%,
+        #000 42%,
+        #000 70%,
+        transparent 100%
+        );
+    }
+
+  }
+
+  /* Desktop 961–1440px; larger screens keep a centred 1440px scene. */
+
+  @layer responsive {
+    @media (width > 960px) {
+      .salon-hero .salon-s7 {
+        /* Keep the room beside the copy at normal desktop scale, while the
+           shared scene supplies equal outer margins on larger monitors. */
+        width: min(68%, calc(100% - 408px));
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 651px) and (max-width: 960px) {
+      .salon-s21 {
+        max-width: min(66%, calc(100% - var(--hero-guest-size) * var(--visitor-hover-scale) - 48px));
+      }
+
+      .salon-hero-stage :global(.story-guest-hero) {
+        right: calc(24px + var(--guest-size) * (var(--visitor-hover-scale) - 1) / 2);
+      }
+
+      .salon-s15 {
+        font-size: clamp(38px, 5.25vw, 52px);
+      }
+
+      .salon-s16 {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .salon-hero .salon-s11 { display: none; }
+
+      .salon-hero {
+        background: none;
+      }
+
+      .salon-hero #top {
+        padding: clamp(88px, 27.7vw, 108px) var(--mobile-page-gutter) 0;
+      }
+
+      .salon-hero .salon-s8,
+      .salon-hero .salon-s9 {
+        display: none;
+      }
+
+      .hero-mobile-illustration {
+        display: block;
+        width: min(calc(100% - 2 * var(--mobile-page-gutter)), 500px);
+        margin: -4px auto 10px;
+      }
+
+      .hero-mobile-illustration img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .salon-s21 {
+        max-width: 100%;
+      }
+
+      .salon-s15 {
+        margin-top: 0;
+        font-size: clamp(35px, 11.3vw, 44px);
+        line-height: 1;
+        text-wrap: wrap;
+      }
+
+      .salon-s14 {
+        padding-inline: 0;
+      }
+
+      .salon-hero .salon-s16 {
+        margin-top: 22px;
+        max-width: 320px;
+        font-size: clamp(15px, 4.1vw, 17px);
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      .salon-hero .salon-s20 {
+        margin-top: 12px;
+        font-size: 14px;
+        line-height: 1.3;
+      }
+    }
+  }
+
+  @layer components {
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+
+  @layer refinements {
+    :global(html[data-theme="ink"]) .salon-s6 {
+      background-image: url("/images/hero/reading-room-ink.png");
+    }
+  }
+
+  @layer responsive {
+    :global(html[data-theme="ink"]) .salon-hero .salon-s8 {
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+    }
+
+    @media (min-width: 651px) {
+      :global(html[data-theme="ink"]) .salon-hero .salon-s7 {
+        -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+        mask-image: linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+      }
+    }
+
+  }
+</style>

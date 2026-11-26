@@ -1,0 +1,24 @@
+---
+interface Props {
+  wide: string;
+  phone: string;
+}
+
+const { wide, phone } = Astro.props;
+---
+
+<span class="copy-wide">{wide}</span>
+<span class="copy-phone">{phone}</span>
+
+<style>
+  @layer components {
+    .copy-phone { display: none; }
+  }
+
+  @layer responsive {
+    @media (max-width: 650px) {
+      .copy-wide { display: none; }
+      .copy-phone { display: inline; }
+    }
+  }
+</style>

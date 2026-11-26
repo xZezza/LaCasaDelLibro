@@ -36,8 +36,10 @@ for (const file of source) {
     if (match[1].includes('${')) continue;
     if (!fs.existsSync(path.join(root, 'public', match[1]))) errors.push(`${path.relative(root, file)}: missing image ${match[1]}`);
   }
-  if (file.endsWith('.css')) {
-    for (const query of content.matchAll(/@media\s*([^{}]+)\{/g)) {
+  const stylesheets = file.endsWith('.css') ? [content] :
+    file.endsWith('.astro') ? [...content.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map(match => match[1]) : [];
+  for (const stylesheet of stylesheets) {
+    for (const query of stylesheet.matchAll(/@media\s*([^{}]+)\{/g)) {
       for (const size of query[1].matchAll(/(\d+)px/g)) if (![650, 651, 960, 1440].includes(Number(size[1]))) errors.push(`${path.relative(root, file)}: unexpected breakpoint ${size[1]}px`);
     }
   }

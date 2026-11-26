@@ -1,28 +1,6 @@
 import React from "react";
+import DecorativeFlower from "../shared/DecorativeFlower.jsx";
 import { JOURNAL_EXAMPLE as book } from "../../../data/landing/journal.js";
-
-function NotebookFlower() {
-  const petals = [0, 72, 144, 216, 288];
-  return (
-    <div className="salon-s87" aria-hidden="true">
-      <svg viewBox="0 0 120 120" width="100%" height="100%" className="salon-s86">
-        <path d="M60 64 C 58 84, 50 98, 38 114" fill="none" stroke="light-dark(oklch(0.55 0.07 130), oklch(0.73 0.07 130))" strokeWidth="2.2" strokeLinecap="round" />
-        <path d="M50 92 C 36 88, 28 94, 22 102 C 34 104, 44 100, 50 92 Z" fill="light-dark(oklch(0.66 0.07 135), oklch(0.84 0.07 135))" opacity=".85" />
-        <path d="M56 80 C 68 72, 80 74, 88 80 C 78 88, 66 88, 56 80 Z" fill="light-dark(oklch(0.62 0.07 135), oklch(0.8 0.07 135))" opacity=".8" />
-        {petals.map(angle => (
-          <ellipse key={angle} cx="60" cy="38" rx="11" ry="22" opacity=".88"
-            fill="light-dark(oklch(0.74 0.09 350), oklch(0.86 0.09 350))" transform={`rotate(${angle} 60 60)`} />
-        ))}
-        {petals.map(angle => (
-          <ellipse key={angle} cx="60" cy="44" rx="6" ry="13" opacity=".6"
-            fill="light-dark(oklch(0.88 0.05 350), oklch(0.3 0.035 350))" transform={`rotate(${angle + 36} 60 60)`} />
-        ))}
-        <circle cx="60" cy="60" r="8" fill="light-dark(oklch(0.72 0.12 80), oklch(0.86 0.12 80))" />
-        <circle cx="57" cy="57" r="2" fill="light-dark(oklch(0.95 0.06 90), oklch(0.23 0.042 90))" opacity=".8" />
-      </svg>
-    </div>
-  );
-}
 
 function NotebookThought({ label, text, writingClass, sharing }) {
   return (
@@ -77,7 +55,7 @@ function NotebookRatings({ ratings }) {
 export default function DesktopNotebook({ bookColor, bookColors, chars, jSummary, linksRef, previewLinks, ratings, sh }) {
   return (
     <div className="journal-desktop-notebook">
-      <NotebookFlower />
+      <div className="salon-s87"><DecorativeFlower colour="rose" /></div>
       <div className="salon-s131">
         <div className="salon-s88" />
         <div className="salon-s89" />

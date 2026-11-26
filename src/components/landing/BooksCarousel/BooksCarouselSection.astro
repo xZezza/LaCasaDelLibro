@@ -1,0 +1,63 @@
+---
+import ResponsiveCopy from "../shared/ResponsiveCopy.astro";
+import BooksCarousel from "./BooksCarousel.jsx";
+---
+
+<section class="salon-s52" aria-labelledby="stories-title">
+  <div class="salon-s33">
+    <h2 id="stories-title" class="salon-s31">The stories you carry with you.</h2>
+    <p class="salon-s32">
+      <ResponsiveCopy
+        wide="The books that made you dream, laugh, cry and feel everything. Keep them close, with your memories beside them."
+        phone="The books you love, with your memories beside them."
+      />
+    </p>
+  </div>
+  <BooksCarousel client:load />
+</section>
+
+<style>
+  @layer components {
+    .salon-s31 {
+      margin: 0;
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.04;
+      text-wrap: balance;
+    }
+
+    .salon-s32 {
+      margin: 16px auto 0;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: light-dark(oklch(0.38 0.03 305), oklch(0.79 0.02 85));
+      max-width: 48ch;
+      text-wrap: balance;
+    }
+
+    .salon-s33 {
+      max-width: var(--page-max-width, 1200px);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+    }
+
+    .salon-s52 {
+      position: relative;
+      z-index: 1;
+      padding: clamp(36px, 4.5vw, 56px) 0 clamp(20px, 2.5vw, 32px);
+    }
+  }
+
+  @layer responsive {
+
+    @media (max-width: 650px) {
+      .salon-s52 { padding-top: var(--mobile-section-gap); padding-bottom: var(--mobile-content-gap); }
+      .salon-s31 { font-size: clamp(30px, 8.2vw, 38px); scroll-margin-top: 28px; text-wrap: wrap; }
+      .salon-s32 { font-size: 15px; line-height: 1.55; max-width: 50ch; margin-top: 12px; }
+    }
+  }
+</style>

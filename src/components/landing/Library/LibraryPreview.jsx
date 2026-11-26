@@ -5,8 +5,9 @@ import ModalLibrary from "../ModalLibrary/index.jsx";
 import DesktopLibraryPreview from "./DesktopLibraryPreview.jsx";
 import LibraryController from "./LibraryController.js";
 import MobileLibraryPreview from "./MobileLibraryPreview.jsx";
+import "./LibraryPreview.css";
 
-export default class Library extends LibraryController {
+export default class LibraryPreview extends LibraryController {
   opener = React.createRef();
 
   componentDidMount() {

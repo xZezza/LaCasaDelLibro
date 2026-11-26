@@ -4,29 +4,11 @@
 
 @layer responsive {
   @media (max-width: 650px) {
-    .salon-journal {
-      --mj-ink: light-dark(#2c2335, #f3eadd);
-      --mj-paper: light-dark(#fbf7ee, #281d29);
-      --mj-muted: light-dark(#6d6274, #c7b8ca);
-      --mj-line: light-dark(#ded3c3, #65526a);
-      --mj-purple: light-dark(#8562a3, #d4b5ed);
-    }
-    .journal-header, .mobile-reading-journal {
+    .mobile-reading-journal {
       max-width: 438px;
       padding-inline: var(--mobile-page-gutter);
       color: var(--mj-ink); font: 400 14px/1.45 "Jost", sans-serif;
     }
-    .salon-journal > .section-divider { margin-block: 12px var(--mobile-content-gap); }
-    .journal-header { margin: 0 auto var(--mobile-content-gap); }
-    .journal-label {
-      padding-inline: 4px;
-      color: var(--mj-muted);
-      font: 400 10px/1.5 "Jost", sans-serif;
-      letter-spacing: .16em;
-    }
-    .journal-phone-intro { display: block; padding-inline: 4px; }
-    .journal-phone-intro h2 { margin: 16px 0; font: 400 clamp(34px, 10vw, 42px)/1.06 "Cormorant Garamond", serif; }
-    .journal-phone-intro p { margin: 0; color: var(--mj-muted); font-size: 15px; }
     .mobile-reading-journal { display: block; margin: 0 auto; padding-bottom: 20px; }
     .mobile-reading-journal button { font: inherit; color: inherit; cursor: pointer; }
     .mobile-reading-journal [hidden] { display: none; }
@@ -173,7 +155,6 @@
     .mj-reading-details dd { margin: 4px 0 0; font-size: 12px; }
     .mj-privacy-summary { display: flex; align-items: flex-start; justify-content: center; gap: 8px; margin: 34px 10px 0; font-size: 12px; line-height: 1.5; color: var(--mj-muted); text-align: center; }
     .mj-privacy-summary .mj-icon { margin-top: 3px; }
-    .mj-caption { margin: 23px 0 0; color: var(--mj-purple); text-align: center; font: italic 400 20px/1.4 "Cormorant Garamond", serif; }
     @container (max-width: 270px) {
       .mj-writing > span { display: inline; }
       .mj-character-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }

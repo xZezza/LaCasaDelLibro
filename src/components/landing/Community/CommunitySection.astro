@@ -1,0 +1,96 @@
+---
+import ResponsiveCopy from "../shared/ResponsiveCopy.astro";
+import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
+import SectionDivider from "../shared/SectionDivider.astro";
+import ForumCards from "./ForumCards.jsx";
+import Postcard from "./Postcard.jsx";
+import "../shared/typography.css";
+---
+
+<section id="salon" class="salon-community" aria-labelledby="salon-title">
+  <SectionDivider />
+  <div class="community-intro">
+    <p class="salon-s57 community-label">III · The Salon</p>
+    <h2 id="salon-title" class="salon-s58">Find the people who felt it too.</h2>
+    <p class="salon-s59">
+      <ResponsiveCopy
+        wide="A forum for every book, and open rooms for everything in between. Talk about the stories that stay with you, or find your next read together."
+        phone="Talk about a book you love, or find your next read together."
+      />
+    </p>
+    <Postcard client:load>
+      <picture>
+        <source media={MEDIA_QUERIES.phone} srcset="/images/community/hogwarts-banquet.webp" width="1200" height="900" />
+        <img src="/images/community/reading-circle.jpg" alt="Readers gathered around a table, discussing an open book." loading="lazy" />
+      </picture>
+    </Postcard>
+  </div>
+  <div class="community-forums">
+    <ForumCards client:load />
+    <p class="community-forum-caption">Illustrative conversations with fictional readers.</p>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .salon-community {
+      position: relative;
+      z-index: 1;
+      max-width: var(--page-max-width, 1440px);
+      margin-inline: auto;
+      padding: clamp(20px, 3vw, 38px) clamp(20px, 4vw, 48px) clamp(90px, 11vw, 140px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+    }
+
+    .community-label { margin: 0; }
+    .community-intro h2 { max-width: 15ch; }
+  }
+
+  @layer responsive {
+    @media (width > 960px) {
+      .salon-community {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(26px, 3.5vw, 48px) clamp(40px, 6vw, 80px);
+        align-items: start;
+        padding-bottom: clamp(36px, 4vw, 58px);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .salon-community {
+        gap: 28px;
+        padding: 12px var(--mobile-page-gutter) var(--mobile-section-gap);
+      }
+
+      .community-label { font-size: 11px; }
+      .community-intro h2 { max-width: none; margin-top: 14px; font-size: clamp(34px, 10vw, 42px); line-height: 1.06; }
+      .community-intro .salon-s59 { margin-top: 16px; font-size: 15px; line-height: 1.6; }
+    }
+  }
+
+  @layer components {
+    .community-forums {
+      --forum-paper: light-dark(#fffaf1, #252132);
+      --forum-ink: light-dark(#312640, #f2eaf8);
+      --forum-muted: light-dark(#5c4f69, #cdbedb);
+      --forum-rule: light-dark(#dfd4e6, #554866);
+      --forum-accent: light-dark(#765a91, #c4aedb);
+      --forum-inset: clamp(16px, 5vw, 24px);
+      display: grid;
+      gap: 14px;
+      width: min(100%, 680px);
+      margin-inline: auto;
+      color: var(--forum-ink);
+    }
+    .community-forum-caption { margin: 0; color: var(--forum-muted); font-size: 12px; }
+  }
+
+  @layer responsive {
+    @media (max-width: 650px) {
+      .community-forums { width: min(100%, 480px); }
+      .community-forum-caption { text-align: center; }
+    }
+  }
+</style>

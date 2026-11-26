@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import IllustratedCover from "../BookCover/IllustratedCover.jsx";
 import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import { imageAsset } from "../../../lib/image-assets.js";
 import { illustratedCoverFor } from "../../../data/landing/illustrated-covers.js";
@@ -102,8 +103,8 @@ export default function MobileBooksCarousel({ books, onOpen, dialogOpen }) {
               <Cover type={clone ? undefined : "button"} className="mobile-books-book" aria-label={clone ? undefined : `Open ${book.t}`} tabIndex={clone ? undefined : 0}
                 onClick={event => { if (performance.now() >= blockClickRef.current) onOpen(book, event.currentTarget); }}>
                 <span className="mobile-books-binding" style={{ "--binding-color": art?.binding ?? book.bg }}>
-                  {art && <img src={art.responsiveSrc} srcSet={`${art.responsiveSrc} 600w, ${imageAsset(art.src)} 1060w`} sizes="(max-width: 650px) 31.5vw, 156px" width="1000" height="1400" alt="" loading="lazy" decoding="async" draggable="false" />}
-                  {(!art || art.liveTitle) && <span className="mobile-books-cover-lettering"><span>{book.t}</span><small>{book.a}</small></span>}
+                  <IllustratedCover art={art} book={book} sizes="(max-width: 650px) 31.5vw, 156px"
+                    letteringClass="mobile-books-cover-lettering" draggable={false} />
                 </span>
               </Cover>
             </div>;

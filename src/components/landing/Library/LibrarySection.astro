@@ -1,0 +1,82 @@
+---
+import LibraryPreview from "./LibraryPreview.jsx";
+import SectionDivider from "../shared/SectionDivider.astro";
+import "../shared/actions.css";
+import "../shared/typography.css";
+---
+
+<section id="library" class="salon-s79 salon-library">
+  <SectionDivider />
+  <LibraryPreview client:load>
+    <Fragment slot="intro">
+      <div class="salon-s57">I · The Library</div>
+      <h2 class="salon-s58">Shelves that look like you.</h2>
+      <p class="salon-s59 salon-library-desktop-copy">A three-dimensional library you can arrange and personalise. The books you’ve finished and the ones still waiting for you, side by side, in a room that feels like yours.</p>
+      <p class="salon-s59 salon-library-mobile-copy">Your books, your little world.<br />Arrange it. Make it yours.</p>
+    </Fragment>
+  </LibraryPreview>
+</section>
+
+<style>
+  @layer components {
+
+    .salon-s79 {
+      position: relative;
+      z-index: 1;
+      max-width: var(--page-max-width, 1200px);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px) clamp(40px, 5vw, 64px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+  }
+
+  @layer responsive {
+    @media (width > 960px) {
+      .salon-s79 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: clamp(26px, 3.5vw, 48px);
+      }
+    }
+
+    @media (min-width: 651px) and (max-width: 960px) {
+      .salon-s79 {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .salon-s79 {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding-inline: 20px;
+      }
+    }
+  }
+
+  @layer components {
+    .salon-library-mobile-copy { display: none; }
+  }
+
+  @layer responsive {
+    @media (max-width: 650px) {
+      .salon-s79.salon-library {
+        padding: 12px var(--mobile-page-gutter) var(--mobile-section-gap);
+        gap: var(--mobile-section-gap);
+        scroll-margin-top: 20px;
+      }
+      .salon-library .salon-s57 { font-size: 11px; font-weight: 500; letter-spacing: .18em; }
+      .salon-library .salon-s58 {
+        font-size: clamp(34px, 10.25vw, 44px);
+        line-height: 1.05;
+        text-wrap: wrap;
+      }
+      .salon-library .salon-s59 { margin-top: 12px; font-size: 15px; line-height: 1.55; }
+      .salon-library-mobile-copy { display: block; }
+      .salon-library-desktop-copy { display: none; }
+    }
+  }
+</style>

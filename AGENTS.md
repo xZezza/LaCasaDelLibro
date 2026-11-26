@@ -15,7 +15,7 @@
 - Dal 7 novembre 2026 l’handoff Claude Design sostituisce la precedente grafica. Riferimento attivo: `docs/brief.md`; il vecchio brief è stato rimosso su richiesta di Gaia.
 - Conservare tutti i personaggi e animaletti approvati: non eliminare o sovrascrivere `public/images/characters/`, `src/data/library-visitors.json` e i documenti di provenienza. Le comparse attive della nuova landing sono in `src/components/landing/StoryGuests/index.jsx`.
 
-- Organizzazione: raggruppare la landing per sezione in `src/components/landing/NomeSezione/`, con gli stili accanto. Le sezioni migrate usano `.astro` per il markup statico e `.jsx` per le interazioni React. Dati in `src/data/`, hook in `src/hooks/`, utility in `src/lib/`, configurazione in `src/config/`.
+- Organizzazione: raggruppare la landing per sezione in `src/components/landing/NomeSezione/`, con un componente `.astro` dal nome della sezione e il suo CSS locale in un blocco `<style>` in fondo al file. Le interazioni restano nei componenti `.jsx` con CSS dedicato quando serve. Riutilizzare i componenti condivisi della landing. Dati in `src/data/`, hook in `src/hooks/`, utility in `src/lib/`, configurazione in `src/config/`.
 - Ordine CSS dichiarato in `src/styles/global.css`: components → refinements → guests → responsive. Conservare questo ordine per non perdere le rifiniture precedenti. Gli stili realmente condivisi sono in components/landing/shared; global.css contiene solo fondamenti, token e accessibilità generale. Non aggiungere fogli di override generici.
 - Asset attivi in `public/images/{branding,hero,community,decorations,characters}`; favicon e manifest nella radice pubblica. Non reintrodurre gli asset della vecchia landing nel build.
 

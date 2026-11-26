@@ -1,0 +1,84 @@
+@layer components {
+
+  .follow-quote-text {
+    column-gap: 0;
+  }
+
+  .follow-quote-credit {
+    transition: opacity 0.8s ease 0.8s;
+  }
+
+  .follow-quote {
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 40ch;
+    text-align: center;
+  }
+
+  .follow-quote.quote-guest-throne {
+    --scene-guest-size: 164px;
+    width: 100%;
+    max-width: 1000px;
+    min-height: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
+    padding-inline: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + 2 * var(--scene-guest-clearance));
+    justify-content: center;
+  }
+
+  @media (max-width: 960px) {
+    .follow-quote.quote-guest-throne {
+      padding-inline: 0;
+      padding-bottom: calc(var(--scene-guest-size) * var(--visitor-hover-scale) + var(--scene-guest-floor) + var(--scene-guest-clearance));
+    }
+  }
+}
+
+@layer responsive {
+  @media (width > 960px) {
+    .follow-quote.quote-guest-throne {
+      --scene-guest-size: clamp(138px, 10.5vw, 152px);
+      --scene-guest-floor: 20px;
+      --scene-guest-clearance: 12px;
+      max-width: 900px;
+      margin-bottom: 12px;
+    }
+  }
+
+  @media (width > 960px) and (prefers-reduced-motion: reduce) {
+    .follow-quote.quote-guest-throne {
+      min-height: 0;
+      max-width: 44ch;
+      padding-inline: 0;
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 650px) {
+
+    .follow-quote.quote-guest-throne {
+      --scene-guest-size: 100px;
+      min-height: 0;
+      margin-bottom: 16px;
+      padding-bottom: 0;
+    }
+
+    .quote-guest-throne .story-guest-throne {
+      position: relative;
+      inset: auto;
+      order: 1;
+      margin-bottom: 18px;
+    }
+
+    .quote-guest-throne .visitor-name { top: calc(100% + 4px); }
+  }
+
+  @media (max-width: 650px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .quote-guest-throne .story-guest-throne { margin-top: calc(var(--guest-size) * (var(--visitor-hover-scale) - 1) - 8px); }
+  }
+
+  @media (max-width: 650px) and (prefers-reduced-motion: reduce) {
+    .quote-guest-throne .story-guest-throne { display: none; }
+  }
+}

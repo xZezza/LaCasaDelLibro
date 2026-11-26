@@ -1,6 +1,7 @@
 import React from "react";
 import { MEDIA_QUERIES } from "../../../config/breakpoints.js";
 import BookCover from "../BookCover/index.jsx";
+import "./DesktopBooksCarousel.css";
 
 const MARQUEE_DURATION = 70_000;
 const REPEATS = 4;

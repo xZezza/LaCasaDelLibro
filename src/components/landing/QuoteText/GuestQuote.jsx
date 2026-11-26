@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import QuoteText from "../QuoteText";
 import StoryGuests from "../StoryGuests";
+import QuoteText from "./index.jsx";
 
-export default function ClosingQuote() {
+export default function GuestQuote({ name, placement, text, author, book, children }) {
   const quote = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -19,11 +19,12 @@ export default function ClosingQuote() {
   }, []);
 
   return (
-    <figure ref={quote} className="follow-quote quote-with-guest quote-guest-throne quote-reveal" data-visible={visible}>
-      <StoryGuests group="throne" placement="throne" />
-      <QuoteText text="You could rattle the stars. You could do anything, if only you dared." className="follow-quote-text" />
-      <figcaption className="follow-quote-credit">
-        Sarah J. Maas · <cite className="salon-s28">Throne of Glass</cite>
+    <figure ref={quote} className={`${name} quote-with-guest quote-guest-${placement} quote-reveal`} data-visible={visible}>
+      {children}
+      <StoryGuests group={placement} placement={placement} />
+      <QuoteText text={text} className={`guest-quote-text ${name}-text`} />
+      <figcaption className={`guest-quote-credit ${name}-credit`}>
+        {author} · <cite className="salon-s28">{book}</cite>
       </figcaption>
     </figure>
   );

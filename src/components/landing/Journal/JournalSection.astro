@@ -1,0 +1,127 @@
+---
+import Journal from "./Journal.jsx";
+import SectionDivider from "../shared/SectionDivider.astro";
+import "../shared/actions.css";
+import "../shared/typography.css";
+
+const name = "The Journal";
+const label = `II · ${name}`;
+---
+
+<section id="journal" class="salon-journal" aria-label={name}>
+  <SectionDivider />
+  <header class="journal-header">
+    <p class="salon-s57 journal-label">{label}</p>
+    <div class="journal-phone-intro">
+      <h2>A private diary<br />for every book.</h2>
+      <p>Keep the story. Keep how it felt.</p>
+    </div>
+  </header>
+
+  <Journal client:load>
+    <p slot="label" class="salon-s57 journal-label journal-desktop-label">{label}</p>
+    <div slot="editorial" class="journal-editorial">
+      <div class="journal-handwriting">
+        <p>Keep the memory of every story.</p>
+        <p>Find your own words again, months or years later.</p>
+        <p>Share the feelings with people who understand.</p>
+      </div>
+      <h2 class="salon-s58">A private diary for every book.</h2>
+      <p class="salon-s59">Collect your thoughts, favourite characters, quotes, impressions and ratings. Everything stays private until you decide otherwise, and you share only the thoughts you choose.</p>
+      <p class="journal-share-hint">tap “Private” in the journal to share just that one</p>
+    </div>
+    <p slot="caption" class="mj-caption">A little of you, between the pages.</p>
+  </Journal>
+</section>
+
+<style>
+  @layer components {
+    .salon-journal {
+      --section-divider-margin: 0 clamp(26px, 3.5vw, 48px);
+      --journal-gutter: clamp(20px, 4vw, 48px);
+      position: relative;
+      overflow: hidden;
+      color: light-dark(oklch(0.25 0.035 305), oklch(0.92 0.02 85));
+    }
+
+    .journal-header {
+      width: 100%;
+      max-width: var(--page-max-width, 1440px);
+      margin: 0 auto clamp(26px, 3.2vw, 48px);
+      padding: 0 var(--journal-gutter);
+    }
+
+    .journal-label {
+      margin: 0;
+    }
+
+    .journal-phone-intro, .journal-desktop-label {
+      display: none;
+    }
+
+    .journal-handwriting {
+      margin: 0 0 22px;
+      max-width: 52ch;
+      display: grid;
+      gap: 5px;
+      font: 300 clamp(18px, 1.8vw, 24px)/1.42 "Kalam", cursive;
+      color: light-dark(oklch(0.48 0.1 300), oklch(0.76 0.09 300));
+      text-wrap: pretty;
+    }
+
+    .journal-handwriting p {
+      margin: 0;
+    }
+
+    .journal-share-hint {
+      margin: 22px 0 0;
+      font-family: "Kalam", cursive;
+      font-weight: 300;
+      font-size: 19px;
+      color: light-dark(oklch(0.55 0.09 300), oklch(0.73 0.09 300));
+    }
+
+  }
+
+  @layer responsive {
+    @media (width > 960px) {
+      .journal-header {
+        display: none;
+      }
+
+      .journal-desktop-label {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  @layer responsive {
+    @media (max-width: 650px) {
+      .salon-journal {
+        --section-divider-margin: 12px var(--mobile-content-gap);
+        --mj-ink: light-dark(#2c2335, #f3eadd);
+        --mj-paper: light-dark(#fbf7ee, #281d29);
+        --mj-muted: light-dark(#6d6274, #c7b8ca);
+        --mj-line: light-dark(#ded3c3, #65526a);
+        --mj-purple: light-dark(#8562a3, #d4b5ed);
+      }
+      .journal-header {
+        max-width: 438px;
+        padding-inline: var(--mobile-page-gutter);
+        color: var(--mj-ink); font: 400 14px/1.45 "Jost", sans-serif;
+      }
+      .journal-header { margin: 0 auto var(--mobile-content-gap); }
+      .journal-label {
+        padding-inline: 4px;
+        color: var(--mj-muted);
+        font: 400 10px/1.5 "Jost", sans-serif;
+        letter-spacing: .16em;
+      }
+      .journal-phone-intro { display: block; padding-inline: 4px; }
+      .journal-phone-intro h2 { margin: 16px 0; font: 400 clamp(34px, 10vw, 42px)/1.06 "Cormorant Garamond", serif; }
+      .journal-phone-intro p { margin: 0; color: var(--mj-muted); font-size: 15px; }
+      .mj-caption { margin: 23px 0 0; color: var(--mj-purple); text-align: center; font: italic 400 20px/1.4 "Cormorant Garamond", serif; }
+    }
+  }
+</style>
